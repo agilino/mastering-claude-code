@@ -1,0 +1,135 @@
+<p align="center">
+  <img src="slides/public/brand/nalogo.svg" width="56" alt="nextacademy.io" />
+</p>
+
+<h1 align="center">Mastering Claude Code</h1>
+<p align="center"><strong>Learn What's Next. <em>Today.</em></strong></p>
+<p align="center">Adam Furmanczuk · nextacademy.io<br/>From first prompt to black belt, on one real codebase.</p>
+<p align="center"><strong>Slides:</strong> <a href="https://mastering-claude-code.vercel.app">mastering-claude-code.vercel.app</a></p>
+
+---
+
+## Repository
+
+- This workshop: [github.com/nextacademy-io/mastering-claude-code](https://github.com/nextacademy-io/mastering-claude-code)
+- The app you build and extend: [github.com/pawsaw/clash](https://github.com/pawsaw/clash)
+- Live deck: [mastering-claude-code.vercel.app](https://mastering-claude-code.vercel.app)
+- Trainer: Adam Furmanczuk, nextacademy.io
+
+## What this is
+
+A guided workshop on Claude Code. You start with no experience. You end with the skills of an
+expert: context engineering, skills, subagents, agent teams, dynamic workflows, hooks, MCP,
+worktrees, headless runs in CI, and the Agent SDK.
+
+The trainer explains and shows. Then you do it on your own machine. Every task has a reset
+branch, so nobody gets stuck.
+
+## The app you build
+
+**CLASH** is a small social app for Berlin. Clashes happen at a place and a time on a map.
+People join, hosts accept or reject, everyone gets notified.
+
+In the first half you **build CLASH yourself** with Claude Code, from an empty repo and a spec.
+In the second half you work on the **finished reference CLASH** and learn to control and
+orchestrate Claude Code on it.
+
+- Spec: [`docs/SPEC.md`](docs/SPEC.md)
+- Reference app: [github.com/pawsaw/clash](https://github.com/pawsaw/clash)
+
+## Who this is for
+
+Developers who want to use Claude Code well. No Claude Code experience needed. You should be
+able to read TypeScript and use git.
+
+## Setup
+
+Do this before the workshop: **[`docs/SETUP.md`](docs/SETUP.md)**.
+
+```bash
+git clone https://github.com/pawsaw/clash
+cd clash
+git checkout 01-start
+claude --version
+```
+
+## The road
+
+| Part | Belt | Tasks |
+|---|---|---|
+| I — Foundations | White | 01 |
+| II — Build CLASH | Blue | 02 · 03 · 04 · 05 |
+| III — Control the context | Brown | 06 · 07 · 08 |
+| IV — Orchestrate and let go | Black | 09 · 10 · 11 · 12 · 13 · 14 |
+
+## Tasks
+
+| # | Task | Part | Reset branch |
+|---|---|---|---|
+| 01 | [Setup and first conversation](tasks/01-setup-first-conversation.md) | I | `01-start` |
+| 02 | [Foundation](tasks/02-foundation.md) | II | `02-start` |
+| 03 | [Auth and clashes](tasks/03-auth-and-clashes.md) | II | `03-start` |
+| 04 | [Venues, map, people](tasks/04-venues-map-people.md) | II | `04-start` |
+| 05 | [Finish and ship](tasks/05-finish-and-ship.md) | II | `05-start` |
+| 06 | [Context and CLAUDE.md](tasks/06-context-and-claude-md.md) | III | `06-start` |
+| 07 | [The clash-feature skill](tasks/07-clash-feature-skill.md) | III | `07-start` |
+| 08 | [Subagent audit](tasks/08-subagent-audit.md) | III | `08-start` |
+| 09 | [Team and workflow audit](tasks/09-team-and-workflow-audit.md) | IV | `09-start` |
+| 10 | [Hooks](tasks/10-hooks.md) | IV | `10-start` |
+| 11 | [The browser closes the loop](tasks/11-browser-loop.md) | IV | `11-start` |
+| 12 | [Letting go](tasks/12-letting-go.md) | IV | `12-start` |
+| 13 | [Agent SDK](tasks/13-agent-sdk.md) | IV | `13-start` |
+| 14 | [Capstone](tasks/14-capstone.md) | IV | `14-start` |
+
+Standalone index: [`tasks/README.md`](tasks/README.md). What each branch contains:
+[`docs/BRANCHES.md`](docs/BRANCHES.md).
+
+## Reset branches
+
+`NN-start` is the state at the **start** of task NN. If you fall behind, do not debug. Reset
+and continue:
+
+```bash
+git stash            # keep your own work if you want it
+git checkout 04-start
+```
+
+`01-start` is an empty repo with the spec. `06-start` is the finished reference CLASH.
+
+## What you will have built
+
+- CLASH, built by you with Claude Code, and compared against the reference.
+- A `CLAUDE.md` grounded in real invariants, a reusable `clash-feature` skill, a hook set.
+- An authorization audit run three ways: subagent, agent team, dynamic workflow. With the fix merged.
+- A browser test suite and a measured performance fix.
+- The audit running headless in CI, a worktree flow, and a small Agent SDK program.
+- One feature of your choice, shipped with everything above.
+
+## Slides
+
+Live deck: **[mastering-claude-code.vercel.app](https://mastering-claude-code.vercel.app)**. It is
+redeployed automatically whenever the slides change (a Claude Code `Stop` hook in
+`.claude/settings.json` runs `.claude/hooks/deploy-slides.sh`).
+
+```bash
+cd slides
+npm install
+npm run dev        # opens the deck
+npm run build      # also exports dist/mastering-claude-code.pdf
+```
+
+## For trainers
+
+[`FACILITATOR.md`](FACILITATOR.md) holds the talking points, demo scripts and pitfalls per part.
+Answer keys live in [`workshop-artifacts/`](workshop-artifacts/).
+
+## Resources
+
+- [Claude Code docs](https://code.claude.com/docs/en/) · [Skills](https://code.claude.com/docs/en/skills) · [Subagents](https://code.claude.com/docs/en/sub-agents) · [Agent teams](https://code.claude.com/docs/en/agent-teams) · [Dynamic workflows](https://code.claude.com/docs/en/workflows)
+- [Hooks guide](https://code.claude.com/docs/en/hooks-guide) · [Hooks reference](https://code.claude.com/docs/en/hooks) · [Permission modes](https://code.claude.com/docs/en/permission-modes) · [Settings](https://code.claude.com/docs/en/settings-reference)
+- [MCP](https://code.claude.com/docs/en/mcp) · [Headless mode](https://code.claude.com/docs/en/headless) · [Worktrees](https://code.claude.com/docs/en/worktrees) · [GitHub Actions](https://code.claude.com/docs/en/github-actions) · [Agent SDK](https://docs.claude.com/en/api/agent-sdk/overview)
+- [Playwright MCP](https://github.com/microsoft/playwright-mcp) · [Chrome DevTools MCP](https://github.com/ChromeDevTools/chrome-devtools-mcp) · [Agent Browser](https://github.com/vercel-labs/agent-browser)
+
+## License
+
+Slides and text: [LICENSE](LICENSE). Code: [LICENSE-CODE](LICENSE-CODE).
