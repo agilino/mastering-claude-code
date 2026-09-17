@@ -35,6 +35,7 @@ Every external URL in README, FACILITATOR, docs, tasks, slides and answer keys, 
 | ok 200 | https://github.com/ValentinH/react-easy-crop |
 | ok 200 | https://github.com/github/spec-kit.git |
 | ok 200 | https://github.com/microsoft/playwright-mcp |
+| ok 200 | https://github.com/nextacademy-io/mastering-claude-code |
 | ok 200 | https://github.com/pawsaw/clash |
 | ok 200 | https://github.com/vercel-labs/agent-browser |
 | ok 200 | https://mastering-claude-code.vercel.app |

@@ -37,6 +37,7 @@ ART_SKILL_MD="$(find_one '*skill*/SKILL.md')"
 ART_HOOKS_SETTINGS="$(find_one '*hook*/settings.json')"
 ART_HOOKS_TYPECHECK="$(find_one '*hook*/typecheck-actions.sh')"
 ART_HOOKS_BUILD_GATE="$(find_one '*hook*/build-gate.sh')"
+ART_HOOKS_BUILD_SUMMARY="$(find_one '*hook*/build-summary.sh')"
 
 cd "$CLASH_DIR"
 if [[ -n "$(git status --porcelain)" ]]; then
@@ -77,6 +78,7 @@ gate() {                 # gate <branch>
   local b="$1" log="$LOG_DIR/$1.log"
   if [[ "$SKIP_GATE" == "1" ]]; then SUMMARY+=("$b|$(git rev-parse --short HEAD)|$(git ls-files | wc -l | tr -d ' ')|skipped"); return; fi
   echo "   gate: npm install"; npm install --no-audit --no-fund --loglevel=error >"$log" 2>&1 || { echo "GATE FAILED on $b (npm install). Log: $log" >&2; tail -n 30 "$log" >&2; exit 1; }
+  rm -rf .next
   echo "   gate: tsc";         npx tsc --noEmit >>"$log" 2>&1 || { echo "GATE FAILED on $b (tsc). Log: $log" >&2; tail -n 40 "$log" >&2; exit 1; }
   echo "   gate: lint";        npm run lint >>"$log" 2>&1 || { echo "GATE FAILED on $b (lint). Log: $log" >&2; tail -n 40 "$log" >&2; exit 1; }
   echo "   gate: build";       npm run build >>"$log" 2>&1 || { echo "GATE FAILED on $b (build). Log: $log" >&2; tail -n 40 "$log" >&2; exit 1; }
@@ -86,9 +88,12 @@ gate() {                 # gate <branch>
 note() { echo "== $1 == $2"; }
 
 # --- 01-start: empty repo ---------------------------------------------------
+for b in 01-start 02-start 03-start 04-start 05-start 06-start 07-start 08-start 09-start 10-start 11-start 12-start 13-start 14-start; do
+  git branch -D "$b" >/dev/null 2>&1 || true
+done
 git checkout --orphan 01-start --quiet
 git rm -rf --quiet . >/dev/null 2>&1 || true
-git clean -fdq -e node_modules -e .env -e dev.db -e .next -e lib/generated
+git clean -fdq -e node_modules -e .env -e dev.db -e lib/generated
 mkdir -p docs
 cp "$CK/01/README.md" README.md
 cp "$CK/01/.gitignore" .gitignore
@@ -184,7 +189,8 @@ git checkout -B 11-start 10-start --quiet
 mkdir -p .claude/hooks
 cp "$ART_HOOKS_TYPECHECK" .claude/hooks/typecheck-actions.sh
 cp "$ART_HOOKS_BUILD_GATE" .claude/hooks/build-gate.sh
-chmod +x .claude/hooks/typecheck-actions.sh .claude/hooks/build-gate.sh
+cp "$ART_HOOKS_BUILD_SUMMARY" .claude/hooks/build-summary.sh
+chmod +x .claude/hooks/typecheck-actions.sh .claude/hooks/build-gate.sh .claude/hooks/build-summary.sh
 cp "$ART_HOOKS_SETTINGS" .claude/settings.json
 commit_all 11-start "workshop: install the hook set — typecheck, deny rules, Stop gate (end of task 10)"
 note 11-start "+ hook set"
