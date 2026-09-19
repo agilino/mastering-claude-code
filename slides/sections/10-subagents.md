@@ -7,11 +7,6 @@ heading: "Subagents"
   <ToolkitMap current="subagent" />
 </template>
 
-<!--
-Divider, Subagent row. This is strategy one of three on one problem. Say it plainly: "one
-problem, three strategies. Today the first. Next part, the other two."
--->
-
 ---
 layout: code-live
 heading: "Page guard, action guard?"
@@ -34,30 +29,12 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
 }
 ```
 
-<!--
-Do not skip this. Many strong React developers do not know it, and if it does not land, the rest of
-this part is people watching agents audit something they do not understand the danger of.
-
-Open the real file. Show requireUser() guarding the page. Open app/actions/clashes.ts. Ask the
-question directly. It does not. A Server Action compiles to a public POST endpoint with a
-generated id. Anyone with a session cookie can call any action directly, with any arguments,
-without loading the page. Authorization must be re-established inside every action. Zod checks
-shape, not permission.
--->
-
 ---
 layout: concept
 heading: "The attack surface"
 ---
 
 <G14AttackSurface />
-
-<!--
-The centrepiece graphic. Left: the safe-looking path, browser → guarded page → requireUser() →
-button → action. Right: the bypass, a direct POST to the action's generated id, arriving at the
-same Server Action, never having loaded the guarded page. Close on: "Zod validates shape, not
-permission."
--->
 
 ---
 layout: concept
@@ -67,15 +44,6 @@ lines:
   - "Two actions. This branch seeds a real, findable flaw."
 ---
 
-<!--
-Say the correction out loud before anyone starts: the public CLASH main branch has NO missing
-checks. All 18 exported actions are guarded. The flaw is seeded on 08-start: the ownership check
-was removed from deleteClash (app/actions/clashes.ts) and deleteVenue (app/actions/venues.ts).
-Workshop content, not a CLASH bug. Answer key: workshop-artifacts/09-team-and-workflow-audit/AUTH-FIX.md.
-
-A tell for a sharp auditor: npm run lint on 08-start reports an unused `user` variable in
-deleteVenue. The guard that used it is gone. Green gates do not mean safe code.
--->
 
 ---
 layout: code-live
@@ -100,14 +68,6 @@ tools: Read, Grep, Glob
      the exact deciding line.
 ```
 
-<!--
-FULL WORKING SOLUTION (trainer only): the body is in tasks/08-subagent-audit.md step 4.
-
-Talking points: the tools: line matters. Read, Grep, Glob only. This agent reads and reports; it
-does not fix. Narrowing tools is itself a control. Contrast the brief with a vague "find security
-bugs": a falsifiable property is what makes the report checkable instead of a wall of prose.
--->
-
 ---
 layout: concept
 heading: "Two ways to isolate"
@@ -117,17 +77,6 @@ heading: "Two ways to isolate"
   <G06SubagentIsolation />
   <G07ForkVsFresh />
 </div>
-
-<!--
-Left: the subagent's own window fills with noisy tool calls; only a thin summary crosses back. That
-is why the main thread barely moves.
-
-Right: fork versus fresh. A fork branches off the parent and inherits the whole conversation and
-the parent's prompt cache, so it is cheap when the shared context is really needed. A fresh
-subagent starts cold: no history, filtered tools, no cache, so the first call costs more. Fork is
-on by default in interactive sessions, off under -p and the Agent SDK. Neither is better. Know
-which one you invoked and why.
--->
 
 ---
 layout: task
@@ -139,8 +88,4 @@ success: "The subagent flags exactly deleteClash and deleteVenue, and nothing el
 branch: "08-start"
 ---
 
-<!--
-Note the /context reading before launching. Launch one subagent with the narrow brief. Let it
-read every file in app/actions/. Then read /context again: it moved only slightly. That IS the
-point. The part ends on a cliffhanger: two findings, not fixed yet. Part IV fixes them.
--->
+
