@@ -109,7 +109,7 @@ reference build at each stage.
 ### Task 05 — Finish and ship
 
 - Batch the independent work into one brief. Background tasks for the long ones.
-- `/cost` once. Memory once (`#`).
+- `/cost` once. Memory once (ask Claude to remember a rule, then `/memory`).
 - Git through Claude: branch, commit, PR, a strict review prompt.
 - Compare with the reference. Ask: what did the reference do that you did not? What did
   you do better? Then `git checkout 06-start`. Everyone is on the same code from here.

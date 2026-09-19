@@ -123,6 +123,19 @@ npm run build      # also exports dist/mastering-claude-code.pdf
 [`FACILITATOR.md`](FACILITATOR.md) holds the talking points, demo scripts and pitfalls per part.
 Answer keys live in [`workshop-artifacts/`](workshop-artifacts/).
 
+The speaker notes come in English and German. They live in `slides/notes/en/` and
+`slides/notes/de/`. The slides are the same in both languages. Only the notes change.
+Pick the language when you start the deck:
+
+```bash
+cd slides
+npm run dev                  # English notes (default)
+npm run dev -- --lang=de     # German notes
+npm run build -- --lang=de   # German build, also exports dist/mastering-claude-code.de.pdf
+npm run export -- --lang=de  # German PDF only
+npm run check:notes          # both languages still match: note keys, [click] markers, commands
+```
+
 ## Resources
 
 - [Claude Code docs](https://code.claude.com/docs/en/) · [Skills](https://code.claude.com/docs/en/skills) · [Subagents](https://code.claude.com/docs/en/sub-agents) · [Agent teams](https://code.claude.com/docs/en/agent-teams) · [Dynamic workflows](https://code.claude.com/docs/en/workflows)

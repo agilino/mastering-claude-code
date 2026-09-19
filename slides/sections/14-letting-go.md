@@ -7,11 +7,6 @@ lines:
   - "The Agent SDK: the same loop, inside your program."
 ---
 
-<!--
-Three ideas, each done properly. Worktrees are the thing people use most afterwards. Headless CI
-turns the audit into permanent infrastructure. The SDK shows that every control from this workshop
-carries over unchanged when the agent lives inside your software.
--->
 
 ---
 layout: concept
@@ -22,15 +17,6 @@ lines:
 ---
 
 <G18WorktreeParallelism />
-
-<!--
-Every strategy so far shared one working tree. Worktrees let you run several agents on separate
-branches of the same repo in parallel, with no risk of one agent's half-finished edit breaking
-another's. Give it time.
-
-Mention without demoing: `isolation: worktree` in a subagent's frontmatter, and the
-EnterWorktree/ExitWorktree tools. At home: `claude --worktree "#<pr-number>"` starts from a PR.
--->
 
 ---
 layout: concept
@@ -51,15 +37,6 @@ lines:
   </div>
 </div>
 
-<!--
-Headless means no human watching: the same agent that just paired with you, running unattended,
-triggered by an event. Fill the empty Actions tab with the security audit from task 08, running on
-every PR. The centrepiece becomes permanent infrastructure.
-
-Do not put `claude -p` in the YAML. Use anthropics/claude-code-action@v1 with `prompt` and
-`claude_args`. @beta is legacy and dropped the `mode` input.
--->
-
 ---
 layout: code-live
 heading: "Audit on every PR"
@@ -74,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions: { contents: read, pull-requests: write, id-token: write }
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: anthropics/claude-code-action@v1
         with:
           # ⟵ LIVE: NOT `claude -p` in a run: step. The action runs
@@ -83,22 +60,6 @@ jobs:
           claude_args: "___"
           claude_code_oauth_token: ___
 ```
-
-<!--
-FULL WORKING SOLUTION (trainer only):
-      - uses: anthropics/claude-code-action@v1
-        with:
-          prompt: |
-            Audit every exported Server Action in app/actions/ changed by
-            this PR for missing ownership checks on mutations of existing
-            rows. Comment the findings on the PR.
-          claude_args: "--model claude-sonnet-5"
-          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-
-Authenticate through the `claude_code_oauth_token` action input, fed from a named repository
-secret (created with `claude setup-token`), never a hardcoded key.
-`id-token: write` is required. A live token is not needed to check that the YAML is valid.
--->
 
 ---
 layout: task
@@ -110,9 +71,6 @@ success: "Two worktree sessions never touched each other's files, and the audit 
 branch: "12-start"
 ---
 
-<!--
-Two terminals for the worktree half. The CI half needs no live token to verify the YAML shape.
--->
 
 ---
 layout: concept
@@ -123,13 +81,6 @@ lines:
 ---
 
 <G19AutonomyLevels />
-
-<!--
-You just ran the agent headless in a pipeline. The Agent SDK is the same idea one level further
-in: the agent lives inside your application. Imagine CLASH answering "find me something outdoors
-in Kreuzberg this evening" over its own map. Today we build the smallest version: a script that
-answers that question from the seed data, with read-only tools and a hook.
--->
 
 ---
 layout: code-live
@@ -155,15 +106,6 @@ for await (const m of run)
   if (m.type === "result" && m.subtype === "success") console.log(m.result);
 ```
 
-<!--
-FULL WORKING SOLUTION (trainer only): workshop-artifacts/13-agent-sdk/ask-clash.mts. Run with
-`npx tsx ask-clash.mts "find me something outdoors in Kreuzberg this evening"` after
-`npm install @anthropic-ai/claude-agent-sdk tsx`.
-
-Point at the three controls: allowedTools/disallowedTools, hooks.PreToolUse, maxTurns. Then the
-result message: the answer, num_turns, total_cost_usd. Say the cost out loud.
--->
-
 ---
 layout: task
 number: "13"
@@ -174,7 +116,4 @@ success: "ask-clash.mts prints an answer with a clash, a place and a time, and n
 branch: "13-start"
 ---
 
-<!--
-The finished program is in workshop-artifacts/13-agent-sdk/. The "Now you" part removes tools and
-adds a system prompt; the stretch turns it into an API route.
--->
+

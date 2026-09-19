@@ -1,7 +1,7 @@
 // Generates the standalone QR codes used in the deck (currently only the
 // trainer's LinkedIn profile on the trainer slide) into public/diagrams/qr/.
 // Task slides carry no QR or link: the trainer picks the medium.
-// Runs as predev/prebuild — see package.json.
+// Called from scripts/deck.mjs before every dev/build/export.
 import { mkdir } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'

@@ -7,12 +7,6 @@ heading: "Build CLASH"
   <JourneyMap current="build" />
 </template>
 
-<!--
-Divider for Part II. Say: "From here on you build. I show one step, you do it on your
-machine. The spec is docs/SPEC.md. Claude writes the code. You decide what is good."
-Point at the four modules of this part. Each one is a task. Each task has a reset branch.
--->
-
 ---
 layout: concept
 heading: "A brief has three parts"
@@ -37,18 +31,11 @@ lines:
   </div>
 </div>
 
-<!--
-A prompt is a wish. A brief is a contract. Show the three parts with the real scaffold
-brief from Task 02. Say: the "done when" line is the one people forget, and it is the
-one that stops Claude from wandering. Contrast with the cold prompt "set up a Next.js
-app" — it works too, but you will not know when it is finished, and neither will Claude.
--->
-
 ---
 layout: concept
 heading: "Plan mode: read, think, propose"
 lines:
-  - "Shift+Tab twice — the prompt shows plan"
+  - "Shift+Tab until the status bar shows \"plan mode on\""
   - "Claude can read files. It cannot write them."
   - "You review the plan. Then you switch back and say: do it."
 ---
@@ -81,14 +68,6 @@ lines:
   </g>
 </svg>
 
-<!--
-Demo live: Shift+Tab twice, show the "plan" marker in the prompt line. Send the data
-model prompt from Task 02. Let the plan appear. Read one part of it out loud and ask the
-room a question about it ("why lib/generated/prisma?"). Then switch back and say "do
-it". The point: the data model is hard to change later, so this is the right moment to
-look before Claude writes.
--->
-
 ---
 layout: concept
 heading: "Read the diff, not the summary"
@@ -98,12 +77,6 @@ lines:
   - "Commit through Claude. It writes the message."
 ---
 
-<!--
-The habit to build early: after every step, look at the files. Claude's summary is
-usually right, but the diff is always right. Show git status after the scaffold. Then
-ask Claude to commit and read the commit message it wrote. Say: this is a good first
-place to let Claude take over a chore.
--->
 
 ---
 layout: code-live
@@ -122,33 +95,14 @@ using the better-sqlite3 adapter.
 Show the plan, do not write files.
 ```
 
-<!--
-FULL WORKING PROMPT (verbatim from tasks/02-foundation.md):
-
-Read @docs/SPEC.md, section "Data". Plan a Prisma 7 schema for SQLite using the
-better-sqlite3 adapter. Five models. Status and type fields are strings, not enums.
-Generate the client into lib/generated/prisma. Also plan a seed with 8 users
-(password "test", hashed with bcryptjs), 8 venues and 8 clashes in Berlin,
-some past, some upcoming. Show the plan, do not write files.
-
-Type the rules live, one by one, and say why each one is there: SQLite has no enums;
-the generated client path keeps the import stable; the seed is what every later task
-logs in with.
--->
-
 ---
 layout: task
 number: "02"
 heading: "Foundation"
-goal: "Scaffold the app, plan and build the data model in plan mode, seed eight users, and make your first commit through Claude."
+goal: "Scaffold the app, plan the data model in plan mode, build it, seed eight users, and commit through Claude."
 mode: "you do"
 success: "npm run dev shows a page, prisma/schema.prisma has five models, the seed created 8 users, and CLAUDE.md has a Rules section."
 branch: "02-start"
 ---
 
-<!--
-Task 02 recap. Say the reset branch and where the task file is: 02-start is the spec plus a first
-CLAUDE.md; 03-start is where you land if this task goes wrong. Walk the group while they
-work. The most common stall: create-next-app asking interactive questions — the flags in
-the brief avoid most of them, but say "answer yes to everything you are not sure about".
--->
+

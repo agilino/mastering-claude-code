@@ -22,6 +22,16 @@ const forbidden = [
   [/\bblock ends\b/i, 'block wording'],
   [/\bmarble\b/i, 'marble chart'],
   [/\b(\d+|ten|twenty|thirty|sixty)[- ]seconds?\b/i, 'seconds'],
+  // German equivalents — apply to slides/notes/de/*.md and any other German content
+  [/\b\d{1,2}\s?Uhr\b/, 'clock time (de)'],
+  [/(?<![-\w\/.])\b\d+\s?(Minuten?|Stunden?)\b(?![-\w])/, 'duration (de)'],
+  [/\bTag\s?[123]\b/, 'day number (de)'],
+  [/\b(Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Sonntag)\b/, 'weekday (de)'],
+  [/\b20[2-3]\d-\d\d(-\d\d)?\b/, 'date (de)'],
+  [/\b\d{1,2}\.\d{1,2}\.\d{4}\b/, 'date (de, DD.MM.YYYY)'],
+  [/\bKonferenz\b/i, 'event reference (de)'],
+  [/\b(heute (früh|Morgen)|heute Nachmittag|nach der Pause|morgen früh)\b/i, 'time of day (de)'],
+  [/\bim Raum\b/i, 'room wording (de)'],
 ]
 // QR is allowed only on the welcome section (the trainer's LinkedIn code)
 const forbiddenOutsideWelcome = [[/\bQR\b/, 'QR code']]
@@ -39,6 +49,8 @@ async function listMd(dir) {
 
 const files = [
   ...(await listMd(join(root, 'slides', 'sections'))),
+  ...(existsSync(join(root, 'slides', 'notes', 'en')) ? await listMd(join(root, 'slides', 'notes', 'en')) : []),
+  ...(existsSync(join(root, 'slides', 'notes', 'de')) ? await listMd(join(root, 'slides', 'notes', 'de')) : []),
   ...(await listMd(join(root, 'tasks'))),
   ...(await listMd(join(root, 'docs'))),
   join(root, 'README.md'),

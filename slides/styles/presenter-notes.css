@@ -1,0 +1,37 @@
+/* Presenter notes — readable in bright light.
+
+   This file styles the presenter UI on purpose (base.css stays scoped to
+   .slidev-layout). Slidev greys out every note segment that is not the current
+   [click] step: #a1a1a1cc, about 5:1 on the dark panel. Every slide here has
+   click markers, so that is most of the text most of the time.
+
+   The fade stays as a hint, at about 12:1. The current step is white and
+   semi-bold, and its click badge is gold — weight and colour still read in
+   sunlight, a grey-level difference does not. */
+
+.dark .slidev-note,
+.dark .slidev-note p,
+.dark .slidev-note li {
+  color: var(--na-zinc-50);
+}
+
+.dark .slidev-note-with-clicks p:not(.slidev-note-fade),
+.dark .slidev-note-with-clicks li:not(.slidev-note-fade) {
+  font-weight: 600;
+}
+
+.dark .slidev-note.slidev-note-with-clicks .slidev-note-fade {
+  color: var(--na-zinc-300);
+  font-weight: 400;
+}
+
+.dark .slidev-note-click-mark.slidev-note-click-mark-active {
+  background: var(--na-accent-500);
+  border-color: var(--na-accent-500);
+  color: var(--na-zinc-950);
+}
+
+.dark .slidev-note-click-mark.slidev-note-click-mark-past,
+.dark .slidev-note-click-mark.slidev-note-click-mark-future {
+  opacity: 0.8;
+}
