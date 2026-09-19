@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions: { contents: read, pull-requests: write, id-token: write }
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: anthropics/claude-code-action@v1
         with:
           # ⟵ LIVE: NOT `claude -p` in a run: step. The action runs

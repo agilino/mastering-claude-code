@@ -54,7 +54,7 @@ heading: "Strategy three: dynamic workflows"
 ---
 layout: code-live
 heading: "Describe the fan-out"
-filePath: "prompt to Claude Code — Claude writes the .mjs script from this"
+filePath: "prompt to Claude Code — Claude writes the .js script from this"
 success: "The prompt names discovery, parallel review, a refuter gate, and quarantine."
 ---
 

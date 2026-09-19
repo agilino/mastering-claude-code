@@ -1,11 +1,11 @@
 <script setup lang="ts">
 // G2 — Context window as a budget. A filling vertical bar, bottom to top:
-// system prompt, CLAUDE.md, skills, tool results, conversation, free room,
-// then the drift zone where things go wrong.
+// system prompt, CLAUDE.md, skill descriptions, tool results, conversation,
+// free room, then the drift zone where things go wrong.
 const bands = [
   { key: 'system', label: 'System prompt', h: 34, color: 'var(--na-zinc-600)' },
   { key: 'claude-md', label: 'CLAUDE.md', h: 30, color: 'var(--na-zinc-500)' },
-  { key: 'skills', label: 'Skills loaded', h: 46, color: 'var(--na-primary-700)' },
+  { key: 'skills', label: 'Skill descriptions', h: 46, color: 'var(--na-primary-700)' },
   { key: 'tool-results', label: 'Tool results', h: 110, color: 'var(--na-primary-500)' },
   { key: 'conversation', label: 'Conversation', h: 130, color: 'var(--na-primary-400)' },
 ] as const

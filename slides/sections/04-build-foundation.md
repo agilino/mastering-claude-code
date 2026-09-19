@@ -35,7 +35,7 @@ lines:
 layout: concept
 heading: "Plan mode: read, think, propose"
 lines:
-  - "Shift+Tab twice — the prompt shows plan"
+  - "Shift+Tab until the status bar shows \"plan mode on\""
   - "Claude can read files. It cannot write them."
   - "You review the plan. Then you switch back and say: do it."
 ---
@@ -99,7 +99,7 @@ Show the plan, do not write files.
 layout: task
 number: "02"
 heading: "Foundation"
-goal: "Scaffold the app, plan and build the data model in plan mode, seed eight users, and make your first commit through Claude."
+goal: "Scaffold the app, plan the data model in plan mode, build it, seed eight users, and commit through Claude."
 mode: "you do"
 success: "npm run dev shows a page, prisma/schema.prisma has five models, the seed created 8 users, and CLAUDE.md has a Rules section."
 branch: "02-start"

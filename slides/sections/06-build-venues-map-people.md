@@ -51,7 +51,7 @@ heading: "Quality gates, said once"
 lines:
   - "npx tsc --noEmit · npm run lint · npm run build"
   - "\"Before you say done, run all three and fix what fails\""
-  - "Claude runs them without being asked, every time"
+  - "Claude runs them without being asked — most of the time, not a guarantee"
 ---
 
 

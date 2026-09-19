@@ -12,7 +12,7 @@ layout: concept
 heading: "Loaded only when needed"
 lines:
   - "Every skill's name and description is scanned every session. Cheap."
-  - "The body loads only when the description matches what you asked."
+  - "The body loads when the description matches — or right away via /skill-name."
 ---
 
 <G05SkillLoading />
@@ -37,8 +37,8 @@ success: "Every step of the skill points at a real CLASH file. No invented paths
 ```md
 ---
 name: clash-feature
-description: ⟵ LIVE: one sentence, specific enough that
-  /skill-doctor's matching has something real to key off
+description: ⟵ LIVE: one sentence, specific enough that Claude's matching
+  has something real to key off — /skill-doctor shows if it ever fires
 allowed-tools: Read, Edit, Write, Grep, Glob, Bash(npm run *) Bash(npx prisma *) Bash(npx tsc *)
 ---
 

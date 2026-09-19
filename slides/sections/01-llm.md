@@ -41,8 +41,8 @@ lines:
     <div class="text-lg font-bold mb-2">Training</div>
     <div class="text-base" style="color: var(--na-fg-muted)">Books, code, the web. Read once. Frozen after a cutoff.</div>
   </div>
-  <span class="text-3xl" style="color: var(--na-zinc-600)">→</span>
-  <div class="na-card p-6 w-80" style="border-color: var(--na-accent-500)">
+  <span v-click="1" class="text-3xl" style="color: var(--na-zinc-600)">→</span>
+  <div v-click="1" class="na-card p-6 w-80" style="border-color: var(--na-accent-500)">
     <div class="text-lg font-bold mb-2">Inference</div>
     <div class="text-base" style="color: var(--na-fg-muted)">Your prompt in, tokens out. No learning. No memory of yesterday.</div>
   </div>

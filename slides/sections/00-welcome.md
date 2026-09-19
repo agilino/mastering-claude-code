@@ -90,10 +90,10 @@ lines:
 
 <div class="flex items-center gap-8 justify-center w-full">
   <div class="na-card px-8 py-6 text-2xl font-semibold">Explain</div>
-  <span class="text-3xl" style="color: var(--na-zinc-600)">→</span>
-  <div class="na-card px-8 py-6 text-2xl font-semibold">Show</div>
-  <span class="text-3xl" style="color: var(--na-zinc-600)">→</span>
-  <div class="na-card px-8 py-6 text-2xl font-semibold" style="border-color: var(--na-accent-500)">You do</div>
+  <span v-click="1" class="text-3xl" style="color: var(--na-zinc-600)">→</span>
+  <div v-click="1" class="na-card px-8 py-6 text-2xl font-semibold">Show</div>
+  <span v-click="2" class="text-3xl" style="color: var(--na-zinc-600)">→</span>
+  <div v-click="2" class="na-card px-8 py-6 text-2xl font-semibold" style="border-color: var(--na-accent-500)">You do</div>
 </div>
 
 ---

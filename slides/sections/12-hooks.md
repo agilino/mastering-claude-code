@@ -12,7 +12,8 @@ layout: concept
 heading: "Event · matcher · exit code"
 lines:
   - "PreToolUse, PostToolUse, Stop — three of more than thirty events."
-  - "Only exit code 2 blocks, and only before a tool or at Stop."
+  - "Only exit code 2 blocks — and only on events that can block"
+  - "After a tool it cannot block: the tool already ran"
 ---
 
 <G11HookLifecycle />
@@ -21,7 +22,7 @@ lines:
 layout: code-live
 heading: "One hook, slowly"
 filePath: ".claude/settings.json"
-success: "Editing app/actions/clashes.ts triggers npx tsc --noEmit, and a failure blocks with the error visible to the agent."
+success: "Editing app/actions/clashes.ts triggers npx tsc --noEmit, and a failure reaches the agent as an error it then fixes."
 ---
 
 ```json
@@ -76,7 +77,7 @@ success: "Editing prisma/migrations/*, running rm, or reading .env* is denied wi
 {
   "hooks": {
     "PreToolUse": [{
-      "matcher": "Edit|Write|MultiEdit",
+      "matcher": "Edit|Write",
       "hooks": [{
         "type": "command",
         // ⟵ LIVE: deny writes under prisma/migrations/** — it is

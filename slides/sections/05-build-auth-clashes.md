@@ -27,7 +27,7 @@ lines:
 layout: concept
 heading: "Undo a step: /rewind"
 lines:
-  - "Claude saves a checkpoint before every change"
+  - "Claude saves a checkpoint before every prompt"
   - "/rewind shows them — pick one, files go back"
   - "Then give a better instruction. Cheaper than by hand."
 ---

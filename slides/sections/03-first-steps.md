@@ -47,7 +47,7 @@ layout: concept
 heading: "Slash commands"
 lines:
   - "/help · /init · /clear · /context · /cost · /rewind"
-  - "Commands talk to the harness, not to the model"
+  - "Most commands talk to the harness — a few, like /init, ask the model"
 ---
 
 <div class="grid grid-cols-3 gap-3 w-full max-w-3xl text-sm">
@@ -64,7 +64,7 @@ layout: concept
 heading: "The permission prompt"
 lines:
   - "Yes · yes, and do not ask again for this · no"
-  - "Shift+Tab switches mode: manual → accept edits → plan"
+  - "Shift+Tab cycles: auto → manual → accept edits → plan → auto"
 ---
 
 <div class="na-card p-5 font-mono text-sm w-full max-w-2xl" style="color: var(--na-fg-muted)">
@@ -80,7 +80,7 @@ lines:
 layout: concept
 heading: "CLAUDE.md is your standing instruction"
 lines:
-  - "Read at the start of every session, folded into the system prompt"
+  - "Read at session start — sent as a message after the system prompt, not folded in"
   - "Short. Rules, not a tour."
 ---
 
@@ -101,8 +101,8 @@ lines:
 
 <div class="flex gap-4 w-full max-w-2xl justify-center">
   <div class="na-card p-4 flex-1 text-center">Terminal</div>
-  <div class="na-card p-4 flex-1 text-center">VS Code extension</div>
-  <div class="na-card p-4 flex-1 text-center">JetBrains plugin</div>
+  <div v-click="1" class="na-card p-4 flex-1 text-center">VS Code extension</div>
+  <div v-click="1" class="na-card p-4 flex-1 text-center">JetBrains plugin</div>
 </div>
 
 ---
@@ -110,7 +110,7 @@ layout: concept
 heading: "Keys worth knowing"
 lines:
   - "Esc stop · Shift+Tab mode · Tab complete a path"
-  - "Up arrow history · Ctrl+R search history · # remember"
+  - "Up arrow history · Ctrl+R search history · ? more shortcuts"
 ---
 
 

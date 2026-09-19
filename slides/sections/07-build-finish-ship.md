@@ -26,9 +26,9 @@ lines:
 
 ---
 layout: concept
-heading: "Remember it: #"
+heading: "Remember it"
 lines:
-  - "# Always use UserAvatar, never a raw img tag"
+  - "Remember: always use UserAvatar, never a raw img tag"
   - "Saved to memory. Loaded next time."
   - "/memory shows where it went"
 ---

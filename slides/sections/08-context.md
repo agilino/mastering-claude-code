@@ -102,7 +102,7 @@ layout: concept
 heading: "/skill-doctor: what it costs"
 lines:
   - "CLASH ships nine vendored skills in .agents/skills/"
-  - "Two are ~100 KB near-duplicates, scanned every session."
+  - "Two ~100 KB near-duplicates — only their descriptions scan every session."
 ---
 
 
