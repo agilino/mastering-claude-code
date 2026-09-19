@@ -28,7 +28,8 @@ Target codebase: `https://github.com/pawsaw/clash` (Next.js 16 / React 19 / Pris
 5. **Prompts are verbatim** in fenced code blocks. Never paraphrase a prompt in prose.
 6. **`code-live` slides are skeletons** with `⟵ LIVE` markers. The full solution goes only in the presenter note.
 7. **Facts about Claude Code that were verified against the Claude Code docs stay as verified**: only exit code 2 blocks a hook;
-   hook `matcher` matches the tool name, path scoping uses the sibling `if` field; `hard_deny` is an auto-mode setting, not a hook decision;
+   hook `matcher` matches the tool name, path scoping uses the sibling `if` field; `if` holds exactly one permission rule
+   (no `or`, no list) and an `Edit(...)` rule also covers `Write`; `hard_deny` is an auto-mode setting, not a hook decision;
    agent teams need `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`; teammates message by name via SendMessage, no `@`-mentions;
    a dynamic workflow's script lands under `~/.claude/projects/<session>/` first and only `s` in `/workflows` saves it to `.claude/workflows/`;
    `Date.now()`, `Math.random()` and no-arg `new Date()` throw inside a workflow script; headless CI uses `anthropics/claude-code-action@v1`.
@@ -83,5 +84,6 @@ Target codebase: `https://github.com/pawsaw/clash` (Next.js 16 / React 19 / Pris
 ```bash
 cd slides && npm install && npm run build      # also exports dist/mastering-claude-code.pdf
 node slides/scripts/lint-slides.mjs            # no times, slugs match, LIVE markers present
+node slides/scripts/check-notes-parity.mjs     # notes/en and notes/de: same keys, same [click] markers, same commands and paths
 slides/scripts/check-slides.sh                 # agent-browser overflow check per slide
 ```

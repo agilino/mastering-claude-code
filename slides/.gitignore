@@ -5,3 +5,5 @@ dist
 .vercel
 .check
 .check1080
+generated/
+slides.*.md

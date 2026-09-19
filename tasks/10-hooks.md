@@ -36,10 +36,11 @@ are logged, not enforced. What Claude sees on a block is stderr.
 2. Ask Claude to change something under `app/actions/`. Nothing fires. Why?
    `matcher` matches the **tool name** (`Edit`, `Write`, `Bash`), not a path. A path there never matches.
 3. Fix it. Match the tool. Scope the path with the sibling `if` field.
+   `if` holds one permission rule. An `Edit(...)` rule covers every tool that edits files, `Write` too.
    ```json
    { "hooks": { "PostToolUse": [
      { "matcher": "Edit|Write", "hooks": [ { "type": "command",
-       "if": "Edit(app/actions/**) or Write(app/actions/**)",
+       "if": "Edit(app/actions/**)",
        "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/typecheck-actions.sh",
        "timeout": 60 } ] }
    ] } }

@@ -3,12 +3,10 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "predev": "node scripts/generate-qr.mjs",
-    "dev": "slidev --open",
-    "prebuild": "node scripts/generate-qr.mjs",
-    "build": "slidev build",
-    "postbuild": "mkdir -p dist && slidev export --output dist/mastering-claude-code.pdf",
-    "export": "node scripts/generate-qr.mjs && slidev export --output dist/mastering-claude-code.pdf"
+    "dev": "node scripts/deck.mjs dev",
+    "build": "node scripts/deck.mjs build",
+    "export": "node scripts/deck.mjs export",
+    "check:notes": "node scripts/check-notes-parity.mjs"
   },
   "dependencies": {
     "@slidev/cli": "^52.19.1",

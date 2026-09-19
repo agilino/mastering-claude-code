@@ -23,27 +23,15 @@ lines:
   </g>
 </svg>
 
-<!--
-Task 03 is the longest build. The lesson is pacing. Show the one-line big ask, then
-break it into three. Each of the three ends with something you can try in the browser.
-Say: if you cannot check it, the step is too big.
--->
-
 ---
 layout: concept
 heading: "Undo a step: /rewind"
 lines:
-  - "Claude saves a checkpoint before every change"
+  - "Claude saves a checkpoint before every prompt"
   - "/rewind shows them — pick one, files go back"
   - "Then give a better instruction. Cheaper than by hand."
 ---
 
-<!--
-Demo: after the shell step, run /rewind, show the list of checkpoints, pick the one
-before the last step, show that the files are back. Then press Esc to cancel if you did
-not really want it. Say: this is git for the conversation. Use it early, before you try
-to patch a wrong direction.
--->
 
 ---
 layout: concept
@@ -56,27 +44,12 @@ lines:
 
 <G02ContextBudget />
 
-<!--
-Run /context live after the auth and shell steps. Read the bands: system prompt,
-CLAUDE.md, tool results, conversation. Say: the tool results band is the files Claude
-read. It never shrinks on its own. Then /compact and run /context again. This is the
-first time the group sees the window as a thing they can manage. Part III makes it a
-discipline.
--->
-
 ---
 layout: concept
 heading: "Point, don't let it guess"
 ---
 
 <G03CarelessVsEngineered />
-
-<!--
-Left: "build clashes" — Claude greps around, reads whatever it finds, guesses at the
-pattern. Right: the same ask with @app/actions/auth.ts and @lib/validation.ts — Claude
-reads exactly those and copies the pattern. Same model. Pointed on purpose. This is why
-the clashes prompt in Task 03 is full of @ references.
--->
 
 ---
 layout: code-live
@@ -94,22 +67,6 @@ from being called by someone who is not the creator?
         ask for the fix and the CLAUDE.md rule.
 ```
 
-<!--
-FULL WORKING PROMPTS (verbatim from tasks/03-auth-and-clashes.md):
-
-1) requireUser() runs in app/(app)/layout.tsx. Does that protect the deleteClash action
-   in app/actions/clashes.ts from being called by someone who is not the creator? Explain.
-
-2) Make sure every action that changes an existing clash checks that the current user is
-   the creator (creatorId === user.id) and returns an error if not.
-   Then add this rule to CLAUDE.md under "Rules":
-   - Every Server Action calls requireUser() and checks ownership before it changes an existing row.
-
-Say the sentence the group must keep: a Server Action is a public endpoint with a
-generated id. The layout guards the page, not the action. Zod checks shape, not
-permission. Part III and IV spend a long time on exactly this rule — plant it here.
--->
-
 ---
 layout: task
 number: "03"
@@ -120,9 +77,4 @@ success: "Login, logout and clash CRUD work, deleteClash refuses a stranger, and
 branch: "03-start"
 ---
 
-<!--
-Task 03 recap. Reset: 03-start is the scaffold plus data; 04-start is auth, shell and
-clashes finished. Say out loud that this is the longest task of the part and that
-finishing "Now you" is optional. Watch for people who send the whole task as one prompt —
-walk over and split it with them.
--->
+

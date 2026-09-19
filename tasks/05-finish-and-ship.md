@@ -45,11 +45,12 @@ branch, commit, pull request, review.
    ```
    /cost
    ```
-6. Remember something for next time. Start a message with `#`:
+6. Remember something for next time. Ask Claude to remember it:
    ```
-   # Always use the UserAvatar component for avatars, never a raw img tag.
+   Remember for next time: always use the UserAvatar component for avatars, never a raw img tag.
    ```
-   Claude saves this to memory. Open `/memory` to see where it went.
+   Claude saves this to its auto memory. Open `/memory` and pick the auto memory folder
+   to see where it went. Nothing saved? Say: `Add this to CLAUDE.md.`
 7. Commit and open a pull request.
    ```
    Commit the work in sensible commits, push the branch, and open a pull request with gh.

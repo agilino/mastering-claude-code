@@ -3,7 +3,7 @@
 // as if being filled in from the evidence gathered live, not shown finished.
 const cols = ['Subagent', 'Agent team', 'Workflow'] as const
 const rows = [
-  { axis: 'Who decides next', values: ['You, each time', 'The lead', 'The script'] },
+  { axis: 'Who decides next', values: ['Claude, turn by turn', 'The lead', 'The script'] },
   { axis: 'Parallelism', values: ['One or a few', 'Several peers at once', 'Up to 16 at once'] },
   { axis: 'Token cost', values: ['Low', 'Moderate to high', 'Highest'] },
   { axis: 'Main-thread context', values: ['Summary only', 'Own session', 'Runs in background'] },

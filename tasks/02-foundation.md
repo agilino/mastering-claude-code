@@ -40,7 +40,7 @@ The data model is the right place for that, because it is hard to change later.
    ```
    Show me git status and a short summary of every file you created or changed.
    ```
-5. Switch to plan mode. Press `Shift+Tab` twice. The prompt line shows `plan`. Now Claude can read but not write.
+5. Switch to plan mode. Press `Shift+Tab` until the status bar shows `plan mode on`. Now Claude can read but not write.
 6. Ask for the data model plan.
    ```
    Read @docs/SPEC.md, section "Data". Plan a Prisma 7 schema for SQLite using the
