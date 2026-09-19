@@ -58,7 +58,7 @@ keystroke. Every control from this workshop carries over: a scoped prompt, limit
    needs, including id-token: write.
    ```
 8. Read the file. The `prompt` input is the same brief as task 08. `claude_args` carries model
-   and turn limits. The secret is named, never pasted. `@beta` is the old version and dropped the `mode` input.
+   and turn limits. The secret is named, never pasted. v1 dropped the `mode` input. `@beta` is the old version.
 9. Create the token for the secret: `claude setup-token`. Add it to the repository as
    `CLAUDE_CODE_OAUTH_TOKEN`. You do not need it to check that the YAML is valid.
 
