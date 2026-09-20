@@ -1,4 +1,5 @@
 <!-- @note: the-model-alone-is-a-function -->
+Say:
 - Model = a pure function: a list of tokens in, a list of tokens out
 - No files, no terminal, no memory of its own
 - [click] Everything you experience as "Claude Code" — reading your repo, editing files, running tests, asking for permission, remembering your rules — is done by a program wrapped around that function
@@ -6,18 +7,25 @@
 - This section covers every part of the harness — each part is a lever you control
 
 <!-- @note: the-loop -->
-- Walk the ring click by click
+> Do:
+> - Walk the ring click by click
+> - Say it twice
+
+Say:
 - [click] you type "fix the bell" — harness builds the full prompt (next slide shows what's in it)
 - [click] harness calls the model; the model reasons, then either asks for a tool or answers
 - [click] the tool request hits the permission gate
 - [click] harness runs the tool — the model never runs anything itself
 - [click] the result is appended to the prompt, ring goes round again — call model
 - [click] at some point the model answers with text instead of a tool request — that's the exit, the turn ends, you read it
-- Say it twice: the model chooses, the harness executes
+- The model chooses, the harness executes
 - Every result stays in the window from now on
 
 <!-- @note: what-is-in-the-prompt-every-turn -->
-- Open the box, one block per click
+> Do:
+> - Open the box, one block per click
+
+Say:
 - [click] the system prompt Claude Code writes
 - [click] your CLAUDE.md files — project and personal
 - [click] the list of tools, with their descriptions
@@ -28,6 +36,7 @@
 - Later: /context shows these blocks with real numbers
 
 <!-- @note: the-tools -->
+Say:
 - Core tool set is small and boring on purpose
 - Read, Edit, Write — files
 - Bash — anything a terminal can do: tests, builds, git
@@ -39,6 +48,7 @@
 - That's why tool descriptions and skill descriptions are written so carefully
 
 <!-- @note: permissions -->
+Say:
 - A tool call arrives at the gate
 - [click] harness checks your rules in settings first
 - [click] a rule can allow it ("npm test is always fine") or deny it ("never rm") — harness runs the tool, or nothing runs and the model is told why
@@ -52,6 +62,7 @@
 - The gate is the whole point: nothing dangerous happens without a decision — a rule's or yours
 
 <!-- @note: hooks -->
+Say:
 - Same ring, now three places where the harness lets you in
 - [click] PreToolUse — runs your shell command before the tool; exit code 2 blocks the call, and what you print to stderr is handed to the model as the reason
 - [click] PostToolUse — runs after the tool; the tool already ran, so exit 2 can't undo it — instead the stderr goes to the model, which then fixes its own work
@@ -62,6 +73,7 @@
 - Part four builds these
 
 <!-- @note: subagents -->
+Say:
 - Reminder: every tool result stays in the window — reading twenty files to answer one question fills the main window with twenty files
 - A subagent is the harness starting a second loop with its own window
 - [click] it reads and greps in there — that window fills up, yours barely moves
@@ -71,6 +83,7 @@
 - Part three uses a subagent to audit CLASH
 
 <!-- @note: when-the-window-fills-compact-or-clear -->
+Say:
 - Three tanks — first: a session near the limit — files read, tool output, chat
 - [click] /compact — asks the model to summarise the conversation, then replaces the history with that summary
   - Claude Code does this on its own near the limit: first drops old tool outputs, then summarises
@@ -80,6 +93,7 @@
 - Habit to build: one job per session
 
 <!-- @note: skills-and-mcp -->
+Say:
 - Two more parts of the harness, both built in later parts
 - A skill is a recipe you write once: "how we add a feature in this repo"
 - Only its name and description sit in every prompt; the full text loads when the description matches your request — keeps the window cheap
@@ -88,17 +102,25 @@
 - Install a database one and it can query production — exactly why permissions and hooks matter
 
 <!-- @note: where-cost-and-control-come-from -->
-- Pull it together: cost is tokens
+> Do:
+> - Pull it together
+> - Close with the line
+
+Say:
+- Cost is tokens
 - Input tokens every call, output tokens every answer
 - The cached front part is much cheaper than the rest — long sessions with a stable front and a short tail are the cheap ones
 - Control is three questions you keep coming back to:
   - What is in the window right now?
   - Which tools can the model call?
   - Which rules are enforced by a hook rather than hoped for in a prompt?
-- Close with the line: the model is the same for everyone. The harness is where you win
+- The model is the same for everyone. The harness is where you win
 
 <!-- @note: the-model-is-the-same-for-everyone-the-harness-is-where-you-win -->
-- Leave it up for a moment
+> Do:
+> - Leave it up for a moment
+
+Say:
 - Everyone in this workshop has access to the same model — nobody gets a smarter one
 - The difference between "it drifted off track" and "it shipped the feature with tests" is entirely in the harness: the context you gave it, the tools you allowed, the rules you enforced
 - That is what the rest of the workshop teaches
