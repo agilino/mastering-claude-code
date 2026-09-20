@@ -33,6 +33,13 @@ Target codebase: `https://github.com/pawsaw/clash` (Next.js 16 / React 19 / Pris
    agent teams need `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`; teammates message by name via SendMessage, no `@`-mentions;
    a dynamic workflow's script lands under `~/.claude/projects/<session>/` first and only `s` in `/workflows` saves it to `.claude/workflows/`;
    `Date.now()`, `Math.random()` and no-arg `new Date()` throw inside a workflow script; headless CI uses `anthropics/claude-code-action@v1`.
+8. **File work in this repo uses Read, Write, Edit, Grep and Glob — never a shell command that reads,
+   lists or searches files.** The shell is for the build and check commands under "Build and check"
+   below, `git`, and `npx`/`npm`/`node`. A `PreToolUse` hook (`.claude/hooks/no-shell-file-reads.sh`)
+   blocks the rest.
+9. **Every subagent brief for read-only work names its tools**, e.g. `tools: Read, Grep, Glob` in
+   `.claude/agents/repo-explorer.md`. A subagent inherits this file but never the parent session's
+   auto-memory — a constraint that matters belongs in the agent file or the brief, not only in memory.
 
 ## Task template
 
