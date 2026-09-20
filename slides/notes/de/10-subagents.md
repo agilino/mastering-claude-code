@@ -1,11 +1,12 @@
 <!-- @note: subagents -->
 > Tun:
-> - Divider, Subagent-Zeile.
+> - Divider, Subagent-Zeile
 > - Klar sagen
 
 Sagen:
-- Strategie eins von drei für ein Problem.
-- "ein Problem, drei Strategien. Jetzt die erste. Im nächsten Teil die anderen beiden."
+- Ein Problem, drei Strategien: ein Subagent, ein Agent-Team, ein Dynamic Workflow
+- Diese Task läuft mit der ersten — ein einzelner Subagent, der allein auditiert
+- Task 09 läuft mit den anderen beiden, Agent-Team und Dynamic Workflow, am exakt gleichen Problem
 
 <!-- @note: page-guard-action-guard -->
 > Tun:
@@ -30,11 +31,10 @@ Sagen:
 
 <!-- @note: find-it -->
 > Tun:
-> - Die Korrektur laut sagen, bevor jemand anfängt
-> - Der Fehler ist auf 08-start eingebaut: Ownership-Check entfernt aus deleteClash (app/actions/clashes.ts) und deleteVenue (app/actions/venues.ts).
-> - Workshop-Inhalt, kein CLASH-Bug.
+> - Die Korrektur aus Sagen laut sagen, bevor irgendjemand zu auditieren anfängt — sonst denken alle, sie finden gleich einen echten Bug im öffentlichen CLASH
+> - Der Fehler existiert nur auf 08-start, absichtlich eingebaut: Ownership-Check entfernt aus deleteClash (app/actions/clashes.ts) und deleteVenue (app/actions/venues.ts). Workshop-Inhalt, kein CLASH-Bug.
 > - Musterlösung: workshop-artifacts/09-team-and-workflow-audit/AUTH-FIX.md.
-> - Indiz für einen scharfen Auditor: npm run lint auf 08-start meldet eine unbenutzte `user`-Variable in deleteVenue — der Guard, der sie benutzt hat, ist weg.
+> - Jetzt nicht verraten: npm run lint auf 08-start meldet eine unbenutzte `user`-Variable in deleteVenue — der Guard, der sie benutzt hat, ist weg. Das ist das eigene "Go further" der Task — nur damit du weißt, dass es stimmt, nicht zum Sagen hier
 
 Sagen:
 - Der öffentliche CLASH-main-Branch hat KEINE fehlenden Checks — alle 18 exportierten Actions sind geschützt.
@@ -42,7 +42,7 @@ Sagen:
 
 <!-- @note: the-auditor-subagent -->
 > Tun:
-> - VOLLSTÄNDIGE LÖSUNG (nur für Trainer): der Body steht in tasks/08-subagent-audit.md Schritt 4.
+> - Referenz zum Live-Aufbauen — der genaue Body steht in tasks/08-subagent-audit.md Schritt 4
 
 Sagen:
 - Die tools:-Zeile zählt — nur Read, Grep, Glob.

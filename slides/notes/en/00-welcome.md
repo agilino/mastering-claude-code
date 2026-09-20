@@ -64,6 +64,9 @@ Say:
 - [click] Orchestrate: teams, workflows, hooks, the browser, CI, the SDK
 
 <!-- @note: foundations -->
+> Do:
+> - Go slowly here — beginners decide whether the rest of the workshop is for them
+
 Say:
 - Part one
 - Before touching the tool: build the mental model

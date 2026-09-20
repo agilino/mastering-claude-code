@@ -14,6 +14,7 @@ Say:
 > - Leave the map up — it returns on every divider with the current row highlighted
 
 Say:
+- The one constraint: the context window. Every row on this table is a different way of managing what enters it
 - [click] Context: always on, the constraint everything else works around
 - [click] Skill: for repeatable work you keep re-explaining
 - [click] Subagent: for noisy work that would pollute your thread
@@ -56,12 +57,15 @@ Say:
 <!-- @note: the-shape-underneath-the-rules -->
 > Do:
 > - Show the shape before writing a single rule
-> - Task 08 spends a long time on that node being missing in two places — plant it now
+> - If not everyone already knows Next.js: "RSC page" just means a page that fetches its own data on the server, no separate API call
+> - Task 08's audit finds this exact shape missing from deleteClash and deleteVenue — show it correct now so it's recognizable on sight later, not a blind hunt
 
 Say:
+- Same five-box shape behind every feature in CLASH — learn it once, read it everywhere
 - [click] Reads: browser → page → helper in lib/data → Prisma → SQLite
-- [click] Writes: client → Server Action in app/actions → requireUser() plus an ownership check → Prisma → revalidatePath back to the page
-- [click] Point at the auth-check node — highlighted on purpose
+- [click] Writes: client → a Server Action — looks like a normal function call, but it's really a public server endpoint
+- [click] requireUser() plus an ownership check, then back through the same Prisma Client — highlighted because Task 08 finds this exact node missing in two places later
+- [click] The dashed line isn't a function call like the others — revalidatePath just marks the page stale, the RSC page on the read side refetches on its own
 
 <!-- @note: claude-md-from-real-rules -->
 > Do:

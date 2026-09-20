@@ -43,7 +43,7 @@ branch, commit, pull request, review.
    Ask something else in the meantime, for example "list every page in app/(app)".
 5. Check the cost so far.
    ```
-   /cost
+   /usage
    ```
 6. Remember something for next time. Ask Claude to remember it:
    ```
@@ -114,7 +114,7 @@ Ask Claude for a list of everything in your build that is missing compared with 
 
 ## Links
 
-- Costs and `/cost` — https://code.claude.com/docs/en/costs
+- Costs and `/usage` — https://code.claude.com/docs/en/costs
 - Memory — https://code.claude.com/docs/en/memory
 - GitHub CLI — https://cli.github.com/
 - react-easy-crop — https://github.com/ValentinH/react-easy-crop

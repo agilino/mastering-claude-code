@@ -1,5 +1,6 @@
 <!-- @note: install-and-log-in -->
 > Tun:
+> - tasks/01-setup-first-conversation.md Schritt 2, dann zurück zu den Folien
 > - Live in einem leeren Ordner demonstrieren
 > - Einmal sagen
 
@@ -13,15 +14,20 @@ Sagen:
 
 <!-- @note: the-prompt-is-a-chat-in-your-terminal -->
 > Tun:
-> - Einen echten Turn zeigen
+> - Einen echten Turn in Claude im Clash Repo zeigen
 > - Auf die Tool-Zeilen zeigen, während sie erscheinen — das ist die Loop aus dem letzten Abschnitt, live
+> - Die Tool-Wahl variiert von Durchlauf zu Durchlauf — dieselbe Wahrscheinlichkeiten-Lektion wie zwei Folien vorher. Wählt es Bash, ist der Permission-Prompt live das Gate aus diesem Abschnitt
 > - Esc drücken, während es arbeitet — stoppt den Turn, das Gespräch bleibt erhalten
-> - Ctrl+C zweimal beendet Claude Code komplett
+> - Esc zweimal bei leerem Prompt öffnet stattdessen das Rewind-Menü — nach dem Stoppen eines Turns nicht doppelt drücken
+> - Ctrl+C zweimal an einem leeren Prompt beendet es — während etwas läuft, unterbricht der erste Druck stattdessen, wie Esc
 
 Sagen:
-- Read, dann Glob, dann eine Antwort
+- Was auch immer an Tools erscheint — Read, Glob, Grep, Bash — ist die Loop aus dem letzten Abschnitt, live
 
 <!-- @note: point-at-files-with -->
+> Tun:
+> - Nimmt tasks/01-setup-first-conversation.md Schritt 6 vorweg
+
 Sagen:
 - @ tippen und einen Pfad; Tab vervollständigt ihn
 - Die Datei geht direkt in den Prompt
@@ -31,7 +37,8 @@ Sagen:
 
 <!-- @note: slash-commands -->
 > Tun:
-> - Jetzt ausführen, auf der winzigen Session, die du gerade hattest, und die Zeilen laut vorlesen
+> - tasks/01-setup-first-conversation.md Schritte 9-10 führen /init, /clear und /help jetzt aus — die Zeilen laut vorlesen
+> - /context, /usage und /rewind werden hier nur genannt — /context wird später in dieser Aufgabe gezeigt, /usage unter „Now you", /rewind in Task 03
 
 Sagen:
 - Ein Slash-Command ist eine Anweisung an Claude Code selbst
@@ -39,7 +46,7 @@ Sagen:
 - /init liest das Projekt und schreibt eine Start-CLAUDE.md
 - /clear leert die Session
 - [click] /context zeichnet die Balken aus dem Harness-Abschnitt mit echten Zahlen
-- [click] /cost zeigt, was diese Session gekostet hat
+- [click] /usage zeigt, was diese Session gekostet hat
 - [click] /rewind bringt Dateien und Gespräch zu einem früheren Punkt zurück — Claude Code setzt vor jeder Änderung einen Checkpoint
 
 <!-- @note: the-permission-prompt -->
@@ -84,29 +91,30 @@ Sagen:
 
 Sagen:
 - "?" bei leerer Prompt-Zeile zeigt den Rest der Shortcuts
-- Kein Tastenkürzel schreibt in die CLAUDE.md — Claude bitten, eine Zeile einzutragen, oder die Datei selbst bearbeiten
+- Kein Tastenkürzel schreibt direkt in die CLAUDE.md — das alte #-Kürzel dafür gibt es nicht mehr. Claude in Worten bitten, oder die Datei selbst bearbeiten
 
 <!-- @note: your-first-conversation -->
 > Tun:
-> - VOLLSTÄNDIGER PROMPT (Trainer):
+> - VOLLSTÄNDIGER PROMPT (Trainer), drei getrennte Messages:
+>   - Read @docs/SPEC.md. In one sentence, what does this app do?
+>   - Which five kinds of records does the app need? Say how they connect to each other.
+>   - Which screen looks hardest to build, and why?
+> - Dann /init ausführen und die CLAUDE.md öffnen, die es schreibt
+> - Zeigen, dass sie kurz ist und auf die Spec verweist
+> - Dann /context: auf die CLAUDE.md-Zeile und die Spec-Zeile zeigen — erstes Mal, dass die Gruppe die Balken mit echten Zahlen sieht
 
-Read @docs/SPEC.md. In one sentence, what does this app do?
-
-Which five kinds of records does the app need? Say how they connect to each other.
-
-Which screen looks hardest to build, and why?
-
-- Dann /init ausführen und die CLAUDE.md öffnen, die es schreibt
-- Zeigen, dass sie kurz ist und auf die Spec verweist
-- Dann /context: auf die CLAUDE.md-Zeile und die Spec-Zeile zeigen — erstes Mal, dass die Gruppe die Balken mit echten Zahlen sieht
+Sagen:
+- CLAUDE.md und die Spec-Zeile stecken schon in jedem Prompt — das Budget aus Teil I, jetzt mit echten Zahlen
 
 <!-- @note: setup-and-first-conversation -->
 > Tun:
 > - Alle installieren, klonen pawsaw/clash und checken 01-start aus — ein Repo mit nur der Spec drin
 > - Dann das erste Gespräch und /init
-> - Durch die Gruppe gehen, während gearbeitet wird
+> - Den Chat beobachten, während gearbeitet wird
+> - Auf Leute achten, die nie Enter beim Permission-Prompt drücken, oder die im Terminal tippen, während Claude arbeitet
 > - Übliche Blocker: Node-Version (CLASH braucht 20+), Login. Eine EBADENGINE-Warnung, während npm Claude Code installiert, ist harmlos — es läuft trotzdem
 > - Niemand geht weiter, bevor Claude Code im eigenen Klon läuft und CLAUDE.md existiert
 
 Sagen:
-- Task 01
+- Installieren, klonen, erste Fragen zur Spec, dann /init
+- Fertig, wenn: Claude Code in deinem Klon läuft, es deine Fragen beantwortet hat und CLAUDE.md existiert

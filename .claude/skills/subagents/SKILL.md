@@ -24,5 +24,6 @@ descriptions to one line — trim, don't paraphrase away distinguishing detail. 
 no shell command (`ls`, `find`, `cat`, etc.) to do this listing, per this repo's file-work rule.
 
 After the table, add one line naming the file to edit to add a new project subagent
-(`.claude/agents/<name>.md`) and the two-field frontmatter shape it needs (`name`, `tools` at
-minimum).
+(`.claude/agents/<name>.md`) and the frontmatter shape it needs at minimum: `name`, `description`
+(what it does and when to use it — this is what lets the orchestrator decide to delegate),
+and, for a read-only agent, an explicit `tools:` field.

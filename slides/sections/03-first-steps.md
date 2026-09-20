@@ -18,7 +18,7 @@ layout: concept
 heading: "The prompt is a chat in your terminal"
 lines:
   - "Type a request. Watch it read, edit, run."
-  - "Esc stops it. Ctrl+C twice quits."
+  - "Esc stops it. Ctrl+C twice quits — once idle."
 ---
 
 <div class="na-card p-5 font-mono text-sm w-full max-w-2xl" style="color: var(--na-fg-muted)">
@@ -46,7 +46,7 @@ Look at @lib/validation.ts and explain the clash schema.
 layout: concept
 heading: "Slash commands"
 lines:
-  - "/help · /init · /clear · /context · /cost · /rewind"
+  - "/help · /init · /clear · /context · /usage · /rewind"
   - "Most commands talk to the harness — a few, like /init, ask the model"
 ---
 
@@ -55,7 +55,7 @@ lines:
   <div class="na-card p-3"><span class="font-mono">/init</span> <span style="color: var(--na-fg-muted)">— first CLAUDE.md</span></div>
   <div class="na-card p-3"><span class="font-mono">/clear</span> <span style="color: var(--na-fg-muted)">— fresh session</span></div>
   <div class="na-card p-3" v-click><span class="font-mono">/context</span> <span style="color: var(--na-fg-muted)">— what is loaded</span></div>
-  <div class="na-card p-3" v-click><span class="font-mono">/cost</span> <span style="color: var(--na-fg-muted)">— tokens spent</span></div>
+  <div class="na-card p-3" v-click><span class="font-mono">/usage</span> <span style="color: var(--na-fg-muted)">— tokens spent</span></div>
   <div class="na-card p-3" v-click><span class="font-mono">/rewind</span> <span style="color: var(--na-fg-muted)">— undo a step</span></div>
 </div>
 

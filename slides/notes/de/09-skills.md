@@ -55,7 +55,10 @@ Sagen:
 
 <!-- @note: the-clash-feature-skill -->
 > Tun:
-> - Task-Folie
+> - Task-07-Rückblick
+> - Übergabe an tasks/07-clash-feature-skill.md, alle 7 Schritte — keine Folien mehr bis Task 08
+> - Den Chat beobachten, während gearbeitet wird
 
 Sagen:
 - Reset-Branch 07-start hat schon die CLAUDE.md aus Task 06 — niemand fängt bei null an
+- Fertig, wenn: ein Feature komplett über den Skill ausgeliefert ist und tsc, lint und build grün sind
