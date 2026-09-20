@@ -93,4 +93,6 @@ cd slides && npm install && npm run build      # also exports dist/mastering-cla
 node slides/scripts/lint-slides.mjs            # no times, slugs match, LIVE markers present
 node slides/scripts/check-notes-parity.mjs     # notes/en and notes/de: same keys, same [click] markers, same commands and paths
 slides/scripts/check-slides.sh                 # agent-browser overflow check per slide
+node --test .claude/hooks/no-shell-file-reads.test.mjs  # the no-shell-file-reads hook, including
+                                                # the settings.json dispatcher end-to-end
 ```
