@@ -36,7 +36,10 @@ const listMd = async (dir) => (existsSync(dir) ? (await readdir(dir)).filter((f)
 
 const MARKER = /\[click(?::(\d+))?\]/g
 const markerSeq = (note) => [...note.matchAll(MARKER)].map((m) => (m[1] ? `click:${m[1]}` : 'click'))
-const isBullet = (line) => /^\s*- /.test(line)
+// A leading "> " (a Do/Tun stage-direction bullet rendered as a blockquote
+// for smaller presenter-note type) is not itself content — a quoted bullet
+// is still a bullet, not a verbatim block line.
+const isBullet = (line) => /^\s*>?\s*- /.test(line)
 
 // Splits a note into bullets and block lines. A non-bullet line directly under a
 // bullet (no blank line between) is a wrapped continuation of that bullet.
