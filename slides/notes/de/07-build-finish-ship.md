@@ -1,5 +1,6 @@
 <!-- @note: batch-what-does-not-touch -->
 > Tun:
+> - tasks/05-finish-and-ship.md Schritte 2-3, dann zurück zu den Folien
 > - [click] Das Briefing aus Task 05 zeigen
 > - Abschicken, dann zur nächsten Folie weiter, während es läuft
 
@@ -10,8 +11,9 @@ Sagen:
 
 <!-- @note: do-not-wait -->
 > Tun:
+> - tasks/05-finish-and-ship.md Schritte 4-5, dann zurück zu den Folien
 > - Demo: den Build im Hintergrund anfragen, dann etwas anderes fragen
-> - /cost ausführen, die Zahl laut sagen
+> - /usage ausführen, die Zahl laut sagen
 
 Sagen:
 - Leute sind in beide Richtungen überrascht
@@ -19,6 +21,7 @@ Sagen:
 
 <!-- @note: remember-it -->
 > Tun:
+> - tasks/05-finish-and-ship.md Schritt 6, dann zurück zu den Folien
 > - Demo: sagen "Remember for next time: always use UserAvatar, never a raw img tag" — warten, bis Claude das Speichern bestätigt
 > - /memory zeigen — den Auto-Memory-Ordner auswählen
 
@@ -29,20 +32,22 @@ Sagen:
 
 <!-- @note: review-like-a-stranger -->
 > Tun:
+> - tasks/05-finish-and-ship.md Schritte 8-9, dann zurück zu den Folien
 > - Zeigen: vollständiger Prompt (wörtlich aus tasks/05-finish-and-ship.md):
-
-Review the diff of this branch against 05-start like a strict senior engineer.
-Look for: missing ownership checks in actions, Prisma calls outside lib/data,
-Zod schemas outside lib/validation.ts, params not awaited. List findings with file and line.
-Fix nothing yet.
-
-- Danach wörtlich sagen: "Fix findings 1 and 3. Leave the others."
+>
+> Review the diff of this branch against 05-start like a strict senior engineer.
+> Look for: missing ownership checks in actions, Prisma calls outside lib/data,
+> Zod schemas outside lib/validation.ts, params not awaited. List findings with file and line.
+> Fix nothing yet.
+>
+> - Danach wörtlich sagen: "Fix findings 1 and 3. Leave the others."
 
 Sagen:
 - Review und Fix sind absichtlich zwei Messages — du bleibst die Person, die entscheidet
 
 <!-- @note: ship-then-look-at-the-reference -->
 > Tun:
+> - tasks/05-finish-and-ship.md Schritte 7 und 10-12, dann zurück zu den Folien
 > - Live den PR öffnen (oder PR.md schreiben, falls gh nicht eingerichtet ist)
 > - 06-start fetchen und diffen
 > - Claude nach drei Unterschieden in lib/data und app/actions fragen, ohne Bewertung
@@ -55,6 +60,7 @@ Sagen:
 <!-- @note: finish-and-ship -->
 > Tun:
 > - Task-05-Rückblick
+> - Übergabe an tasks/05-finish-and-ship.md, alle 12 Schritte — keine Folien mehr bis Task 06
 > - Alle müssen bei 06-start enden — das vor dem nächsten Divider prüfen
 
 Sagen:

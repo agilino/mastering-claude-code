@@ -12,6 +12,7 @@ Sagen:
 <!-- @note: one-token-at-a-time -->
 > Tun:
 > - Auf den blinkenden Cursor hinweisen
+> - Zweimal sagen: nirgendwo ist ein Plan aufgeschrieben
 
 Sagen:
 - Das ist die ganze Maschine: links, was reingeht; rechts, Kandidaten für das nächste Token, jeder mit einer Wahrscheinlichkeit
@@ -19,7 +20,7 @@ Sagen:
 - [click] neue Kandidaten für das Token danach, die Wahl wird Teil des Inputs
 - Nirgendwo ist ein Plan aufgeschrieben — die Antwort entsteht Stück für Stück, jedes Stück hängt von allem davor ab
 - Deshalb wird aus einem schlechten ersten Satz leicht ein schlechter Absatz
-- Er pausiert nie. Thinking (in Claude Code standardmäßig an) ist derselbe Trick: das Modell schreibt seine Überlegungen zuerst als Tokens aus
+- Keine versteckte Pause zum stillen Nachdenken — „Thinking" (in Claude Code standardmäßig an) ist derselbe Ein-Token-nach-dem-anderen-Trick, nur werden zuerst Überlegungs-Tokens geschrieben, dann die Antwort-Tokens
 
 <!-- @note: it-picks-from-probabilities -->
 Sagen:
@@ -40,6 +41,9 @@ Sagen:
 - Das ist der Job des Harness, nächster Abschnitt
 
 <!-- @note: it-has-no-memory -->
+> Tun:
+> - Langsamer werden — wichtigste Idee des ganzen Workshops
+
 Sagen:
 - Das Modell selbst behält zwischen Aufrufen nichts
 - Was sich wie Gedächtnis anfühlt, ist das Programm drumherum, das das ganze Gespräch erneut schickt

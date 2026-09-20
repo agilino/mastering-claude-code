@@ -1,6 +1,7 @@
 <!-- @note: small-steps-beat-big-asks -->
 > Tun:
-> - [click] Die große Anfrage in einer Zeile zeigen, dann in drei zerlegen
+> - tasks/03-auth-and-clashes.md Schritte 2-4, dann zurück zu den Folien
+> - [click] Zeigen, wie die große Anfrage in einer Zeile scheitert oder abdriftet, dann dieselbe Arbeit in drei Schritten
 
 Sagen:
 - Task 03 ist der längste Build — die Lektion ist Pacing
@@ -9,6 +10,7 @@ Sagen:
 
 <!-- @note: undo-a-step-rewind -->
 > Tun:
+> - tasks/03-auth-and-clashes.md Schritte 6-7, dann zurück zu den Folien
 > - Demo: nach dem Shell-Schritt /rewind ausführen, die Liste der Checkpoints zeigen
 > - Den Checkpoint vor dem letzten Schritt auswählen, zeigen, dass die Dateien zurück sind
 > - Esc drücken, um abzubrechen, falls es doch nicht gewollt war
@@ -19,6 +21,7 @@ Sagen:
 
 <!-- @note: watch-the-window-fill -->
 > Tun:
+> - tasks/03-auth-and-clashes.md Schritte 8-9, dann zurück zu den Folien
 > - Nach den Auth- und Shell-Schritten live /context ausführen
 > - [click] Die Bänder lesen: System-Prompt, CLAUDE.md, Tool-Ergebnisse, Gespräch
 > - Dann /compact ausführen, dann noch mal /context
@@ -30,6 +33,7 @@ Sagen:
 
 <!-- @note: point-don-t-let-it-guess -->
 > Tun:
+> - Bereitet tasks/03-auth-and-clashes.md Schritt 10 vor, dann zurück zu den Folien
 > - Links (unachtsam), ein Schritt pro Klick:
 >   - [click] grep -r "notif" app/
 >   - [click] 40 Dateien lesen
@@ -49,18 +53,19 @@ Sagen:
 
 <!-- @note: the-safety-moment -->
 > Tun:
+> - tasks/03-auth-and-clashes.md Schritte 11-12, dann zurück zu den Folien
 > - VOLLSTÄNDIGE PROMPTS (wörtlich aus tasks/03-auth-and-clashes.md):
-
-1) requireUser() runs in app/(app)/layout.tsx. Does that protect the deleteClash action
-   in app/actions/clashes.ts from being called by someone who is not the creator? Explain.
-
-2) Make sure every action that changes an existing clash checks that the current user is
-   the creator (creatorId === user.id) and returns an error if not.
-   Then add this rule to CLAUDE.md under "Rules":
-   - Every Server Action calls requireUser() and checks ownership before it changes an existing row.
-
-- Den Satz sagen, den die Gruppe behalten muss
-- Teil III und IV verbringen viel Zeit mit genau dieser Regel — sie hier pflanzen
+>
+> 1) requireUser() runs in app/(app)/layout.tsx. Does that protect the deleteClash action
+>    in app/actions/clashes.ts from being called by someone who is not the creator? Explain.
+>
+> 2) Make sure every action that changes an existing clash checks that the current user is
+>    the creator (creatorId === user.id) and returns an error if not.
+>    Then add this rule to CLAUDE.md under "Rules":
+>    - Every Server Action calls requireUser() and checks ownership before it changes an existing row.
+>
+> - Den Satz sagen, den die Gruppe behalten muss
+> - Teil III und IV verbringen viel Zeit mit genau dieser Regel — sie hier pflanzen
 
 Sagen:
 - Eine Server Action ist ein öffentlicher Endpoint mit einer generierten id
@@ -70,7 +75,9 @@ Sagen:
 <!-- @note: auth-and-clashes -->
 > Tun:
 > - Task-03-Rückblick
-> - Auf Leute achten, die die ganze Task als einen Prompt schicken — hingehen und sie gemeinsam aufteilen
+> - Übergabe an tasks/03-auth-and-clashes.md, alle 13 Schritte — keine Folien mehr bis Task 04
+> - Den Chat beobachten, während gearbeitet wird
+> - Auf Leute achten, die die ganze Task als einen Prompt schicken — ihnen schreiben und live gemeinsam aufteilen
 
 Sagen:
 - Reset: 03-start ist das Scaffold plus Daten; 04-start ist Auth, Shell und Clashes fertig

@@ -12,6 +12,7 @@ Say:
 <!-- @note: one-token-at-a-time -->
 > Do:
 > - Note the blinking cursor
+> - Say it twice: no plan is written down anywhere
 
 Say:
 - This is the whole machine: left = what goes in, right = candidates for the next token, each with a chance
@@ -19,7 +20,7 @@ Say:
 - [click] new candidates for the token after it, the pick joins the input
 - No plan is written down anywhere — the answer appears one piece at a time, each piece depends on everything before it
 - Why a bad first sentence tends to become a bad paragraph
-- It never pauses. Thinking (on by default in Claude Code) is the same trick: the model writes its reasoning out as tokens first
+- No hidden pause to think silently — "Thinking" (on by default in Claude Code) is the same one-token-at-a-time trick, just writing reasoning tokens before the answer tokens
 
 <!-- @note: it-picks-from-probabilities -->
 Say:
@@ -40,6 +41,9 @@ Say:
 - That's the harness's job, next section
 
 <!-- @note: it-has-no-memory -->
+> Do:
+> - Slow down — single most important idea of the workshop
+
 Say:
 - The model itself keeps nothing between calls
 - What feels like memory is the program around it sending the whole conversation again

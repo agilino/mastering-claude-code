@@ -1,5 +1,6 @@
 <!-- @note: install-and-log-in -->
 > Do:
+> - tasks/01-setup-first-conversation.md step 2, then back to the slides
 > - Demo live in an empty folder
 > - Say once
 
@@ -13,15 +14,20 @@ Say:
 
 <!-- @note: the-prompt-is-a-chat-in-your-terminal -->
 > Do:
-> - Show a real turn
+> - Show a real turn in Claude, in the Clash repo
 > - Point at the tool lines as they appear — the loop from the last section, live
+> - Tool choice varies run to run — same probabilities lesson as two slides ago. If it picks Bash, the permission prompt is the gate from that section, live too
 > - Press Esc while it works — stops the turn, keeps the conversation
-> - Ctrl+C twice quits Claude Code entirely
+> - Esc twice on an idle prompt opens the rewind menu instead — don't double-tap it right after stopping a turn
+> - Ctrl+C twice from an idle prompt exits — mid-turn, the first press interrupts instead, like Esc
 
 Say:
-- Read, then Glob, then an answer
+- Whatever tools appear — Read, Glob, Grep, Bash — is the loop from the last section, live
 
 <!-- @note: point-at-files-with -->
+> Do:
+> - Previews tasks/01-setup-first-conversation.md step 6
+
 Say:
 - Type @ and a path; tab completes it
 - File goes straight into the prompt
@@ -31,7 +37,8 @@ Say:
 
 <!-- @note: slash-commands -->
 > Do:
-> - Run it now, on the tiny session you just had, read the lines aloud
+> - tasks/01-setup-first-conversation.md steps 9-10 run /init, /clear and /help now — read the lines aloud
+> - /context, /usage and /rewind are only named here — /context is demoed later in this task, /usage in "Now you", /rewind in Task 03
 
 Say:
 - Slash command = instruction to Claude Code itself
@@ -39,7 +46,7 @@ Say:
 - /init reads the project, writes a starter CLAUDE.md
 - /clear empties the session
 - [click] /context draws the bars from the harness section with real numbers
-- [click] /cost shows what this session spent
+- [click] /usage shows what this session spent
 - [click] /rewind takes files and conversation back to an earlier point — Claude Code checkpoints before every change
 
 <!-- @note: the-permission-prompt -->
@@ -84,29 +91,30 @@ Say:
 
 Say:
 - "?" on an empty prompt line shows the rest of the shortcuts
-- No keystroke saves to CLAUDE.md — ask Claude to add a line, or edit the file yourself
+- No keystroke saves to CLAUDE.md directly — the old # shortcut for that is gone. Ask Claude in words, or edit the file yourself
 
 <!-- @note: your-first-conversation -->
 > Do:
-> - FULL WORKING PROMPT (trainer):
+> - FULL WORKING PROMPT (trainer), three separate messages:
+>   - Read @docs/SPEC.md. In one sentence, what does this app do?
+>   - Which five kinds of records does the app need? Say how they connect to each other.
+>   - Which screen looks hardest to build, and why?
+> - Then run /init and open the CLAUDE.md it writes
+> - Show it's short and that it points at the spec
+> - Then /context: point at the CLAUDE.md line and the spec line — first time the group sees the bars with real numbers
 
-Read @docs/SPEC.md. In one sentence, what does this app do?
-
-Which five kinds of records does the app need? Say how they connect to each other.
-
-Which screen looks hardest to build, and why?
-
-- Then run /init and open the CLAUDE.md it writes
-- Show it's short and that it points at the spec
-- Then /context: point at the CLAUDE.md line and the spec line — first time the group sees the bars with real numbers
+Say:
+- CLAUDE.md and the spec line are already inside every prompt — the budget from Part I, now with real numbers
 
 <!-- @note: setup-and-first-conversation -->
 > Do:
 > - Everyone installs, clones pawsaw/clash, checks out 01-start — repo with only the spec in it
 > - Then the first conversation and /init
-> - Walk the group while people work
+> - Watch the chat while people work
+> - Watch for people who never press Enter on the permission prompt, or who type in the terminal while Claude works
 > - Usual blockers: Node version (CLASH needs 20+), login. An EBADENGINE warning while npm installs Claude Code is harmless — it still runs
 > - Nobody moves on until Claude Code runs in their clone and CLAUDE.md exists
 
 Say:
-- Task 01
+- Install, clone, first questions about the spec, then /init
+- Done when: Claude Code runs in your clone, it answered your questions, and CLAUDE.md exists

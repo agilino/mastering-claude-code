@@ -64,6 +64,9 @@ Sagen:
 - [click] Orchestrate: Teams, Workflows, Hooks, der Browser, CI, das SDK
 
 <!-- @note: foundations -->
+> Tun:
+> - Hier langsam machen — Anfänger entscheiden hier, ob der Rest des Workshops etwas für sie ist
+
 Sagen:
 - Teil eins
 - Bevor es ans Tool geht: das mentale Modell aufbauen

@@ -1,11 +1,12 @@
 <!-- @note: subagents -->
 > Do:
-> - Divider, Subagent row.
+> - Divider, Subagent row
 > - Say plainly
 
 Say:
-- Strategy one of three on one problem.
-- "one problem, three strategies. Now the first. Next part, the other two."
+- One problem, three strategies: a subagent, an agent team, a dynamic workflow
+- This task runs the first — a single subagent auditing on its own
+- Task 09 runs the other two, agent team and dynamic workflow, on the exact same problem
 
 <!-- @note: page-guard-action-guard -->
 > Do:
@@ -30,11 +31,10 @@ Say:
 
 <!-- @note: find-it -->
 > Do:
-> - Say the correction out loud before anyone starts
-> - The flaw is seeded on 08-start: ownership check removed from deleteClash (app/actions/clashes.ts) and deleteVenue (app/actions/venues.ts).
-> - Workshop content, not a CLASH bug.
+> - Say the Say-section correction out loud before anyone starts auditing — otherwise people assume they're about to find a real bug in public CLASH
+> - The flaw only exists on 08-start, seeded on purpose: ownership check removed from deleteClash (app/actions/clashes.ts) and deleteVenue (app/actions/venues.ts). Workshop content, not a CLASH bug.
 > - Answer key: workshop-artifacts/09-team-and-workflow-audit/AUTH-FIX.md.
-> - Tell for a sharp auditor: npm run lint on 08-start reports an unused `user` variable in deleteVenue — the guard that used it is gone.
+> - Don't reveal this now: npm run lint on 08-start reports an unused `user` variable in deleteVenue — the guard that used it is gone. That's the task's own "Go further" — it's there so you know the claim is true, not to say here
 
 Say:
 - The public CLASH main branch has NO missing checks — all 18 exported actions are guarded.
@@ -42,7 +42,7 @@ Say:
 
 <!-- @note: the-auditor-subagent -->
 > Do:
-> - FULL WORKING SOLUTION (trainer only): body is in tasks/08-subagent-audit.md step 4.
+> - Live-build reference — the exact body is in tasks/08-subagent-audit.md step 4
 
 Say:
 - The tools: line matters — Read, Grep, Glob only.

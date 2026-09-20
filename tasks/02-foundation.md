@@ -15,11 +15,14 @@ The data model is the right place for that, because it is hard to change later.
 
 ## Do this
 
-1. Start on the right branch and open Claude Code.
+1. Start on the right branch and open Claude Code, in manual mode.
    ```bash
    git checkout 02-start
    claude
    ```
+   Manual mode shows every command before it runs. Press `Shift+Tab` until the status bar
+   shows `manual mode` — this is a new session, so don't assume you're still in whatever
+   mode task 01 left you in.
 2. Give the scaffold brief. Read it once before you send it. Notice the three parts: goal, rules, done.
    ```
    Goal: set up the app skeleton for the product in @docs/SPEC.md.
@@ -34,7 +37,9 @@ The data model is the right place for that, because it is hard to change later.
 
    Done when: npm run dev starts and http://localhost:3000 shows a page with the text "CLASH".
    ```
-   Claude will ask permission before it runs commands. Read each one, then press Enter to allow.
+   Claude asks permission before each command. Read the first two or three, then switch to
+   auto mode (`Shift+Tab` until the status bar shows `auto mode`) and let the rest of the
+   scaffold run without asking — initializing a Next.js app is a standard, low-risk task.
 3. Watch what Claude does. You see `Bash`, `Write`, and `Edit` lines. Each is one tool call. When it stops, open the browser at `http://localhost:3000`.
 4. Look at the changes before you trust them.
    ```
@@ -43,11 +48,14 @@ The data model is the right place for that, because it is hard to change later.
 5. Switch to plan mode. Press `Shift+Tab` until the status bar shows `plan mode on`. Now Claude can read but not write.
 6. Ask for the data model plan.
    ```
-   Read @docs/SPEC.md, section "Data". Plan a Prisma 7 schema for SQLite using the
-   better-sqlite3 adapter. Five models. Status and type fields are strings, not enums.
-   Generate the client into lib/generated/prisma. Also plan a seed with 8 users
-   (password "test", hashed with bcryptjs), 8 venues and 8 clashes in Berlin,
-   some past, some upcoming. Show the plan, do not write files.
+   Read @docs/SPEC.md, section "Data". Plan a Prisma 7 schema:
+   - SQLite using the better-sqlite3 adapter
+   - Five models
+   - Status and type fields are strings, not enums
+   - Generate the client into lib/generated/prisma
+   - Seed with 8 users (password "test", hashed with bcryptjs), 8 venues and 8 clashes in Berlin, some past, some upcoming
+
+   Show the plan, do not write files.
    ```
 7. Read the plan. Ask one question about anything you do not understand, for example:
    ```

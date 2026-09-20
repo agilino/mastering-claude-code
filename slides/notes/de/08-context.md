@@ -14,6 +14,7 @@ Sagen:
 > - Die Karte stehen lassen — sie kommt bei jedem Divider wieder, mit der aktuellen Zeile hervorgehoben
 
 Sagen:
+- Die eine Randbedingung: das Context Window. Jede Zeile dieser Tabelle ist eine andere Art, zu steuern, was hineinkommt
 - [click] Context: immer an, die Randbedingung, um die alles andere herumarbeitet
 - [click] Skill: für wiederholbare Arbeit, die du immer wieder neu erklärst
 - [click] Subagent: für laute Arbeit, die deinen Thread verschmutzen würde
@@ -56,12 +57,15 @@ Sagen:
 <!-- @note: the-shape-underneath-the-rules -->
 > Tun:
 > - Die Struktur zeigen, bevor eine einzige Regel geschrieben wird
-> - Task 08 verbringt viel Zeit damit, dass dieser Knoten an zwei Stellen fehlt — jetzt pflanzen
+> - Falls nicht alle schon Next.js kennen: "RSC page" heißt nur, dass die Page ihre Daten selbst auf dem Server holt, kein separater API-Call nötig
+> - Genau diese Struktur fehlt später in deleteClash und deleteVenue — das deckt das Audit in Task 08 auf. Jetzt richtig zeigen, damit sie dann auf den ersten Blick erkennbar ist, statt einer blinden Suche
 
 Sagen:
+- Dieselbe Fünf-Boxen-Struktur steckt hinter jedem Feature in CLASH — einmal verstehen, überall wiedererkennen
 - [click] Reads: Browser → Page → Helper in lib/data → Prisma → SQLite
-- [click] Writes: Client → Server Action in app/actions → requireUser() plus ein Ownership-Check → Prisma → revalidatePath zurück zur Page
-- [click] Auf den Auth-Check-Knoten zeigen — absichtlich hervorgehoben
+- [click] Writes: Client → eine Server Action — sieht aus wie ein normaler Funktionsaufruf, ist aber ein öffentlicher Server-Endpoint
+- [click] requireUser() plus ein Ownership-Check, dann zurück durch denselben Prisma Client — hervorgehoben, weil genau dieser Knoten in Task 08 an zwei Stellen fehlt
+- [click] Die gestrichelte Linie ist kein Funktionsaufruf wie die anderen — revalidatePath markiert die Page nur als veraltet, die RSC-Page auf der Read-Seite holt sich von selbst neue Daten
 
 <!-- @note: claude-md-from-real-rules -->
 > Tun:

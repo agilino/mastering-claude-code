@@ -1,5 +1,6 @@
 <!-- @note: batch-what-does-not-touch -->
 > Do:
+> - tasks/05-finish-and-ship.md steps 2-3, then back to the slides
 > - [click] Show the brief from Task 05
 > - Send it, then move to the next slide while it runs
 
@@ -10,8 +11,9 @@ Say:
 
 <!-- @note: do-not-wait -->
 > Do:
+> - tasks/05-finish-and-ship.md steps 4-5, then back to the slides
 > - Demo: ask for the build in the background, then ask something else
-> - Run /cost, say the number out loud
+> - Run /usage, say the number out loud
 
 Say:
 - People are surprised in both directions
@@ -19,6 +21,7 @@ Say:
 
 <!-- @note: remember-it -->
 > Do:
+> - tasks/05-finish-and-ship.md step 6, then back to the slides
 > - Demo: say "Remember for next time: always use UserAvatar, never a raw img tag" — wait for Claude to confirm the save
 > - Show /memory — pick the auto memory folder
 
@@ -29,20 +32,22 @@ Say:
 
 <!-- @note: review-like-a-stranger -->
 > Do:
+> - tasks/05-finish-and-ship.md steps 8-9, then back to the slides
 > - Show full working prompt (verbatim from tasks/05-finish-and-ship.md):
-
-Review the diff of this branch against 05-start like a strict senior engineer.
-Look for: missing ownership checks in actions, Prisma calls outside lib/data,
-Zod schemas outside lib/validation.ts, params not awaited. List findings with file and line.
-Fix nothing yet.
-
-- Then say, verbatim: "Fix findings 1 and 3. Leave the others."
+>
+> Review the diff of this branch against 05-start like a strict senior engineer.
+> Look for: missing ownership checks in actions, Prisma calls outside lib/data,
+> Zod schemas outside lib/validation.ts, params not awaited. List findings with file and line.
+> Fix nothing yet.
+>
+> - Then say, verbatim: "Fix findings 1 and 3. Leave the others."
 
 Say:
 - Review and fix are two messages on purpose — you stay the one who decides
 
 <!-- @note: ship-then-look-at-the-reference -->
 > Do:
+> - tasks/05-finish-and-ship.md steps 7 and 10-12, then back to the slides
 > - Open the PR live (or write PR.md if gh isn't set up)
 > - Fetch 06-start and diff
 > - Ask Claude for three differences in lib/data and app/actions, no judgement
@@ -55,6 +60,7 @@ Say:
 <!-- @note: finish-and-ship -->
 > Do:
 > - Task 05 recap
+> - Hand off to tasks/05-finish-and-ship.md, full 12 steps — no more slides until Task 06
 > - Everyone must end on 06-start — check before the next divider
 
 Say:

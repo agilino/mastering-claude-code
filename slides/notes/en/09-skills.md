@@ -55,7 +55,10 @@ Say:
 
 <!-- @note: the-clash-feature-skill -->
 > Do:
-> - Task slide
+> - Task 07 recap
+> - Hand off to tasks/07-clash-feature-skill.md, full 7 steps — no more slides until Task 08
+> - Watch the chat while they work
 
 Say:
 - Reset branch 07-start already has the task 06 CLAUDE.md — nobody restarts from zero
+- Done when: one feature ships end to end through the skill, and tsc, lint and build pass
