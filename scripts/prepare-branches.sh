@@ -62,6 +62,7 @@ apply_checkpoint() {     # apply_checkpoint <NN>  — manifest from main, then o
   local n="$1"
   if [[ -f "$CK/$n/manifest.txt" ]]; then
     while IFS= read -r line; do
+      line="${line%$'\r'}"
       [[ -z "$line" || "$line" == \#* ]] && continue
       git checkout origin/main --quiet -- "$line"
     done < "$CK/$n/manifest.txt"
@@ -145,26 +146,34 @@ git checkout -B 08-start 07-start --quiet
 mkdir -p .claude/skills/clash-feature
 cp "$ART_SKILL_MD" .claude/skills/clash-feature/SKILL.md
 
-python3 - "app/actions/clashes.ts" <<'PY'
-import sys
-path = sys.argv[1]; src = open(path).read()
-needle = ('  if (!clash) return { ok: false, error: "Clash not found." };\n'
-          '  if (clash.creatorId !== user.id) {\n'
-          '    return { ok: false, error: "You can only delete clashes you created." };\n'
-          '  }\n')
-if needle not in src: sys.exit(f"error: expected deleteClash guard not found verbatim in {path}")
-open(path, "w").write(src.replace(needle, '  if (!clash) return { ok: false, error: "Clash not found." };\n', 1))
-PY
-python3 - "app/actions/venues.ts" <<'PY'
-import sys
-path = sys.argv[1]; src = open(path).read()
-needle = ('  if (!venue) return { ok: false, error: "Venue not found." };\n'
-          '  if (venue.creatorId !== user.id) {\n'
-          '    return { ok: false, error: "You can only delete venues you created." };\n'
-          '  }\n')
-if needle not in src: sys.exit(f"error: expected deleteVenue guard not found verbatim in {path}")
-open(path, "w").write(src.replace(needle, '  if (!venue) return { ok: false, error: "Venue not found." };\n', 1))
-PY
+node <<'JS'
+const fs = require('fs')
+const path = 'app/actions/clashes.ts'
+const raw = fs.readFileSync(path, 'utf8')
+const crlf = raw.includes('\r\n')
+const src = crlf ? raw.replace(/\r\n/g, '\n') : raw
+const needle = '  if (!clash) return { ok: false, error: "Clash not found." };\n' +
+  '  if (clash.creatorId !== user.id) {\n' +
+  '    return { ok: false, error: "You can only delete clashes you created." };\n' +
+  '  }\n'
+if (!src.includes(needle)) { console.error(`error: expected deleteClash guard not found verbatim in ${path}`); process.exit(1) }
+const out = src.replace(needle, '  if (!clash) return { ok: false, error: "Clash not found." };\n')
+fs.writeFileSync(path, crlf ? out.replace(/\n/g, '\r\n') : out)
+JS
+node <<'JS'
+const fs = require('fs')
+const path = 'app/actions/venues.ts'
+const raw = fs.readFileSync(path, 'utf8')
+const crlf = raw.includes('\r\n')
+const src = crlf ? raw.replace(/\r\n/g, '\n') : raw
+const needle = '  if (!venue) return { ok: false, error: "Venue not found." };\n' +
+  '  if (venue.creatorId !== user.id) {\n' +
+  '    return { ok: false, error: "You can only delete venues you created." };\n' +
+  '  }\n'
+if (!src.includes(needle)) { console.error(`error: expected deleteVenue guard not found verbatim in ${path}`); process.exit(1) }
+const out = src.replace(needle, '  if (!venue) return { ok: false, error: "Venue not found." };\n')
+fs.writeFileSync(path, crlf ? out.replace(/\n/g, '\r\n') : out)
+JS
 commit_all 08-start "workshop: clash-feature skill (end of task 07); seed missing ownership checks for the audit
 
 deleteClash and deleteVenue no longer verify creatorId before deleting.
