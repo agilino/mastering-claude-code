@@ -12,6 +12,7 @@ Maschine. Die Spec ist docs/SPEC.md. Claude schreibt den Code. Du entscheidest, 
 > Tun:
 > - tasks/02-foundation.md Schritte 1-2, dann zurück zu den Folien
 > - Im Manual-Modus starten, die Gruppe die ersten zwei, drei Permission-Prompts sehen lassen
+> - Das Repo ist absichtlich nicht leer. Darauf hinweisen, dass das Briefing die Workshop-Dateien vor create-next-app schützen lässt
 > - Dann zu Auto wechseln — ein Next.js-Scaffold aufzusetzen ist Standard, geringes Risiko
 > - [click] Die drei Teile am echten Scaffold-Briefing aus Task 02 zeigen
 > - Kontrastieren mit dem kalten Prompt "set up a Next.js app"
@@ -52,6 +53,8 @@ Sagen:
 Sagen:
 - SQLite hat keine Enums
 - der generierte Client-Pfad hält den Import stabil
+- tsx macht den TypeScript-Seed über die im Workshop unterstützten Node-Versionen reproduzierbar
+- Prisma 7.10+ kann prisma7.config.ts erzeugen; ältere 7.x-Projekte können weiterhin prisma.config.ts verwenden
 - der Seed ist das, womit sich jede spätere Task einloggt
 
 <!-- @note: foundation -->
@@ -59,7 +62,7 @@ Sagen:
 > - Task-02-Rückblick
 > - Übergabe an tasks/02-foundation.md, alle 11 Schritte — keine Folien mehr bis Task 03
 > - Den Chat beobachten, während gearbeitet wird
-> - Häufigster Stolperstein: create-next-app stellt interaktive Fragen — die Flags im Briefing vermeiden die meisten davon
+> - Häufigster Stolperstein: create-next-app und lokale Package-Manager-Präferenzen. Das Briefing erzwingt npm, kein src/-Verzeichnis, nicht-interaktive Antworten und schützt die Workshop-Dateien
 
 Sagen:
 - 02-start ist die Spec plus eine erste CLAUDE.md; 03-start ist der Landepunkt, falls diese Task schiefgeht
