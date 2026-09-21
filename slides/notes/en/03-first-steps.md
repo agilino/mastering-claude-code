@@ -23,8 +23,8 @@ Say:
 
 <!-- @note: slash-commands -->
 > Do:
-> - tasks/01-setup-first-conversation.md steps 9-10 run /init, /clear, /context and /help now — read the lines aloud
-> - /context is used immediately after /clear to show that CLAUDE.md stays loaded; /usage comes in "Now you", /rewind in Task 03
+> - tasks/01-setup-first-conversation.md steps 9-10 show /init, /clear, /context and /help — read the lines aloud, don't run them yet
+> - /context, /usage and /rewind are only named here — /context is demoed later in this task, /usage in "Now you", /rewind in Task 03
 > - Docs link: open it, scroll to "Commands across a typical workflow", then back to the slides
 
 Say:

@@ -100,7 +100,7 @@ lines:
 <div class="grid grid-cols-2 gap-8 w-full max-w-3xl">
   <div class="na-card p-5">
     <div class="font-bold text-lg mb-2">Skill</div>
-    <div class="text-sm" style="color: var(--na-fg-muted)">A folder with a SKILL.md. Its one-line description is always in the prompt. The body loads when needed.</div>
+    <div class="text-sm" style="color: var(--na-fg-muted)">A folder with a SKILL.md. Its one-line description is in the prompt. The body loads when needed.</div>
   </div>
   <div class="na-card p-5" v-click>
     <div class="font-bold text-lg mb-2">MCP server</div>
@@ -125,7 +125,6 @@ layout: concept
 heading: "When the window fills: compact or clear"
 lines:
   - "Fold the history into a summary and continue. Or start fresh — often better."
-  - "We will do this for real with Claude Code in a moment."
 ---
 
 <D11CompactClear />
@@ -135,7 +134,6 @@ layout: concept
 heading: "A question that skips the loop"
 lines:
   - "Answered from what is already in the window. No tool call, no new turn."
-  - "The loop keeps running underneath. We will try this for real in a moment."
 ---
 
 <D07HarnessLoop btw />

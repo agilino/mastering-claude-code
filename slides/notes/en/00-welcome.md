@@ -15,8 +15,8 @@ Say (hints what to say):
 
 Say:
 - Lunch is built into the day, plus a few short breaks along the way — say if anyone needs one
-- "Wir sind hier alle sehr erfahrene Entwickler. Lass uns das ganze interaktiv gestalten. Ich möchte Eure Meinung hören, wenn ihr etwas anders sieht und diese gerne zur Diskussion stellen. Unterbricht mich bitte jederzeit sehr gerne, mit Fragen und einem konstruktiven Austausch. Helft Euch auch untereinander."
-- "Wir haben eine menge Material vorbereitet, möglicherweise mehr als wir gemeinsam schaffen können. Unser Ziel ist hier nicht durch das Material durchzurennen, sondern vielmehr unser eigenes Tempo zu finden."
+- "Wir sind hier alle sehr erfahrene Entwickler. Lasst uns das Ganze interaktiv gestalten. Ich möchte Eure Meinung hören, wenn ihr etwas anders seht und diese gerne zur Diskussion stellen. Unterbrecht mich bitte jederzeit sehr gerne, mit Fragen und einem konstruktiven Austausch. Helft Euch auch untereinander."
+- "Wir haben eine Menge Material vorbereitet, möglicherweise mehr als wir gemeinsam schaffen können. Unser Ziel ist hier nicht durch das Material durchzurennen, sondern vielmehr unser eigenes Tempo zu finden."
 
 <!-- @note: introductions -->
 > Do:
@@ -37,7 +37,7 @@ Say:
 - Software architect and developer in banking, public sector, healthcare and robotics
 - Systems from first commit to enterprise scale, teams up to 120 developers
 - Now: train engineering teams in agentic coding with Claude Code, spec first
-- Treat the agent like a guided junior developer
+- Work with the agent like you would with a guided junior developer
 
 <!-- @note: nextacademy-io -->
 > Do:

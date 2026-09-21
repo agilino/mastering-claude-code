@@ -15,8 +15,8 @@ Sagen (Hinweise, was gesagt wird):
 
 Sagen:
 - Mittagspause ist fest eingeplant, dazu ein paar kurze Pausen zwischendurch — sagt Bescheid, wenn die Gruppe eine braucht
-- "Wir sind hier alle sehr erfahrene Entwickler. Lass uns das ganze interaktiv gestalten. Ich möchte Eure Meinung hören, wenn ihr etwas anders sieht und diese gerne zur Diskussion stellen. Unterbricht mich bitte jederzeit sehr gerne, mit Fragen und einem konstruktiven Austausch. Helft Euch auch untereinander."
-- "Wir haben eine menge Material vorbereitet, möglicherweise mehr als wir gemeinsam schaffen können. Unser Ziel ist hier nicht durch das Material durchzurennen, sondern vielmehr unser eigenes Tempo zu finden."
+- "Wir sind hier alle sehr erfahrene Entwickler. Lasst uns das Ganze interaktiv gestalten. Ich möchte Eure Meinung hören, wenn ihr etwas anders seht und diese gerne zur Diskussion stellen. Unterbrecht mich bitte jederzeit sehr gerne, mit Fragen und einem konstruktiven Austausch. Helft Euch auch untereinander."
+- "Wir haben eine Menge Material vorbereitet, möglicherweise mehr als wir gemeinsam schaffen können. Unser Ziel ist hier nicht durch das Material durchzurennen, sondern vielmehr unser eigenes Tempo zu finden."
 
 <!-- @note: introductions -->
 > Tun:

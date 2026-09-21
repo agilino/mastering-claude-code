@@ -61,12 +61,8 @@ check ownership itself. Zod checks the shape of the input, not who may send it.
 ## Now you
 
 - Run the same audit again, but hand it off with `/subtask` instead of naming the
-  `security-auditor` subagent — for example `/subtask audit app/actions/ for the same
-  missing-ownership-check pattern`. `/subtask` forks: it inherits this whole conversation
-  instead of starting clean, the way a named subagent always does. Compare the `/context`
-  numbers and the time taken against step 5's run. Run `/tasks` while the fork is still
-  working — it lists this session's background work. A finished subagent stays on that list,
-  marked done, only briefly.
+  `security-auditor` subagent. Compare the `/context` numbers and the time taken against
+  step 5's run.
 - Write a second subagent, `perf-auditor`, that only looks for Prisma queries without a `select`.
 
 ## Check

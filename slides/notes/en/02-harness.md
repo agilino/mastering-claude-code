@@ -108,8 +108,8 @@ Say:
 
 <!-- @note: when-the-window-fills-compact-or-clear -->
 > Do:
-> - Nobody has installed anything yet — name the commands, don't run them
-> - Say plainly that the real, live version comes right after this section
+> - Nobody has a live session open yet — name the commands, don't run them
+> - Say plainly that the live version comes later in Task 01, once there is a real conversation to compact or clear
 
 Say:
 - Three tanks — first: a session near the limit — files read, tool output, chat
@@ -122,8 +122,8 @@ Say:
 
 <!-- @note: a-question-that-skips-the-loop -->
 > Do:
-> - Nobody has installed anything yet — describe it, don't run it
-> - Same "we'll do this for real in a moment" framing as the last slide
+> - Nobody has a live session open yet — describe it, don't run it
+> - Same "we'll do this for real later in Task 01" framing as the last slide
 
 Say:
 - Same loop as before — nothing about it changes
@@ -137,8 +137,9 @@ Say:
 > Do:
 > - Paste the install link from the top of the slide into the Teams chat, so people can click it directly
 > - Everyone installed this before the workshop (docs/SETUP.md) — say so plainly, this is a recap, not asking for a fresh install
-> - Open your own terminal live in an empty folder and start it
-> - Now make the last two slides real, in this order: /context (see the tank), a side question with /btw about what you see, then /clear (empty it)
+> - Open your own terminal live in an empty folder and start Claude Code — that's all. An
+>   empty folder has nothing meaningful for /context, /btw or /clear to show yet; that comes
+>   later, at the end of Task 01
 > - Close with the line on the next slide
 
 Say:
