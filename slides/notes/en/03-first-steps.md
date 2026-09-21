@@ -23,8 +23,8 @@ Say:
 
 <!-- @note: slash-commands -->
 > Do:
-> - tasks/01-setup-first-conversation.md steps 9-10 run /init, /clear and /help now — read the lines aloud
-> - /context, /usage and /rewind are only named here — /context is demoed later in this task, /usage in "Now you", /rewind in Task 03
+> - tasks/01-setup-first-conversation.md steps 9-10 run /init, /clear, /context and /help now — read the lines aloud
+> - /context is used immediately after /clear to show that CLAUDE.md stays loaded; /usage comes in "Now you", /rewind in Task 03
 > - Docs link: open it, scroll to "Commands across a typical workflow", then back to the slides
 
 Say:
@@ -90,8 +90,8 @@ Say:
 >   - Which five kinds of records does the app need? Say how they connect to each other.
 >   - Which screen looks hardest to build, and why?
 > - Then run /init and open the CLAUDE.md it writes
-> - Show it's short and that it points at the spec
-> - Then /context: point at the CLAUDE.md line and the spec line — first time the group sees the bars with real numbers
+> - Do not promise an exact length — /init output can vary by Claude Code version. Point out useful repo-specific guidance and the spec reference
+> - Then /clear and /context: point at the CLAUDE.md line — first proof that conversation context can be cleared while repo guidance persists
 
 Say:
 - CLAUDE.md and the spec line are already inside every prompt — the budget from Part I, now with real numbers
