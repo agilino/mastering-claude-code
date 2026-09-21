@@ -9,6 +9,7 @@ Sagen:
 > - Vor diesem Segment: sicherstellen, dass `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` auf deiner Maschine gesetzt ist
 > - Ohne das Flag: Demo startet lautlos normale Subagents — kein Team, keine Meinungsverschiedenheit, kein Payoff, und kein Fehler, der dir sagt, warum
 > - Für diesen Teil "watch first" sagen
+> - Docs-Link: öffnen, bis "When to use agent teams" scrollen, dann zurück zu den Folien
 
 Sagen:
 - Gleiches Problem, gleicher präparierter Branch (09-start), andere Strategie
@@ -25,6 +26,7 @@ Sagen:
 - Vier Domänen bilden sich auf die echten Dateien ab: clashes.ts, venues.ts, profile.ts, und participation (lebt in den join/leave/accept/reject-Actions)
 - Teammates schreiben sich gegenseitig PER NAME über das SendMessage-Tool — keine @-Mention-Syntax zwischen Peers
 - `claude agents` ist kein Team-Dashboard — listet Hintergrund-Sessions auf; das Panel des Teams ist inline, unter dem Prompt
+- Das ist der CLI-Befehl. Das ähnlich benannte `/agents` (ein Slash-Command, innerhalb einer Session) ist etwas anderes — es gibt nur einen Hinweis aus: Claude bitten, Subagents zu erstellen oder zu verwalten, oder `.claude/agents/` selbst bearbeiten. Auch kein Dashboard
 
 <!-- @note: lead-peers-and-a-disagreement -->
 Sagen:
@@ -34,6 +36,9 @@ Sagen:
 - Dieser Schritt ist das ganze Argument für ein Team gegenüber einem einzelnen Subagent
 
 <!-- @note: strategy-three-dynamic-workflows -->
+> Tun:
+> - Docs-Link: öffnen, bis "When to use a workflow" scrollen, dann zurück zu den Folien
+
 Sagen:
 - Gleiches Problem, gleicher Branch, dritte Strategie
 - Den Job beschreiben — Claude schreibt das JavaScript-Orchestrierungs-Skript
@@ -80,6 +85,7 @@ Sagen:
 
 Sagen:
 - Drei Ergebnisse nebeneinander: Findings, Zeit, Tokens, Context-Verbrauch im Main-Thread
+- `/cost` sagt die Token-Zahl laut an — Alias für `/usage`
 - Task endet mit geshipptem Code — das trägt 10-start
 
 <!-- @note: team-and-workflow-audit -->

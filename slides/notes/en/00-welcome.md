@@ -7,6 +7,27 @@ Say (hints what to say):
 - Everything happens on one real app, CLASH — build it yourself first, then push it to its limits
 - Not a slideshow to watch — every part ends with you at your own keyboard
 
+<!-- @note: organisation -->
+> Do:
+> - Say this once, briefly, right at the start
+> - Remind yourself to actually take the short breaks — set a timer if it helps
+> - Ask the group if the lunch window you propose works for them, or if they would rather shift it
+
+Say:
+- Lunch is built into the day, plus a few short breaks along the way — say if anyone needs one
+- "Wir sind hier alle sehr erfahrene Entwickler. Lass uns das ganze interaktiv gestalten. Ich möchte Eure Meinung hören, wenn ihr etwas anders sieht und diese gerne zur Diskussion stellen. Unterbricht mich bitte jederzeit sehr gerne, mit Fragen und einem konstruktiven Austausch. Helft Euch auch untereinander."
+- "Wir haben eine menge Material vorbereitet, möglicherweise mehr als wir gemeinsam schaffen können. Unser Ziel ist hier nicht durch das Material durchzurennen, sondern vielmehr unser eigenes Tempo zu finden."
+
+<!-- @note: introductions -->
+> Do:
+> - Go round everyone before you introduce yourself — people like talking about themselves first
+> - One breath per person, keep it moving
+
+Say:
+- Name, your experience in software development
+- Experience with Claude Code or agentic coding, if any
+- What you hope to get from this course
+
 <!-- @note: your-trainer -->
 > Do:
 > - Who you are, in one breath
@@ -45,6 +66,11 @@ Say:
 - Hold this picture — it's what "done" looks like at the end of the build
 
 <!-- @note: how-this-works -->
+> Do:
+> - If you don't know an answer live, say so — either ask Claude on screen ("Schauen wir doch
+>   mal was Claude dazu sagt.") or take it away ("Gute Frage, hmm, das weiß ich nicht. Kennt
+>   jemand von Euch möglicherweise die Antwort? Ich nehme sie für mich mit.")
+
 Say:
 - [click] Every task: short explanation, live demo, then work the task file yourself
 - [click:2] Each task has a branch NN-start with the starting state you need

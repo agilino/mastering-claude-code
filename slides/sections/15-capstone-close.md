@@ -34,8 +34,8 @@ lines:
 layout: concept
 heading: "What we did not cover"
 lines:
-  - "/loop, Remote Control, routines, output styles"
-  - "claude agents, and building your own MCP server"
+  - "/loop, /remote-control, routines, output styles"
+  - "/background and claude agents, plus building your own MCP server"
 ---
 
 

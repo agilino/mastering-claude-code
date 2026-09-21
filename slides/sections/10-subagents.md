@@ -71,6 +71,7 @@ tools: Read, Grep, Glob
 ---
 layout: concept
 heading: "Two ways to isolate"
+docs: https://code.claude.com/docs/en/sub-agents
 ---
 
 <div class="grid grid-cols-2 gap-8 w-full">

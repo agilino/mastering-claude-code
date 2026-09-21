@@ -10,6 +10,7 @@ Sagen:
 > Tun:
 > - Den Ring Klick für Klick durchgehen
 > - Zweimal sagen
+> - Docs-Link: öffnen, bis "The agentic loop" scrollen, dann zurück zu den Folien
 
 Sagen:
 - [click] du tippst "fix the bell" — der Harness baut den vollständigen Prompt (nächste Folie zeigt, was drinsteckt)
@@ -82,16 +83,6 @@ Sagen:
 - [click] ein Fork ist dieselbe Idee, startet aber mit einer Kopie deines bisherigen Gesprächs — günstiger, wenn er braucht, was du schon weißt
 - Teil drei nutzt einen Subagent, um CLASH zu auditieren
 
-<!-- @note: when-the-window-fills-compact-or-clear -->
-Sagen:
-- Drei Tanks — der erste ist eine Session nahe am Limit: gelesene Dateien, Tool-Output, Chat
-- [click] /compact — bittet das Modell, das Gespräch zusammenzufassen, und ersetzt dann die Historie durch diese Zusammenfassung
-  - Claude Code macht das von selbst nahe am Limit: erst verwirft es alte Tool-Outputs, dann fasst es zusammen
-  - Es funktioniert, und es verliert Details; Compacting selbst ist ein großer Request, weil das Modell alles liest, was es zusammenfasst
-- [click] /clear — wirft die Historie weg und startet eine neue Session mit derselben CLAUDE.md
-- Für einen neuen Job ist /clear meistens besser: nichts vom alten Job sickert rein
-- Gewohnheit aufbauen: ein Job pro Session
-
 <!-- @note: skills-and-mcp -->
 Sagen:
 - Zwei weitere Teile des Harness, beide werden in späteren Teilen gebaut
@@ -104,7 +95,6 @@ Sagen:
 <!-- @note: where-cost-and-control-come-from -->
 > Tun:
 > - Alles zusammenführen
-> - Mit dem Satz schließen
 
 Sagen:
 - Kosten sind Tokens
@@ -114,7 +104,50 @@ Sagen:
   - Was ist gerade im Fenster?
   - Welche Tools kann das Modell aufrufen?
   - Welche Regeln werden von einem Hook erzwungen statt in einem Prompt erhofft?
-- Das Modell ist für alle gleich. Im Harness gewinnst du
+- Eine dieser Fragen, gleich jetzt: was passiert, wenn das Fenster voll wird
+
+<!-- @note: when-the-window-fills-compact-or-clear -->
+> Tun:
+> - Noch hat niemand etwas installiert — die Commands nennen, nicht ausführen
+> - Klar sagen, dass die echte, live Version direkt nach diesem Abschnitt kommt
+
+Sagen:
+- Drei Tanks — der erste ist eine Session nahe am Limit: gelesene Dateien, Tool-Output, Chat
+- [click] /compact — bittet das Modell, das Gespräch zusammenzufassen, und ersetzt dann die Historie durch diese Zusammenfassung
+  - Claude Code macht das von selbst nahe am Limit: erst verwirft es alte Tool-Outputs, dann fasst es zusammen
+  - Es funktioniert, und es verliert Details; Compacting selbst ist ein großer Request, weil das Modell alles liest, was es zusammenfasst
+- [click] /clear — leert das Fenster und startet eine neue Session mit derselben CLAUDE.md; das alte Gespräch bleibt auf der Platte, /resume öffnet es wieder
+- Für einen neuen Job ist /clear meistens besser: nichts vom alten Job sickert rein
+- Gewohnheit aufbauen: ein Job pro Session
+
+<!-- @note: a-question-that-skips-the-loop -->
+> Tun:
+> - Noch hat niemand etwas installiert — beschreiben, nicht ausführen
+> - Gleiches „machen wir gleich live" wie bei der letzten Folie
+
+Sagen:
+- Derselbe Loop wie vorhin — daran ändert sich nichts
+- [click] Eine Zwischenfrage geht direkt ans Modell — ein /btw-Quadrat neben You, eine direkte Linie zu Model, keine Runde über den Ring
+- Eine Zwischenfrage wird nur aus dem beantwortet, was schon im Gespräch steht: deine Nachrichten, Claudes Antworten, bereits gesammelte Tool-Ergebnisse
+- Keine Tools, kein Permission-Gate, kein neuer Turn — sie kann keine neue Datei lesen oder einen Befehl ausführen
+- Läuft gerade ein Turn, läuft er darunter einfach weiter — eine Zwischenfrage unterbricht ihn nicht
+- Gut für: "wie hieß noch mal diese Config-Datei?" — ohne den Faden zu verlieren
+
+<!-- @note: install-and-log-in -->
+> Tun:
+> - Den Install-Link oben auf der Folie in den Teams-Chat einfügen, damit alle ihn direkt anklicken können
+> - Alle haben das vor dem Workshop installiert (docs/SETUP.md) — klar sagen, das ist ein Rückblick, keine neue Installation
+> - Das eigene Terminal live in einem leeren Ordner öffnen und starten
+> - Jetzt die letzten beiden Folien echt machen, in dieser Reihenfolge: /context (den Tank sehen), eine Zwischenfrage mit /btw dazu, dann /clear (ihn leeren)
+> - Mit dem Satz auf der nächsten Folie schließen
+
+Sagen:
+- Eine globale Installation, ein Befehl zum Starten
+- Die Docs beginnen mit einem nativen Installer (curl- oder PowerShell-Einzeiler) — das ist der Link auf der Folie, und das, was das Pre-Flight in docs/SETUP.md nutzt. npm installiert dasselbe native Binary und läuft auf jedem OS — das ist die Alternative, die darunter steht
+- Erster Start öffnet einen Login im Browser
+- Claude Code läuft in deinem Terminal, innerhalb des Ordners, in dem du es startest
+- Dieser Ordner ist seine Welt — dort liest und bearbeitet es
+- CLAUDE.md-Dateien in diesem Ordner werden automatisch erkannt
 
 <!-- @note: the-model-is-the-same-for-everyone-the-harness-is-where-you-win -->
 > Tun:

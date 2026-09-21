@@ -18,6 +18,23 @@ layout: concept
 
 ---
 layout: concept
+heading: "Organisation"
+lines:
+  - "A lunch break, plus short breaks along the way."
+  - "We are all experienced developers here — ask, disagree, help each other."
+---
+
+---
+layout: concept
+heading: "Introductions"
+lines:
+  - "Name, and your experience in software development."
+  - "Have you used Claude Code, or agentic coding, before?"
+  - "What do you hope to get from this course?"
+---
+
+---
+layout: concept
 heading: "Your trainer"
 ---
 

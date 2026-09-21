@@ -51,6 +51,9 @@ Sagen:
 - Kontrast zu einem vagen "find security bugs": eine falsifizierbare Eigenschaft macht den Bericht überprüfbar, nicht eine Wand aus Prosa.
 
 <!-- @note: two-ways-to-isolate -->
+> Tun:
+> - Docs-Link: öffnen, bis "Fork the current conversation" scrollen, dann zurück zu den Folien
+
 Sagen:
 - [click] Links: das eigene Fenster des Subagents füllt sich mit lauten Tool-Calls — nur eine dünne Zusammenfassung kommt zurück, deshalb bewegt sich der Hauptthread kaum.
 - [click:3] Rechts: Fork vs. Fresh.
@@ -58,6 +61,7 @@ Sagen:
 - [click] Ein frischer Subagent startet kalt: keine Historie, gefilterte Tools, kein Cache — der erste Call kostet mehr.
 - Fork ist in interaktiven Sessions standardmäßig an, unter -p und im Agent SDK aus.
 - Keins von beiden ist besser — wissen, welches du aufgerufen hast und warum.
+- `/tasks` listet die Hintergrundarbeit dieser Session: laufende Subagents und Forks. Ein fertiger bleibt nur kurz in der Liste, als erledigt markiert — also reinschauen, solange er läuft oder direkt nachdem er zurückkommt.
 
 <!-- @note: subagent-audit -->
 > Tun:

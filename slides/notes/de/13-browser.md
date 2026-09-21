@@ -7,6 +7,7 @@ Sagen:
 <!-- @note: your-systems-as-tools -->
 > Tun:
 > - Vor dem Start mit `claude mcp list` bestätigen
+> - Docs-Link: öffnen, bis "What you can do with MCP" scrollen, dann zurück zu den Folien
 
 Sagen:
 - Beide Server wurden schon beim Setup hinzugefügt (docs/SETUP.md)
@@ -25,6 +26,7 @@ Sagen:
 
 Sagen:
 - Die Registrierung ist meist ein einmaliger Terminal-Befehl — im Projekt-Scope geht es auch über eine `.mcp.json`-Datei, die man selbst bearbeitet und committet
+- `/mcp` zeigt denselben Verbindungsstatus direkt in einer laufenden Session — kein Wechsel ins Terminal nötig
 
 <!-- @note: drive-first-then-test -->
 > Tun:

@@ -1,17 +1,3 @@
-<!-- @note: install-and-log-in -->
-> Tun:
-> - tasks/01-setup-first-conversation.md Schritt 2, dann zurück zu den Folien
-> - Live in einem leeren Ordner demonstrieren
-> - Einmal sagen
-
-Sagen:
-- Eine globale Installation, ein Befehl zum Starten
-- Die Docs beginnen inzwischen mit einem nativen Installer (curl- oder PowerShell-Einzeiler); npm installiert dasselbe Programm und läuft auf jedem OS, deshalb nutzt der Workshop npm
-- Erster Start öffnet einen Login im Browser
-- Claude Code läuft in deinem Terminal, innerhalb des Ordners, in dem du es startest
-- Dieser Ordner ist seine Welt — dort liest und bearbeitet es
-- CLAUDE.md-Dateien in diesem Ordner werden automatisch erkannt
-
 <!-- @note: the-prompt-is-a-chat-in-your-terminal -->
 > Tun:
 > - Einen echten Turn in Claude im Clash Repo zeigen
@@ -39,6 +25,7 @@ Sagen:
 > Tun:
 > - tasks/01-setup-first-conversation.md Schritte 9-10 führen /init, /clear und /help jetzt aus — die Zeilen laut vorlesen
 > - /context, /usage und /rewind werden hier nur genannt — /context wird später in dieser Aufgabe gezeigt, /usage unter „Now you", /rewind in Task 03
+> - Docs-Link: öffnen, bis "Commands across a typical workflow" scrollen, dann zurück zu den Folien
 
 Sagen:
 - Ein Slash-Command ist eine Anweisung an Claude Code selbst
@@ -69,6 +56,7 @@ Sagen:
 > Tun:
 > - Die Datei öffnen, die /init erzeugt hat
 > - Kurz halten — jede Zeile steckt in jedem Prompt
+> - Docs-Link: öffnen, bis "CLAUDE.md files" scrollen, dann zurück zu den Folien
 
 Sagen:
 - Ausgangspunkt, nicht das letzte Wort
@@ -87,7 +75,9 @@ Sagen:
 
 <!-- @note: keys-worth-knowing -->
 > Tun:
+> - Der Gruppe eine Frage stellen: eher Tastatur- oder Maus-Typ? Die Antwort fürs Tempo der Shortcut-Demo nutzen
 > - Demo: Esc während eines Turns, Shift+Tab für den Modus, Tab nach @ zum Vervollständigen eines Pfads
+> - Docs-Link: öffnen, bis "Keyboard shortcuts" scrollen, dann zurück zu den Folien
 
 Sagen:
 - "?" bei leerer Prompt-Zeile zeigt den Rest der Shortcuts
@@ -112,7 +102,7 @@ Sagen:
 > - Dann das erste Gespräch und /init
 > - Den Chat beobachten, während gearbeitet wird
 > - Auf Leute achten, die nie Enter beim Permission-Prompt drücken, oder die im Terminal tippen, während Claude arbeitet
-> - Übliche Blocker: Node-Version (CLASH braucht 20+), Login. Eine EBADENGINE-Warnung, während npm Claude Code installiert, ist harmlos — es läuft trotzdem
+> - Übliche Blocker: Node-Version (CLASH braucht 20+), Login, `claude` direkt nach der nativen Installation nicht gefunden (neues Terminal öffnen). Eine EBADENGINE-Warnung, wenn jemand Claude Code mit npm installiert, ist harmlos — es läuft trotzdem
 > - Niemand geht weiter, bevor Claude Code im eigenen Klon läuft und CLAUDE.md existiert
 
 Sagen:

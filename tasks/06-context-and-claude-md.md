@@ -95,6 +95,7 @@ Yours does not need to match. It needs the same six rules.
 
 ## Links
 
+- The context window — https://code.claude.com/docs/en/context-window
 - Memory and CLAUDE.md — https://code.claude.com/docs/en/memory
 - Plan mode and permission modes — https://code.claude.com/docs/en/permission-modes
 - Skills — https://code.claude.com/docs/en/skills

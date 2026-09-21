@@ -82,6 +82,10 @@ are logged, not enforced. What Claude sees on a block is stderr.
    putting the last 40 lines of the failure on stderr.
    ```
 9. Try each one: edit a migration file, run `rm`, read `.env`, run a build, break the build and try to end the turn.
+10. See what is actually configured, grouped by event.
+    ```
+    /hooks
+    ```
 
 ## Now you
 
@@ -96,6 +100,7 @@ are logged, not enforced. What Claude sees on a block is stderr.
 - [ ] You watched Claude receive a blocked edit and fix it without your help.
 - [ ] Migrations, `rm` and `.env` are denied with a reason.
 - [ ] A green build shows one line. A red build keeps the turn open.
+- [ ] `/hooks` lists every hook you added, grouped by event.
 - [ ] You can say why `hard_deny` does not belong in this file. It is an auto-mode setting
       (`settings.autoMode.hard_deny`), not a hook decision. Hook decisions are `allow`, `deny`, `ask`.
 

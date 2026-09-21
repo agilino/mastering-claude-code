@@ -129,7 +129,7 @@ Ask Claude to look at the map page with agent-browser on a phone-sized window an
 
 ## Links
 
-- Slash commands — https://code.claude.com/docs/en/slash-commands
+- Commands — https://code.claude.com/docs/en/commands
 - Images and screenshots in prompts — https://code.claude.com/docs/en/common-workflows
 - react-leaflet — https://react-leaflet.js.org/
 - agent-browser — https://github.com/vercel-labs/agent-browser

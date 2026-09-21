@@ -1,17 +1,3 @@
-<!-- @note: install-and-log-in -->
-> Do:
-> - tasks/01-setup-first-conversation.md step 2, then back to the slides
-> - Demo live in an empty folder
-> - Say once
-
-Say:
-- One global install, one command to start
-- The docs now lead with a native installer (curl or PowerShell one-liner); npm installs the same program and works on every OS, so the workshop uses npm
-- First start opens a login in the browser
-- Claude Code runs in your terminal, inside the folder you start it in
-- That folder is its world — it reads and edits there
-- CLAUDE.md files in that folder are picked up automatically
-
 <!-- @note: the-prompt-is-a-chat-in-your-terminal -->
 > Do:
 > - Show a real turn in Claude, in the Clash repo
@@ -39,6 +25,7 @@ Say:
 > Do:
 > - tasks/01-setup-first-conversation.md steps 9-10 run /init, /clear and /help now — read the lines aloud
 > - /context, /usage and /rewind are only named here — /context is demoed later in this task, /usage in "Now you", /rewind in Task 03
+> - Docs link: open it, scroll to "Commands across a typical workflow", then back to the slides
 
 Say:
 - Slash command = instruction to Claude Code itself
@@ -69,6 +56,7 @@ Say:
 > Do:
 > - Open the file /init produced
 > - Keep it short — every line is in every prompt
+> - Docs link: open it, scroll to "CLAUDE.md files", then back to the slides
 
 Say:
 - Starting point, not the final word
@@ -87,7 +75,9 @@ Say:
 
 <!-- @note: keys-worth-knowing -->
 > Do:
+> - Ask the group a question: keyboard-first or mouse-first? Use the answer to pace the shortcuts demo
 > - Demo: Esc during a turn, Shift+Tab for the mode, Tab after @ to complete a path
+> - Docs link: open it, scroll to "Keyboard shortcuts", then back to the slides
 
 Say:
 - "?" on an empty prompt line shows the rest of the shortcuts
@@ -112,7 +102,7 @@ Say:
 > - Then the first conversation and /init
 > - Watch the chat while people work
 > - Watch for people who never press Enter on the permission prompt, or who type in the terminal while Claude works
-> - Usual blockers: Node version (CLASH needs 20+), login. An EBADENGINE warning while npm installs Claude Code is harmless — it still runs
+> - Usual blockers: Node version (CLASH needs 20+), login, `claude` not found right after the native install (open a new terminal). An EBADENGINE warning when someone installs Claude Code with npm is harmless — it still runs
 > - Nobody moves on until Claude Code runs in their clone and CLAUDE.md exists
 
 Say:

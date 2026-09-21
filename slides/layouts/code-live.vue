@@ -8,11 +8,14 @@
 //   heading: string           heading naming what is about to be built
 //   filePath: string        real CLASH file path, shown as the code block title
 //   success: string         one-line "what good looks like" criterion
-defineProps<{ heading?: string; filePath?: string; success?: string }>()
+//   docs?: string           one official docs URL, drawn bottom-right as the docs link
+import DocLink from '../components/DocLink.vue'
+
+defineProps<{ heading?: string; filePath?: string; success?: string; docs?: string }>()
 </script>
 
 <template>
-  <div class="slidev-layout w-full h-full flex flex-col px-14 py-10">
+  <div class="slidev-layout relative w-full h-full flex flex-col px-14 py-10">
     <div class="flex items-start justify-between gap-4 shrink-0 mb-1">
       <h1 class="min-w-0" style="font-size: 2.25rem">{{ heading }}</h1>
       <span
@@ -31,6 +34,7 @@ defineProps<{ heading?: string; filePath?: string; success?: string }>()
       <span class="whitespace-nowrap shrink-0" style="color: var(--na-fg-muted)">What good looks like:</span>
       <span class="flex-1 min-w-0">{{ success }}</span>
     </div>
+    <DocLink v-if="docs" :href="docs" />
   </div>
 </template>
 

@@ -9,6 +9,7 @@ Say:
 
 <!-- @note: your-first-slash-command -->
 > Do:
+> - Flag in passing: commands merged into skills — this file still works, task 07 shows the preferred way to write one
 > - tasks/04-venues-map-people.md step 3, then back to the slides
 > FULL WORKING FILE (verbatim from tasks/04-venues-map-people.md):
 >

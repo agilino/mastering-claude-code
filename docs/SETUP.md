@@ -11,11 +11,34 @@ workshop wifi. If something fails, see the table at the end.
 |---|---|---|
 | Node.js 20 or newer | `node --version` | https://nodejs.org |
 | git | `git --version` | https://git-scm.com |
-| Claude Code | `claude --version` | `npm install -g @anthropic-ai/claude-code` then `claude` and log in |
+| Claude Code | `claude --version` | See "Install Claude Code" below, then `claude` and log in |
 | agent-browser | `agent-browser --version` | `npm install -g agent-browser && agent-browser install` |
 | GitHub CLI (Part II, IV) | `gh --version` | https://cli.github.com then `gh auth login` |
 
 Claude Code must be **2.1.252 or newer**. Older builds miss `/workflow-authoring` and `/skill-doctor`.
+
+### Install Claude Code
+
+Use the native installer. It keeps itself up to date.
+
+macOS, Linux or WSL:
+
+```bash
+curl -fsSL https://claude.ai/install.sh | bash
+```
+
+Windows, in PowerShell:
+
+```powershell
+irm https://claude.ai/install.ps1 | iex
+```
+
+If `claude` is not found afterwards, open a new terminal and try again.
+Windows CMD, Homebrew and WinGet are in the official quickstart:
+https://code.claude.com/docs/en/quickstart#step-1-install-claude-code
+
+npm works too and installs the same program: `npm install -g @anthropic-ai/claude-code`, without `sudo`.
+On Node older than 22 it prints an `EBADENGINE` warning. That is harmless.
 
 ## 2. Get the codebase
 
@@ -121,7 +144,8 @@ Every task has a branch with the state at its **start**. If you fall behind, do 
 git checkout 04-start      # example: rejoin at task 04
 ```
 
-Your own work stays with you: commit or stash before you switch.
+Your own work stays with you: commit, or `git stash -u` before you switch (plain `git stash`
+skips new files Claude created).
 The full list is in [`BRANCHES.md`](BRANCHES.md).
 
 ## 8. One naming trap
@@ -147,6 +171,8 @@ Both appear in this workshop. We always say which one we mean.
 
 | Symptom | Fix |
 |---|---|
+| Anything not covered below | Run `/doctor` inside Claude Code first — it checks your installation and settings, reports what it finds, and asks before it fixes anything. If Claude Code does not start at all, run `claude doctor` in your terminal instead |
+| `Shift+Tab` does nothing (Windows) | Known Node/Bun quirk. Use `Alt+M` to cycle permission modes instead |
 | `SESSION_SECRET environment variable is not set.` | Step 3: create `.env` |
 | `Cannot find module '@/lib/generated/prisma'` | Run `npm install` again (it runs `prisma generate`) |
 | `npx tsc --noEmit` fails right after a checkout | Same: the Prisma client has not been generated yet |

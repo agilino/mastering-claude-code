@@ -17,9 +17,12 @@ The data model is the right place for that, because it is hard to change later.
 
 1. Start on the right branch and open Claude Code, in manual mode.
    ```bash
+   git stash -u        # keeps the CLAUDE.md task 01's /init wrote (plain git stash skips new files)
    git checkout 02-start
    claude
    ```
+   `02-start` brings its own `CLAUDE.md`, so this replaces the one you just made. To look at
+   yours again later: `git stash show -p --include-untracked`.
    Manual mode shows every command before it runs. Press `Shift+Tab` until the status bar
    shows `manual mode` — this is a new session, so don't assume you're still in whatever
    mode task 01 left you in.
@@ -41,10 +44,18 @@ The data model is the right place for that, because it is hard to change later.
    auto mode (`Shift+Tab` until the status bar shows `auto mode`) and let the rest of the
    scaffold run without asking — initializing a Next.js app is a standard, low-risk task.
 3. Watch what Claude does. You see `Bash`, `Write`, and `Edit` lines. Each is one tool call. When it stops, open the browser at `http://localhost:3000`.
-4. Look at the changes before you trust them.
+4. Look at the changes before you trust them. First ask which files are new or changed.
    ```
-   Show me git status and a short summary of every file you created or changed.
+   Show me git status.
    ```
+   Then open the changes themselves.
+   ```
+   /diff
+   ```
+   Claude's own summary is not the same as the actual change. `git status` lists every new
+   and changed file. `/diff` shows the edits inside them, including ones Claude just made —
+   read it, don't just take the summary. The panel may say some files are "not shown".
+   `git status` is the complete list.
 5. Switch to plan mode. Press `Shift+Tab` until the status bar shows `plan mode on`. Now Claude can read but not write.
 6. Ask for the data model plan.
    ```
@@ -109,5 +120,6 @@ Ask Claude to explain every line of `prisma/schema.prisma` to you, one model at 
 
 - Plan mode — https://code.claude.com/docs/en/permission-modes
 - Common workflows — https://code.claude.com/docs/en/common-workflows
+- Keyboard shortcuts — https://code.claude.com/docs/en/interactive-mode
 - Prisma 7 with SQLite — https://www.prisma.io/docs/orm/overview/databases/sqlite
 - shadcn/ui — https://ui.shadcn.com/docs/installation/next

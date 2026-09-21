@@ -35,6 +35,7 @@ Say:
 > Do:
 > - Demo: run `/context` live on a fresh session in the reference CLASH
 > - Read the lines aloud — don't summarize, let people hear the real numbers
+> - Docs link: open it, play the interactive timeline at the top, scroll to "What the timeline shows", then back to the slides
 
 Say:
 - Come back to this same command after every task from now on
@@ -111,11 +112,23 @@ Say:
 > - Describe the next feature
 > - Read the plan together, out loud
 > - Save it to `docs/plans/realtime-notifications.md`
+> - Docs link: open it, scroll to "Analyze before you edit with plan mode", then back to the slides
 
 Say:
 - Real-time notifications — currently loads on render via `getNotifications` and `getUnreadCount` in `lib/data/notifications.ts`
 - "Don't write any code yet. Propose an approach and the files it touches."
 - Plan mode is documented under permission modes
+
+<!-- @note: a-reviewed-plan-is-not-a-guarantee -->
+> Do:
+> - Tell it as a real story, light tone — the point underneath is serious
+> - Land on: read every line, don't just skim for the feature you expected
+
+Say:
+- A colleague once asked Claude to add a BCC to his own mail-sending self-service tool
+- The plan also proposed rewriting the GDPR and privacy pages — with a warning that he was reading everyone's private email
+- Nonsense, obviously — but it was sitting right there in the plan
+- Luckily he read the whole thing and caught it before it shipped
 
 <!-- @note: skill-doctor-what-it-costs -->
 > Do:
