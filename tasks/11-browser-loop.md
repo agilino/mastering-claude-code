@@ -23,13 +23,14 @@ Two MCP servers, two jobs. Playwright MCP for correctness. Chrome DevTools MCP f
    ```bash
    claude mcp list
    ```
-   You should see `playwright` and `chrome-devtools`. Inside a running Claude Code session,
-   `/mcp` shows the same connection status without leaving the prompt. If not:
+   You should see `playwright` and `chrome-devtools`. If not:
    ```bash
    claude mcp add playwright -- npx -y @playwright/mcp@latest
    claude mcp add chrome-devtools -- npx -y chrome-devtools-mcp@latest
    npx -y playwright install chromium
    ```
+   Inside a running Claude Code session, `/mcp` shows the same connection status without
+   leaving the prompt.
 2. Start the app: `npm run dev`. Keep it running.
 
 **Tests**

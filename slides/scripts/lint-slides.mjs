@@ -116,8 +116,12 @@ for (const file of files) {
       if (/timebox:|qrSlug:|repoUrl:/.test(fm)) err(rel, `slide ${n}: task slide still has timebox/qrSlug/repoUrl`)
     }
     if (layout === 'code-live' && !/⟵ LIVE/.test(fences)) err(rel, `slide ${n}: code-live slide without a ⟵ LIVE marker`)
-    // [ \t]*, not \s*: an empty `docs:` must not swallow the next frontmatter line. Quotes are valid YAML.
-    const docs = /^docs:[ \t]*["']?(.*?)["']?[ \t]*$/m.exec(fm)?.[1]
+    // [ \t]*, not \s*: an empty `docs:` must not swallow the next frontmatter line. Quotes are
+    // valid YAML, and so is a trailing " # comment" — strip it (a '#' preceded by whitespace)
+    // before checking the value, the same way a YAML parser would.
+    const docsRaw = /^docs:[ \t]*(.*)$/m.exec(fm)?.[1]
+    const docs = docsRaw === undefined ? undefined
+      : docsRaw.replace(/\s+#.*$/, '').trim().replace(/^["']|["']$/g, '')
     if (docs !== undefined) {
       // pages can be nested (en/agent-sdk/overview); anchors may hold dots, underscores and %2F
       if (!/^https:\/\/code\.claude\.com\/docs\/en\/[a-z0-9-]+(\/[a-z0-9-]+)*(#[A-Za-z0-9%._-]+)?$/.test(docs)) err(rel, `slide ${n}: docs link is not an official English docs URL: ${docs || '(empty)'}`)

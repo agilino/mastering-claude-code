@@ -49,11 +49,22 @@ for (const file of files) {
 let errors = 0
 const err = (where, msg) => { errors++; console.log(`ERROR ${where} — ${msg}`) }
 
-// every request goes through here: an error page must never be parsed as markdown
+// every request goes through here: an error page must never be parsed as markdown.
+// scripts/audit-links.sh caps its requests at 25s; match that so a hung connection
+// cannot stall this check indefinitely.
 async function get(url) {
-  const res = await fetch(url)
-  if (!res.ok) throw new Error(`${res.status} ${res.statusText} for ${url}`)
-  return res.text()
+  const controller = new AbortController()
+  const timeout = setTimeout(() => controller.abort(), 25000)
+  try {
+    const res = await fetch(url, { signal: controller.signal })
+    if (!res.ok) throw new Error(`${res.status} ${res.statusText} for ${url}`)
+    return res.text()
+  } catch (e) {
+    if (e.name === 'AbortError') throw new Error(`timed out after 25s for ${url}`)
+    throw e
+  } finally {
+    clearTimeout(timeout)
+  }
 }
 
 // compare anchors and headings on letters and digits only, so punctuation and
@@ -80,11 +91,21 @@ function withoutFences(md) {
   return out.join('\n')
 }
 
+// Markdown headings are auto-slugified from their text; a repeated heading gets its
+// slug numbered (#example, #example-1, #example-2, ...), so a bare per-heading Set
+// can't tell a real numbered anchor from a made-up one — it needs the occurrence count
+// too. An HTML heading (<h2 id="...">) instead carries its anchor explicitly: that id
+// is the real slug, not derived from the text, so it goes into the same exact-match set.
 const headingCache = new Map()
 async function headingsOf(page) {
   if (!headingCache.has(page)) {
-    const prose = withoutFences(await get(`${BASE}${page}.md`))
-    headingCache.set(page, new Set([...prose.matchAll(/^#{1,6}\s+(.+?)\s*$/gm)].map((m) => norm(m[1]))))
+    const raw = await get(`${BASE}${page}.md`)
+    const prose = withoutFences(raw)
+    const mdHeadings = [...prose.matchAll(/^#{1,6}\s+(.+?)\s*$/gm)].map((m) => norm(m[1]))
+    const htmlIds = [...raw.matchAll(/<h[1-6][^>]*\bid=["']([^"']+)["']/gi)].map((m) => norm(decode(m[1])))
+    const counts = new Map()
+    for (const h of mdHeadings) counts.set(h, (counts.get(h) ?? 0) + 1)
+    headingCache.set(page, { exact: new Set([...mdHeadings, ...htmlIds]), counts })
   }
   return headingCache.get(page)
 }
@@ -106,10 +127,15 @@ try {
     if (!anchor) continue
     const headings = await headingsOf(page)
     const a = decode(anchor)
-    // the docs site numbers a repeated heading (#example-2), so also try without that suffix
-    if (!headings.has(norm(a)) && !headings.has(norm(a.replace(/-\d+$/, '')))) {
-      err(where.join(', '), `no heading matches #${anchor} on ${pageUrl}`)
-    }
+    if (headings.exact.has(norm(a))) continue
+    // the docs site numbers a repeated heading as #example, #example-1, #example-2, ... —
+    // valid only up to (occurrence count - 1), so #step-1-install-claude-code-7 fails unless
+    // that heading actually appears 8 times
+    const numbered = /^(.*)-(\d+)$/.exec(a)
+    const idx = numbered ? Number(numbered[2]) : NaN
+    const count = numbered ? (headings.counts.get(norm(numbered[1])) ?? 0) : 0
+    if (numbered && idx >= 1 && idx <= count - 1) continue
+    err(where.join(', '), `no heading matches #${anchor} on ${pageUrl}`)
   }
 } catch (e) {
   console.log(`ERROR could not check the docs links — ${e.message}`)

@@ -69,13 +69,20 @@ Go slowly here. This is where beginners decide whether the rest of the workshop 
   these in Part IV".
 - Subagents: a second loop with its own window. Only a summary comes back.
 - Compaction: the full tank becomes a small summary block with room above it. Starting fresh
-  empties it. Name the commands, don't run them yet — nobody has installed anything.
+  empties it. Name the commands, don't run them yet — no live session is open. The real, live
+  version comes later in Task 01.
+- A question that skips the loop (`/btw`): same loop, no tool call, answered from what's
+  already in the window. Name it, don't run it yet, same reason as compaction.
+- Install and log in: this is where the group first sees a terminal with Claude Code running.
+  Everyone installed before the workshop (`docs/SETUP.md`) — say so, this is a recap, not a
+  fresh install. An empty folder has nothing for `/context`, `/btw` or `/clear` to show yet,
+  so don't demo them here.
 - Skills and MCP: one slide each, name them, point forward.
 - Close: "The model is the same for everyone. The harness is where you win."
 
 ### First steps — Task 01
 
-Demo: install, `claude`, `/help`, ask about `@docs/SPEC.md`, `/init`, `/clear`.
+Demo: `claude`, `/help`, ask about `@docs/SPEC.md`, `/init`, `/clear`, `/context`.
 Watch for: people who never press Enter on the permission prompt; people who type in the
 terminal while Claude is working (Esc stops it).
 
