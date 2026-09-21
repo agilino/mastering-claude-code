@@ -4,6 +4,8 @@ Every external URL in README, FACILITATOR, docs, tasks, slides and answer keys, 
 
 | Status | URL |
 |---|---|
+| ok 200 | https://claude.ai/install.ps1 |
+| ok 200 | https://claude.ai/install.sh |
 | ok 200 | https://cli.github.com |
 | ok 200 | https://cli.github.com/ |
 | ok 200 | https://code.claude.com/docs/en/ |
@@ -12,20 +14,24 @@ Every external URL in README, FACILITATOR, docs, tasks, slides and answer keys, 
 | ok 200 | https://code.claude.com/docs/en/checkpointing |
 | ok 200 | https://code.claude.com/docs/en/commands |
 | ok 200 | https://code.claude.com/docs/en/common-workflows |
+| ok 200 | https://code.claude.com/docs/en/context-window |
 | ok 200 | https://code.claude.com/docs/en/costs |
 | ok 200 | https://code.claude.com/docs/en/github-actions |
 | ok 200 | https://code.claude.com/docs/en/headless |
 | ok 200 | https://code.claude.com/docs/en/hooks |
 | ok 200 | https://code.claude.com/docs/en/hooks-guide |
+| ok 200 | https://code.claude.com/docs/en/how-claude-code-works |
+| ok 200 | https://code.claude.com/docs/en/interactive-mode |
 | ok 200 | https://code.claude.com/docs/en/mcp |
 | ok 200 | https://code.claude.com/docs/en/memory |
 | ok 200 | https://code.claude.com/docs/en/permission-modes |
 | ok 200 | https://code.claude.com/docs/en/quickstart |
+| ok 200 | https://code.claude.com/docs/en/quickstart#step-1-install-claude-code |
 | ok 200 | https://code.claude.com/docs/en/settings-reference |
 | ok 200 | https://code.claude.com/docs/en/setup |
 | ok 200 | https://code.claude.com/docs/en/skills |
-| ok 200 | https://code.claude.com/docs/en/slash-commands |
 | ok 200 | https://code.claude.com/docs/en/sub-agents |
+| ok 200 | https://code.claude.com/docs/en/tools-reference |
 | ok 200 | https://code.claude.com/docs/en/workflows |
 | ok 200 | https://code.claude.com/docs/en/worktrees |
 | ok 200 | https://docs.claude.com/en/api/agent-sdk/overview |
@@ -33,7 +39,6 @@ Every external URL in README, FACILITATOR, docs, tasks, slides and answer keys, 
 | ok 200 | https://git-scm.com |
 | ok 200 | https://github.com/ChromeDevTools/chrome-devtools-mcp |
 | ok 200 | https://github.com/ValentinH/react-easy-crop |
-| ok 200 | https://github.com/github/spec-kit.git |
 | ok 200 | https://github.com/microsoft/playwright-mcp |
 | ok 200 | https://github.com/nextacademy-io/mastering-claude-code |
 | ok 200 | https://github.com/pawsaw/clash |

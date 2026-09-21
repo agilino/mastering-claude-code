@@ -4,7 +4,9 @@
 set -uo pipefail
 cd "$(dirname "$0")/.."
 OUT=docs/LINK-AUDIT.md
-urls="$(grep -rhoE 'https?://[A-Za-z0-9./_#?=&%+~:@-]+' README.md FACILITATOR.md docs tasks slides/sections slides/BRAND.md slides/scripts/generate-qr.mjs workshop-artifacts 2>/dev/null \
+# --exclude: the report itself lives in docs/, so without it a URL that was removed from
+# the content would be read back from the old report and never leave it
+urls="$(grep -rhoE --exclude=LINK-AUDIT.md 'https?://[A-Za-z0-9./_#?=&%+~:@-]+' README.md FACILITATOR.md docs tasks slides/sections slides/BRAND.md slides/scripts/generate-qr.mjs workshop-artifacts 2>/dev/null \
   | sed -E 's/[.,;:]+$//' | grep -v '://localhost' | sort -u)"
 {
   echo "# Link audit"
