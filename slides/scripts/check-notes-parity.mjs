@@ -36,7 +36,17 @@ const listMd = async (dir) => (existsSync(dir) ? (await readdir(dir)).filter((f)
 
 const MARKER = /\[click(?::(\d+))?\]/g
 const markerSeq = (note) => [...note.matchAll(MARKER)].map((m) => (m[1] ? `click:${m[1]}` : 'click'))
-const isBullet = (line) => /^\s*- /.test(line)
+// A leading "> " (a Do/Tun stage-direction bullet rendered as a blockquote
+// for smaller presenter-note type) is not itself content — a quoted bullet
+// is still a bullet, not a verbatim block line. Only a dash directly at the
+// quote marker counts: a dash indented further (a rule inside a "FULL
+// WORKING ..." verbatim block, or a CLAUDE.md line nested under a numbered
+// point) is quoted content, not a separate presenter bullet, and must go
+// through the verbatim block check below instead.
+const isBullet = (line) => /^(?:>\s?)?- /.test(line)
+// A quoted blank line ("> " with nothing else) is still blank — it separates
+// blocks inside a Do/Tun blockquote the same way an empty line does outside one.
+const isBlank = (line) => !line.replace(/^\s*>\s?/, '').trim()
 
 // Splits a note into bullets and block lines. A non-bullet line directly under a
 // bullet (no blank line between) is a wrapped continuation of that bullet.
@@ -46,7 +56,7 @@ function shape(note) {
   let inBullet = false
   for (const raw of note.split('\n')) {
     const line = raw.trimEnd()
-    if (!line.trim()) { inBullet = false; continue }
+    if (isBlank(line)) { inBullet = false; continue }
     if (isBullet(line)) { bullets++; inBullet = true; continue }
     if (inBullet) continue
     if (!line.trim().endsWith(':')) blocks.push(line.trim())

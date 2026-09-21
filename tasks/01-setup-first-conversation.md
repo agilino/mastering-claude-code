@@ -76,7 +76,7 @@ does not exist yet. That is the safest place to learn how it thinks.
 
 - Ask Claude two more questions about the spec that you really want answered.
 - Open `/config` and look at the options. Change nothing yet.
-- Run `/cost` and read what it shows.
+- Run `/usage` and read what it shows.
 
 ## Check
 

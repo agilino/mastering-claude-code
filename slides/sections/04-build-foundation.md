@@ -33,6 +33,15 @@ lines:
 
 ---
 layout: concept
+heading: "Read the diff, not the summary"
+lines:
+  - "Claude says what it did. Git shows what it did."
+  - "Ask: show me git status and one line per file"
+  - "Commit through Claude. It writes the message."
+---
+
+---
+layout: concept
 heading: "Plan mode: read, think, propose"
 lines:
   - "Shift+Tab until the status bar shows \"plan mode on\""
@@ -67,16 +76,6 @@ lines:
     <text x="480" y="258" text-anchor="middle" fill="var(--na-fg)" style="font-size:16px">No file changes until you say so. Use it for anything that is hard to undo.</text>
   </g>
 </svg>
-
----
-layout: concept
-heading: "Read the diff, not the summary"
-lines:
-  - "Claude says what it did. Git shows what it did."
-  - "Ask: show me git status and one line per file"
-  - "Commit through Claude. It writes the message."
----
-
 
 ---
 layout: code-live

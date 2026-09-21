@@ -83,8 +83,9 @@ reference build at each stage.
 ### Task 02 — Foundation
 
 - Teach the brief first: goal, constraints, done-when. Write one on screen before typing it.
-- Scaffold through Claude. Let the group watch the tool calls scroll by and name them: Bash,
-  Write, Read. Read the diff, not the summary.
+- Start in manual mode. Read the first two or three permission prompts aloud, then switch to
+  auto — scaffolding a Next.js app is standard, low-risk work. Let the group watch the tool
+  calls scroll by and name them: Bash, Write, Read. Read the diff, not the summary.
 - Plan mode for the data model. Show a plan being changed before it is accepted.
 - First commit through Claude. Say: it writes the message, you approve.
 - CLAUDE.md gets its first real invariants: Prisma client path, string statuses, async params.
@@ -109,7 +110,7 @@ reference build at each stage.
 ### Task 05 — Finish and ship
 
 - Batch the independent work into one brief. Background tasks for the long ones.
-- `/cost` once. Memory once (ask Claude to remember a rule, then `/memory`).
+- `/usage` once. Memory once (ask Claude to remember a rule, then `/memory`).
 - Git through Claude: branch, commit, PR, a strict review prompt.
 - Compare with the reference. Ask: what did the reference do that you did not? What did
   you do better? Then `git checkout 06-start`. Everyone is on the same code from here.

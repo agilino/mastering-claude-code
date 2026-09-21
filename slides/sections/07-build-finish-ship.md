@@ -20,7 +20,7 @@ heading: "Do not wait"
 lines:
   - "\"Run the build in the background. Tell me when done.\""
   - "Keep asking questions while it runs"
-  - "/cost — what this session has used so far"
+  - "/usage — what this session has used so far"
 ---
 
 
