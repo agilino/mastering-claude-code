@@ -32,8 +32,9 @@ on a local clone. The script never pushes. Every branch with code passes
   dependencies over time; the checkpoints carry them all from the start.
 - The seed on `03-start` already creates 8 users, 8 venues and 8 clashes, so a participant who resets
   to any build stage has data to look at.
-- The vendored skills in `.agents/skills/` and `skills-lock.json` are not on the build stages. They
-  arrive with the reference on `06-start`, where task 06 runs `/skill-doctor` on them.
+- The vendored skills in CLASH's `.agents/skills/` and `skills-lock.json` are not on the build stages.
+  They arrive with the reference on `06-start`, where task 06 runs `/skill-doctor` on them.
+  They are unrelated to this workshop repository's own `.agents/skills/agent-browser` tooling skill.
 
 ## Seeded vulnerability, said plainly
 
