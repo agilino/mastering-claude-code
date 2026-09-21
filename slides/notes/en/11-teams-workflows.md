@@ -9,6 +9,7 @@ Say:
 > - Before this segment: confirm `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` is set on your machine
 > - Without the flag: demo silently spawns plain subagents — no team, no disagreement, no payoff, and no error telling you why
 > - Say "watch first" for this part
+> - Docs link: open it, scroll to "When to use agent teams", then back to the slides
 
 Say:
 - Same problem, same seeded branch (09-start), different strategy
@@ -25,6 +26,7 @@ Say:
 - Four domains map onto real files: clashes.ts, venues.ts, profile.ts, and participation (lives in the join/leave/accept/reject actions)
 - Teammates message each other BY NAME through the SendMessage tool — no @-mention syntax between peers
 - `claude agents` is not a team dashboard — it lists background sessions; the team's panel is inline, below the prompt
+- That's the CLI command. The similarly-named `/agents` (a slash command, inside a session) is a different thing — it only prints a reminder: ask Claude to create or manage subagents, or edit `.claude/agents/` yourself. Not a dashboard either
 
 <!-- @note: lead-peers-and-a-disagreement -->
 Say:
@@ -34,6 +36,9 @@ Say:
 - That step is the whole argument for a team over a lone subagent
 
 <!-- @note: strategy-three-dynamic-workflows -->
+> Do:
+> - Docs link: open it, scroll to "When to use a workflow", then back to the slides
+
 Say:
 - Same problem, same branch, third strategy
 - Describe the job — Claude writes the JavaScript orchestration script
@@ -80,6 +85,7 @@ Say:
 
 Say:
 - Three results side by side: findings, time, tokens, main-thread context burn
+- `/cost` says the token number out loud for you — alias for `/usage`
 - Task ends with shipped code — that's what 10-start carries
 
 <!-- @note: team-and-workflow-audit -->

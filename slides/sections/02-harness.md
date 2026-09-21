@@ -22,6 +22,7 @@ lines:
 ---
 layout: concept
 heading: "The loop"
+docs: https://code.claude.com/docs/en/how-claude-code-works
 lines:
   - "You write. The harness builds the prompt. The model chooses a tool or answers."
   - "The harness runs the tool and feeds the result back. Until the model answers."
@@ -90,16 +91,6 @@ lines:
 
 ---
 layout: concept
-heading: "When the window fills: compact or clear"
-lines:
-  - "/compact folds the history into one summary and continues"
-  - "/clear starts fresh. Often the better choice."
----
-
-<D11CompactClear />
-
----
-layout: concept
 heading: "Skills and MCP"
 lines:
   - "Skill: instructions loaded only when they match what you ask"
@@ -127,6 +118,50 @@ lines:
 
 <div class="flex flex-col items-center gap-6 w-full">
   <G02ContextBudget />
+</div>
+
+---
+layout: concept
+heading: "When the window fills: compact or clear"
+lines:
+  - "Fold the history into a summary and continue. Or start fresh — often better."
+  - "We will do this for real with Claude Code in a moment."
+---
+
+<D11CompactClear />
+
+---
+layout: concept
+heading: "A question that skips the loop"
+lines:
+  - "Answered from what is already in the window. No tool call, no new turn."
+  - "The loop keeps running underneath. We will try this for real in a moment."
+---
+
+<D07HarnessLoop btw />
+
+---
+layout: concept
+heading: "Install and log in"
+lines:
+  - "One global install. One command to start. The first start opens a login."
+  - "The folder you start in is its world."
+---
+
+<div class="flex flex-col items-center gap-4 w-full max-w-3xl mx-auto">
+
+<div class="flex items-center gap-2 text-lg font-semibold" style="color: var(--na-accent-500)">
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07l-1.5 1.5" /><path d="M14 11a5 5 0 0 0-7.07 0L4.1 13.83a5 5 0 0 0 7.07 7.07l1.5-1.5" /></svg>
+  <a href="https://code.claude.com/docs/en/quickstart#step-1-install-claude-code" target="_blank" rel="noopener" style="color: var(--na-accent-500)">Install Claude Code</a>
+</div>
+
+```bash
+npm install -g @anthropic-ai/claude-code
+claude --version
+cd your-project
+claude
+```
+
 </div>
 
 ---

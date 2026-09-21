@@ -20,6 +20,12 @@ file (link in the chat, printed sheet, or the repo README — your choice), demo
 steps once on your screen, then hand over. Do not demo "Now you". While they work, keep the
 task slide up. Close each task by asking two people what they saw.
 
+**Pace:** favor running long over cutting a task short — consistent feedback says too little
+time hurts more than too much. If a task is moving fast, stretch it: ask someone to walk the
+group through their solution, or, if nobody has one yet, turn it into a problem the group
+solves together. Plan a lunch break, plus a few short breaks along the way — set yourself a
+reminder, it is easy to forget once everyone is deep in a task.
+
 ---
 
 ## Part I — Foundations
@@ -62,7 +68,8 @@ Go slowly here. This is where beginners decide whether the rest of the workshop 
   it blocks the call, after a tool it hands the error to the model. Say "we build
   these in Part IV".
 - Subagents: a second loop with its own window. Only a summary comes back.
-- Compaction: the full tank becomes a small summary block with room above it. `/clear` empties it.
+- Compaction: the full tank becomes a small summary block with room above it. Starting fresh
+  empties it. Name the commands, don't run them yet — nobody has installed anything.
 - Skills and MCP: one slide each, name them, point forward.
 - Close: "The model is the same for everyone. The harness is where you win."
 

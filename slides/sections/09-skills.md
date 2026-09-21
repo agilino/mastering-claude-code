@@ -10,6 +10,7 @@ heading: "Skills"
 ---
 layout: concept
 heading: "Loaded only when needed"
+docs: https://code.claude.com/docs/en/skills
 lines:
   - "Every skill's name and description is scanned every session. Cheap."
   - "The body loads when the description matches — or right away via /skill-name."

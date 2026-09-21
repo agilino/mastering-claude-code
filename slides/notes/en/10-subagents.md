@@ -51,6 +51,9 @@ Say:
 - Contrast with a vague "find security bugs": a falsifiable property is what makes the report checkable, not a wall of prose.
 
 <!-- @note: two-ways-to-isolate -->
+> Do:
+> - Docs link: open it, scroll to "Fork the current conversation", then back to the slides
+
 Say:
 - [click] Left: the subagent's own window fills with noisy tool calls — only a thin summary crosses back, which is why the main thread barely moves.
 - [click:3] Right: fork vs fresh.
@@ -58,6 +61,7 @@ Say:
 - [click] Fresh subagent starts cold: no history, filtered tools, no cache — first call costs more.
 - Fork is on by default in interactive sessions, off under -p and the Agent SDK.
 - Neither is better — know which one you invoked and why.
+- `/tasks` lists this session's background work: running subagents and forks. A finished one stays listed, marked done, only briefly — open it while it runs, or right after it returns.
 
 <!-- @note: subagent-audit -->
 > Do:

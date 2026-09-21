@@ -28,6 +28,7 @@ heading: "Context"
 ---
 layout: concept
 heading: "/context is an instrument"
+docs: https://code.claude.com/docs/en/context-window
 lines:
   - "Read it: system prompt, CLAUDE.md, skills, tool results, conversation."
   - "Come back to it after every big step."
@@ -90,10 +91,19 @@ heading: "@-references beat grep-and-guess"
 ---
 layout: concept
 heading: "Plan mode: review first"
+docs: https://code.claude.com/docs/en/permission-modes
 lines:
   - "Task: real-time notifications for CLASH."
   - "Claude proposes. You review. Nothing is touched."
   - "Ships: docs/plans/realtime-notifications.md"
+---
+
+---
+layout: concept
+heading: "A reviewed plan is not a guarantee"
+lines:
+  - "The plan can include things you never asked for."
+  - "Read it line by line — don't just skim for the feature you expected."
 ---
 
 

@@ -9,6 +9,7 @@ Sagen:
 
 <!-- @note: your-first-slash-command -->
 > Tun:
+> - Kurz erwähnen: Commands sind in Skills aufgegangen — diese Datei funktioniert weiterhin, Task 07 zeigt den bevorzugten Weg, einen zu schreiben
 > - tasks/04-venues-map-people.md Schritt 3, dann zurück zu den Folien
 > VOLLSTÄNDIGE DATEI (wörtlich aus tasks/04-venues-map-people.md):
 >

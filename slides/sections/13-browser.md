@@ -10,6 +10,7 @@ heading: "The browser closes the loop"
 ---
 layout: concept
 heading: "Your systems, as tools"
+docs: https://code.claude.com/docs/en/mcp
 lines:
   - "Claude Code ↔ MCP servers ↔ browser and other systems"
   - "MCP is the protocol boundary, not the tool itself."

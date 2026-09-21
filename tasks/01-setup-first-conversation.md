@@ -22,12 +22,22 @@ does not exist yet. That is the safest place to learn how it thinks.
    ```
 2. Install Claude Code and log in. You need version 2.1.252 or newer. Part II also uses the
    GitHub CLI (`gh`); install it now if you do not have it.
+
+   On macOS, Linux or WSL:
    ```bash
-   npm install -g @anthropic-ai/claude-code
+   curl -fsSL https://claude.ai/install.sh | bash
+   ```
+   On Windows, in PowerShell:
+   ```powershell
+   irm https://claude.ai/install.ps1 | iex
+   ```
+   Then, on every system:
+   ```bash
    claude --version
    claude
    ```
-   The first start opens a browser window for login. Come back to the terminal when it says you are logged in. Type `/exit` to leave.
+   If `claude` is not found, open a new terminal and try again. The first start opens a browser window for login. Come back to the terminal when it says you are logged in. Type `/exit` to leave.
+   If the installer does not work for you, `npm install -g @anthropic-ai/claude-code` installs the same program.
 3. Install agent-browser. Claude will use it later to look at your app.
    ```bash
    npm install -g agent-browser
@@ -97,6 +107,9 @@ Ask Claude to find a gap or a contradiction in the spec. Decide if it is right.
 ## Links
 
 - Quickstart — https://code.claude.com/docs/en/quickstart
+- How Claude Code works — https://code.claude.com/docs/en/how-claude-code-works
 - Setup — https://code.claude.com/docs/en/setup
 - Memory and CLAUDE.md — https://code.claude.com/docs/en/memory
+- Commands — https://code.claude.com/docs/en/commands
+- Keyboard shortcuts — https://code.claude.com/docs/en/interactive-mode
 - agent-browser — https://github.com/vercel-labs/agent-browser

@@ -8,6 +8,7 @@ Sagen:
 <!-- @note: loaded-only-when-needed -->
 > Tun:
 > - Verweis zurück auf /skill-doctor
+> - Docs-Link: öffnen, bis "Skill content lifecycle" scrollen, dann zurück zu den Folien
 
 Sagen:
 - Macht Skills im großen Maßstab günstig
@@ -17,6 +18,7 @@ Sagen:
 
 <!-- @note: commands-became-skills-nothing-broke -->
 > Tun:
+> - Zurückverweisen auf den /new-page-Command aus Task 04 — derselbe Mechanismus, das hier ist die Ordner-Version
 > - Ein verbreitetes Missverständnis korrigieren
 
 Sagen:

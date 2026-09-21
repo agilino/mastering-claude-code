@@ -11,6 +11,7 @@ Say:
 > Do:
 > - Open `.claude/settings.json`
 > - Next slide turns that into a lesson, on purpose
+> - Docs link: open it, scroll to "How hooks work", then back to the slides
 
 Say:
 - A hook needs three things: the EVENT, the MATCHER (which tool), the EXIT CODE — everything else is detail
@@ -82,3 +83,4 @@ Say:
 > Do:
 > - Confirm people reproduced the broken matcher version before moving on
 > - The "why didn't it fire" beat only lands if they saw the silence themselves
+> - Close with `/hooks` live — a read-only browser, grouped by event: pick an event to see the hooks they just wrote under it

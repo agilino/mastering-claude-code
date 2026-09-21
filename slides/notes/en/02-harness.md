@@ -10,6 +10,7 @@ Say:
 > Do:
 > - Walk the ring click by click
 > - Say it twice
+> - Docs link: open it, scroll to "The agentic loop", then back to the slides
 
 Say:
 - [click] you type "fix the bell" — harness builds the full prompt (next slide shows what's in it)
@@ -82,16 +83,6 @@ Say:
 - [click] a fork is the same idea, but it starts with a copy of your conversation so far — cheaper when it needs what you already know
 - Part three uses a subagent to audit CLASH
 
-<!-- @note: when-the-window-fills-compact-or-clear -->
-Say:
-- Three tanks — first: a session near the limit — files read, tool output, chat
-- [click] /compact — asks the model to summarise the conversation, then replaces the history with that summary
-  - Claude Code does this on its own near the limit: first drops old tool outputs, then summarises
-  - It works, and it loses detail; compacting is itself a large request, because the model reads everything it summarises
-- [click] /clear — throws the history away and starts a new session with the same CLAUDE.md
-- For a new job, /clear is usually better: nothing from the old job leaks in
-- Habit to build: one job per session
-
 <!-- @note: skills-and-mcp -->
 Say:
 - Two more parts of the harness, both built in later parts
@@ -104,7 +95,6 @@ Say:
 <!-- @note: where-cost-and-control-come-from -->
 > Do:
 > - Pull it together
-> - Close with the line
 
 Say:
 - Cost is tokens
@@ -114,7 +104,50 @@ Say:
   - What is in the window right now?
   - Which tools can the model call?
   - Which rules are enforced by a hook rather than hoped for in a prompt?
-- The model is the same for everyone. The harness is where you win
+- One of those questions, right now: what happens when the window fills up
+
+<!-- @note: when-the-window-fills-compact-or-clear -->
+> Do:
+> - Nobody has installed anything yet — name the commands, don't run them
+> - Say plainly that the real, live version comes right after this section
+
+Say:
+- Three tanks — first: a session near the limit — files read, tool output, chat
+- [click] /compact — asks the model to summarise the conversation, then replaces the history with that summary
+  - Claude Code does this on its own near the limit: first drops old tool outputs, then summarises
+  - It works, and it loses detail; compacting is itself a large request, because the model reads everything it summarises
+- [click] /clear — empties the window and starts a new session with the same CLAUDE.md; the old conversation stays on disk, /resume reopens it
+- For a new job, /clear is usually better: nothing from the old job leaks in
+- Habit to build: one job per session
+
+<!-- @note: a-question-that-skips-the-loop -->
+> Do:
+> - Nobody has installed anything yet — describe it, don't run it
+> - Same "we'll do this for real in a moment" framing as the last slide
+
+Say:
+- Same loop as before — nothing about it changes
+- [click] A side question goes straight to the model — a /btw square next to You, a direct line to Model, no trip around the ring
+- A side question answers only from what's already in the conversation: your messages, Claude's replies, the tool results already gathered
+- No tools, no permission gate, no new turn — it can't read a new file or run a command
+- If a turn is already running, it keeps going underneath — asking a side question does not interrupt it
+- Good for: "what was that config file called again?" — without losing your place
+
+<!-- @note: install-and-log-in -->
+> Do:
+> - Paste the install link from the top of the slide into the Teams chat, so people can click it directly
+> - Everyone installed this before the workshop (docs/SETUP.md) — say so plainly, this is a recap, not asking for a fresh install
+> - Open your own terminal live in an empty folder and start it
+> - Now make the last two slides real, in this order: /context (see the tank), a side question with /btw about what you see, then /clear (empty it)
+> - Close with the line on the next slide
+
+Say:
+- One global install, one command to start
+- The docs lead with a native installer (curl or PowerShell one-liner) — that is the link on the slide, and what the pre-flight in docs/SETUP.md uses. npm installs the same native binary and works on every OS — it is the fallback shown below
+- First start opens a login in the browser
+- Claude Code runs in your terminal, inside the folder you start it in
+- That folder is its world — it reads and edits there
+- CLAUDE.md files in that folder are picked up automatically
 
 <!-- @note: the-model-is-the-same-for-everyone-the-harness-is-where-you-win -->
 > Do:

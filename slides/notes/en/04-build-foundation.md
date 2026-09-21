@@ -24,11 +24,12 @@ Say:
 <!-- @note: read-the-diff-not-the-summary -->
 > Do:
 > - tasks/02-foundation.md steps 3-4, then back to the slides
-> - Show git status after the scaffold — only scaffold changes should be there, before plan mode touches anything else
+> - Ask for `git status`, then run `/diff` live after the scaffold — only scaffold changes should be there, before plan mode touches anything else
+> - The panel may say some files are "not shown", and brand-new files made by a shell command can be among them — `git status` is the complete list, which is why it comes first
 > - Ask Claude to commit, read the commit message it wrote
 
 Say:
-- Habit to build early: after every step, look at the files
+- Habit to build early: after every step, read `/diff` — in fullscreen the panel stays open and refreshes itself, and running `/diff` again closes it
 - Claude's summary is usually right — the diff is always right
 - This is a good first place to let Claude take over a chore
 

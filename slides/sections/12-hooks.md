@@ -10,6 +10,7 @@ heading: "Hooks: rules the agent cannot cross"
 ---
 layout: concept
 heading: "Event · matcher · exit code"
+docs: https://code.claude.com/docs/en/hooks-guide
 lines:
   - "PreToolUse, PostToolUse, Stop — three of more than thirty events."
   - "Only exit code 2 blocks — and only on events that can block"

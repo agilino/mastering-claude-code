@@ -44,6 +44,7 @@ Say:
 
 Say:
 - Review and fix are two messages on purpose — you stay the one who decides
+- Writing this prompt by hand, once, is the point today — `/code-review` is the bundled-skill shortcut for next time
 
 <!-- @note: ship-then-look-at-the-reference -->
 > Do:
