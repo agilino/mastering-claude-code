@@ -74,13 +74,19 @@ does not exist yet. That is the safest place to learn how it thinks.
    /init
    ```
    Claude creates `CLAUDE.md`. This file is read at the start of every conversation.
-   Open it in your editor. It is short because the repository is almost empty.
-10. Clear the conversation and look at the help.
+   Open it in your editor. The exact output can vary with the Claude Code version. Look for
+   useful project guidance and a pointer back to `docs/SPEC.md`; do not expect it to match a
+   checkpoint word for word.
+10. Start with a fresh conversation and look at what stays loaded.
     ```
     /clear
+    /context
     /help
     ```
-    `/clear` forgets the conversation. `CLAUDE.md` stays. Scroll through `/help` once. You do not need to remember it.
+    `/clear` clears the current conversation context; it does not remove `CLAUDE.md`.
+    In `/context`, notice that the repository guidance is still there. That is the point of
+    clearing here — not because the context is full. Scroll through `/help` once. You do not
+    need to remember it.
 
 ## Now you
 
