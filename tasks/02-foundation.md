@@ -31,11 +31,15 @@ The data model is the right place for that, because it is hard to change later.
    Goal: set up the app skeleton for the product in @docs/SPEC.md.
 
    Rules:
-   - Next.js 16 with the App Router, TypeScript, Tailwind CSS v4, ESLint. Run:
-     npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir=false --import-alias "@/*"
+   - Preserve the workshop files already in this repo: README.md, docs/SPEC.md, CLAUDE.md, .gitignore and .env.
+     create-next-app refuses to scaffold over them, so move them aside first, scaffold the repo root, then restore
+     them. Merge useful generated .gitignore entries instead of replacing the workshop entries.
+   - Next.js 16 with the App Router, TypeScript, Tailwind CSS v4, ESLint, npm and no src/ directory. Run:
+     npx create-next-app@latest . --typescript --tailwind --eslint --app --no-src-dir --import-alias "@/*" --use-npm --disable-git --yes
    - Then set up shadcn/ui with: npx shadcn@latest init
    - Add the button, card, input, label components.
-   - Create .env with DATABASE_URL="file:./dev.db" and SESSION_SECRET="workshop-secret". Make sure .env is in .gitignore.
+   - Keep the .env from setup. If it is missing, create it with DATABASE_URL="file:./dev.db" and SESSION_SECRET="workshop-secret".
+   - If Next.js adds a managed nextjs-agent-rules block to CLAUDE.md, keep it. Keep our project rules outside that managed block.
    - Do not build any feature yet.
 
    Done when: npm run dev starts and http://localhost:3000 shows a page with the text "CLASH".
@@ -65,6 +69,7 @@ The data model is the right place for that, because it is hard to change later.
    - Status and type fields are strings, not enums
    - Generate the client into lib/generated/prisma
    - Seed with 8 users (password "test", hashed with bcryptjs), 8 venues and 8 clashes in Berlin, some past, some upcoming
+   - Use tsx to run prisma/seed.ts and configure Prisma's seed command for it
 
    Show the plan, do not write files.
    ```
@@ -72,6 +77,8 @@ The data model is the right place for that, because it is hard to change later.
    ```
    Why do you put the Prisma client in lib/generated/prisma and not use @prisma/client directly?
    ```
+   Prisma 7.10+ creates `prisma7.config.ts`; earlier Prisma 7 projects may have `prisma.config.ts`.
+   The Prisma 7 CLI accepts either. Follow the installed Prisma 7 version instead of forcing one filename.
 8. Accept the plan. Press `Shift+Tab` until the prompt shows the normal mode, then:
    ```
    Do it. Then run npm run db:migrate and npm run db:seed and show me the output.
@@ -121,5 +128,7 @@ Ask Claude to explain every line of `prisma/schema.prisma` to you, one model at 
 - Plan mode — https://code.claude.com/docs/en/permission-modes
 - Common workflows — https://code.claude.com/docs/en/common-workflows
 - Keyboard shortcuts — https://code.claude.com/docs/en/interactive-mode
-- Prisma 7 with SQLite — https://www.prisma.io/docs/orm/overview/databases/sqlite
+- create-next-app CLI — https://nextjs.org/docs/pages/api-reference/cli/create-next-app
+- Prisma 7 with SQLite — https://www.prisma.io/docs/v7/prisma-orm/quickstart/sqlite
+- Prisma 7 seeding — https://www.prisma.io/docs/orm/v7/prisma-migrate/workflows/seeding
 - shadcn/ui — https://ui.shadcn.com/docs/installation/next
