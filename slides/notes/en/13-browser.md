@@ -7,6 +7,7 @@ Say:
 <!-- @note: your-systems-as-tools -->
 > Do:
 > - Confirm with `claude mcp list` before starting
+> - Docs link: open it, scroll to "What you can do with MCP", then back to the slides
 
 Say:
 - Both servers added during setup (docs/SETUP.md)
@@ -25,6 +26,7 @@ Say:
 
 Say:
 - Registration is usually a one-time terminal command — for project scope it can also be a `.mcp.json` file you hand-edit and commit
+- `/mcp` shows the same connection status from inside a running session — no need to drop out to the terminal
 
 <!-- @note: drive-first-then-test -->
 > Do:

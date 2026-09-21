@@ -24,11 +24,12 @@ Sagen:
 <!-- @note: read-the-diff-not-the-summary -->
 > Tun:
 > - tasks/02-foundation.md Schritte 3-4, dann zurück zu den Folien
-> - git status nach dem Scaffold zeigen — nur Scaffold-Änderungen sollten da sein, bevor Plan Mode irgendwas anderes anfasst
+> - Nach `git status` fragen, dann `/diff` nach dem Scaffold live zeigen — nur Scaffold-Änderungen sollten da sein, bevor Plan Mode irgendwas anderes anfasst
+> - Das Panel meldet manchmal, dass Dateien "not shown" sind, und brandneue Dateien aus einem Shell-Befehl können dazugehören — `git status` ist die vollständige Liste, deshalb kommt es zuerst
 > - Claude bitten zu committen, die Commit-Message lesen, die Claude geschrieben hat
 
 Sagen:
-- Gewohnheit früh aufbauen: nach jedem Schritt in die Dateien schauen
+- Gewohnheit früh aufbauen: nach jedem Schritt `/diff` lesen — im Fullscreen bleibt das Panel offen und aktualisiert sich selbst, und `/diff` noch einmal schließt es
 - Claudes Zusammenfassung liegt meistens richtig — der Diff liegt immer richtig
 - Das ist eine gute erste Stelle, um Claude eine Routineaufgabe übernehmen zu lassen
 

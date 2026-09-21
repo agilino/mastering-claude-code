@@ -1,20 +1,5 @@
 ---
 layout: concept
-heading: "Install and log in"
-lines:
-  - "One global install. One command to start. The first start opens a login."
-  - "The folder you start in is its world."
----
-
-```bash
-npm install -g @anthropic-ai/claude-code
-claude --version
-cd your-project
-claude
-```
-
----
-layout: concept
 heading: "The prompt is a chat in your terminal"
 lines:
   - "Type a request. Watch it read, edit, run."
@@ -45,6 +30,7 @@ Look at @lib/validation.ts and explain the clash schema.
 ---
 layout: concept
 heading: "Slash commands"
+docs: https://code.claude.com/docs/en/commands
 lines:
   - "/help · /init · /clear · /context · /usage · /rewind"
   - "Most commands talk to the harness — a few, like /init, ask the model"
@@ -79,6 +65,7 @@ lines:
 ---
 layout: concept
 heading: "CLAUDE.md is your standing instruction"
+docs: https://code.claude.com/docs/en/memory
 lines:
   - "Read at session start — sent as a message after the system prompt, not folded in"
   - "Short. Rules, not a tour."
@@ -108,6 +95,7 @@ lines:
 ---
 layout: concept
 heading: "Keys worth knowing"
+docs: https://code.claude.com/docs/en/interactive-mode
 lines:
   - "Esc stop · Shift+Tab mode · Tab complete a path"
   - "Up arrow history · Ctrl+R search history · ? more shortcuts"

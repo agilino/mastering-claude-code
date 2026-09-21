@@ -7,6 +7,27 @@ Sagen (Hinweise, was gesagt wird):
 - Alles passiert an einer echten App, CLASH — die baust du zuerst selbst, danach bringst du sie an ihre Grenzen
 - Keine Diashow zum Zuschauen — jeder Teil endet mit dir an deiner eigenen Tastatur
 
+<!-- @note: organisation -->
+> Tun:
+> - Das einmal kurz sagen, gleich zu Beginn
+> - Dich selbst daran erinnern, die kurzen Pausen auch wirklich zu machen — notfalls einen Timer stellen
+> - Die Gruppe fragen, ob das vorgeschlagene Mittagspause-Fenster passt, oder ob sie es lieber verschieben möchte
+
+Sagen:
+- Mittagspause ist fest eingeplant, dazu ein paar kurze Pausen zwischendurch — sagt Bescheid, wenn die Gruppe eine braucht
+- "Wir sind hier alle sehr erfahrene Entwickler. Lass uns das ganze interaktiv gestalten. Ich möchte Eure Meinung hören, wenn ihr etwas anders sieht und diese gerne zur Diskussion stellen. Unterbricht mich bitte jederzeit sehr gerne, mit Fragen und einem konstruktiven Austausch. Helft Euch auch untereinander."
+- "Wir haben eine menge Material vorbereitet, möglicherweise mehr als wir gemeinsam schaffen können. Unser Ziel ist hier nicht durch das Material durchzurennen, sondern vielmehr unser eigenes Tempo zu finden."
+
+<!-- @note: introductions -->
+> Tun:
+> - Erst die Runde machen, bevor du dich vorstellst — die Leute reden lieber zuerst über sich selbst
+> - Ein Atemzug pro Person, zügig weitergehen
+
+Sagen:
+- Name, Erfahrung in der Softwareentwicklung
+- Erfahrung mit Claude Code oder agentic coding, falls vorhanden
+- Was ihr euch von diesem Kurs erhofft
+
 <!-- @note: your-trainer -->
 > Tun:
 > - Wer du bist, in einem Atemzug
@@ -16,7 +37,7 @@ Sagen:
 - Software-Architekt und Entwickler in Banking, Behörden, Gesundheitswesen und Robotik
 - Systeme vom ersten Commit bis Enterprise-Maßstab, Teams bis zu 120 Entwicklern
 - Jetzt: Engineering-Teams in agentic coding mit Claude Code trainieren, Spec first
-- Den Agenten wie einen geführten Junior-Entwickler behandeln
+- Mit dem Agenten wie mit einem geführten Junior-Entwickler arbeiten
 
 <!-- @note: nextacademy-io -->
 > Tun:
@@ -45,6 +66,11 @@ Sagen:
 - Das Bild im Kopf behalten — so sieht "fertig" am Ende des Builds aus
 
 <!-- @note: how-this-works -->
+> Tun:
+> - Wenn du eine Antwort live nicht weißt, sag es — entweder Claude auf dem Bildschirm fragen
+>   ("Schauen wir doch mal was Claude dazu sagt.") oder mitnehmen ("Gute Frage, hmm, das weiß
+>   ich nicht. Kennt jemand von Euch möglicherweise die Antwort? Ich nehme sie für mich mit.")
+
 Sagen:
 - [click] Jede Task: kurze Erklärung, Live-Demo, dann arbeitest du die Task-Datei selbst durch
 - [click:2] Jede Task hat einen Branch namens NN-start mit dem Stand, den du für den Start brauchst

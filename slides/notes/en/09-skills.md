@@ -8,6 +8,7 @@ Say:
 <!-- @note: loaded-only-when-needed -->
 > Do:
 > - Point back at /skill-doctor
+> - Docs link: open it, scroll to "Skill content lifecycle", then back to the slides
 
 Say:
 - Makes skills cheap at scale
@@ -17,6 +18,7 @@ Say:
 
 <!-- @note: commands-became-skills-nothing-broke -->
 > Do:
+> - Point back at the /new-page command from Task 04 — same mechanism, this is the folder version
 > - Correct a common misconception
 
 Say:

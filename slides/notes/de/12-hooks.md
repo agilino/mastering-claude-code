@@ -11,6 +11,7 @@ Sagen:
 > Tun:
 > - `.claude/settings.json` öffnen
 > - Nächste Folie macht daraus absichtlich eine Lektion
+> - Docs-Link: öffnen, bis "How hooks work" scrollen, dann zurück zu den Folien
 
 Sagen:
 - Ein Hook braucht drei Dinge: das EVENT, der MATCHER (welches Tool), der EXIT CODE — der Rest ist Detail
@@ -82,3 +83,4 @@ Sagen:
 > Tun:
 > - Bestätigen, dass die Leute die kaputte Matcher-Version nachgebaut haben, bevor es weitergeht
 > - Der "warum hat's nicht gefeuert"-Moment funktioniert nur, wenn sie die Stille selbst erlebt haben
+> - Mit `/hooks` live abschließen — ein Read-only-Browser, gruppiert nach Event: ein Event auswählen, um die gerade geschriebenen Hooks darunter zu sehen

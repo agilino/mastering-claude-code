@@ -35,6 +35,7 @@ Sagen:
 > Tun:
 > - Demo: `/context` live in einer frischen Session auf der Referenz-CLASH ausführen
 > - Die Zeilen laut vorlesen — nicht zusammenfassen, die Leute die echten Zahlen hören lassen
+> - Docs-Link: öffnen, oben die interaktive Timeline abspielen, bis "What the timeline shows" scrollen, dann zurück zu den Folien
 
 Sagen:
 - Ab jetzt nach jeder Task auf genau diesen Befehl zurückkommen
@@ -111,11 +112,23 @@ Sagen:
 > - Das nächste Feature beschreiben
 > - Den Plan gemeinsam laut lesen
 > - Unter `docs/plans/realtime-notifications.md` speichern
+> - Docs-Link: öffnen, bis "Analyze before you edit with plan mode" scrollen, dann zurück zu den Folien
 
 Sagen:
 - Echtzeit-Benachrichtigungen — laden aktuell beim Rendern über `getNotifications` und `getUnreadCount` in `lib/data/notifications.ts`
 - "Don't write any code yet. Propose an approach and the files it touches."
 - Plan Mode ist unter den Permission Modes dokumentiert
+
+<!-- @note: a-reviewed-plan-is-not-a-guarantee -->
+> Tun:
+> - Als echte Geschichte erzählen, locker im Ton — der Punkt dahinter ist ernst
+> - Landen auf: jede Zeile lesen, nicht nur nach dem erwarteten Feature suchen
+
+Sagen:
+- Ein Kollege bat Claude einmal, eine BCC zu seinem eigenen E-Mail-Versand-Self-Service-Tool hinzuzufügen
+- Der Plan schlug auch vor, die GDPR- und Privacy-Seiten umzuschreiben — mit einer Warnung, dass er die privaten E-Mails aller mitliest
+- Offensichtlich Unsinn — aber genau so stand es im Plan
+- Zum Glück hat er den Plan ganz gelesen und es vor dem Ausrollen abgefangen
 
 <!-- @note: skill-doctor-what-it-costs -->
 > Tun:

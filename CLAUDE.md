@@ -32,7 +32,9 @@ Target codebase: `https://github.com/pawsaw/clash` (Next.js 16 / React 19 / Pris
    (no `or`, no list) and an `Edit(...)` rule also covers `Write`; `hard_deny` is an auto-mode setting, not a hook decision;
    agent teams need `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`; teammates message by name via SendMessage, no `@`-mentions;
    a dynamic workflow's script lands under `~/.claude/projects/<session>/` first and only `s` in `/workflows` saves it to `.claude/workflows/`;
-   `Date.now()`, `Math.random()` and no-arg `new Date()` throw inside a workflow script; headless CI uses `anthropics/claude-code-action@v1`.
+   `Date.now()`, `Math.random()` and no-arg `new Date()` throw inside a workflow script; headless CI uses `anthropics/claude-code-action@v1`;
+   custom commands (`.claude/commands/*.md`) merged into skills — a command file and a skill with the same name both produce the same
+   `/name` and old command files keep working, but skills are the recommended path for new work.
 8. **File work in this repo uses Read, Write, Edit, Grep and Glob — never a shell command that reads,
    lists or searches files.** The shell is for the build and check commands under "Build and check"
    below, `git`, and `npx`/`npm`/`node`. A `PreToolUse` hook (`.claude/hooks/no-shell-file-reads.sh`)
@@ -72,6 +74,7 @@ Target codebase: `https://github.com/pawsaw/clash` (Next.js 16 / React 19 / Pris
 - Diagrams are small Vue/SVG components in `slides/components/` (`D*.vue` for the LLM and harness ideas, `G*.vue` for the rest). Text inside SVG is never under 13 px.
 - Presenter notes (`<!-- -->`) hold the trainer script: what to say, what to demo, what to watch for. No times.
 - Task slide frontmatter: `number` (matches `tasks/NN-*.md`), `heading`, `goal`, `mode` (`you do` | `watch first`), `success`, `branch`. No QR code and no task URL on slides: the trainer picks the medium.
+- Docs links: a `docs:` frontmatter field holds one official English docs URL (`https://code.claude.com/docs/en/…`). The `concept`, `code-live` and `section` layouts draw it bottom-right as a chain icon plus the word "docs" (`slides/components/DocLink.vue`) — bottom-right because Slidev's navigation bar pops up bottom-left. Never a `<DocLink>` tag in a slide body, never on a `task` slide. Use it sparingly, where a mechanism is first explained. The slide's presenter note names the docs heading to scroll to, and the same URL is in that task's `## Links`.
 
 ## Task slugs (fixed — README, docs and task numbers on slides depend on them)
 
@@ -90,8 +93,9 @@ Target codebase: `https://github.com/pawsaw/clash` (Next.js 16 / React 19 / Pris
 
 ```bash
 cd slides && npm install && npm run build      # also exports dist/mastering-claude-code.pdf
-node slides/scripts/lint-slides.mjs            # no times, slugs match, LIVE markers present
+node slides/scripts/lint-slides.mjs            # no times, slugs match, LIVE markers present, docs links follow the convention
 node slides/scripts/check-notes-parity.mjs     # notes/en and notes/de: same keys, same [click] markers, same commands and paths
+node slides/scripts/check-doc-links.mjs        # needs network: every docs link is still in the docs index, every #anchor has a heading
 slides/scripts/check-slides.sh                 # agent-browser overflow check per slide
 node --test .claude/hooks/no-shell-file-reads.test.mjs  # the no-shell-file-reads hook, including
                                                 # the settings.json dispatcher end-to-end

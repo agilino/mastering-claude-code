@@ -78,3 +78,4 @@ Then run `/skill-doctor` again and check that your description is specific enoug
 
 - Skills — https://code.claude.com/docs/en/skills
 - Commands — https://code.claude.com/docs/en/commands
+- Tools reference — https://code.claude.com/docs/en/tools-reference

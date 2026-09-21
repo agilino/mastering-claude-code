@@ -4,7 +4,18 @@
 // build prompt → call model → permission? → run tool → append result → call
 // model again, until the model answers with text (exit to You).
 // Prop `hooks`: clip PreToolUse / PostToolUse / Stop badges onto the ring.
-const props = withDefaults(defineProps<{ hooks?: boolean }>(), { hooks: false })
+// Prop `btw`: add a /btw square next to You with a direct line to Model,
+// bypassing the ring — a side question never enters the loop.
+import { useId } from 'vue'
+
+const props = withDefaults(defineProps<{ hooks?: boolean; btw?: boolean }>(), { hooks: false, btw: false })
+
+// Marker ids are unique per instance. The deck shows this diagram on several slides and
+// Slidev keeps the hidden ones in the DOM: with shared ids every url(#…) resolves to the
+// first copy, and the browser paints no marker whose definition sits in a hidden slide.
+const uid = useId()
+const markerId = (name: string) => `d7-${name}-${uid}`
+const marker = (name: string) => `url(#${markerId(name)})`
 
 const CX = 480, CY = 290, R = 195
 const pt = (deg: number, r = R) => ({ x: CX + r * Math.cos((deg * Math.PI) / 180), y: CY + r * Math.sin((deg * Math.PI) / 180) })
@@ -21,17 +32,23 @@ const arc = (a: number, b: number) => {
   const s = pt(a + 24), e = pt(b - 24)
   return `M ${s.x} ${s.y} A ${R} ${R} 0 0 1 ${e.x} ${e.y}`
 }
-const lit = (n: number) => (props.hooks ? false : n)
+const lit = (n: number) => (props.hooks || props.btw ? false : n)
 </script>
 
 <template>
   <svg viewBox="0 0 960 560" class="w-full h-auto max-h-full" role="img" aria-label="The harness loop">
     <defs>
-      <marker id="d7-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <marker :id="markerId('arrow')" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
         <path d="M0,0 L0,6 L8,3 z" fill="var(--na-zinc-400)" />
       </marker>
-      <marker id="d7-arrow-accent" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <marker :id="markerId('arrow-accent')" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
         <path d="M0,0 L0,6 L8,3 z" fill="var(--na-accent-500)" />
+      </marker>
+      <marker :id="markerId('arrow-secondary')" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="var(--na-secondary-500)" />
+      </marker>
+      <marker :id="markerId('arrow-secondary-rev')" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto-start-reverse">
+        <path d="M0,0 L0,6 L8,3 z" fill="var(--na-secondary-500)" />
       </marker>
     </defs>
 
@@ -40,7 +57,7 @@ const lit = (n: number) => (props.hooks ? false : n)
     <text :x="CX + R * 0.72" :y="CY - R * 0.72 - 6" fill="var(--na-primary-300)" font-weight="700" style="font-size: 16px">HARNESS</text>
 
     <!-- ring arrows between stations -->
-    <g fill="none" stroke="var(--na-zinc-400)" stroke-width="2.5" marker-end="url(#d7-arrow)">
+    <g fill="none" stroke="var(--na-zinc-400)" stroke-width="2.5" :marker-end="marker('arrow')">
       <path :d="arc(-90, 0)" />
       <path :d="arc(0, 90)" />
       <path :d="arc(90, 180)" />
@@ -51,12 +68,12 @@ const lit = (n: number) => (props.hooks ? false : n)
     <g>
       <rect x="40" y="62" width="90" height="46" rx="8" fill="var(--na-bg-raised)" stroke="var(--na-zinc-500)" stroke-width="2" />
       <text x="85" y="91" text-anchor="middle" fill="var(--na-fg)" font-weight="700" style="font-size: 16px">You</text>
-      <line x1="132" y1="85" x2="182" y2="85" stroke="var(--na-zinc-400)" stroke-width="2.5" marker-end="url(#d7-arrow)" />
+      <line x1="132" y1="85" x2="182" y2="85" stroke="var(--na-zinc-400)" stroke-width="2.5" :marker-end="marker('arrow')" />
       <text x="157" y="56" text-anchor="middle" fill="var(--na-fg-muted)" style="font-size: 13px">message</text>
       <rect x="186" y="62" width="130" height="46" rx="8" fill="var(--na-bg-raised)" stroke="var(--na-zinc-600)" stroke-width="2" />
       <g v-click="lit(1)"><rect x="186" y="62" width="130" height="46" rx="8" fill="var(--na-primary-900)" stroke="var(--na-accent-500)" stroke-width="2.5" /></g>
       <text x="251" y="91" text-anchor="middle" fill="var(--na-fg)" font-weight="600" style="font-size: 15px">build prompt</text>
-      <line x1="318" y1="85" x2="400" y2="85" stroke="var(--na-zinc-400)" stroke-width="2.5" marker-end="url(#d7-arrow)" />
+      <line x1="318" y1="85" x2="400" y2="85" stroke="var(--na-zinc-400)" stroke-width="2.5" :marker-end="marker('arrow')" />
     </g>
 
     <!-- stations -->
@@ -75,10 +92,10 @@ const lit = (n: number) => (props.hooks ? false : n)
 
     <!-- exit: text answer → You (turn ends) -->
     <g v-click="lit(6)">
-      <path d="M 590 262 Q 700 150 800 105" fill="none" stroke="var(--na-accent-500)" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#d7-arrow-accent)" />
+      <path d="M 590 262 Q 700 150 800 105" fill="none" stroke="var(--na-accent-500)" stroke-width="2.5" stroke-dasharray="7 5" :marker-end="marker('arrow-accent')" />
       <rect x="800" y="62" width="120" height="46" rx="8" fill="var(--na-bg-raised)" stroke="var(--na-accent-500)" stroke-width="2" />
       <text x="860" y="91" text-anchor="middle" fill="var(--na-fg)" font-weight="700" style="font-size: 16px">You</text>
-      <text x="760" y="165" fill="var(--na-accent-500)" font-weight="600" style="font-size: 14px">text answer = turn ends</text>
+      <text x="775" y="142" fill="var(--na-accent-500)" font-weight="600" style="font-size: 14px">text answer = turn ends</text>
     </g>
 
     <!-- hooks: badges clipped onto the ring -->
@@ -99,6 +116,20 @@ const lit = (n: number) => (props.hooks ? false : n)
         <rect x="660" y="180" width="60" height="28" rx="14" fill="var(--na-error-500)" />
         <text x="690" y="199" text-anchor="middle" fill="var(--na-zinc-50)" font-weight="700" style="font-size: 13px">Stop</text>
         <text x="730" y="199" fill="var(--na-error-500)" font-weight="600" style="font-size: 14px">exit 2 → turn cannot end</text>
+      </g>
+    </template>
+
+    <!-- btw: a square above the exit You, with a direct line from Model
+         that clears the permission station over the top — a different
+         colour from the ring/exit, reading as bypassing the loop rather
+         than joining it -->
+    <template v-if="btw">
+      <g v-click="1">
+        <path d="M 585 260 C 660 220, 700 190, 750 190 C 780 190, 795 180, 800 175" fill="none" stroke="var(--na-secondary-500)" stroke-width="2.5" stroke-dasharray="7 5" :marker-start="marker('arrow-secondary-rev')" :marker-end="marker('arrow-secondary')" />
+        <rect x="800" y="150" width="120" height="46" rx="8" fill="var(--na-bg-raised)" stroke="var(--na-secondary-500)" stroke-width="2.5" stroke-dasharray="5 4" />
+        <text x="860" y="178" text-anchor="middle" fill="var(--na-secondary-500)" font-weight="700" style="font-size: 15px">/btw</text>
+        <text x="860" y="214" text-anchor="middle" fill="var(--na-secondary-500)" font-weight="600" style="font-size: 14px">answers from context</text>
+        <text x="860" y="232" text-anchor="middle" fill="var(--na-secondary-500)" font-weight="600" style="font-size: 14px">no tool, no new turn</text>
       </g>
     </template>
   </svg>

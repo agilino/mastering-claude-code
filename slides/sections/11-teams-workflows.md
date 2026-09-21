@@ -10,6 +10,7 @@ heading: "Orchestrate and let go"
 ---
 layout: section
 heading: "Strategy two: agent teams"
+docs: https://code.claude.com/docs/en/agent-teams
 ---
 
 <template #map>
@@ -45,6 +46,7 @@ heading: "Lead, peers, and a disagreement"
 ---
 layout: section
 heading: "Strategy three: dynamic workflows"
+docs: https://code.claude.com/docs/en/workflows
 ---
 
 <template #map>

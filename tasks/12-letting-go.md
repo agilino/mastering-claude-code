@@ -81,8 +81,10 @@ keystroke. Every control from this workshop carries over: a scoped prompt, limit
 
 ## Go further
 
-Look at `/loop` for a prompt that repeats on an interval, Remote Control for driving a session
-from your phone, and `claude agents` for background sessions. Pick one and try it on CLASH.
+Look at `/loop` for a prompt that repeats on an interval, `/remote-control` for driving a session
+from your phone, and `/background` to detach this session and keep it running. `claude agents`
+(the CLI command, not a slash command) lists what is already running in the background. Pick
+one and try it on CLASH.
 
 ## Links
 

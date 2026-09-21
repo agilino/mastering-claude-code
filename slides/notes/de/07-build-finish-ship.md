@@ -44,6 +44,7 @@ Sagen:
 
 Sagen:
 - Review und Fix sind absichtlich zwei Messages — du bleibst die Person, die entscheidet
+- Diesen Prompt heute einmal selbst zu schreiben ist der Punkt — `/code-review` ist die Bundled-Skill-Abkürzung fürs nächste Mal
 
 <!-- @note: ship-then-look-at-the-reference -->
 > Tun:

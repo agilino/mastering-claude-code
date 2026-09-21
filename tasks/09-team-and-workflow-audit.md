@@ -63,8 +63,9 @@ for is to run all three on the same problem and compare.
    /workflows
    ```
    Press `s` on the run. Now a copy is in `.claude/workflows/`. Commit it.
-10. Compare the three runs: findings, time, tokens, your own `/context`. Say the cost out loud.
-    The workflow is the most expensive. That is the price of bounded roles and a review gate.
+10. Compare the three runs: findings, time, tokens, your own `/context`. `/cost` (an alias for
+    `/usage`) says the cost out loud for you. The workflow is the most expensive. That is the
+    price of bounded roles and a review gate.
 
 **Merge the fix**
 
