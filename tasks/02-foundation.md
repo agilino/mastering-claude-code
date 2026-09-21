@@ -17,9 +17,12 @@ The data model is the right place for that, because it is hard to change later.
 
 1. Start on the right branch and open Claude Code, in manual mode.
    ```bash
+   git stash -u        # keeps the CLAUDE.md task 01's /init wrote (plain git stash skips new files)
    git checkout 02-start
    claude
    ```
+   `02-start` brings its own `CLAUDE.md`, so this replaces the one you just made. To look at
+   yours again later: `git stash show -p --include-untracked`.
    Manual mode shows every command before it runs. Press `Shift+Tab` until the status bar
    shows `manual mode` — this is a new session, so don't assume you're still in whatever
    mode task 01 left you in.

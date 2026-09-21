@@ -90,7 +90,7 @@ Standalone index: [`tasks/README.md`](tasks/README.md). What each branch contain
 and continue:
 
 ```bash
-git stash            # keep your own work if you want it
+git stash -u          # keep your own work, including new files, if you want it
 git checkout 04-start
 ```
 
