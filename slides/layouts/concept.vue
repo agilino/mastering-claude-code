@@ -5,9 +5,11 @@
 // Frontmatter:
 //   heading?: string
 //   lines?: string[]   up to 3 short supporting lines, shown below the graphic
+//   docs?: string      one official docs URL, drawn bottom-right as the docs link
 import { computed, useSlots, Comment, Text, Fragment, type VNode } from 'vue'
+import DocLink from '../components/DocLink.vue'
 
-const props = withDefaults(defineProps<{ heading?: string; lines?: string[] }>(), {
+const props = withDefaults(defineProps<{ heading?: string; lines?: string[]; docs?: string }>(), {
   lines: () => [],
 })
 
@@ -27,7 +29,7 @@ const hasLines = computed(() => props.lines.length > 0)
 
 <template>
   <div
-    class="slidev-layout w-full h-full flex flex-col px-16 py-12"
+    class="slidev-layout relative w-full h-full flex flex-col px-16 py-12"
     :class="{ 'na-no-graphic': !hasGraphic, 'na-statement': !hasGraphic && !hasLines }"
   >
     <h1 v-if="heading" class="mb-6 shrink-0">{{ heading }}</h1>
@@ -44,6 +46,7 @@ const hasLines = computed(() => props.lines.length > 0)
         {{ line }}
       </li>
     </ul>
+    <DocLink v-if="docs" :href="docs" />
   </div>
 </template>
 
