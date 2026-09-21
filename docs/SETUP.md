@@ -121,7 +121,8 @@ Every task has a branch with the state at its **start**. If you fall behind, do 
 git checkout 04-start      # example: rejoin at task 04
 ```
 
-Your own work stays with you: commit or stash before you switch.
+Your own work stays with you: commit, or `git stash -u` before you switch (plain `git stash`
+skips new files Claude created).
 The full list is in [`BRANCHES.md`](BRANCHES.md).
 
 ## 8. One naming trap
