@@ -66,9 +66,11 @@ out, Claude has to guess or search for.
    ```
    /skill-doctor
    ```
-   Look at `.agents/skills/`. CLASH ships nine vendored skills. Two of them,
-   `react-best-practices` and `vercel-react-best-practices`, are near-duplicates of
-   about 100 KB each. Both are scanned every session.
+   Look at `.agents/skills/` in the CLASH repository. These are the app's vendored skills,
+   not the workshop repository's own `.agents/skills/agent-browser` tooling skill.
+   CLASH ships nine vendored skills. Two of them, `react-best-practices` and
+   `vercel-react-best-practices`, are near-duplicates of about 100 KB each. Both are
+   scanned every session.
 
 ## Now you
 
