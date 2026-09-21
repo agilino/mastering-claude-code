@@ -42,6 +42,7 @@ lines:
 ---
 layout: concept
 heading: "Plan mode: read, think, propose"
+docs: https://code.claude.com/docs/en/permission-modes
 lines:
   - "Shift+Tab until the status bar shows \"plan mode on\""
   - "Claude can read files. It cannot write them."
@@ -87,8 +88,9 @@ success: "The plan names five models, string status fields, the generated client
 Read @docs/SPEC.md, section "Data". Plan a Prisma 7 schema for SQLite
 using the better-sqlite3 adapter.
 
-⟵ LIVE: add the four rules: five models, strings not enums,
-        client in lib/generated/prisma, seed with 8 users / password test
+⟵ LIVE: add the five rules: five models, strings not enums,
+        client in lib/generated/prisma, seed with 8 users / password test,
+        run prisma/seed.ts with tsx
 
 Show the plan, do not write files.
 ```
