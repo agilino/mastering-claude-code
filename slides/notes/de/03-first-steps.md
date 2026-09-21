@@ -23,8 +23,8 @@ Sagen:
 
 <!-- @note: slash-commands -->
 > Tun:
-> - tasks/01-setup-first-conversation.md Schritte 9-10 führen /init, /clear und /help jetzt aus — die Zeilen laut vorlesen
-> - /context, /usage und /rewind werden hier nur genannt — /context wird später in dieser Aufgabe gezeigt, /usage unter „Now you", /rewind in Task 03
+> - tasks/01-setup-first-conversation.md Schritte 9-10 führen /init, /clear, /context und /help jetzt aus — die Zeilen laut vorlesen
+> - /context kommt direkt nach /clear und zeigt, dass CLAUDE.md weiter geladen bleibt; /usage kommt unter „Now you", /rewind in Task 03
 > - Docs-Link: öffnen, bis "Commands across a typical workflow" scrollen, dann zurück zu den Folien
 
 Sagen:
@@ -90,8 +90,8 @@ Sagen:
 >   - Which five kinds of records does the app need? Say how they connect to each other.
 >   - Which screen looks hardest to build, and why?
 > - Dann /init ausführen und die CLAUDE.md öffnen, die es schreibt
-> - Zeigen, dass sie kurz ist und auf die Spec verweist
-> - Dann /context: auf die CLAUDE.md-Zeile und die Spec-Zeile zeigen — erstes Mal, dass die Gruppe die Balken mit echten Zahlen sieht
+> - Keine genaue Länge versprechen — der /init-Output kann sich je nach Claude-Code-Version unterscheiden. Nützliche Repo-Hinweise und den Verweis auf die Spec zeigen
+> - Dann /clear und /context: auf die CLAUDE.md-Zeile zeigen — erster Beweis, dass Conversation Context weg sein kann, während Repo-Guidance bleibt
 
 Sagen:
 - CLAUDE.md und die Spec-Zeile stecken schon in jedem Prompt — das Budget aus Teil I, jetzt mit echten Zahlen
