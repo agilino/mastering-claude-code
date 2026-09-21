@@ -23,8 +23,8 @@ Sagen:
 
 <!-- @note: slash-commands -->
 > Tun:
-> - tasks/01-setup-first-conversation.md Schritte 9-10 führen /init, /clear, /context und /help jetzt aus — die Zeilen laut vorlesen
-> - /context kommt direkt nach /clear und zeigt, dass CLAUDE.md weiter geladen bleibt; /usage kommt unter „Now you", /rewind in Task 03
+> - tasks/01-setup-first-conversation.md Schritte 9-10 zeigen /init, /clear, /context und /help — die Zeilen laut vorlesen, noch nicht ausführen
+> - /context, /usage und /rewind werden hier nur genannt — /context wird später in dieser Aufgabe live gezeigt, /usage unter „Now you", /rewind in Task 03
 > - Docs-Link: öffnen, bis "Commands across a typical workflow" scrollen, dann zurück zu den Folien
 
 Sagen:

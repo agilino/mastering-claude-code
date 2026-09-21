@@ -171,7 +171,7 @@ Both appear in this workshop. We always say which one we mean.
 
 | Symptom | Fix |
 |---|---|
-| Anything not covered below | Run `/doctor` inside Claude Code first — it checks your installation and settings, reports what it finds, and asks before it fixes anything. If Claude Code does not start at all, run `claude doctor` in your terminal instead |
+| Anything not covered below | Run `/doctor` inside Claude Code (or `claude doctor` in your terminal if Claude Code does not start at all) — it checks your installation and settings, reports what it finds, and asks before it fixes anything |
 | `Shift+Tab` does nothing (Windows) | Known Node/Bun quirk. Use `Alt+M` to cycle permission modes instead |
 | `SESSION_SECRET environment variable is not set.` | Step 3: create `.env` |
 | `Cannot find module '@/lib/generated/prisma'` | Run `npm install` again (it runs `prisma generate`) |

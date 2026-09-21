@@ -108,8 +108,8 @@ Sagen:
 
 <!-- @note: when-the-window-fills-compact-or-clear -->
 > Tun:
-> - Noch hat niemand etwas installiert — die Commands nennen, nicht ausführen
-> - Klar sagen, dass die echte, live Version direkt nach diesem Abschnitt kommt
+> - Noch läuft keine Live-Session — die Commands nennen, nicht ausführen
+> - Klar sagen, dass die Live-Version später in Task 01 kommt, sobald es ein echtes Gespräch zum Kürzen oder Leeren gibt
 
 Sagen:
 - Drei Tanks — der erste ist eine Session nahe am Limit: gelesene Dateien, Tool-Output, Chat
@@ -122,8 +122,8 @@ Sagen:
 
 <!-- @note: a-question-that-skips-the-loop -->
 > Tun:
-> - Noch hat niemand etwas installiert — beschreiben, nicht ausführen
-> - Gleiches „machen wir gleich live" wie bei der letzten Folie
+> - Noch läuft keine Live-Session — beschreiben, nicht ausführen
+> - Gleiches „das machen wir später in Task 01 live" wie bei der letzten Folie
 
 Sagen:
 - Derselbe Loop wie vorhin — daran ändert sich nichts
@@ -137,8 +137,9 @@ Sagen:
 > Tun:
 > - Den Install-Link oben auf der Folie in den Teams-Chat einfügen, damit alle ihn direkt anklicken können
 > - Alle haben das vor dem Workshop installiert (docs/SETUP.md) — klar sagen, das ist ein Rückblick, keine neue Installation
-> - Das eigene Terminal live in einem leeren Ordner öffnen und starten
-> - Jetzt die letzten beiden Folien echt machen, in dieser Reihenfolge: /context (den Tank sehen), eine Zwischenfrage mit /btw dazu, dann /clear (ihn leeren)
+> - Das eigene Terminal live in einem leeren Ordner öffnen und Claude Code starten — das war's.
+>   Ein leerer Ordner zeigt bei /context, /btw oder /clear noch fast nichts; das kommt später,
+>   am Ende von Task 01
 > - Mit dem Satz auf der nächsten Folie schließen
 
 Sagen:

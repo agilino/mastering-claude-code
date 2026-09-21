@@ -38,13 +38,15 @@ Every external URL in README, FACILITATOR, docs, tasks, slides and answer keys, 
 | ok 200 | https://docs.claude.com/en/api/agent-sdk/typescript |
 | ok 200 | https://git-scm.com |
 | ok 200 | https://github.com/ChromeDevTools/chrome-devtools-mcp |
-| ok 200 | https://github.com/ValentinH/react-easy-crop |
+| ok 200 | https://github.com/github/spec-kit.git |
 | ok 200 | https://github.com/microsoft/playwright-mcp |
 | ok 200 | https://github.com/nextacademy-io/mastering-claude-code |
 | ok 200 | https://github.com/pawsaw/clash |
+| ok 200 | https://github.com/ValentinH/react-easy-crop |
 | ok 200 | https://github.com/vercel-labs/agent-browser |
 | ok 200 | https://mastering-claude-code.vercel.app |
 | ok 200 | https://nextjs.org/docs/app/api-reference/functions/server-actions |
+| ok 200 | https://nextjs.org/docs/pages/api-reference/cli/create-next-app |
 | ok 200 | https://nodejs.org |
 | ok 200 | https://react-leaflet.js.org/ |
 | ok 200 | https://react-leaflet.js.org/docs/start-installation/ |
@@ -55,6 +57,7 @@ Every external URL in README, FACILITATOR, docs, tasks, slides and answer keys, 
 | ok 200 | https://www.nextacademy.io/nalogo.png |
 | ok 200 | https://www.nextacademy.io/nalogo.svg |
 | ok 200 | https://www.nextacademy.io/trainers/adam |
-| ok 200 | https://www.prisma.io/docs/orm/overview/databases/sqlite |
+| ok 200 | https://www.prisma.io/docs/orm/v7/prisma-migrate/workflows/seeding |
+| ok 200 | https://www.prisma.io/docs/v7/prisma-orm/quickstart/sqlite |
 
 0 failing URL(s).

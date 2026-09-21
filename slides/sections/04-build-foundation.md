@@ -35,7 +35,7 @@ lines:
 layout: concept
 heading: "Read the diff, not the summary"
 lines:
-  - "Claude says what it did. /diff shows what it actually did."
+  - "Claude says what it did. git status, then /diff, show what it actually did."
   - "Commit through Claude. It writes the message."
 ---
 

@@ -52,14 +52,16 @@ The data model is the right place for that, because it is hard to change later.
    ```
    Show me git status.
    ```
-   Then open the changes themselves.
+   `git status` shows one line per new top-level file or directory, not every file inside it,
+   and it never lists `.env` — that stays gitignored. Then open the changes themselves.
    ```
    /diff
    ```
-   Claude's own summary is not the same as the actual change. `git status` lists every new
-   and changed file. `/diff` shows the edits inside them, including ones Claude just made —
-   read it, don't just take the summary. The panel may say some files are "not shown".
-   `git status` is the complete list.
+   Claude's own summary is not the same as the actual change. `/diff` shows the edits inside
+   your files, including ones Claude just made — read it, don't just take the summary. On
+   Claude Code 2.1.260 or later, with a terminal at least 110 columns wide, this opens a panel
+   that may say some files are "not shown"; on an older version you get a plain diff viewer
+   instead. Press `Esc` to close it — or, if you got the panel, run `/diff` again.
 5. Switch to plan mode. Press `Shift+Tab` until the status bar shows `plan mode on`. Now Claude can read but not write.
 6. Ask for the data model plan.
    ```
