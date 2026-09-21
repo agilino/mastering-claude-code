@@ -12,6 +12,7 @@ machine. The spec is docs/SPEC.md. Claude writes the code. You decide what is go
 > Do:
 > - tasks/02-foundation.md steps 1-2, then back to the slides
 > - Start in manual mode, let the group watch the first two or three permission prompts
+> - The repo is intentionally non-empty. Point out that the brief tells Claude to preserve the workshop files before create-next-app runs
 > - Then switch to auto — scaffolding a Next.js app is standard, low-risk work
 > - [click] Show the three parts with the real scaffold brief from Task 02
 > - Contrast with the cold prompt "set up a Next.js app"
@@ -52,6 +53,8 @@ Say:
 Say:
 - SQLite has no enums
 - the generated client path keeps the import stable
+- tsx makes the TypeScript seed command portable across the workshop's supported Node versions
+- Prisma 7.10+ may generate prisma7.config.ts; older 7.x projects can still use prisma.config.ts
 - the seed is what every later task logs in with
 
 <!-- @note: foundation -->
@@ -59,7 +62,7 @@ Say:
 > - Task 02 recap
 > - Hand off to tasks/02-foundation.md, full 11 steps — no more slides until Task 03
 > - Watch the chat while they work
-> - Most common stall: create-next-app asking interactive questions — the brief's flags avoid most of them
+> - Most common stall: create-next-app and local package-manager preferences. The brief forces npm, no src/ directory, non-interactive answers and preservation of the workshop files
 
 Say:
 - 02-start = spec plus a first CLAUDE.md; 03-start = where you land if this task goes wrong
