@@ -15,8 +15,9 @@ Sagen (Hinweise, was gesagt wird):
 
 Sagen:
 - Mittagspause ist fest eingeplant, dazu ein paar kurze Pausen zwischendurch — sagt Bescheid, wenn die Gruppe eine braucht
-- "Wir sind hier alle sehr erfahrene Entwickler. Lasst uns das Ganze interaktiv gestalten. Ich möchte Eure Meinung hören, wenn ihr etwas anders seht und diese gerne zur Diskussion stellen. Unterbrecht mich bitte jederzeit sehr gerne, mit Fragen und einem konstruktiven Austausch. Helft Euch auch untereinander."
-- "Wir haben eine Menge Material vorbereitet, möglicherweise mehr als wir gemeinsam schaffen können. Unser Ziel ist hier nicht durch das Material durchzurennen, sondern vielmehr unser eigenes Tempo zu finden."
+- Erfahrene Entwickler: interaktiv arbeiten, unterschiedliche Sichtweisen ausdrücklich diskutieren
+- Jederzeit unterbrechen: Fragen stellen, konstruktiv austauschen, einander helfen
+- Viel Material ist vorbereitet — nicht durchrennen, sondern gemeinsam das passende Tempo finden
 
 <!-- @note: introductions -->
 > Tun:

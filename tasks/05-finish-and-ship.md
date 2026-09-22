@@ -121,6 +121,8 @@ branch, commit, pull request, review.
 ## Go further
 
 Ask Claude for a list of everything in your build that is missing compared with `docs/SPEC.md`. Pick one and finish it.
+Next time, try `/code-review` — a bundled skill that reviews your branch for bugs, like step 8, without a hand-written prompt.
+It follows your `CLAUDE.md`. Pass it your pull request number if everything is already pushed.
 
 ## Links
 
