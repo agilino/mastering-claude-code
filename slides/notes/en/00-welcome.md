@@ -15,8 +15,9 @@ Say (hints what to say):
 
 Say:
 - Lunch is built into the day, plus a few short breaks along the way — say if anyone needs one
-- "Wir sind hier alle sehr erfahrene Entwickler. Lasst uns das Ganze interaktiv gestalten. Ich möchte Eure Meinung hören, wenn ihr etwas anders seht und diese gerne zur Diskussion stellen. Unterbrecht mich bitte jederzeit sehr gerne, mit Fragen und einem konstruktiven Austausch. Helft Euch auch untereinander."
-- "Wir haben eine Menge Material vorbereitet, möglicherweise mehr als wir gemeinsam schaffen können. Unser Ziel ist hier nicht durch das Material durchzurennen, sondern vielmehr unser eigenes Tempo zu finden."
+- Experienced developers: keep it interactive and discuss different views openly
+- Interrupt at any time: ask questions, exchange constructively, help each other
+- There is plenty of material — finding the group's pace matters more than rushing through it
 
 <!-- @note: introductions -->
 > Do:
