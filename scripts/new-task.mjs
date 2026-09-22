@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
 const tasksDir = join(root, 'tasks')
+const slidesBaseUrl = (process.env.SLIDES_BASE_URL ?? 'https://mastering-claude-code.vercel.app').replace(/\/+$/, '')
 const args = process.argv.slice(2)
 
 function usage() {
@@ -67,11 +68,11 @@ if (existsSync(target)) {
 const content = `# Task ${number} — ${title}
 
 > Part: TODO · Reset branch: \`${number}-start\`
-> Slides: https://mastering-claude-code.vercel.app/task-${number}
+> Slides: ${slidesBaseUrl}/task-${number}
 
 ## Theory
 
-- [TODO: exact slide heading](https://mastering-claude-code.vercel.app/theory-TODO)
+- [TODO: exact slide heading](${slidesBaseUrl}/theory-TODO)
 
 > **Reminder:** TODO
 

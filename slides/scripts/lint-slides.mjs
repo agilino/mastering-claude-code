@@ -11,6 +11,54 @@ import { join, dirname, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
+const defaultSlidesBaseUrl = 'https://mastering-claude-code.vercel.app'
+const slidesBaseUrl = (process.env.SLIDES_BASE_URL ?? defaultSlidesBaseUrl).replace(/\/+$/, '')
+const slidesBase = new URL(slidesBaseUrl)
+const defaultSlidesBase = new URL(defaultSlidesBaseUrl)
+const allowDefaultAlongsideLocal = ['localhost', '127.0.0.1', '::1'].includes(slidesBase.hostname)
+const allowedSlidesOrigins = new Set([
+  slidesBase.origin,
+  ...(allowDefaultAlongsideLocal ? [defaultSlidesBase.origin] : []),
+])
+
+function stripFencedCode(text) {
+  const lines = []
+  let fence = null
+  for (const line of text.split('\n')) {
+    const marker = /^(\`\`\`|~~~)/.exec(line)?.[1]
+    if (marker && fence === null) {
+      fence = marker
+      lines.push('')
+      continue
+    }
+    if (marker === fence) {
+      fence = null
+      lines.push('')
+      continue
+    }
+    lines.push(fence ? '' : line)
+  }
+  return lines.join('\n')
+}
+
+function validateSlideUrl(rel, rawUrl, expectedAlias, label) {
+  let url
+  try {
+    url = new URL(rawUrl)
+  } catch {
+    err(rel, `${label} is not a valid URL: ${rawUrl}`)
+    return null
+  }
+
+  if (!allowedSlidesOrigins.has(url.origin)) {
+    err(rel, `${label} must use ${slidesBase.origin}: ${rawUrl}`)
+  }
+  if (url.pathname !== `/${expectedAlias}` || url.search || url.hash) {
+    err(rel, `${label} must point to /${expectedAlias}: ${rawUrl}`)
+  }
+
+  return expectedAlias
+}
 const forbidden = [
   [/\b\d{1,2}:\d{2}\b/, 'clock time'],
   [/(?<![-\w\/.])\b\d+\s?(min|mins|minutes?|hours?|h)\b(?![-\w])/i, 'duration'],
@@ -168,27 +216,40 @@ for (const file of files) {
 }
 
 for (const [num, rel] of taskFiles) {
-  const expectedUrl = `https://mastering-claude-code.vercel.app/task-${num}`
   const text = (await readFile(join(root, rel), 'utf8')).replace(/\r\n/g, '\n')
-  const links = [...text.matchAll(/^> Slides:[ \t]*(\S+)[ \t]*$/gm)].map((m) => m[1])
+  const structuralText = stripFencedCode(text)
+  const links = [...structuralText.matchAll(/^> Slides:[ \t]*(\S+)[ \t]*$/gm)].map((m) => m[1])
   if (links.length !== 1) err(rel, `expected exactly one Slides link for task ${num}, found ${links.length}`)
-  else if (links[0] !== expectedUrl) err(rel, `task ${num} Slides link must be ${expectedUrl}`)
+  else validateSlideUrl(rel, links[0], `task-${num}`, `task ${num} Slides link`)
   if (!taskSlides.has(num)) err(rel, `no task slide with number ${num} and routeAlias task-${num}`)
 
   const expectedHeadings = ['Theory', 'You will end up with', 'Why', 'Do this', 'Now you', 'Check', 'Stuck?', 'Go further', 'Links']
-  const headings = [...text.matchAll(/^## (.+)$/gm)].map((m) => m[1])
+  const headings = [...structuralText.matchAll(/^## (.+)$/gm)].map((m) => m[1])
   if (JSON.stringify(headings) !== JSON.stringify(expectedHeadings)) {
     err(rel, `task headings must be exactly: ${expectedHeadings.join(' → ')}`)
   }
 
-  const theory = /## Theory\n\n([\s\S]*?)(?=\n## )/.exec(text)?.[1] ?? ''
-  const theoryLinks = [...theory.matchAll(/^- \[([^\]]+)\]\(https:\/\/mastering-claude-code\.vercel\.app\/(theory-[^)]+)\)$/gm)]
+  const theory = /## Theory\n\n([\s\S]*?)(?=\n## )/.exec(structuralText)?.[1] ?? ''
+  const theoryLinks = [...theory.matchAll(/^- \[([^\]]+)\]\(([^)]+)\)$/gm)]
   if (theoryLinks.length < 1 || theoryLinks.length > 3) {
     err(rel, `Theory must contain one to three slide links; found ${theoryLinks.length}`)
   }
   const reminders = [...theory.matchAll(/^> \*\*Reminder:\*\* .+$/gm)]
   if (reminders.length !== 1) err(rel, `Theory must contain exactly one Reminder line; found ${reminders.length}`)
-  for (const [, label, alias] of theoryLinks) {
+  for (const [, label, rawUrl] of theoryLinks) {
+    let url
+    try {
+      url = new URL(rawUrl)
+    } catch {
+      err(rel, `Theory link is not a valid URL: ${rawUrl}`)
+      continue
+    }
+    const alias = url.pathname.replace(/^\//, '')
+    if (!alias.startsWith('theory-')) {
+      err(rel, `Theory link must point to a /theory-* route: ${rawUrl}`)
+      continue
+    }
+    validateSlideUrl(rel, rawUrl, alias, `Theory link "${label}"`)
     const slide = theorySlides.get(alias)
     if (!slide) err(rel, `Theory link /${alias} has no matching slide routeAlias`)
     else if (label !== slide.heading) err(rel, `Theory link text "${label}" must match slide heading "${slide.heading}" for /${alias}`)
