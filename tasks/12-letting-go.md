@@ -61,6 +61,18 @@ keystroke. Every control from this workshop carries over: a scoped prompt, limit
    and turn limits. The secret is named, never pasted. v1 dropped the `mode` input. `@beta` is the old version.
 9. Create the token for the secret: `claude setup-token`. Add it to the repository as
    `CLAUDE_CODE_OAUTH_TOKEN`. You do not need it to check that the YAML is valid.
+10. Install the GitHub App properly, instead of only holding a token.
+    ```
+    /install-github-app
+    ```
+    It installs the app and can set up the secret for you. When it asks about workflow
+    files, choose **Skip for now** — you already wrote `security-audit.yml` by hand.
+11. Push the workflow for real and open a pull request against it.
+    ```
+    Commit the workflow file on a new branch, push it, and open a pull request with gh.
+    ```
+    Watch the Actions tab. When the run finishes, the audit's findings land as a comment
+    on the pull request — nobody typed a prompt to make that happen.
 
 ## Now you
 
@@ -74,6 +86,8 @@ keystroke. Every control from this workshop carries over: a scoped prompt, limit
 - [ ] `.github/workflows/security-audit.yml` exists and runs on `pull_request`.
 - [ ] It uses `anthropics/claude-code-action@v1`, not `@beta`, and no raw `claude -p` step.
 - [ ] The secret is referenced by name. `id-token: write` is in `permissions`.
+- [ ] The GitHub App is installed on the repository.
+- [ ] A real run finished on the pull request, and its findings are a comment on it.
 
 ## Stuck?
 

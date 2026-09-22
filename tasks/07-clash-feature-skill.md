@@ -50,6 +50,22 @@ commands in `.claude/commands/*.md` still work. Skills are the richer format for
    npx tsc --noEmit && npm run lint && npm run build
    ```
 7. Run `/context`. Compare with the number from task 06. Note how many files Claude read this time.
+8. Package the skill as a plugin, so it can be shared outside this repo.
+   ```bash
+   mkdir -p clash-feature-plugin/.claude-plugin clash-feature-plugin/skills
+   cp -r .claude/skills/clash-feature clash-feature-plugin/skills/clash-feature
+   ```
+   Write `clash-feature-plugin/.claude-plugin/plugin.json`:
+   ```json
+   { "name": "clash-feature-plugin", "description": "Add a feature to CLASH, end to end.", "version": "1.0.0" }
+   ```
+   Load it and try the skill under its new name.
+   ```bash
+   claude --plugin-dir ./clash-feature-plugin
+   ```
+   ```
+   /clash-feature-plugin:clash-feature
+   ```
 
 ## Now you
 
@@ -63,6 +79,7 @@ commands in `.claude/commands/*.md` still work. Skills are the richer format for
 - [ ] Venue favourites work end to end.
 - [ ] `npx tsc --noEmit`, `npm run lint` and `npm run build` pass.
 - [ ] You can say why `.claude/commands/*.md` files still work.
+- [ ] `claude --plugin-dir ./clash-feature-plugin` starts, and `/clash-feature-plugin:clash-feature` runs the same skill.
 
 ## Stuck?
 
