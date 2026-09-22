@@ -49,11 +49,11 @@ that keeps this app safe: every action checks who is allowed to do it.
    with the user's name and a logout button. Add a placeholder dashboard page.
    Move nothing else.
    ```
-7. Something will look off. It always does. Try `/rewind`:
+7. Inspect the last step with `/rewind`:
    ```
    /rewind
    ```
-   Pick the checkpoint before the last step. Your files go back. Then give a better instruction. If nothing was wrong, press `Esc` and continue.
+   Open the checkpoint before the last step. If the app shell needs a correction, restore it and give a better instruction. If everything is correct, press `Esc` without restoring and continue.
 8. Look at the context window.
    ```
    /context
