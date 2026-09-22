@@ -1,0 +1,8 @@
+{
+  "name": "mastering-claude-code",
+  "private": true,
+  "scripts": {
+    "task:new": "node scripts/new-task.mjs",
+    "task:check": "node slides/scripts/lint-slides.mjs"
+  }
+}

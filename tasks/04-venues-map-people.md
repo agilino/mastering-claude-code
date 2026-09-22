@@ -3,6 +3,14 @@
 > Part: Build CLASH · Reset branch: `04-start`
 > Slides: https://mastering-claude-code.vercel.app/task-04
 
+## Theory
+
+- [Your first slash command](https://mastering-claude-code.vercel.app/theory-custom-command)
+- [Let Claude read the error](https://mastering-claude-code.vercel.app/theory-error-feedback)
+- [Let Claude look at the page](https://mastering-claude-code.vercel.app/theory-browser-feedback)
+
+> **Reminder:** Reuse patterns you already have; when something breaks, give Claude the error or the page instead of guessing for it.
+
 ## You will end up with
 
 Venues, a live map of Berlin with pins and click-to-create, join and leave for clashes,

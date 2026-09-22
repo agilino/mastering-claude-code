@@ -11,6 +11,7 @@ lines:
 ---
 layout: code-live
 heading: "Your first slash command"
+routeAlias: theory-custom-command
 filePath: ".claude/commands/new-page.md"
 success: "/new-page <description> adds a page that follows the repo rules, without you repeating them."
 ---
@@ -27,6 +28,7 @@ Follow these rules:
 ---
 layout: concept
 heading: "Let Claude read the error"
+routeAlias: theory-error-feedback
 lines:
   - "Do not fix the map yourself"
   - "\"The dev server shows an error. Read it and fix it.\""
@@ -37,6 +39,7 @@ lines:
 ---
 layout: concept
 heading: "Let Claude look at the page"
+routeAlias: theory-browser-feedback
 lines:
   - "agent-browser open http://localhost:3000/map"
   - "snapshot -i — the page as a short list of elements"

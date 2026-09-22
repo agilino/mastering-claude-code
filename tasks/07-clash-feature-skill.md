@@ -3,6 +3,14 @@
 > Part: Control the context · Reset branch: `07-start`
 > Slides: https://mastering-claude-code.vercel.app/task-07
 
+## Theory
+
+- [Loaded only when needed](https://mastering-claude-code.vercel.app/theory-skills)
+- [Commands became skills. Nothing broke.](https://mastering-claude-code.vercel.app/theory-commands-and-skills)
+- [A skill is advice](https://mastering-claude-code.vercel.app/theory-skill-advice)
+
+> **Reminder:** Skills package repeatable guidance, load on demand, and do not enforce behavior like hooks do.
+
 ## You will end up with
 
 A skill at `.claude/skills/clash-feature/SKILL.md` that holds the recipe for adding a

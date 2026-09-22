@@ -26,6 +26,7 @@ lines:
 ---
 layout: concept
 heading: "Undo a step: /rewind"
+routeAlias: theory-rewind
 lines:
   - "Claude saves a checkpoint before every prompt"
   - "/rewind shows them — pick one, files go back"
@@ -36,6 +37,7 @@ lines:
 ---
 layout: concept
 heading: "Watch the window fill"
+routeAlias: theory-context-window
 lines:
   - "/context — what is in the window right now"
   - "Every file Claude read is still there"
@@ -54,6 +56,7 @@ heading: "Point, don't let it guess"
 ---
 layout: code-live
 heading: "The safety moment"
+routeAlias: theory-server-action-safety
 filePath: "prompt to Claude Code — after clashes work"
 success: "Claude explains that the layout guards the page and not the action, and the ownership rule lands in CLAUDE.md."
 ---

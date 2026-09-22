@@ -10,6 +10,7 @@ heading: "Skills"
 ---
 layout: concept
 heading: "Loaded only when needed"
+routeAlias: theory-skills
 docs: https://code.claude.com/docs/en/skills
 lines:
   - "Every skill's name and description is scanned every session. Cheap."
@@ -21,6 +22,7 @@ lines:
 ---
 layout: concept
 heading: "Commands became skills. Nothing broke."
+routeAlias: theory-commands-and-skills
 lines:
   - ".claude/commands/deploy.md → /deploy"
   - ".claude/skills/deploy/SKILL.md → /deploy"
@@ -53,6 +55,7 @@ allowed-tools: Read, Edit, Write, Grep, Glob, Bash(npm run *) Bash(npx prisma *)
 ---
 layout: concept
 heading: "A skill is advice"
+routeAlias: theory-skill-advice
 lines:
   - "Nothing stops an agent from skipping a step in a skill."
   - "Hold that thought. Task 10 comes back to it."

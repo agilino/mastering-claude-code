@@ -3,6 +3,14 @@
 > Part: Control the context · Reset branch: `08-start`
 > Slides: https://mastering-claude-code.vercel.app/task-08
 
+## Theory
+
+- [The attack surface](https://mastering-claude-code.vercel.app/theory-attack-surface)
+- [The auditor subagent](https://mastering-claude-code.vercel.app/theory-auditor-subagent)
+- [Two ways to isolate](https://mastering-claude-code.vercel.app/theory-subagents)
+
+> **Reminder:** A subagent gets its own context; give it a narrow, falsifiable read-only brief.
+
 ## You will end up with
 
 A `security-auditor` subagent that checked every Server Action in `app/actions/` and

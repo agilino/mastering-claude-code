@@ -1,6 +1,7 @@
 ---
 layout: section
 heading: "Hooks: rules the agent cannot cross"
+routeAlias: theory-hooks
 ---
 
 <template #map>
@@ -10,6 +11,7 @@ heading: "Hooks: rules the agent cannot cross"
 ---
 layout: concept
 heading: "Event · matcher · exit code"
+routeAlias: theory-hook-events
 docs: https://code.claude.com/docs/en/hooks-guide
 lines:
   - "PreToolUse, PostToolUse, Stop — three of more than thirty events."
@@ -109,6 +111,7 @@ set -euo pipefail
 ---
 layout: concept
 heading: "Advice vs. law"
+routeAlias: theory-advice-vs-law
 ---
 
 <G12SkillsVsHooks />

@@ -10,6 +10,7 @@ heading: "Build CLASH"
 ---
 layout: concept
 heading: "A brief has three parts"
+routeAlias: theory-briefs
 lines:
   - "Goal — what you want, one sentence"
   - "Rules — what must hold, a short list"
@@ -42,6 +43,7 @@ lines:
 ---
 layout: concept
 heading: "Plan mode: read, think, propose"
+routeAlias: theory-plan-mode
 docs: https://code.claude.com/docs/en/permission-modes
 lines:
   - "Shift+Tab until the status bar shows \"plan mode on\""

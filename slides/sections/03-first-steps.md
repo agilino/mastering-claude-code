@@ -30,6 +30,7 @@ Look at @lib/validation.ts and explain the clash schema.
 ---
 layout: concept
 heading: "Slash commands"
+routeAlias: theory-slash-commands
 docs: https://code.claude.com/docs/en/commands
 lines:
   - "/help · /init · /clear · /context · /usage · /rewind"
@@ -65,6 +66,7 @@ lines:
 ---
 layout: concept
 heading: "CLAUDE.md is your standing instruction"
+routeAlias: theory-claude-md
 docs: https://code.claude.com/docs/en/memory
 lines:
   - "Read at session start — sent as a message after the system prompt, not folded in"

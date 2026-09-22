@@ -3,6 +3,14 @@
 > Part: Orchestrate and let go · Reset branch: `10-start`
 > Slides: https://mastering-claude-code.vercel.app/task-10
 
+## Theory
+
+- [Hooks: rules the agent cannot cross](https://mastering-claude-code.vercel.app/theory-hooks)
+- [Event · matcher · exit code](https://mastering-claude-code.vercel.app/theory-hook-events)
+- [Advice vs. law](https://mastering-claude-code.vercel.app/theory-advice-vs-law)
+
+> **Reminder:** Hooks enforce rules outside the model; match tools correctly and use blocking exit codes deliberately.
+
 ## You will end up with
 
 A `.claude/settings.json` with four Claude Code hooks: a typecheck after edits under

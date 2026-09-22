@@ -48,6 +48,12 @@ Target codebase: `https://github.com/pawsaw/clash` (Next.js 16 / React 19 / Pris
 ```
 # Task NN — Title
 > Part: <part name> · Reset branch: `NN-start`
+> Slides: https://mastering-claude-code.vercel.app/task-NN
+
+## Theory
+- [Exact slide heading](https://mastering-claude-code.vercel.app/theory-example)
+
+> **Reminder:** One sentence with the key idea to carry into the task.
 
 ## You will end up with
 ## Why
@@ -59,6 +65,9 @@ Target codebase: `https://github.com/pawsaw/clash` (Next.js 16 / React 19 / Pris
 ## Links
 ```
 
+- **Theory**: one to three links to the exact slide headings this task depends on. Use stable `theory-*`
+  route aliases, keep the Markdown link text identical to the slide heading, then add one short **Reminder**.
+- Start new task files with `npm run task:new -- 15 My new task`; omit the number to use the next available task number.
 - **Do this**: numbered steps. Each step is one action. Exact commands and exact prompts in code blocks.
   Say what the participant should see after the step.
 - **Now you**: the same shape again on a new target. State the goal. Give no prompt. One to four items.

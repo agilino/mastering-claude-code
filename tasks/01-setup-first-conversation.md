@@ -3,6 +3,13 @@
 > Part: Foundations · Reset branch: `01-start`
 > Slides: https://mastering-claude-code.vercel.app/task-01
 
+## Theory
+
+- [Slash commands](https://mastering-claude-code.vercel.app/theory-slash-commands)
+- [CLAUDE.md is your standing instruction](https://mastering-claude-code.vercel.app/theory-claude-md)
+
+> **Reminder:** Commands control the session; `CLAUDE.md` carries project guidance into each conversation.
+
 ## You will end up with
 
 Claude Code running inside an almost empty CLASH repository. You have asked it

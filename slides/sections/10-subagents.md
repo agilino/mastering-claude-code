@@ -32,6 +32,7 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
 ---
 layout: concept
 heading: "The attack surface"
+routeAlias: theory-attack-surface
 ---
 
 <G14AttackSurface />
@@ -48,6 +49,7 @@ lines:
 ---
 layout: code-live
 heading: "The auditor subagent"
+routeAlias: theory-auditor-subagent
 filePath: ".claude/agents/security-auditor.md"
 success: "The brief names one falsifiable check: ownership on mutation of an existing row. Not 'find security bugs'."
 ---
@@ -71,6 +73,7 @@ tools: Read, Grep, Glob
 ---
 layout: concept
 heading: "Two ways to isolate"
+routeAlias: theory-subagents
 docs: https://code.claude.com/docs/en/sub-agents
 ---
 

@@ -3,6 +3,14 @@
 > Part: Orchestrate and let go · Reset branch: `09-start`
 > Slides: https://mastering-claude-code.vercel.app/task-09
 
+## Theory
+
+- [Strategy two: agent teams](https://mastering-claude-code.vercel.app/theory-agent-teams)
+- [Strategy three: dynamic workflows](https://mastering-claude-code.vercel.app/theory-dynamic-workflows)
+- [Reconcile, decide, merge](https://mastering-claude-code.vercel.app/theory-reconcile)
+
+> **Reminder:** Use teams when workers need to coordinate; use workflows for repeatable fan-out with explicit review gates.
+
 ## You will end up with
 
 The same audit as task 08, run two more ways: once by an agent team, once by a dynamic

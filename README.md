@@ -123,6 +123,14 @@ npm run build      # also exports dist/mastering-claude-code.pdf
 [`FACILITATOR.md`](FACILITATOR.md) holds the talking points, demo scripts and pitfalls per part.
 Answer keys live in [`workshop-artifacts/`](workshop-artifacts/).
 
+Create a new task from the shared template, or check that task structure and theory links still match:
+
+```bash
+npm run task:new -- 15 My new task
+npm run task:new -- My new task    # picks the next task number
+npm run task:check
+```
+
 The speaker notes come in English and German. They live in `slides/notes/en/` and
 `slides/notes/de/`. The slides are the same in both languages. Only the notes change.
 Pick the language when you start the deck:
