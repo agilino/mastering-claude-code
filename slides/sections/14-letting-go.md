@@ -64,6 +64,7 @@ jobs:
 ---
 layout: task
 number: "12"
+routeAlias: task-12
 heading: "Letting go"
 goal: "Run two agents in separate worktrees at once, then add a GitHub Action that runs the audit on every pull request."
 mode: "you do"
@@ -109,6 +110,7 @@ for await (const m of run)
 ---
 layout: task
 number: "13"
+routeAlias: task-13
 heading: "The Agent SDK"
 goal: "Host the Claude Code loop in a small program that answers a question about CLASH with read-only tools and a hook."
 mode: "you do"

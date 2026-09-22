@@ -58,6 +58,7 @@ lines:
 ---
 layout: task
 number: "04"
+routeAlias: task-04
 heading: "Venues, map, people"
 goal: "Reuse the pattern for venues, add the live map, join and accept flows, notifications, a slash command, and quality gates."
 mode: "you do"

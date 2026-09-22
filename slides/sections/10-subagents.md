@@ -82,6 +82,7 @@ docs: https://code.claude.com/docs/en/sub-agents
 ---
 layout: task
 number: "08"
+routeAlias: task-08
 heading: "Subagent audit"
 goal: "Run one isolated auditor subagent over the actions and watch your own context barely move."
 mode: "you do"
