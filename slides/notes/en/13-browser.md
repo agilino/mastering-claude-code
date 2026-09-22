@@ -4,6 +4,13 @@ Say:
 - Browser is the clearest case — can't verify a user flow by reading source, has to click through it
 - Two servers, two jobs: Playwright MCP for correctness, Chrome DevTools MCP for performance
 
+<!-- @note: task-11-the-browser-closes-the-loop -->
+> Do:
+> - Branch: 11-start already has the skill, CLAUDE.md and the hook set from Task 10
+
+Say:
+- Four things to learn, three to end up with — a test suite, a smaller payload, a first remote server
+
 <!-- @note: your-systems-as-tools -->
 > Do:
 > - Confirm with `claude mcp list` before starting
@@ -59,8 +66,34 @@ Say:
 - [click] Fix from evidence — loop closes without a human re-checking every step
 - [click:5] This is what "MCP reaches outside the repo" buys you
 
+<!-- @note: mcp-has-three-primitives-not-one -->
+Say:
+- Every MCP server we've used so far only exposed tools
+- [click] Resources are how a server hands over data without a tool call
+- [click] Prompts are a server-authored starting point you can pull into the conversation
+- None of this is Claude-Code-specific — it's the MCP spec, any client gets the same three
+
+<!-- @note: a-remote-server-needs-its-own-login -->
+> Do:
+> - FULL WORKING SOLUTION (trainer only): claude mcp add --transport http sentry https://mcp.sentry.dev/mcp
+>   then /mcp inside a session, follow the browser prompt
+> - Docs link: open it, scroll to "Authenticate with remote MCP servers", then back to the slides
+
+Say:
+- [click] http is the default choice for a server you do not run yourself
+- [click] sse still works but is on its way out
+- Claude Code stores the token — you only log in once per server
+
+<!-- @note: the-browser-closes-the-loop-2 -->
+> Do:
+> - Starting point: 11-start, with npm run dev running and the eight seeded logins
+> - Anna hosts, another seeded user joins
+> - Two halves: tests, then performance
+> - Hand off to tasks/11-browser-loop.md — one slide left when they are back
+
 <!-- @note: four-browser-tools-one-comparison -->
 > Do:
+> - Debrief, after the recap — they have used two of these four hands-on by now
 > - State its advantage qualitatively
 > - Do not quote a percentage — the often-cited "90% fewer tokens" is not an official claim, third-party estimates disagree
 > - Measure it if there is time
@@ -69,9 +102,3 @@ Say:
 - Four tools, different jobs
 - [click:4] agent-browser (Vercel, Rust CLI, accessibility-tree snapshots) — the one participants installed during setup and used while building
 - Compact snapshots vs an MCP server's tool schemas plus DOM — tool search defers full schema loading by default
-
-<!-- @note: the-browser-closes-the-loop-2 -->
-> Do:
-> - Starting point: 11-start, with npm run dev running and the eight seeded logins
-> - Anna hosts, another seeded user joins
-> - Two halves: tests, then performance

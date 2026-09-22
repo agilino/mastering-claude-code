@@ -88,7 +88,8 @@ const forbiddenOutsideWelcome = [[/\bQR\b/, 'QR code']]
 
 let errors = 0
 let warnings = 0
-const taskSlides = new Map()
+const introSlides = new Map()
+const recapSlides = new Map()
 const taskFiles = new Map()
 const theorySlides = new Map()
 const err = (f, msg) => { errors++; console.log(`ERROR ${f}: ${msg}`) }
@@ -155,10 +156,13 @@ for (const file of files) {
       theorySlides.set(routeAlias, { heading, rel, slide: n })
     }
     // wording limits (see plan: no orphan words, no clipped code)
-    const linesBlock = /lines:\n((?:\s+- .*\n)+)/.exec(fm)?.[1] ?? ''
-    for (const ln of linesBlock.split('\n')) {
-      const txt = ln.replace(/^\s+- /, '').replace(/^"|"$/g, '')
-      if (txt.length > 80) err(rel, `slide ${n}: line has ${txt.length} chars (> 80): ${txt.slice(0, 60)}…`)
+    // task-intro slides carry two lists (learn:, outcome:) — check every
+    // lines:/learn:/outcome: block on the slide, not just the first
+    for (const m of fm.matchAll(/(?:lines|learn|outcome):\n((?:\s+- .*\n)+)/g)) {
+      for (const ln of m[1].split('\n')) {
+        const txt = ln.replace(/^\s+- /, '').replace(/^"|"$/g, '')
+        if (txt.length > 80) err(rel, `slide ${n}: line has ${txt.length} chars (> 80): ${txt.slice(0, 60)}…`)
+      }
     }
     for (const fence of raw.match(/```[\s\S]*?```/g) ?? []) {
       const count = fence.split('\n').length - 2
@@ -174,19 +178,27 @@ for (const file of files) {
       const th = /heading:\s*"([^"]*)"/.exec(fm)?.[1] ?? ''
       if (th.trim().split(/\s+/).length > 5) err(rel, `slide ${n}: task heading "${th}" has more than 5 words`)
     }
-    if (layout === 'task') {
+    if (layout === 'task-intro' || layout === 'task') {
       const num = /number:\s*"?(\d\d)"?/.exec(fm)?.[1]
-      if (!num) err(rel, `slide ${n}: task slide without number`)
+      const label = layout === 'task-intro' ? 'task-intro slide' : 'task slide'
+      if (!num) err(rel, `slide ${n}: ${label} without number`)
       else {
-        if (!readdirSync(join(root, 'tasks')).some((f) => f.startsWith(`${num}-`))) err(rel, `slide ${n}: no tasks/${num}-*.md for this task slide`)
-        if (taskSlides.has(num)) err(rel, `slide ${n}: duplicate task slide number ${num}; also used by ${taskSlides.get(num).rel}`)
-        const expectedAlias = `task-${num}`
+        if (!readdirSync(join(root, 'tasks')).some((f) => f.startsWith(`${num}-`))) err(rel, `slide ${n}: no tasks/${num}-*.md for this ${label}`)
+        const registry = layout === 'task-intro' ? introSlides : recapSlides
+        if (registry.has(num)) err(rel, `slide ${n}: duplicate ${label} number ${num}; also used by ${registry.get(num).rel}`)
         const aliasRaw = /^routeAlias:[ \t]*(.*)$/m.exec(fm)?.[1]
         const alias = aliasRaw?.replace(/\s+#.*$/, '').trim().replace(/^["']|["']$/g, '')
-        if (alias !== expectedAlias) err(rel, `slide ${n}: task ${num} must use routeAlias: ${expectedAlias}`)
-        taskSlides.set(num, { rel, slide: n, alias })
+        const expectedAlias = `task-${num}`
+        // routeAlias creates the /task-NN route. It lives on the intro slide,
+        // the link target — the recap must not carry a second one.
+        if (layout === 'task-intro') {
+          if (alias !== expectedAlias) err(rel, `slide ${n}: task ${num} intro must use routeAlias: ${expectedAlias}`)
+        } else if (alias !== undefined) {
+          err(rel, `slide ${n}: task ${num} recap must not carry routeAlias — it belongs on the task-intro slide`)
+        }
+        registry.set(num, { rel, slide: n, alias })
       }
-      if (/timebox:|qrSlug:|repoUrl:/.test(fm)) err(rel, `slide ${n}: task slide still has timebox/qrSlug/repoUrl`)
+      if (/timebox:|qrSlug:|repoUrl:/.test(fm)) err(rel, `slide ${n}: ${label} still has timebox/qrSlug/repoUrl`)
     }
     if (layout === 'code-live' && !/⟵ LIVE/.test(fences)) err(rel, `slide ${n}: code-live slide without a ⟵ LIVE marker`)
     // [ \t]*, not \s*: an empty `docs:` must not swallow the next frontmatter line. Quotes are
@@ -221,7 +233,8 @@ for (const [num, rel] of taskFiles) {
   const links = [...structuralText.matchAll(/^> Slides:[ \t]*(\S+)[ \t]*$/gm)].map((m) => m[1])
   if (links.length !== 1) err(rel, `expected exactly one Slides link for task ${num}, found ${links.length}`)
   else validateSlideUrl(rel, links[0], `task-${num}`, `task ${num} Slides link`)
-  if (!taskSlides.has(num)) err(rel, `no task slide with number ${num} and routeAlias task-${num}`)
+  if (!introSlides.has(num)) err(rel, `no task-intro slide with number ${num} and routeAlias task-${num}`)
+  if (!recapSlides.has(num)) err(rel, `no task recap slide with number ${num}`)
 
   const expectedHeadings = ['Theory', 'You will end up with', 'Why', 'Do this', 'Now you', 'Check', 'Stuck?', 'Go further', 'Links']
   const headings = [...structuralText.matchAll(/^## (.+)$/gm)].map((m) => m[1])
@@ -256,8 +269,21 @@ for (const [num, rel] of taskFiles) {
   }
 }
 
-for (const [num, slide] of taskSlides) {
-  if (!taskFiles.has(num)) err(slide.rel, `slide ${slide.slide}: no tasks/${num}-*.md for this task slide`)
+for (const [num, slide] of introSlides) {
+  if (!taskFiles.has(num)) err(slide.rel, `slide ${slide.slide}: no tasks/${num}-*.md for this task-intro slide`)
+}
+for (const [num, slide] of recapSlides) {
+  if (!taskFiles.has(num)) err(slide.rel, `slide ${slide.slide}: no tasks/${num}-*.md for this task recap slide`)
+}
+
+// Block order: for every task with both an intro and a recap, they must sit
+// in the same section file, intro before recap — the deck order the
+// Explain-Show-You-do flow depends on (see CLAUDE.md's block-order rule).
+for (const [num, intro] of introSlides) {
+  const recap = recapSlides.get(num)
+  if (!recap) continue // already reported above
+  if (intro.rel !== recap.rel) err(recap.rel, `task ${num}: intro is in ${intro.rel}, recap is in ${recap.rel} — both must be in the same section file`)
+  else if (intro.slide >= recap.slide) err(recap.rel, `task ${num}: intro (slide ${intro.slide}) must come before the recap (slide ${recap.slide}) in the same file`)
 }
 
 console.log(`\n${errors} error(s), ${warnings} warning(s) across ${files.length} files`)

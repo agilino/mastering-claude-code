@@ -1,6 +1,13 @@
+<!-- @note: task-05-finish-and-ship -->
+> Tun:
+> - Branch: 05-start hat schon Auth, Shell, Clashes, Venues, die Karte und Benachrichtigungen
+
+Sagen:
+- Fünf Dinge zu lernen, fünf Dinge zu bauen — die letzte Etappe, bevor die Referenz-Build übernimmt
+
 <!-- @note: batch-what-does-not-touch -->
 > Tun:
-> - tasks/05-finish-and-ship.md Schritte 2-3, dann zurück zu den Folien
+> - Schritte 2-3 machen die Teilnehmenden selbst
 > - [click] Das Briefing aus Task 05 zeigen
 > - Abschicken, dann zur nächsten Folie weiter, während es läuft
 
@@ -11,7 +18,7 @@ Sagen:
 
 <!-- @note: do-not-wait -->
 > Tun:
-> - tasks/05-finish-and-ship.md Schritte 4-5, dann zurück zu den Folien
+> - Schritte 4-5 machen die Teilnehmenden selbst
 > - Demo: den Build im Hintergrund anfragen, dann etwas anderes fragen
 > - /usage ausführen, die Zahl laut sagen
 
@@ -21,7 +28,7 @@ Sagen:
 
 <!-- @note: remember-it -->
 > Tun:
-> - tasks/05-finish-and-ship.md Schritt 6, dann zurück zu den Folien
+> - Schritt 6 machen die Teilnehmenden selbst
 > - Demo: sagen "Remember for next time: always use UserAvatar, never a raw img tag" — warten, bis Claude das Speichern bestätigt
 > - /memory zeigen — den Auto-Memory-Ordner auswählen
 
@@ -32,7 +39,7 @@ Sagen:
 
 <!-- @note: review-like-a-stranger -->
 > Tun:
-> - tasks/05-finish-and-ship.md Schritte 8-9, dann zurück zu den Folien
+> - Schritte 8-9 machen die Teilnehmenden selbst
 > - Zeigen: vollständiger Prompt (wörtlich aus tasks/05-finish-and-ship.md):
 >
 > Review the diff of this branch against 05-start like a strict senior engineer.
@@ -48,7 +55,7 @@ Sagen:
 
 <!-- @note: ship-then-look-at-the-reference -->
 > Tun:
-> - tasks/05-finish-and-ship.md Schritte 7 und 10-12, dann zurück zu den Folien
+> - Schritte 7 und 10-12 machen die Teilnehmenden selbst
 > - Live den PR öffnen (oder PR.md schreiben, falls gh nicht eingerichtet ist)
 > - 06-start fetchen und diffen
 > - Claude nach drei Unterschieden in lib/data und app/actions fragen, ohne Bewertung
@@ -61,7 +68,7 @@ Sagen:
 <!-- @note: finish-and-ship -->
 > Tun:
 > - Task-05-Rückblick
-> - Übergabe an tasks/05-finish-and-ship.md, alle 12 Schritte — keine Folien mehr bis Task 06
+> - Übergabe an tasks/05-finish-and-ship.md, alle 13 Schritte — keine Folien mehr bis Task 06
 > - Alle müssen bei 06-start enden — das vor dem nächsten Divider prüfen
 
 Sagen:

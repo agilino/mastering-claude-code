@@ -40,7 +40,16 @@ check ownership itself. Zod checks the shape of the input, not who may send it.
 2. Look at the two sides yourself. Open `app/(app)/layout.tsx` and find `requireUser()`.
    Then open `app/actions/clashes.ts`. Ask yourself: does the layout guard run when the action is called directly?
 3. Note your `/context` number.
-4. Create the subagent. Put this in `.claude/agents/security-auditor.md`.
+4. Watch. Your trainer sends this once, live, on their own machine. Do not send it yourself —
+   the subagent starts at the next step.
+   ```
+   Read every file in app/actions/ yourself, in this conversation, and report
+   which exported actions are missing an ownership check before mutating an
+   existing row.
+   ```
+   Watch what happens: every file's contents land in the trainer's own context window, not a
+   subagent's. Nothing is delegated, so nothing stays clean.
+5. Create the subagent. Put this in `.claude/agents/security-auditor.md`.
    ```md
    ---
    name: security-auditor
@@ -59,19 +68,19 @@ check ownership itself. Zod checks the shape of the input, not who may send it.
    scope their own where clause to the current user. Those are safe by construction.
    ```
    Note the `tools:` line. This agent reads and reports. It cannot edit.
-5. Run it.
+6. Run it.
    ```
    Use the security-auditor subagent on app/actions/ and show me its report.
    ```
-6. Read `/context` again. It moved a little. The file reads happened in the subagent's window, not yours.
-7. Check the report against the answer key (shared with task 09): `workshop-artifacts/09-team-and-workflow-audit/AUTH-FIX.md`
+7. Read `/context` again. It moved a little. The file reads happened in the subagent's window, not yours.
+8. Check the report against the answer key (shared with task 09): `workshop-artifacts/09-team-and-workflow-audit/AUTH-FIX.md`
    in the workshop repository. Do not fix the bug yet. Task 09 does that.
 
 ## Now you
 
 - Run the same audit again, but hand it off with `/subtask` instead of naming the
   `security-auditor` subagent. Compare the `/context` numbers and the time taken against
-  step 5's run.
+  step 6's run.
 - Write a second subagent, `perf-auditor`, that only looks for Prisma queries without a `select`.
 
 ## Check

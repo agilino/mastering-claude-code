@@ -1,4 +1,25 @@
 ---
+layout: task-intro
+number: "05"
+routeAlias: task-05
+heading: "Task 05 — Finish and ship"
+branch: "05-start"
+learn:
+  - "Batch independent jobs into one brief"
+  - "Run long work in the background and keep going"
+  - "Ask Claude to remember something for next time"
+  - "Review your own diff like a stranger before fixing it"
+  - "Ship through Claude: branch, commit, pull request"
+outcome:
+  - "Profile with avatar crop, and public profiles"
+  - "⌘K search across clashes, venues and people"
+  - "A dashboard with counts and recent activity"
+  - "Light, dark and system theme"
+  - "A pull request, reviewed by Claude"
+outcomeHeading: "You build"
+---
+
+---
 layout: concept
 heading: "Batch what does not touch"
 routeAlias: theory-batching
@@ -66,7 +87,6 @@ lines:
 ---
 layout: task
 number: "05"
-routeAlias: task-05
 heading: "Finish and ship"
 goal: "Batch the last four slices, run work in the background, review your pull request with Claude, and switch to the reference."
 mode: "you do"

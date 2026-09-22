@@ -8,9 +8,16 @@ Say:
 machine. The spec is docs/SPEC.md. Claude writes the code. You decide what is good."
 - Each one is a task; each task has a reset branch
 
+<!-- @note: task-02-foundation -->
+> Do:
+> - Branch: 02-start has the spec plus a first CLAUDE.md
+
+Say:
+- From a brief to a working app: scaffold it, plan the data model, then build it
+
 <!-- @note: a-brief-has-three-parts -->
 > Do:
-> - tasks/02-foundation.md steps 1-2, then back to the slides
+> - Participants do this in steps 1-2
 > - Start in manual mode, let the group watch the first two or three permission prompts
 > - The repo is intentionally non-empty. Point out that the brief tells Claude to preserve the workshop files before create-next-app runs
 > - Then switch to auto — scaffolding a Next.js app is standard, low-risk work
@@ -24,7 +31,7 @@ Say:
 
 <!-- @note: read-the-diff-not-the-summary -->
 > Do:
-> - tasks/02-foundation.md steps 3-4, then back to the slides
+> - Participants do this in steps 3-4
 > - Ask for `git status`, then run `/diff` live after the scaffold — only scaffold changes should be there, before plan mode touches anything else
 > - The panel may say some files are "not shown", and brand-new files made by a shell command can be among them — `git status` is the complete list, which is why it comes first
 > - Ask Claude to commit, read the commit message it wrote
@@ -36,7 +43,7 @@ Say:
 
 <!-- @note: plan-mode-read-think-propose -->
 > Do:
-> - tasks/02-foundation.md steps 5, 7-8, then back to the slides — step 6 (the actual prompt) is next, on its own live-coding slide
+> - Participants do this in steps 5, 7-8 — step 6 (the actual prompt) is next, on its own live-coding slide
 > - Demo live: Shift+Tab until the status bar shows "plan mode on" (two presses from Manual mode, three from auto — Pro/Max/Team sessions start in auto)
 > - Let the plan appear, once you've sent the prompt from the next slide
 > - Read one part of it out loud, ask the group a question ("why lib/generated/prisma?")
@@ -47,7 +54,7 @@ Say:
 
 <!-- @note: plan-the-data-model -->
 > Do:
-> - tasks/02-foundation.md step 6, then back to the slides
+> - Participants do this in step 6
 > - Paste the prompt with the rules as bullet points — use "\" at the end of a line to continue on a new line without sending
 
 Say:

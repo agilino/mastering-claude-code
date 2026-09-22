@@ -1,4 +1,24 @@
 ---
+layout: task-intro
+number: "03"
+routeAlias: task-03
+heading: "Task 03 — Auth and clashes"
+branch: "03-start"
+learn:
+  - "Work in small steps you can check one at a time"
+  - "Undo a step with /rewind instead of by hand"
+  - "Watch the context window with /context and /compact"
+  - "Point Claude at files with @ instead of letting it guess"
+  - "Treat every Server Action as its own public endpoint"
+outcome:
+  - "Register, login and logout"
+  - "An app shell with sidebar and top bar"
+  - "Clashes: list, create, edit and delete"
+  - "An ownership rule that blocks a stranger's delete"
+outcomeHeading: "You build"
+---
+
+---
 layout: concept
 heading: "Small steps beat big asks"
 lines:
@@ -47,13 +67,6 @@ lines:
 <G02ContextBudget />
 
 ---
-layout: concept
-heading: "Point, don't let it guess"
----
-
-<G03CarelessVsEngineered />
-
----
 layout: code-live
 heading: "The safety moment"
 routeAlias: theory-server-action-safety
@@ -71,9 +84,15 @@ from being called by someone who is not the creator?
 ```
 
 ---
+layout: concept
+heading: "Point, don't let it guess"
+---
+
+<G03CarelessVsEngineered />
+
+---
 layout: task
 number: "03"
-routeAlias: task-03
 heading: "Auth and clashes"
 goal: "Build login and the app shell in small steps, then clashes end to end, and make the ownership rule permanent."
 mode: "you do"

@@ -15,6 +15,13 @@ Say:
 - Same problem, same seeded branch (09-start), different strategy
 - Agent teams are experimental, off by default
 
+<!-- @note: task-09-team-and-workflow-audit -->
+> Do:
+> - Branch: 09-start is the same seeded bug as task 08, freshly reset
+
+Say:
+- Same audit as task 08, two more ways to run it — a team, then a dynamic workflow
+
 <!-- @note: describe-the-audit-team -->
 > Do:
 > - Prompt is the one from task 09, step 2, word for word — group sees the same text on the slide and in the task file

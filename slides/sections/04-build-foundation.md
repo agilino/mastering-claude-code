@@ -8,6 +8,25 @@ heading: "Build CLASH"
 </template>
 
 ---
+layout: task-intro
+number: "02"
+routeAlias: task-02
+heading: "Task 02 — Foundation"
+branch: "02-start"
+learn:
+  - "Write a brief: goal, rules, done when"
+  - "Read git status and /diff instead of the summary"
+  - "Use plan mode before a hard-to-undo change"
+  - "Let Claude write the commit message"
+outcome:
+  - "A running Next.js 16 app with Tailwind and shadcn/ui"
+  - "A Prisma schema with five models"
+  - "A seed with eight users"
+  - "Your first commit made through Claude"
+outcomeHeading: "You build"
+---
+
+---
 layout: concept
 heading: "A brief has three parts"
 routeAlias: theory-briefs
@@ -100,7 +119,6 @@ Show the plan, do not write files.
 ---
 layout: task
 number: "02"
-routeAlias: task-02
 heading: "Foundation"
 goal: "Scaffold the app, plan the data model in plan mode, build it, seed eight users, and commit through Claude."
 mode: "you do"
