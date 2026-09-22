@@ -9,6 +9,24 @@ routeAlias: theory-hooks
 </template>
 
 ---
+layout: task-intro
+number: "10"
+routeAlias: task-10
+heading: "Task 10 — Hooks"
+branch: "10-start"
+learn:
+  - "Wire an event, a matcher and an exit code together"
+  - "Scope a hook to one path with the sibling if field"
+  - "See why only exit code 2 blocks the agent"
+  - "Tell a hook (law) apart from a skill (advice)"
+outcome:
+  - "A typecheck hook that fires after edits under app/actions/"
+  - "A deny set for migrations, rm and .env reads"
+  - "A build log collapsed to one pass/fail line"
+  - "A Stop gate that blocks ending the turn on a red build"
+---
+
+---
 layout: concept
 heading: "Event · matcher · exit code"
 routeAlias: theory-hook-events
@@ -117,9 +135,52 @@ routeAlias: theory-advice-vs-law
 <G12SkillsVsHooks />
 
 ---
+layout: concept
+heading: "Settings override each other"
+docs: https://code.claude.com/docs/en/settings
+lines:
+  - "Five files, highest wins: managed, command line, project local, shared, user."
+  - "Same key in two files? The higher one applies. Always."
+---
+
+<G21SettingsPrecedence />
+
+---
+layout: concept
+heading: "The sandbox limits what a command touches"
+docs: https://code.claude.com/docs/en/sandboxing
+lines:
+  - "A sandboxed command writes only inside your project, reaches only allowed hosts."
+  - "macOS and Linux only. On Windows, run it inside WSL2."
+---
+
+<div class="flex gap-6 w-full max-w-3xl">
+  <div class="na-card p-5 flex-1">
+    <div class="font-semibold mb-2" style="color: var(--na-accent-500)">Filesystem</div>
+    <div class="text-base" style="color: var(--na-fg-muted)">Write access: your project only. Read access: the machine, minus paths you deny.</div>
+  </div>
+  <div class="na-card p-5 flex-1" v-click>
+    <div class="font-semibold mb-2" style="color: var(--na-accent-500)">Network</div>
+    <div class="text-base" style="color: var(--na-fg-muted)">Nothing is allowed by default. A new host asks once, then is remembered.</div>
+  </div>
+</div>
+
+---
+layout: concept
+heading: "Your org can lock settings down"
+docs: https://code.claude.com/docs/en/managed-settings
+lines:
+  - "managed-settings.json, MDM, or the claude.ai console — deployed by an admin."
+  - "Nothing you set in your own files overrides it."
+---
+
+<div class="na-card p-6 max-w-2xl text-center">
+  <div class="text-lg" style="color: var(--na-fg)">Run <span class="font-mono" style="color: var(--na-accent-500)">/status</span> — the "Setting sources" line names the managed source in force.</div>
+</div>
+
+---
 layout: task
 number: "10"
-routeAlias: task-10
 heading: "Hooks"
 goal: "Build a typecheck hook slowly, get the matcher wrong once, then add a deny set, an output replacement and a Stop gate."
 mode: "you do"

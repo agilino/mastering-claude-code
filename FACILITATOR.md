@@ -15,10 +15,37 @@ machine passes `docs/SETUP.md`, confirm `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`
 Dynamic workflows are on in `/config`, pre-install the MCP servers, run the deck once
 (`cd slides && npm run dev`).
 
-**Rhythm for every task:** show the task slide, say the reset branch and how to open the task
-file (link in the chat, printed sheet, or the repo README — your choice), demo the "Do this"
-steps once on your screen, then hand over. Do not demo "Now you". While they work, keep the
-task slide up. Close each task by asking two people what they saw.
+**Rhythm for every task:** the deck explains and shows, the task file is where they do it.
+
+- Open on the task-intro slide — the `/task-NN` link target. Say what they will learn and
+  build. Demo nothing yet.
+- Walk every concept slide that follows, in order. These are the mechanisms the task needs;
+  teach all of them before anyone touches a keyboard. Demo a `code-live` slide live where the
+  deck marks `⟵ LIVE`.
+- If the block has a stop slide (a careless-vs-engineered graphic) **with a matching anti-pattern
+  step in the task file**: click through the careless side, narrating as it builds, and stop on
+  the red bar — do not reveal the engineered side yet. Switch to the task file and send that step
+  live, once, on your own machine, while the group watches (say plainly: this is not what they
+  will do). Let it run long enough to make the point, then `Esc`, `/context` to show the damage,
+  then `/rewind` to the checkpoint from before you sent it — this restores the files it touched
+  as well as the conversation, unlike `/clear`, which only clears conversation context and would
+  leave your checkout partially changed. Point at the small step that follows it in the task
+  file, and hand over. Step back to the stop slide once most are through "Check", and click through the
+  engineered side then — this is the only point it appears, so do it, or the graphic's right half
+  never gets shown.
+- If the block has a stop slide with **no** matching task-file step (a few tasks reuse an older
+  slide for this beat, illustrating a lesson rather than a literal prompt): click through both
+  sides in one pass, as a concept slide, then hand over straight after — no live send, no
+  stepping back.
+- If the block has no stop slide, hand over straight from the last concept slide: point at
+  step one of "Do this" and let them start.
+- Keep the recap slide up while they work. Do not demo "Now you".
+- When most are through the "Check" list, bring the deck back and walk any debrief slide after
+  the recap: it explains, after the fact, why what they just did matters.
+- Close by asking two people what they saw.
+
+Refer to a task by its `/task-NN` link, never by a slide number — numbers shift as the deck
+grows.
 
 **Pace:** favor running long over cutting a task short — consistent feedback says too little
 time hurts more than too much. If a task is moving fast, stretch it: ask someone to walk the
@@ -110,6 +137,8 @@ reference build at each stage.
   steps.
 - `/rewind` after a wrong turn. Do this once on purpose.
 - `/context` after the auth work. Read the numbers aloud. `/compact` and read them again.
+- Stop slide ("Point, don't let it guess") has no matching task-file step — click through both
+  sides in one pass, no live send. It sets up step 10, the clash-building step.
 - The page guard vs. the action: ask Claude to explain it, then add "every action checks
   ownership" to CLAUDE.md. This plants the seed for the audit in Part III.
 
@@ -119,7 +148,11 @@ reference build at each stage.
 - Leaflet breaks on the server. Let Claude read the dev-server error and fix it. Do not
   fix it yourself.
 - Paste a screenshot. Then let Claude look for itself with agent-browser. Both are input.
-- Quality gates into CLAUDE.md. From here on, "done" means tsc, lint and build are green.
+- Stop slide: the one-big-ask prompt is task file step 2 — send it live, stop on the red bar,
+  then hand over at step 1 (they check out and start their own session; skip step 2, they just
+  watched it) and continue from step 3, the small-steps version of the same four things.
+- Quality gates into CLAUDE.md, as the debrief after the recap. From here on, "done" means
+  tsc, lint and build are green.
 
 ### Task 05 — Finish and ship
 
@@ -140,8 +173,10 @@ Parts III and IV run on the finished reference CLASH, as guided tasks.
 - `/context` is an instrument. Read it aloud.
 - CLASH's real `CLAUDE.md` is `@AGENTS.md` and `AGENTS.md` is generic boilerplate. Nothing
   to trim. The exercise is authoring from real invariants.
-- `@`-references vs. grep-and-guess. Plan mode for real-time notifications. `/skill-doctor`
-  on `.agents/skills/` (two near-duplicate ~100KB skills).
+- Plan mode for real-time notifications. `/skill-doctor` on `.agents/skills/` (two
+  near-duplicate ~100KB skills).
+- Stop slide ("@-references beat grep-and-guess") sits last, right before the recap, with no
+  matching task-file step — click through both sides in one pass, no live send.
 - Answer key: `workshop-artifacts/06-context-and-claude-md/CLAUDE.md`. Do not show it before they write theirs.
 
 ### Task 07 — The clash-feature skill
@@ -161,6 +196,10 @@ Parts III and IV run on the finished reference CLASH, as guided tasks.
   `deleteVenue` as a tell.
 - One `security-auditor` with Read/Grep/Glob and a falsifiable brief. `/context` barely
   moves. Fork vs. fresh: forks are on by default in interactive sessions.
+- Stop slide: task file step 4 is reading every action file yourself, in the main
+  conversation — send it live, watch your own `/context` climb, stop, then hand over at step 1
+  (they check out, look at both sides and note their own `/context` themselves; skip step 4,
+  they just watched it) and continue from step 5, the subagent version of the same audit.
 - End on the cliffhanger: two findings, nothing fixed yet.
 
 ---
@@ -181,6 +220,10 @@ Parts III and IV run on the finished reference CLASH, as guided tasks.
 - Reconcile three results, fill the toolkit map from evidence, then restore the two
   `creatorId` checks. `workshop-artifacts/09-team-and-workflow-audit/AUTH-FIX.md` has the diff.
 - Keep a finished run in a second terminal in case the live one is slow.
+- No stop slide: this whole block is the live demo already, mode `watch first`. The real
+  contrast here is three-way (subagent vs. team vs. workflow), not careless-vs-engineered — that
+  is what "Reconcile, decide, merge" is for, and it stays before the recap on purpose: the
+  numbers it compares only exist once you have watched the demo, not once they are back.
 
 ### Task 10 — Hooks
 

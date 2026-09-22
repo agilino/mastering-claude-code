@@ -31,6 +31,13 @@ Sagen:
 Sagen:
 - "Wir starten hier, weil das die Zeile ist, die immer im Spiel ist."
 
+<!-- @note: task-06-context-and-claude-md -->
+> Tun:
+> - Branch: 06-start ist die Referenz-CLASH, geseedet, CLAUDE.md ist noch immer nur `@AGENTS.md`
+
+Sagen:
+- Fünf Dinge zu lernen, vier Ergebnisse — ausgehend von einer CLAUDE.md mit 11 Byte
+
 <!-- @note: context-is-an-instrument -->
 > Tun:
 > - Demo: `/context` live in einer frischen Session auf der Referenz-CLASH ausführen
@@ -86,26 +93,6 @@ Sagen:
   - Next-16-`params` und -`searchParams` sind Promises
 - "Könnte ein Hook das erzwingen? Wenn nicht, ist es eine Regel oder eine Präferenz?"
 
-<!-- @note: references-beat-grep-and-guess -->
-> Tun:
-> - Klar sagen
-
-Sagen:
-- Links (unachtsam), ein Schritt pro Klick:
-  - [click] grep -r "notif" app/
-  - [click] 40 Dateien lesen
-  - [click] das Notification-Modell raten
-  - [click] die Server-Action-Form raten
-  - [click] Code schreiben, hoffen, dass er kompiliert
-  - [click] Context-Balken: ~85 % verbraucht
-- Rechts (gezielt), ein Schritt pro Klick:
-  - [click] @lib/data/notifications.ts
-  - [click] @app/actions/clashes.ts
-  - [click] @prisma/schema.prisma
-  - [click] Plan Mode: erst prüfen, bevor sich ein Byte bewegt
-  - [click] Context-Balken: ~18 % verbraucht
-- Der Unterschied zwischen den beiden Spalten ist kein schlaueres Modell — es ist dasselbe Modell, gezielt eingesetzt
-
 <!-- @note: plan-mode-review-first -->
 > Tun:
 > - Demo: live in den Plan Mode wechseln (Shift+Tab, bis plan dasteht)
@@ -139,6 +126,45 @@ Sagen:
 - Ungenutzte Skills kosten dich jede Session — aber nur ihre kurze Beschreibung lädt, nicht der ~100-KB-Body. Der Body lädt, wenn der Skill benutzt wird
 - Nicht in einer aufgeblähten CLAUDE.md (die gibt es nicht) — sondern in `.agents/skills/react-best-practices` und `.agents/skills/vercel-react-best-practices`
 - Zwei echte, fast identische Regelwerke, je etwa 100 KB
+
+<!-- @note: claude-md-files-add-up-they-don-t-compete -->
+> Tun:
+> - Docs-Link: öffnen, bis "How CLAUDE.md files load" scrollen, dann zurück zu den Folien
+
+Sagen:
+- [click] ~/.claude/CLAUDE.md — deine persönlichen Instruktionen, jedes Projekt
+- [click] CLAUDE.md im Repo-Root — wird zuerst gelesen, am nächsten zum Start
+- [click] CLAUDE.local.md — gitignored, direkt nach CLAUDE.md auf derselben Ebene angehängt
+- [click] Das CLAUDE.md eines Unterordners lädt, wenn Claude dort eine Datei liest — zuletzt gelesen, am nächsten an der Arbeit
+- [click] .claude/rules/*.md lädt genauso, on demand
+- [click] Alles landet in einem Context — nichts wird verworfen, nichts wird ausgewählt
+- [click] Zwei Dateien widersprechen sich? Claude wählt eine. Das ist ein Bug, den du gebaut hast, kein Feature
+
+<!-- @note: rules-can-load-only-for-matching-files -->
+Sagen:
+- Eine Regel ohne paths:-Feld lädt in jeder Session, wie ein zusätzliches CLAUDE.md
+- [click] ~/.claude/rules/ — deine eigenen, jedes Projekt, für Dinge, die nicht Sache dieses Repos sind
+- Einen gemeinsamen Rules-Ordner in mehrere Repos symlinken, um eine Kopie synchron zu halten
+
+<!-- @note: references-beat-grep-and-guess -->
+> Tun:
+> - Klar sagen
+
+Sagen:
+- Links (unachtsam), ein Schritt pro Klick:
+  - [click] grep -r "notif" app/
+  - [click] 40 Dateien lesen
+  - [click] das Notification-Modell raten
+  - [click] die Server-Action-Form raten
+  - [click] Code schreiben, hoffen, dass er kompiliert
+  - [click] Context-Balken: ~85 % verbraucht
+- Rechts (gezielt), ein Schritt pro Klick:
+  - [click] @lib/data/notifications.ts
+  - [click] @app/actions/clashes.ts
+  - [click] @prisma/schema.prisma
+  - [click] Plan Mode: erst prüfen, bevor sich ein Byte bewegt
+  - [click] Context-Balken: ~18 % verbraucht
+- Der Unterschied zwischen den beiden Spalten ist kein schlaueres Modell — es ist dasselbe Modell, gezielt eingesetzt
 
 <!-- @note: context-and-claude-md -->
 > Tun:

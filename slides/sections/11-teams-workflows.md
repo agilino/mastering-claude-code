@@ -19,6 +19,24 @@ docs: https://code.claude.com/docs/en/agent-teams
 </template>
 
 ---
+layout: task-intro
+number: "09"
+routeAlias: task-09
+heading: "Task 09 — Team and workflow audit"
+branch: "09-start"
+learn:
+  - "Describe an agent team in words, no config file"
+  - "Watch teammates message each other by name"
+  - "Describe a dynamic workflow; Claude writes the script"
+  - "Know where a generated workflow script lands first"
+outcome:
+  - "The same audit, run by a team and by a workflow"
+  - "A saved workflow script in .claude/workflows/"
+  - "The ownership checks restored and merged"
+  - "Findings, time and tokens compared across three runs"
+---
+
+---
 layout: code-live
 heading: "Describe the audit team"
 filePath: "prompt to Claude Code — plain words, not a config file"
@@ -118,7 +136,6 @@ routeAlias: theory-reconcile
 ---
 layout: task
 number: "09"
-routeAlias: task-09
 heading: "Team and workflow audit"
 goal: "Run the audit as an agent team and as a dynamic workflow, read the generated script, and merge the fix."
 mode: "watch first"

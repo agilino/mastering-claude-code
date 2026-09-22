@@ -1,6 +1,13 @@
+<!-- @note: task-03-auth-and-clashes -->
+> Do:
+> - Branch: 03-start already has the scaffold, schema and seed data — task 02's result
+
+Say:
+- Five things to learn, four things to build — the longest task in the part, so small steps matter most here
+
 <!-- @note: small-steps-beat-big-asks -->
 > Do:
-> - tasks/03-auth-and-clashes.md steps 2-4, then back to the slides
+> - Participants do this in steps 2-4
 > - [click] Show the one-line big ask fail or drift, then the same work in three steps
 
 Say:
@@ -10,7 +17,7 @@ Say:
 
 <!-- @note: undo-a-step-rewind -->
 > Do:
-> - tasks/03-auth-and-clashes.md steps 6-7, then back to the slides
+> - Participants do this in steps 6-7
 > - Demo: after the shell step, run /rewind, show the list of checkpoints
 > - Pick the checkpoint before the last step, show the files are back
 > - Press Esc to cancel if you did not really want it
@@ -21,7 +28,7 @@ Say:
 
 <!-- @note: watch-the-window-fill -->
 > Do:
-> - tasks/03-auth-and-clashes.md steps 8-9, then back to the slides
+> - Participants do this in steps 8-9
 > - Run /context live after the auth and shell steps
 > - [click] Read the bands: system prompt, CLAUDE.md, tool results, conversation
 > - Then run /compact, then /context again
@@ -31,29 +38,9 @@ Say:
 - First time the group sees the context window as something they can manage
 - Part III makes it a discipline
 
-<!-- @note: point-don-t-let-it-guess -->
-> Do:
-> - Sets up tasks/03-auth-and-clashes.md step 10, then back to the slides
-> - Left (careless), one step per click:
->   - [click] grep -r "notif" app/
->   - [click] read 40 files
->   - [click] guess the notification model
->   - [click] guess the Server Action shape
->   - [click] write code, hope it compiles
->   - [click] context bar: ~85% consumed
-> - Right (engineered), one step per click:
->   - [click] @lib/data/notifications.ts
->   - [click] @app/actions/clashes.ts
->   - [click] @prisma/schema.prisma
->   - [click] Plan Mode: review before a byte moves
->   - [click] context bar: ~18% consumed — same task, same model, pointed on purpose
-
-Say:
-- Why the clashes prompt in Task 03 is full of @ references
-
 <!-- @note: the-safety-moment -->
 > Do:
-> - tasks/03-auth-and-clashes.md steps 11-12, then back to the slides
+> - Participants do this in steps 11-12
 > - FULL WORKING PROMPTS (verbatim from tasks/03-auth-and-clashes.md):
 >
 > 1) requireUser() runs in app/(app)/layout.tsx. Does that protect the deleteClash action
@@ -71,6 +58,26 @@ Say:
 - A Server Action is a public endpoint with a generated id
 - The layout guards the page, not the action
 - Zod checks shape, not permission
+
+<!-- @note: point-don-t-let-it-guess -->
+> Do:
+> - Sets up tasks/03-auth-and-clashes.md step 10, the clash-building step
+> - Left (careless), one step per click:
+>   - [click] grep -r "notif" app/
+>   - [click] read 40 files
+>   - [click] guess the notification model
+>   - [click] guess the Server Action shape
+>   - [click] write code, hope it compiles
+>   - [click] context bar: ~85% consumed
+> - Right (engineered), one step per click:
+>   - [click] @lib/data/notifications.ts
+>   - [click] @app/actions/clashes.ts
+>   - [click] @prisma/schema.prisma
+>   - [click] Plan Mode: review before a byte moves
+>   - [click] context bar: ~18% consumed — same task, same model, pointed on purpose
+
+Say:
+- Why the clashes prompt in Task 03 is full of @ references
 
 <!-- @note: auth-and-clashes -->
 > Do:

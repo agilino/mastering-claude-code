@@ -7,6 +7,24 @@ lines:
   - "The Agent SDK: the same loop, inside your program."
 ---
 
+---
+layout: task-intro
+number: "12"
+routeAlias: task-12
+heading: "Task 12 — Letting go"
+branch: "12-start"
+learn:
+  - "Run several agents in separate worktrees, no collisions"
+  - "Move the same audit into CI, running unattended"
+  - "Wire up claude-code-action@v1, authenticated by a named secret"
+  - "Set up the GitHub App and secret with /install-github-app"
+outcome:
+  - "Two worktree sessions running at once, never touching each other's files"
+  - "A GitHub Actions workflow that audits every pull request"
+  - "The audit's findings posted as a PR comment, unattended"
+  - "The GitHub App installed, with a working OAuth secret"
+---
+
 
 ---
 layout: concept
@@ -64,9 +82,23 @@ jobs:
 ```
 
 ---
+layout: concept
+heading: "Drive a session from your phone"
+docs: https://code.claude.com/docs/en/remote-control
+lines:
+  - "/remote-control connects claude.ai/code or the mobile app to this session."
+  - "Your files, your tools, stay on your machine the whole time."
+---
+
+<div class="flex flex-col gap-3 w-full max-w-2xl">
+  <div class="na-card px-5 py-3 flex gap-4 items-center"><span class="font-mono text-sm w-40" style="color: var(--na-accent-500)">/remote-control</span><span style="color: var(--na-fg-muted)">from inside a running session</span></div>
+  <div class="na-card px-5 py-3 flex gap-4 items-center" v-click><span class="font-mono text-sm w-40" style="color: var(--na-accent-500)">claude --rc</span><span style="color: var(--na-fg-muted)">start a new session already connected</span></div>
+  <div class="na-card px-5 py-3 flex gap-4 items-center" v-click><span class="font-mono text-sm w-40" style="color: var(--na-accent-500)">/loop</span><span style="color: var(--na-fg-muted)">a prompt that repeats on an interval, no phone needed</span></div>
+</div>
+
+---
 layout: task
 number: "12"
-routeAlias: task-12
 heading: "Letting go"
 goal: "Run two agents in separate worktrees at once, then add a GitHub Action that runs the audit on every pull request."
 mode: "you do"
@@ -74,6 +106,24 @@ success: "Two worktree sessions never touched each other's files, and the audit 
 branch: "12-start"
 ---
 
+
+---
+layout: task-intro
+number: "13"
+routeAlias: task-13
+heading: "Task 13 — The Agent SDK"
+branch: "13-start"
+learn:
+  - "Host the same Claude Code loop inside your own program"
+  - "Carry context budget, tool limits and hooks over unchanged"
+  - "Restrict a scripted agent to read-only tools"
+  - "Log every tool call to stderr with a PreToolUse hook"
+outcome:
+  - "ask-clash.mts, a script that answers one question about CLASH"
+  - "Only Read, Grep and Glob allowed — no edits, no commands"
+  - "A capped turn limit and a hook that logs every tool call"
+  - "A printed answer naming a clash, a place and a time"
+---
 
 ---
 layout: concept
@@ -113,7 +163,6 @@ for await (const m of run)
 ---
 layout: task
 number: "13"
-routeAlias: task-13
 heading: "The Agent SDK"
 goal: "Host the Claude Code loop in a small program that answers a question about CLASH with read-only tools and a hook."
 mode: "you do"

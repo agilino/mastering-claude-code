@@ -78,12 +78,31 @@ Target codebase: `https://github.com/pawsaw/clash` (Next.js 16 / React 19 / Pris
 
 ## Slide rules
 
-- Layouts: `concept` (graphic + ≤ 3 lines), `code-live` (skeleton), `task` (recap: number, goal, success, reset branch), `section` (divider with `JourneyMap`, plus `ToolkitMap` in the control/orchestrate parts).
+- Layouts: `concept` (graphic + ≤ 3 lines), `code-live` (skeleton), `task-intro` (opens a task
+  block: title, `git checkout`, "You learn" / outcome columns — this is the `routeAlias:
+  task-NN` link target), `task` (closes it: the recap, with goal, success, reset branch),
+  `section` (divider with `JourneyMap`, plus `ToolkitMap` in the control/orchestrate parts).
 - Concept slides: ≤ 40 words of body text. Headings ≤ 8 words.
 - Diagrams are small Vue/SVG components in `slides/components/` (`D*.vue` for the LLM and harness ideas, `G*.vue` for the rest). Text inside SVG is never under 13 px.
 - Presenter notes (`<!-- -->`) hold the trainer script: what to say, what to demo, what to watch for. No times.
-- Task slide frontmatter: `number` (matches `tasks/NN-*.md`), `heading`, `goal`, `mode` (`you do` | `watch first`), `success`, `branch`. No QR code and no task URL on slides: the trainer picks the medium.
-- Docs links: a `docs:` frontmatter field holds one official English docs URL (`https://code.claude.com/docs/en/…`). The `concept`, `code-live` and `section` layouts draw it bottom-right as a chain icon plus the word "docs" (`slides/components/DocLink.vue`) — bottom-right because Slidev's navigation bar pops up bottom-left. Never a `<DocLink>` tag in a slide body, never on a `task` slide. Use it sparingly, where a mechanism is first explained. The slide's presenter note names the docs heading to scroll to, and the same URL is in that task's `## Links`.
+- Every task block, in this order, inside one section file: `task-intro` → every concept/code-live
+  slide the task needs → an optional "stop slide" (`G03CarelessVsEngineered`, a live
+  careless-vs-engineered demo — only where the task has a real contrast, never forced) → `task`
+  recap → an optional debrief (content that only makes sense once the task is done, e.g. quality
+  gates). `task-intro` carries `routeAlias: task-NN`; the `task` recap never does — one link
+  target per task, at the top of its block, not the bottom.
+- `task-intro` frontmatter: `number` (matches `tasks/NN-*.md`), `routeAlias` (`task-NN`),
+  `heading` (`"Task NN — Title"`), `branch`, `learn` (string list, the Claude Code mechanisms
+  taught), `outcome` (string list, what gets built), `outcomeHeading` (optional, `"You build"`
+  in Part II, otherwise omitted). `task` (recap) frontmatter: `number`, `heading`, `goal`, `mode`
+  (`you do` | `watch first`), `success`, `branch`. No QR code and no task URL on any task slide
+  beyond the `task-intro` routeAlias: the trainer never reads a URL aloud, they open `/task-NN`.
+- The task file's own `## Theory` section (stable `theory-*` route aliases on individual
+  concept/code-live slides, one to three links back from the task file) is a separate mechanism
+  from `task-intro`/`task` and coexists with it: `task-intro` is the slide-side overview a
+  participant sees watching the deck; `## Theory` is the task-file-side deep link for someone
+  who skips the slides.
+- Docs links: a `docs:` frontmatter field holds one official English docs URL (`https://code.claude.com/docs/en/…`). The `concept`, `code-live` and `section` layouts draw it bottom-right as a chain icon plus the word "docs" (`slides/components/DocLink.vue`) — bottom-right because Slidev's navigation bar pops up bottom-left. Never a `<DocLink>` tag in a slide body, never on a `task` or `task-intro` slide. Use it sparingly, where a mechanism is first explained. The slide's presenter note names the docs heading to scroll to, and the same URL is in that task's `## Links`.
 
 ## Task slugs (fixed — README, docs and task numbers on slides depend on them)
 
