@@ -71,6 +71,14 @@ out, Claude has to guess or search for.
    CLASH ships nine vendored skills. Two of them, `react-best-practices` and
    `vercel-react-best-practices`, are near-duplicates of about 100 KB each. Both are
    scanned every session.
+10. See what a personal rule adds, not overrides.
+    ```bash
+    mkdir -p ~/.claude/rules
+    ```
+    Write one line to `~/.claude/rules/tone.md`: `Explain every fix in one sentence before making it.`
+    Run `/context` and look under **Memory files**. Your project `CLAUDE.md` and this new
+    rule both loaded. Neither replaced the other — a CLAUDE.md file only adds to what Claude
+    reads, it never overrides another one. If two files ever disagree, Claude just picks one.
 
 ## Now you
 
@@ -85,6 +93,7 @@ out, Claude has to guess or search for.
 - [ ] `docs/plans/realtime-notifications.md` exists and was reviewed in plan mode before any code.
 - [ ] `/skill-doctor` ran and you can name one skill worth removing.
 - [ ] `/context` after the task is not much higher than before it.
+- [ ] `/context` lists both `CLAUDE.md` and `~/.claude/rules/tone.md` together under Memory files.
 
 ## Stuck?
 
