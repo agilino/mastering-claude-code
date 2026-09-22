@@ -13,6 +13,7 @@ branch: "14-start"
 ---
 layout: concept
 heading: "Security: three rules"
+routeAlias: theory-security-rules
 lines:
   - "Anything a model reads can be an instruction."
   - "Quarantine: readers of untrusted text cannot write."
@@ -43,6 +44,7 @@ lines:
 ---
 layout: concept
 heading: "Context is king. You push it, you own it."
+routeAlias: theory-context-is-king
 ---
 
 

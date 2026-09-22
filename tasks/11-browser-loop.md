@@ -3,6 +3,14 @@
 > Part: Orchestrate and let go · Reset branch: `11-start`
 > Slides: https://mastering-claude-code.vercel.app/task-11
 
+## Theory
+
+- [Your systems, as tools](https://mastering-claude-code.vercel.app/theory-mcp-tools)
+- [Drive first, then test](https://mastering-claude-code.vercel.app/theory-browser-drive)
+- [Measure, fix, measure again](https://mastering-claude-code.vercel.app/theory-measure-fix)
+
+> **Reminder:** Browser tools close the verification loop: observe first, then automate or optimize from measured evidence.
+
 ## You will end up with
 
 A Playwright test file for the join flow (request, accept, reject, notification), and a

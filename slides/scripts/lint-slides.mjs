@@ -42,6 +42,7 @@ let errors = 0
 let warnings = 0
 const taskSlides = new Map()
 const taskFiles = new Map()
+const theorySlides = new Map()
 const err = (f, msg) => { errors++; console.log(`ERROR ${f}: ${msg}`) }
 const warn = (f, msg) => { warnings++; console.log(`warn  ${f}: ${msg}`) }
 
@@ -97,6 +98,14 @@ for (const file of files) {
     const body = raw.replace(/<!--[\s\S]*?-->/g, '')
     const layout = /layout:\s*(\S+)/.exec(fm)?.[1]
     const n = Math.ceil(i / 2)
+    const heading = /heading:\s*"([^"]*)"/.exec(fm)?.[1] ?? ''
+    const routeAliasRaw = /^routeAlias:[ \t]*(.*)$/m.exec(fm)?.[1]
+    const routeAlias = routeAliasRaw?.replace(/\s+#.*$/, '').trim().replace(/^["']|["']$/g, '')
+    if (routeAlias?.startsWith('theory-')) {
+      if (!heading) err(rel, `slide ${n}: theory routeAlias ${routeAlias} has no heading`)
+      if (theorySlides.has(routeAlias)) err(rel, `slide ${n}: duplicate theory routeAlias ${routeAlias}`)
+      theorySlides.set(routeAlias, { heading, rel, slide: n })
+    }
     // wording limits (see plan: no orphan words, no clipped code)
     const linesBlock = /lines:\n((?:\s+- .*\n)+)/.exec(fm)?.[1] ?? ''
     for (const ln of linesBlock.split('\n')) {
@@ -165,6 +174,25 @@ for (const [num, rel] of taskFiles) {
   if (links.length !== 1) err(rel, `expected exactly one Slides link for task ${num}, found ${links.length}`)
   else if (links[0] !== expectedUrl) err(rel, `task ${num} Slides link must be ${expectedUrl}`)
   if (!taskSlides.has(num)) err(rel, `no task slide with number ${num} and routeAlias task-${num}`)
+
+  const expectedHeadings = ['Theory', 'You will end up with', 'Why', 'Do this', 'Now you', 'Check', 'Stuck?', 'Go further', 'Links']
+  const headings = [...text.matchAll(/^## (.+)$/gm)].map((m) => m[1])
+  if (JSON.stringify(headings) !== JSON.stringify(expectedHeadings)) {
+    err(rel, `task headings must be exactly: ${expectedHeadings.join(' → ')}`)
+  }
+
+  const theory = /## Theory\n\n([\s\S]*?)(?=\n## )/.exec(text)?.[1] ?? ''
+  const theoryLinks = [...theory.matchAll(/^- \[([^\]]+)\]\(https:\/\/mastering-claude-code\.vercel\.app\/(theory-[^)]+)\)$/gm)]
+  if (theoryLinks.length < 1 || theoryLinks.length > 3) {
+    err(rel, `Theory must contain one to three slide links; found ${theoryLinks.length}`)
+  }
+  const reminders = [...theory.matchAll(/^> \*\*Reminder:\*\* .+$/gm)]
+  if (reminders.length !== 1) err(rel, `Theory must contain exactly one Reminder line; found ${reminders.length}`)
+  for (const [, label, alias] of theoryLinks) {
+    const slide = theorySlides.get(alias)
+    if (!slide) err(rel, `Theory link /${alias} has no matching slide routeAlias`)
+    else if (label !== slide.heading) err(rel, `Theory link text "${label}" must match slide heading "${slide.heading}" for /${alias}`)
+  }
 }
 
 for (const [num, slide] of taskSlides) {

@@ -3,6 +3,14 @@
 > Part: Build CLASH · Reset branch: `05-start`
 > Slides: https://mastering-claude-code.vercel.app/task-05
 
+## Theory
+
+- [Batch what does not touch](https://mastering-claude-code.vercel.app/theory-batching)
+- [Remember it](https://mastering-claude-code.vercel.app/theory-memory)
+- [Review like a stranger](https://mastering-claude-code.vercel.app/theory-code-review)
+
+> **Reminder:** Parallelize independent work, preserve useful project knowledge, and review the diff before shipping.
+
 ## You will end up with
 
 The complete app: profile with avatar, public profiles, search, dashboard, theme and settings.

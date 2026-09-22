@@ -1,6 +1,7 @@
 ---
 layout: concept
 heading: "Batch what does not touch"
+routeAlias: theory-batching
 lines:
   - "Profile · search · dashboard · theme — four jobs, no shared files"
   - "One brief, each job names its files"
@@ -27,6 +28,7 @@ lines:
 ---
 layout: concept
 heading: "Remember it"
+routeAlias: theory-memory
 lines:
   - "Remember: always use UserAvatar, never a raw img tag"
   - "Saved to memory. Loaded next time."
@@ -37,6 +39,7 @@ lines:
 ---
 layout: code-live
 heading: "Review like a stranger"
+routeAlias: theory-code-review
 filePath: "prompt to Claude Code — on the finish branch"
 success: "Findings come back with file and line, and you decide which ones to fix."
 ---

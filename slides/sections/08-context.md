@@ -28,6 +28,7 @@ heading: "Context"
 ---
 layout: concept
 heading: "/context is an instrument"
+routeAlias: theory-context-instrument
 docs: https://code.claude.com/docs/en/context-window
 lines:
   - "Read it: system prompt, CLAUDE.md, skills, tool results, conversation."
@@ -91,6 +92,7 @@ heading: "@-references beat grep-and-guess"
 ---
 layout: concept
 heading: "Plan mode: review first"
+routeAlias: theory-plan-review
 docs: https://code.claude.com/docs/en/permission-modes
 lines:
   - "Task: real-time notifications for CLASH."
@@ -110,6 +112,7 @@ lines:
 ---
 layout: concept
 heading: "/skill-doctor: what it costs"
+routeAlias: theory-skill-doctor
 lines:
   - "CLASH ships nine vendored skills in .agents/skills/"
   - "Two ~100 KB near-duplicates — only their descriptions scan every session."

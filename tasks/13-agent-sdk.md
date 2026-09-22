@@ -3,6 +3,12 @@
 > Part: Orchestrate and let go · Reset branch: `13-start`
 > Slides: https://mastering-claude-code.vercel.app/task-13
 
+## Theory
+
+- [Same loop, inside your program](https://mastering-claude-code.vercel.app/theory-agent-sdk-loop)
+
+> **Reminder:** The Agent SDK hosts the same agent loop in your code; tool limits, hooks and turn limits still apply.
+
 ## You will end up with
 
 A small program, `ask-clash.mts`, that hosts the Claude Code agent loop inside your own

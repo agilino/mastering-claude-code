@@ -3,6 +3,13 @@
 > Part: Build CLASH · Reset branch: `02-start`
 > Slides: https://mastering-claude-code.vercel.app/task-02
 
+## Theory
+
+- [A brief has three parts](https://mastering-claude-code.vercel.app/theory-briefs)
+- [Plan mode: read, think, propose](https://mastering-claude-code.vercel.app/theory-plan-mode)
+
+> **Reminder:** State the goal, rules and done criteria; use plan mode before changes that are expensive to undo.
+
 ## You will end up with
 
 A running Next.js 16 app with Tailwind, shadcn/ui, a Prisma 7 database with the five

@@ -3,6 +3,14 @@
 > Part: Control the context · Reset branch: `06-start`
 > Slides: https://mastering-claude-code.vercel.app/task-06
 
+## Theory
+
+- [/context is an instrument](https://mastering-claude-code.vercel.app/theory-context-instrument)
+- [Plan mode: review first](https://mastering-claude-code.vercel.app/theory-plan-review)
+- [/skill-doctor: what it costs](https://mastering-claude-code.vercel.app/theory-skill-doctor)
+
+> **Reminder:** Context is a budget; keep standing instructions small and review plans before implementation.
+
 ## You will end up with
 
 A `CLAUDE.md` for the reference CLASH that states the six rules that really prevent bugs

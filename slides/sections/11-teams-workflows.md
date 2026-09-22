@@ -10,6 +10,7 @@ heading: "Orchestrate and let go"
 ---
 layout: section
 heading: "Strategy two: agent teams"
+routeAlias: theory-agent-teams
 docs: https://code.claude.com/docs/en/agent-teams
 ---
 
@@ -46,6 +47,7 @@ heading: "Lead, peers, and a disagreement"
 ---
 layout: section
 heading: "Strategy three: dynamic workflows"
+routeAlias: theory-dynamic-workflows
 docs: https://code.claude.com/docs/en/workflows
 ---
 
@@ -108,6 +110,7 @@ return { verified: verified.filter(Boolean) }
 ---
 layout: concept
 heading: "Reconcile, decide, merge"
+routeAlias: theory-reconcile
 ---
 
 <G10OrchestrationLadder />

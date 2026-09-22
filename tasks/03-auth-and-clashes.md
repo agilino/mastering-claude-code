@@ -3,6 +3,14 @@
 > Part: Build CLASH · Reset branch: `03-start`
 > Slides: https://mastering-claude-code.vercel.app/task-03
 
+## Theory
+
+- [Undo a step: /rewind](https://mastering-claude-code.vercel.app/theory-rewind)
+- [Watch the window fill](https://mastering-claude-code.vercel.app/theory-context-window)
+- [The safety moment](https://mastering-claude-code.vercel.app/theory-server-action-safety)
+
+> **Reminder:** Work in small steps, watch context, and treat every Server Action as its own public endpoint.
+
 ## You will end up with
 
 Register, login and logout. An app shell with a sidebar and a top bar that only logged-in

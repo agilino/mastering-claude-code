@@ -3,6 +3,13 @@
 > Part: Orchestrate and let go · Reset branch: `14-start`
 > Slides: https://mastering-claude-code.vercel.app/task-14
 
+## Theory
+
+- [Security: three rules](https://mastering-claude-code.vercel.app/theory-security-rules)
+- [Context is king. You push it, you own it.](https://mastering-claude-code.vercel.app/theory-context-is-king)
+
+> **Reminder:** Capstone reuses everything: least privilege, isolated work, review, browser verification and context discipline.
+
 ## You will end up with
 
 One real feature on the reference CLASH, shipped as a pull request, built with every tool

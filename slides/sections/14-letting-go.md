@@ -11,6 +11,7 @@ lines:
 ---
 layout: concept
 heading: "One repo, N isolated agents"
+routeAlias: theory-worktrees
 lines:
   - "claude --worktree <name>   (short: -w)"
   - "Copy under .claude/worktrees/<name>/, on branch worktree-<name>"
@@ -21,6 +22,7 @@ lines:
 ---
 layout: concept
 heading: "Headless in CI"
+routeAlias: theory-headless-ci
 lines:
   - "CLASH has no .github/workflows/. Nothing runs on a pull request."
   - "anthropics/claude-code-action@v1. Not @beta. Not a raw claude -p."
@@ -76,6 +78,7 @@ branch: "12-start"
 ---
 layout: concept
 heading: "Same loop, inside your program"
+routeAlias: theory-agent-sdk-loop
 lines:
   - "Context budget, tool limits, hooks: all carry over unchanged."
   - "Only the host changes."

@@ -10,6 +10,7 @@ heading: "The browser closes the loop"
 ---
 layout: concept
 heading: "Your systems, as tools"
+routeAlias: theory-mcp-tools
 docs: https://code.claude.com/docs/en/mcp
 lines:
   - "Claude Code ↔ MCP servers ↔ browser and other systems"
@@ -36,6 +37,7 @@ claude mcp list
 ---
 layout: code-live
 heading: "Drive first, then test"
+routeAlias: theory-browser-drive
 filePath: "prompt to Claude Code — after the manual walkthrough is confirmed"
 success: "The prompt names both outcomes, accept and reject, and points at the real seeded accounts."
 ---
@@ -51,6 +53,7 @@ accepts, joining user is notified.
 ---
 layout: concept
 heading: "Measure, fix, measure again"
+routeAlias: theory-measure-fix
 lines:
   - "User.avatar is a base64 string, up to 1.5 MB."
   - "getCurrentUser() selects it on every page. The layout never shows it."
