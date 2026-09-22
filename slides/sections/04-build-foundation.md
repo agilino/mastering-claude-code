@@ -98,6 +98,7 @@ Show the plan, do not write files.
 ---
 layout: task
 number: "02"
+routeAlias: task-02
 heading: "Foundation"
 goal: "Scaffold the app, plan the data model in plan mode, build it, seed eight users, and commit through Claude."
 mode: "you do"

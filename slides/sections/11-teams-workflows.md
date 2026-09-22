@@ -115,6 +115,7 @@ heading: "Reconcile, decide, merge"
 ---
 layout: task
 number: "09"
+routeAlias: task-09
 heading: "Team and workflow audit"
 goal: "Run the audit as an agent team and as a dynamic workflow, read the generated script, and merge the fix."
 mode: "watch first"

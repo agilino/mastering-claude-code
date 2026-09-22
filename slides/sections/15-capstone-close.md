@@ -1,6 +1,7 @@
 ---
 layout: task
 number: "14"
+routeAlias: task-14
 heading: "Capstone"
 goal: "Pick one brief and ship it as a pull request using every tool from this workshop."
 mode: "you do"

@@ -63,6 +63,7 @@ lines:
 ---
 layout: task
 number: "05"
+routeAlias: task-05
 heading: "Finish and ship"
 goal: "Batch the last four slices, run work in the background, review your pull request with Claude, and switch to the reference."
 mode: "you do"

@@ -119,6 +119,7 @@ lines:
 ---
 layout: task
 number: "06"
+routeAlias: task-06
 heading: "Context and CLAUDE.md"
 goal: "Write CLAUDE.md from nothing around six real rules, then get a reviewed plan for real-time notifications before any code."
 mode: "you do"

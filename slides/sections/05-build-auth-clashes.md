@@ -70,6 +70,7 @@ from being called by someone who is not the creator?
 ---
 layout: task
 number: "03"
+routeAlias: task-03
 heading: "Auth and clashes"
 goal: "Build login and the app shell in small steps, then clashes end to end, and make the ownership rule permanent."
 mode: "you do"

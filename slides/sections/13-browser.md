@@ -94,6 +94,7 @@ lines:
 ---
 layout: task
 number: "11"
+routeAlias: task-11
 heading: "The browser closes the loop"
 goal: "Write the join-flow test suite with Playwright MCP, then measure and fix the avatar payload with Chrome DevTools MCP."
 mode: "you do"

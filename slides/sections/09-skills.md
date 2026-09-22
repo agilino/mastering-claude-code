@@ -72,6 +72,7 @@ lines:
 ---
 layout: task
 number: "07"
+routeAlias: task-07
 heading: "The clash-feature skill"
 goal: "Write a skill that holds CLASH's end-to-end feature recipe, then use it to ship venue favourites."
 mode: "you do"

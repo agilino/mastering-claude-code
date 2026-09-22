@@ -120,6 +120,7 @@ Read @docs/SPEC.md.
 ---
 layout: task
 number: "01"
+routeAlias: task-01
 heading: "Setup and first conversation"
 goal: "Install Claude Code, clone the empty CLASH repo, and have your first conversation about the spec."
 mode: "you do"

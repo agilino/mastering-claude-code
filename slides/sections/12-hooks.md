@@ -116,6 +116,7 @@ heading: "Advice vs. law"
 ---
 layout: task
 number: "10"
+routeAlias: task-10
 heading: "Hooks"
 goal: "Build a typecheck hook slowly, get the matcher wrong once, then add a deny set, an output replacement and a Stop gate."
 mode: "you do"
