@@ -1,6 +1,8 @@
 <!-- @note: text-becomes-tokens -->
 > Tun:
 > - Die Beispiele durchklicken
+> - platform.openai.com/tokenizer — bei Zeit live öffnen, Leute ihren eigenen Namen einfügen lassen
+> - Ein weiterer Klick zeigt den Video-Link unten rechts — draufzeigen, der Gruppe sagen, ihn jetzt nicht zu schauen
 
 Sagen:
 - Ein Modell sieht nie Buchstaben oder Wörter — Text wird zuerst in Tokens zerlegt

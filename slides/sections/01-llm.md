@@ -8,6 +8,8 @@ lines:
 
 <D01TokenChips />
 
+<a v-click="7" href="https://www.youtube.com/watch?v=zduSFxRajkE" target="_blank" rel="noopener noreferrer" title="Karpathy — Let's build the GPT Tokenizer (2h13m)" style="position: absolute; right: 4rem; bottom: 2.25rem; display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.875rem; font-weight: 500; color: var(--na-fg-muted); text-decoration: none; opacity: 0.8;">🎥 video</a>
+
 ---
 layout: concept
 heading: "One token at a time"
