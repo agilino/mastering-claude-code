@@ -1,6 +1,8 @@
 <!-- @note: text-becomes-tokens -->
 > Do:
 > - Click through the examples
+> - platform.openai.com/tokenizer — open it live if there is time, let people paste their own name
+> - One more click reveals the video link, bottom right — point at it, tell the group not to watch it now
 
 Say:
 - Model never sees letters or words — text is cut into tokens first
