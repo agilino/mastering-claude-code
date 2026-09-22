@@ -154,6 +154,6 @@ Say:
 > - Leave it up for a moment
 
 Say:
-- Everyone in this workshop has access to the same model — nobody gets a smarter one
+- Everyone in this workshop can pick from the same models — nobody gets a smarter one behind the scenes
 - The difference between "it drifted off track" and "it shipped the feature with tests" is entirely in the harness: the context you gave it, the tools you allowed, the rules you enforced
 - That is what the rest of the workshop teaches

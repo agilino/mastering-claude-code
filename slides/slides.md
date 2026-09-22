@@ -25,11 +25,23 @@ src: ./sections/01-llm.md
 ---
 
 ---
+src: ./sections/01a-architecture-and-models.md
+---
+
+---
 src: ./sections/02-harness.md
 ---
 
 ---
+src: ./sections/02a-agent-landscape.md
+---
+
+---
 src: ./sections/03-first-steps.md
+---
+
+---
+src: ./sections/03a-cli-and-sessions.md
 ---
 
 ---
@@ -53,11 +65,23 @@ src: ./sections/08-context.md
 ---
 
 ---
+src: ./sections/08a-memory-hierarchy.md
+---
+
+---
 src: ./sections/09-skills.md
 ---
 
 ---
+src: ./sections/09a-plugins-marketplace.md
+---
+
+---
 src: ./sections/10-subagents.md
+---
+
+---
+src: ./sections/10a-builtin-subagents.md
 ---
 
 ---
@@ -69,11 +93,27 @@ src: ./sections/12-hooks.md
 ---
 
 ---
+src: ./sections/12a-sandbox-and-settings.md
+---
+
+---
 src: ./sections/13-browser.md
 ---
 
 ---
+src: ./sections/13a-mcp-depth.md
+---
+
+---
 src: ./sections/14-letting-go.md
+---
+
+---
+src: ./sections/14a-methods-speckit-bmad.md
+---
+
+---
+src: ./sections/14b-remote-control.md
 ---
 
 ---
