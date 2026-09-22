@@ -88,6 +88,15 @@ branch, commit, pull request, review.
     npm install
     npm run db:reset
     ```
+13. Close the terminal, then come back to this same conversation.
+    ```bash
+    exit
+    ```
+    Reopen a terminal in the same folder.
+    ```bash
+    claude --continue
+    ```
+    Ask what you were doing. The whole conversation reloads, not a summary of it.
 
 ## Now you
 
@@ -102,6 +111,7 @@ branch, commit, pull request, review.
 - [ ] Light and dark theme switch
 - [ ] A pull request exists, or `PR.md` holds its description
 - [ ] You are on `06-start` and `npm run dev` works there
+- [ ] `claude --continue` reopened the same conversation after closing the terminal
 
 ## Stuck?
 

@@ -80,6 +80,18 @@ Two MCP servers, two jobs. Playwright MCP for correctness. Chrome DevTools MCP f
    ```
 10. Run the three gates. The hooks from task 10 will help.
 
+**A remote server**
+
+11. Every server so far ran locally, as a process on your machine. Connect one that does not.
+    ```bash
+    claude mcp add --transport http sentry https://mcp.sentry.dev/mcp
+    ```
+    ```
+    /mcp
+    ```
+    Pick `sentry` and follow the browser prompt. You do not need a Sentry account to see the
+    flow: a local server just runs, a remote one needs to know who you are first.
+
 ## Now you
 
 - Add a third test: a host tries to join their own clash. CLASH already refuses this in
@@ -96,6 +108,7 @@ Two MCP servers, two jobs. Playwright MCP for correctness. Chrome DevTools MCP f
 - [ ] `avatar` is gone from the every-page path and still shows where it is used.
 - [ ] Chrome DevTools MCP confirms the payload dropped.
 - [ ] `npx tsc --noEmit`, `npm run lint`, `npm run build` pass.
+- [ ] You saw the `/mcp` authentication flow for a remote server, even without finishing the login.
 
 ## Stuck?
 
