@@ -51,13 +51,11 @@ page itself. And you add quality gates so Claude checks its own work.
 4. The map. Let Claude read the docs first.
    ```
    Fetch https://react-leaflet.js.org/docs/start-installation/ and read how to use react-leaflet in Next.js.
-   Then add a Leaflet map with OpenStreetMap tiles:
-   - components/map/leaflet-map.tsx (client), components/map/map.tsx that loads it with next/dynamic and ssr: false
-     inside a 'use client' file
-   - a full-screen page app/(app)/map with pins for clashes and venues, popups with links,
-     and click-to-create: a click on the map opens clashes/new with the coordinates filled in
-   - a location picker in the clash form and the venue form that replaces the two number inputs
-     (if you reset to 04-start, the picker is already there: extend it, do not rebuild it)
+   Then extend the map starter that is already on 04-start:
+   - keep components/map/leaflet-map.tsx and components/map/map.tsx; reuse or extend them, do not rebuild them
+   - components/map/explore-map.tsx already has the interactive map shell; use it for a full-screen
+     app/(app)/map page with pins for clashes and venues, popups with links, and click-to-create
+   - keep the existing location picker in the clash form and add the same pattern to the venue form
    ```
 5. The map will probably break once. Common: a window-is-not-defined error. Do not fix it yourself.
    ```
