@@ -1,6 +1,7 @@
 # Task 01 — Setup and first conversation
 
 > Part: Foundations · Reset branch: `01-start`
+> Slides: https://mastering-claude-code.vercel.app/task-01
 
 ## You will end up with
 

@@ -1,6 +1,7 @@
 # Task 07 — The `clash-feature` skill
 
 > Part: Control the context · Reset branch: `07-start`
+> Slides: https://mastering-claude-code.vercel.app/task-07
 
 ## You will end up with
 

@@ -40,6 +40,8 @@ const forbiddenOutsideWelcome = [[/\bQR\b/, 'QR code']]
 
 let errors = 0
 let warnings = 0
+const taskSlides = new Map()
+const taskFiles = new Map()
 const err = (f, msg) => { errors++; console.log(`ERROR ${f}: ${msg}`) }
 const warn = (f, msg) => { warnings++; console.log(`warn  ${f}: ${msg}`) }
 
@@ -64,6 +66,12 @@ for (const file of files) {
   // silently skipped on Windows (backslash paths never start with 'slides/sections/')
   const text = (await readFile(file, 'utf8')).replace(/\r\n/g, '\n')
   const rel = relative(root, file).split('\\').join('/')
+  const taskFileMatch = /^tasks\/(\d\d)-.+\.md$/.exec(rel)
+  if (taskFileMatch) {
+    const num = taskFileMatch[1]
+    if (taskFiles.has(num)) err(rel, `duplicate task number ${num}; also used by ${taskFiles.get(num)}`)
+    else taskFiles.set(num, rel)
+  }
   text.split('\n').forEach((line, i) => {
     const rules = rel.endsWith('00-welcome.md') ? forbidden : [...forbidden, ...forbiddenOutsideWelcome]
     for (const [re, label] of rules) {
@@ -112,7 +120,15 @@ for (const file of files) {
     if (layout === 'task') {
       const num = /number:\s*"?(\d\d)"?/.exec(fm)?.[1]
       if (!num) err(rel, `slide ${n}: task slide without number`)
-      else if (!readdirSync(join(root, 'tasks')).some((f) => f.startsWith(`${num}-`))) err(rel, `slide ${n}: no tasks/${num}-*.md for this task slide`)
+      else {
+        if (!readdirSync(join(root, 'tasks')).some((f) => f.startsWith(`${num}-`))) err(rel, `slide ${n}: no tasks/${num}-*.md for this task slide`)
+        if (taskSlides.has(num)) err(rel, `slide ${n}: duplicate task slide number ${num}; also used by ${taskSlides.get(num).rel}`)
+        const expectedAlias = `task-${num}`
+        const aliasRaw = /^routeAlias:[ \t]*(.*)$/m.exec(fm)?.[1]
+        const alias = aliasRaw?.replace(/\s+#.*$/, '').trim().replace(/^["']|["']$/g, '')
+        if (alias !== expectedAlias) err(rel, `slide ${n}: task ${num} must use routeAlias: ${expectedAlias}`)
+        taskSlides.set(num, { rel, slide: n, alias })
+      }
       if (/timebox:|qrSlug:|repoUrl:/.test(fm)) err(rel, `slide ${n}: task slide still has timebox/qrSlug/repoUrl`)
     }
     if (layout === 'code-live' && !/⟵ LIVE/.test(fences)) err(rel, `slide ${n}: code-live slide without a ⟵ LIVE marker`)
@@ -140,6 +156,19 @@ for (const file of files) {
       if (words > 40) warn(rel, `slide ${n}: concept body has ${words} words (> 40)`)
     }
   }
+}
+
+for (const [num, rel] of taskFiles) {
+  const expectedUrl = `https://mastering-claude-code.vercel.app/task-${num}`
+  const text = (await readFile(join(root, rel), 'utf8')).replace(/\r\n/g, '\n')
+  const links = [...text.matchAll(/^> Slides:[ \t]*(\S+)[ \t]*$/gm)].map((m) => m[1])
+  if (links.length !== 1) err(rel, `expected exactly one Slides link for task ${num}, found ${links.length}`)
+  else if (links[0] !== expectedUrl) err(rel, `task ${num} Slides link must be ${expectedUrl}`)
+  if (!taskSlides.has(num)) err(rel, `no task slide with number ${num} and routeAlias task-${num}`)
+}
+
+for (const [num, slide] of taskSlides) {
+  if (!taskFiles.has(num)) err(slide.rel, `slide ${slide.slide}: no tasks/${num}-*.md for this task slide`)
 }
 
 console.log(`\n${errors} error(s), ${warnings} warning(s) across ${files.length} files`)

@@ -1,6 +1,7 @@
 # Task 06 — Context and CLAUDE.md
 
 > Part: Control the context · Reset branch: `06-start`
+> Slides: https://mastering-claude-code.vercel.app/task-06
 
 ## You will end up with
 

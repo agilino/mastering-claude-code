@@ -1,6 +1,7 @@
 # Task 02 — Foundation
 
 > Part: Build CLASH · Reset branch: `02-start`
+> Slides: https://mastering-claude-code.vercel.app/task-02
 
 ## You will end up with
 

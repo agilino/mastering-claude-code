@@ -1,6 +1,7 @@
 # Task 10 — Hooks
 
 > Part: Orchestrate and let go · Reset branch: `10-start`
+> Slides: https://mastering-claude-code.vercel.app/task-10
 
 ## You will end up with
 
