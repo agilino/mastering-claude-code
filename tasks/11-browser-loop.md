@@ -1,6 +1,7 @@
 # Task 11 — The browser closes the loop
 
 > Part: Orchestrate and let go · Reset branch: `11-start`
+> Slides: https://mastering-claude-code.vercel.app/task-11
 
 ## You will end up with
 

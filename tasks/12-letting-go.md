@@ -1,6 +1,7 @@
 # Task 12 — Letting go
 
 > Part: Orchestrate and let go · Reset branch: `12-start`
+> Slides: https://mastering-claude-code.vercel.app/task-12
 
 ## You will end up with
 

@@ -1,6 +1,7 @@
 # Task 04 — Venues, map, people
 
 > Part: Build CLASH · Reset branch: `04-start`
+> Slides: https://mastering-claude-code.vercel.app/task-04
 
 ## You will end up with
 

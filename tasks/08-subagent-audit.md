@@ -1,6 +1,7 @@
 # Task 08 — Subagent audit
 
 > Part: Control the context · Reset branch: `08-start`
+> Slides: https://mastering-claude-code.vercel.app/task-08
 
 ## You will end up with
 

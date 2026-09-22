@@ -1,6 +1,7 @@
 # Task 09 — Team and workflow audit
 
 > Part: Orchestrate and let go · Reset branch: `09-start`
+> Slides: https://mastering-claude-code.vercel.app/task-09
 
 ## You will end up with
 

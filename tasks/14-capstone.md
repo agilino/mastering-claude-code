@@ -1,6 +1,7 @@
 # Task 14 — Capstone
 
 > Part: Orchestrate and let go · Reset branch: `14-start`
+> Slides: https://mastering-claude-code.vercel.app/task-14
 
 ## You will end up with
 

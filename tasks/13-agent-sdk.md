@@ -1,6 +1,7 @@
 # Task 13 — Agent SDK
 
 > Part: Orchestrate and let go · Reset branch: `13-start`
+> Slides: https://mastering-claude-code.vercel.app/task-13
 
 ## You will end up with
 

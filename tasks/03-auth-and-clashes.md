@@ -1,6 +1,7 @@
 # Task 03 — Auth and clashes
 
 > Part: Build CLASH · Reset branch: `03-start`
+> Slides: https://mastering-claude-code.vercel.app/task-03
 
 ## You will end up with
 

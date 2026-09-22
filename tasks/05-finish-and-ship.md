@@ -1,6 +1,7 @@
 # Task 05 — Finish and ship
 
 > Part: Build CLASH · Reset branch: `05-start`
+> Slides: https://mastering-claude-code.vercel.app/task-05
 
 ## You will end up with
 
