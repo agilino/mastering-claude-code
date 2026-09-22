@@ -15,7 +15,7 @@ const defaultSlidesBaseUrl = 'https://mastering-claude-code.vercel.app'
 const slidesBaseUrl = (process.env.SLIDES_BASE_URL ?? defaultSlidesBaseUrl).replace(/\/+$/, '')
 const slidesBase = new URL(slidesBaseUrl)
 const defaultSlidesBase = new URL(defaultSlidesBaseUrl)
-const allowDefaultAlongsideLocal = ['localhost', '127.0.0.1', '::1'].includes(slidesBase.hostname)
+const allowDefaultAlongsideLocal = ['localhost', '127.0.0.1', '[::1]'].includes(slidesBase.hostname)
 const allowedSlidesOrigins = new Set([
   slidesBase.origin,
   ...(allowDefaultAlongsideLocal ? [defaultSlidesBase.origin] : []),
@@ -25,7 +25,7 @@ function stripFencedCode(text) {
   const lines = []
   let fence = null
   for (const line of text.split('\n')) {
-    const marker = /^(\`\`\`|~~~)/.exec(line)?.[1]
+    const marker = /^[ \t]*(\`\`\`|~~~)/.exec(line)?.[1]
     if (marker && fence === null) {
       fence = marker
       lines.push('')
