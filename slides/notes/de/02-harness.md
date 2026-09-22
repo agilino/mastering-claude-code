@@ -154,6 +154,6 @@ Sagen:
 > - Für einen Moment stehen lassen
 
 Sagen:
-- Jeder in diesem Workshop hat Zugriff auf dasselbe Modell — niemand bekommt ein schlaueres
+- Jeder in diesem Workshop kann aus denselben Modellen wählen — niemand bekommt heimlich ein schlaueres
 - Der Unterschied zwischen "es ist vom Kurs abgedriftet" und "es hat das Feature mit Tests ausgeliefert" liegt komplett im Harness: der Context, den du ihm gegeben hast, die Tools, die du erlaubt hast, die Regeln, die du erzwungen hast
 - Genau das lehrt der Rest des Workshops
