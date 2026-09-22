@@ -6,13 +6,13 @@
 ## You will end up with
 
 The complete app: profile with avatar, public profiles, search, dashboard, theme and settings.
-A pull request reviewed by Claude. And a look at the reference build, which you use from here on.
+A pull request or PR description reviewed by Claude. And a look at the reference build, which you use from here on.
 
 ## Why
 
 The last slices are independent of each other. That is a chance to learn batching: one brief,
-several jobs, work running in the background while you review. Then you ship the way a team ships:
-branch, commit, pull request, review.
+several jobs, work running in the background while you review. Then you practice the shipping flow:
+branch, commit, optional pull request, review.
 
 ## Do this
 
@@ -52,13 +52,19 @@ branch, commit, pull request, review.
    ```
    Claude saves this to its auto memory. Open `/memory` and pick the auto memory folder
    to see where it went. Nothing saved? Say: `Add this to CLAUDE.md.`
-7. Commit and open a pull request.
+7. Commit. Pushing is optional.
    ```
-   Commit the work in sensible commits, push the branch, and open a pull request with gh.
-   The description lists what was built and how to test it.
+   Commit the work in sensible commits.
+
+   If GitHub CLI is installed and logged in, fork pawsaw/clash with gh if I do not
+   already have a fork. Keep origin pointing at pawsaw/clash, add my fork as a writable
+   remote, push the finish branch there, and open a pull request in my fork from finish
+   into 05-start. The description lists what was built and how to test it.
+
+   If gh is not installed or not logged in, or I do not want to push, write the same
+   pull request description to PR.md instead. Do not block the task on GitHub.
    ```
-   If `gh` is not installed or not logged in, ask Claude to only write the description to `PR.md`.
-8. Review your own pull request with Claude, as a stranger would.
+8. Review your work with Claude, as a stranger would.
    ```
    Review the diff of this branch against 05-start like a strict senior engineer.
    Look for: missing ownership checks in actions, Prisma calls outside lib/data,
