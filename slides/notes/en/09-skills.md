@@ -27,6 +27,7 @@ Say:
 > Do:
 > - Point back at the /new-page command from Task 04 — same mechanism, this is the folder version
 > - Correct a common misconception
+> - Optional: point at "All commands" — this page's own reference listing
 
 Say:
 - Commands merging into skills does not break .claude/commands/*.md files

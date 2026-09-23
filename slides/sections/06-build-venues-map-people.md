@@ -31,6 +31,7 @@ lines:
 layout: code-live
 heading: "Your first slash command"
 routeAlias: theory-custom-command
+docs: https://code.claude.com/docs/en/commands
 filePath: ".claude/commands/new-page.md"
 success: "/new-page <description> adds a page that follows the repo rules, without you repeating them."
 ---
@@ -59,6 +60,7 @@ lines:
 layout: concept
 heading: "Let Claude look at the page"
 routeAlias: theory-browser-feedback
+docs: https://code.claude.com/docs/en/common-workflows
 lines:
   - "agent-browser open http://localhost:3000/map"
   - "snapshot -i — the page as a short list of elements"

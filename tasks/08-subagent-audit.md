@@ -73,8 +73,8 @@ check ownership itself. Zod checks the shape of the input, not who may send it.
    Use the security-auditor subagent on app/actions/ and show me its report.
    ```
 7. Read `/context` again. It moved a little. The file reads happened in the subagent's window, not yours.
-8. Check the report against the answer key (shared with task 09): `workshop-artifacts/09-team-and-workflow-audit/AUTH-FIX.md`
-   in the workshop repository. Do not fix the bug yet. Task 09 does that.
+8. Check the report against the answer key (shared with task 12): `workshop-artifacts/12-team-and-workflow-audit/AUTH-FIX.md`
+   in the workshop repository. Do not fix the bug yet. Task 12 does that.
 
 ## Now you
 

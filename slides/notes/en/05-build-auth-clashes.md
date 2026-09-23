@@ -21,6 +21,7 @@ Say:
 > - Demo: after the shell step, run /rewind, show the list of checkpoints
 > - Pick the checkpoint before the last step, show the files are back
 > - Press Esc to cancel if you did not really want it
+> - Optional: point at the docs page's Limitations section — checkpoints track Claude's own file edits, not changes a Bash command makes
 
 Say:
 - This is undo for the conversation — it does not replace git
@@ -32,6 +33,7 @@ Say:
 > - Run /context live after the auth and shell steps
 > - [click] Read the bands: system prompt, CLAUDE.md, tool results, conversation
 > - Then run /compact, then /context again
+> - Optional: point at the docs page's "Manage context proactively" section — /clear vs /compact
 
 Say:
 - [click:4] The tool results band is the files Claude read — it keeps growing. When the window is almost full, Claude Code clears older tool outputs first, then compacts

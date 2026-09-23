@@ -20,9 +20,12 @@ on a local clone. The script never pushes. Every branch with code passes
 | `07-start` | `CLAUDE.md` authored around the real invariants (the answer key of task 06). | `workshop-artifacts/06-context-and-claude-md/CLAUDE.md`. |
 | `08-start` | The `clash-feature` skill (answer key of task 07). **Seeded vulnerability**: the `creatorId` ownership check is removed from `deleteClash` and `deleteVenue`. | `workshop-artifacts/07-clash-feature-skill/SKILL.md`; the two guards are removed by an exact string replacement, which aborts if the code has changed. |
 | `09-start` | Nothing. | Identical to `08-start`. |
-| `10-start` | The ownership checks are back (the fix merged in task 09). | `app/actions/clashes.ts` and `app/actions/venues.ts` restored from `main`. |
-| `11-start` | The hook set: `.claude/settings.json`, `.claude/hooks/typecheck-actions.sh`, `.claude/hooks/build-gate.sh` (answer key of task 10). | `workshop-artifacts/10-hooks/`. |
-| `12-start`, `13-start`, `14-start` | Nothing. Worktrees, CI, the Agent SDK and the capstone add files outside the app or in your own worktree. | Identical to `11-start`. |
+| `10-start` | The ownership checks are back, plus the `discover` skill and its resolved `docs/specs/clash-capacity.md` spec (both answer keys of task 09). | `app/actions/clashes.ts` and `app/actions/venues.ts` restored from `main`; `workshop-artifacts/09-example-mapping/`. |
+| `11-start` | The path-scoped `app/actions/**` ownership rule (answer key of task 10), plus vitest, one trivial passing test, and a deliberately wrong `lib/capacity.ts` stub — task 11 needs all of this to work standalone from a reset. | `workshop-artifacts/10-path-scoped-rules/server-actions.md` and `workshop-artifacts/11-tdd-inner-loop/`; `vitest` added to `package.json` by script. |
+| `12-start` | The finished `.claude/skills/tdd/SKILL.md` and a passing `lib/capacity.ts` and `lib/capacity.test.ts` (answer key of task 11). **Ownership checks re-seeded** for the audit — the same exact-string removal `08-start` used, run again against the restored code. | `workshop-artifacts/11-tdd-inner-loop/`; the ownership guards are removed by the same Node script `08-start` uses. |
+| `13-start` | The ownership checks are back again (the fix merged in task 12). | `app/actions/clashes.ts` and `app/actions/venues.ts` restored from `main`. |
+| `14-start` | The hook set: `.claude/settings.json`, `.claude/hooks/typecheck-actions.sh`, `.claude/hooks/build-gate.sh` (answer key of task 13). | `workshop-artifacts/13-hooks/`. |
+| `15-start`, `16-start`, `17-start` | Nothing. Worktrees, CI, the Agent SDK and the capstone add files outside the app or in your own worktree. | Identical to `14-start`. |
 
 ## Notes on the build stages (03 to 05)
 
@@ -41,9 +44,21 @@ on a local clone. The script never pushes. Every branch with code passes
 ## Seeded vulnerability, said plainly
 
 Upstream CLASH `main` has **no** missing ownership check. All exported Server Actions are guarded.
-`08-start` and `09-start` remove the guard from exactly two actions so that tasks 08 and 09 have
-something real to find. This is workshop content, not a CLASH bug.
-See `workshop-artifacts/09-team-and-workflow-audit/AUTH-FIX.md` for the diff and a proof-of-concept call.
+The guard on `deleteClash` and `deleteVenue` is removed and restored three times across the branch
+chain — restore, reseed, refix — and each move is deliberate:
+
+- `08-start` **removes** it, so task 08's subagent has something real to audit.
+- `10-start` **restores** it from `main`. Task 10 writes a project rule stating this exact
+  ownership-check convention, scoped to `app/actions/**` — if the bug were still live while that
+  task reads the file, the rule would contradict the code Claude is reading and could get "fixed"
+  early, spoiling task 12's find. Restoring one branch ahead of task 10, at `10-start`, keeps the
+  two consistent through tasks 10–11.
+- `12-start` **removes** it again — the same exact-string replacement `08-start` used, run a
+  second time — so task 12's audit (agent team, then dynamic workflow) has something to find.
+- `13-start` **restores** it from `main` a second time, as the merged fix.
+
+This is workshop content, not a CLASH bug.
+See `workshop-artifacts/12-team-and-workflow-audit/AUTH-FIX.md` for the diff and a proof-of-concept call.
 
 ## Create and publish
 
@@ -57,7 +72,8 @@ Review, then push in a separate, explicit step:
 ```bash
 git -C /tmp/clash-branches push origin \
   01-start 02-start 03-start 04-start 05-start 06-start 07-start \
-  08-start 09-start 10-start 11-start 12-start 13-start 14-start
+  08-start 09-start 10-start 11-start 12-start 13-start 14-start \
+  15-start 16-start 17-start
 ```
 
 The existing `wk/*` branches on `pawsaw/clash` belong to another workshop and are not touched.

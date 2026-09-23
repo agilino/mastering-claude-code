@@ -5,18 +5,19 @@
 
 Sagen:
 - Nicht mehr bauen, jetzt kontrollieren
-- Drei Tasks: Context, Skills, Subagents
+- Fünf Tasks: Context, Skills, Subagents, Example Mapping, Path-scoped rules
 - Jede ist eine andere Art zu entscheiden, was ins Fenster kommt
 
-<!-- @note: seven-tools-one-constraint -->
+<!-- @note: eight-tools-one-constraint -->
 > Tun:
-> - Karte vor Gelände — die sieben Zeilen von oben nach unten durchgehen
+> - Karte vor Gelände — die acht Zeilen von oben nach unten durchgehen
 > - Die Karte stehen lassen — sie kommt bei jedem Divider wieder, mit der aktuellen Zeile hervorgehoben
 
 Sagen:
 - Die eine Randbedingung: das Context Window. Jede Zeile dieser Tabelle ist eine andere Art, zu steuern, was hineinkommt
 - [click] Context: immer an, die Randbedingung, um die alles andere herumarbeitet
 - [click] Skill: für wiederholbare Arbeit, die du immer wieder neu erklärst
+- [click] Projektregel: für eine Konvention, die nur in einem Teil der Codebasis gilt
 - [click] Subagent: für laute Arbeit, die deinen Thread verschmutzen würde
 - [click] Agent-Team: wenn Worker miteinander reden müssen
 - [click] Workflow: wenn der Fan-out größer ist, als ein Gespräch steuern kann
@@ -81,7 +82,7 @@ Sagen:
 > - Beim Aufbauen: auf die genaue Zeile in `app/actions/clashes.ts` mit dem Ownership-Check zeigen
 > - Auf dem Bildschirm zeigen: `if (clash.creatorId !== user.id)`
 > - Wenn ein Entwurf vor allem aus Prosa und Bauchgefühl besteht, dagegenhalten
-> - Das ist die Saat für Task 10
+> - Das ist die Saat für Task 13
 
 Sagen:
 - Die sechs Regeln:

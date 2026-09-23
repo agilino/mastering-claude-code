@@ -92,6 +92,8 @@ layout: concept
 heading: "Two ways to isolate"
 routeAlias: theory-subagents
 docs: https://code.claude.com/docs/en/sub-agents
+lines:
+  - "Run /tasks to see every subagent and fork this session has running."
 ---
 
 <div class="grid grid-cols-2 gap-8 w-full">
@@ -102,7 +104,6 @@ docs: https://code.claude.com/docs/en/sub-agents
 ---
 layout: concept
 heading: "Six agents ship with Claude Code"
-docs: https://code.claude.com/docs/en/sub-agents
 lines:
   - "Explore, Plan, general-purpose — the ones you will meet most."
   - "claude, statusline-setup, claude-code-guide round out the six."

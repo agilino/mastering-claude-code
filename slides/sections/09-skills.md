@@ -33,6 +33,7 @@ docs: https://code.claude.com/docs/en/skills
 lines:
   - "Every skill's name and description is scanned every session. Cheap."
   - "The body loads when the description matches — or right away via /skill-name."
+  - "Set disable-model-invocation: true to block that and require explicit /name."
 ---
 
 <G05SkillLoading />
@@ -41,10 +42,12 @@ lines:
 layout: concept
 heading: "Commands became skills. Nothing broke."
 routeAlias: theory-commands-and-skills
+docs: https://code.claude.com/docs/en/commands
 lines:
   - ".claude/commands/deploy.md → /deploy"
   - ".claude/skills/deploy/SKILL.md → /deploy"
   - "Old command files keep working."
+  - "Same frontmatter fields work in both: allowed-tools, context: fork."
 ---
 
 
@@ -76,7 +79,7 @@ heading: "A skill is advice"
 routeAlias: theory-skill-advice
 lines:
   - "Nothing stops an agent from skipping a step in a skill."
-  - "Hold that thought. Task 10 comes back to it."
+  - "Hold that thought. Task 13 comes back to it."
 ---
 
 <G12SkillsVsHooks />
@@ -99,6 +102,7 @@ lines:
   - "Two folders only: ~/.claude/skills/ and .claude/skills/."
   - "npx skills add writes to .agents/skills/, then symlinks it in."
   - "No link, no skill — and no error."
+  - "/skills lists what's actually loaded, broken links included."
 ---
 
 <G23SkillSymlink />

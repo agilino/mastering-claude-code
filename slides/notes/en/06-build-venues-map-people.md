@@ -18,6 +18,7 @@ Say:
 > Do:
 > - Flag in passing: commands merged into skills — this file still works, task 07 shows the preferred way to write one
 > - Participants do this in step 4
+> - Optional: point at the docs page's own note: "To add your own commands, see skills"
 > FULL WORKING FILE (verbatim from tasks/04-venues-map-people.md):
 >
 > Add a new page to this app for: $ARGUMENTS
@@ -47,6 +48,7 @@ Say:
 > - Participants do this in step 7
 > - [click] Demo: ask Claude to use agent-browser to open the map, log in as Anna, take a screenshot, say whether pins are visible
 > - Show the commands it runs
+> - Optional: point at the docs page's "Work with images" section — the same idea, pasted instead of taken by agent-browser
 
 Say:
 - [click:4] Closes a loop most people leave open: Claude changes the code AND Claude checks the result

@@ -5,18 +5,19 @@
 
 Say:
 - Not building any more, now controlling
-- Three tasks: context, skills, subagents
+- Five tasks: context, skills, subagents, Example Mapping, path-scoped rules
 - Each is a different way of deciding what enters the window
 
-<!-- @note: seven-tools-one-constraint -->
+<!-- @note: eight-tools-one-constraint -->
 > Do:
-> - Map before territory — walk the seven rows top to bottom
+> - Map before territory — walk the eight rows top to bottom
 > - Leave the map up — it returns on every divider with the current row highlighted
 
 Say:
 - The one constraint: the context window. Every row on this table is a different way of managing what enters it
 - [click] Context: always on, the constraint everything else works around
 - [click] Skill: for repeatable work you keep re-explaining
+- [click] Project rule: for a convention that only matters in part of the codebase
 - [click] Subagent: for noisy work that would pollute your thread
 - [click] Agent team: when workers need to talk to each other
 - [click] Workflow: when the fan-out is bigger than one conversation can steer
@@ -81,7 +82,7 @@ Say:
 > - While building it: point at the exact line in `app/actions/clashes.ts` with the ownership check
 > - Show on screen: `if (clash.creatorId !== user.id)`
 > - If a draft is mostly prose and vibes, push back
-> - That seeds task 10
+> - That seeds task 13
 
 Say:
 - The six rules:
