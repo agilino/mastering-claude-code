@@ -8,8 +8,6 @@ overcrowded.**
 ### Rule: Must accept a join while accepted participants are below capacity
 
 - The one where capacity is 5 and 3 people are already accepted — the next join is accepted.
-- Counter-example: The one where no one has joined yet and capacity is 1 — the first join is
-  still accepted.
 
 ### Rule: Must waitlist a join once capacity is reached
 

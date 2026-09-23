@@ -15,8 +15,8 @@
 #   07-start  + authored CLAUDE.md
 #   08-start  + clash-feature skill, SEEDED missing ownership checks
 #   09-start  == 08-start
-#   10-start  ownership checks restored; + discover skill
-#   11-start  + path-scoped app/actions/** rule; + vitest, one trivial test, the capacity stub, the spec answer key
+#   10-start  ownership checks restored; + discover skill and its resolved spec
+#   11-start  + path-scoped app/actions/** rule; + vitest, one trivial test, the capacity stub
 #   12-start  ownership checks RE-SEEDED for the audit (same seeding as 08-start)
 #   13-start  ownership checks restored again
 #   14-start  + hook set
@@ -234,21 +234,21 @@ SUMMARY+=("09-start|$(git rev-parse --short HEAD)|$(git ls-files | wc -l | tr -d
 # chain every action still does.
 git checkout -B 10-start 09-start --quiet
 git checkout origin/main --quiet -- app/actions/clashes.ts app/actions/venues.ts
-mkdir -p .claude/skills/discover/references
+mkdir -p .claude/skills/discover/references docs/specs
 cp "$ART_DISCOVER_SKILL" .claude/skills/discover/SKILL.md
 cp "$ART_DISCOVER_REFERENCE" .claude/skills/discover/references/example-mapping.md
-commit_all 10-start "workshop: restore the creatorId ownership checks; add the discover skill (end of task 09)"
-note 10-start "ownership checks restored; + discover skill"
+cp "$ART_DISCOVER_SPEC" docs/specs/clash-capacity.md
+commit_all 10-start "workshop: restore the creatorId ownership checks; add the discover skill and its resolved spec (end of task 09)"
+note 10-start "ownership checks restored; + discover skill and its resolved spec"
 gate 10-start
 
-# --- 11-start: + path-scoped rule; + vitest, a trivial test, the capacity stub, the spec ---
+# --- 11-start: + path-scoped rule; + vitest, a trivial test, the capacity stub ---
 git checkout -B 11-start 10-start --quiet
-mkdir -p .claude/rules docs/specs
+mkdir -p .claude/rules
 cp "$ART_RULES_FILE" .claude/rules/server-actions.md
 cp "$ART_TDD_VITEST_CONFIG" vitest.config.ts
 cp "$ART_TDD_CAPACITY_STUB" lib/capacity.ts
 cp "$ART_TDD_FORMAT_TEST" lib/format.test.ts
-cp "$ART_DISCOVER_SPEC" docs/specs/clash-capacity.md
 node <<'JS'
 const fs = require('fs')
 const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'))
@@ -261,9 +261,9 @@ commit_all 11-start "workshop: add the path-scoped app/actions/** ownership rule
 
 lib/capacity.ts ships deliberately wrong (always \"waitlisted\") so the
 first test a participant writes against it fails on an assertion, not
-a missing import. docs/specs/clash-capacity.md is the task 09 answer
-key, so this branch works standalone from a reset."
-note 11-start "+ path-scoped rule; + vitest, one trivial test, the capacity stub, the spec answer key"
+a missing import. docs/specs/clash-capacity.md already arrived at
+10-start, so this branch works standalone from a reset too."
+note 11-start "+ path-scoped rule; + vitest, one trivial test, the capacity stub"
 gate 11-start
 
 # --- 12-start: re-seed the ownership bug for the audit -----------------------

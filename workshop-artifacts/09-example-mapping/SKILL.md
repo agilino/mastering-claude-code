@@ -17,19 +17,8 @@ $ARGUMENTS
 
 ## Task
 
-Run Example Mapping on the story above:
-
-1. Identify the rules. Each one is a single testable business constraint, stated as
-   "Should..." or "Must...". If a rule needs "and" to hold two different constraints
-   together, split it into two rules.
-2. Give at least one example per rule, in "The one where..." form, with real numbers — a
-   second only for a boundary or a genuinely different outcome.
-3. Give at least one counter-example per rule where a meaningful edge case exists — a valid
-   boundary or exclusion, never a bug.
-4. List any open question that only the user can resolve.
-
-Read `references/example-mapping.md` (relative to this skill) for the full method and the
-quality bar before you draft anything.
+Run Example Mapping on the story above. Read `references/example-mapping.md` (relative to
+this skill) for the method and the quality bar — don't improvise the format from memory.
 
 ## Resolve
 
