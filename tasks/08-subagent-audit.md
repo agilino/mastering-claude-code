@@ -113,8 +113,9 @@ check ownership itself. Zod checks the shape of the input, not who may send it.
    ```
    Run `/plugin` and check that `code-security-skills` is listed as installed. If the install
    summary asks for it, run `/reload-plugins`.
-10. Start with a clean context, so the reviewer cannot lean on your auditor's report. Then
-    run the plugin's reviewer.
+10. Copy your auditor's report from step 6 into a note outside the chat: `/clear` removes it.
+    Then start with a clean context, so the reviewer cannot lean on that report, and run the
+    plugin's reviewer.
     ```
     /clear
     ```
@@ -124,21 +125,23 @@ check ownership itself. Zod checks the shape of the input, not who may send it.
     ```
     A row appears under `main` again. Same kind as step 6: a fresh subagent, this time from a
     definition the plugin ships.
-11. Compare the two reports. Are `deleteClash` and `deleteVenue` in both? What did the OWASP
-    reviewer report that yours cannot? What did yours give that theirs did not: a PASS or FAIL
-    per action, with the deciding line? Write two sentences. Neither is "the better one": one is
+11. Compare the two reports: the one you copied and the one on screen. Are `deleteClash` and
+    `deleteVenue` in both? What did the OWASP reviewer report that yours cannot? What did yours
+    give that theirs did not: a PASS or FAIL per action, with the deciding line? Write two sentences. Neither is "the better one": one is
     narrow and checkable, the other is broad.
 
 ## Now you
 
 - Run the same audit a third way. Hand it off with `/subtask` instead of naming an agent.
   ```
-  /subtask Audit every exported Server Action in app/actions/ for missing ownership checks on
-  mutations of existing rows. Report file, function, PASS or FAIL.
+  /subtask Using only Read, Grep and Glob, audit every exported Server Action in
+  app/actions/ for missing ownership checks on mutations of existing rows. Do not edit any
+  file. Report file, function, PASS or FAIL.
   ```
   A row appears under `main`. This one is a fork: it inherited your conversation and every tool
   `main` has, `Edit` and `Write` included, so the read-only `tools:` line of `security-auditor`
-  does not apply to it. Compare the `/context` numbers against step 6's run.
+  does not apply to it. That is why the brief names the tools itself: nothing else keeps a fork
+  read-only. Compare the `/context` numbers against step 6's run.
 - Write a second subagent, `perf-auditor`, that only looks for Prisma queries without a `select`.
 
 ## Check
