@@ -199,7 +199,7 @@ Parts III and IV run on the finished reference CLASH, as guided tasks.
   `main` below the prompt. Fork mode is on by default in interactive sessions, but a named
   agent from a definition file stays a fresh subagent. Only `/subtask` (or Claude choosing the
   fork type) starts a fork, and a fork ignores a `tools:` line.
-- Steps 9 to 11 install OWASP's `code-security-skills` plugin (needs GitHub reachable, and it
+- Steps 9 and 10 run the same audit as a fork with `/subtask`. Steps 11 to 17 install OWASP's `code-security-skills` plugin (needs GitHub reachable, and it
   spends more tokens than the auditor). Compare the two reports, do not crown a winner. Say it
   is a plugin bundling subagents and skills, and that a plugin can ship hooks: read what you install.
 - Stop slide: task file step 4 is reading every action file yourself, in the main

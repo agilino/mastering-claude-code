@@ -61,7 +61,7 @@ Say:
 > Do:
 > - Say the three words once, slowly — the rest of the part depends on them
 > - Demo in task step 6: run the security-auditor, then point at the panel under the prompt — a row appears, indented under main
-> - Demo again with /subtask in the "Now you" step: a second row, this one a fork
+> - Demo again with /subtask in task step 9: a second row, this one a fork
 > - Say plainly that the coloured labels on the slide are ours (schematic) — the real panel shows the rows, not our labels
 
 Say:
@@ -103,7 +103,7 @@ Say:
 <!-- @note: or-install-one-that-exists -->
 > Do:
 > - Docs link: open the OWASP repo README, the install section, then back to the slides
-> - Task steps 9 to 11: install it, /clear, run the reviewer, compare with your own auditor
+> - Task steps 11 to 17: add the marketplace, install it, /clear, run the reviewer, compare with your own auditor
 
 Say:
 - What it is: a plugin, an installable bundle. This one ships 5 subagents and 11 skills. Task 07's marketplace slide again: add the catalog, then install one plugin by name.
@@ -141,7 +141,8 @@ Say:
 > - Note the /context reading before launching.
 > - Launch one subagent with the narrow brief; let it read every file in app/actions/.
 > - Read /context again
-> - Steps 9 to 11: the OWASP plugin, /clear, then compare its report with your own auditor's
+> - Steps 9 and 10: the same audit as a fork with /subtask
+> - Steps 11 to 17: the OWASP plugin, /clear, then compare its report with your own auditor's
 > - Part ends on a cliffhanger: two findings, not fixed yet.
 
 Say:

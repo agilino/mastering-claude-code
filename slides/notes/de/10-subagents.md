@@ -61,7 +61,7 @@ Sagen:
 > Tun:
 > - Die drei Wörter einmal langsam sagen — der Rest des Teils hängt daran
 > - Demo in Task-Schritt 6: den security-auditor laufen lassen, dann auf das Panel unter dem Prompt zeigen — eine Zeile erscheint, eingerückt unter main
-> - Noch einmal mit /subtask im "Now you"-Schritt: eine zweite Zeile, diesmal ein Fork
+> - Noch einmal mit /subtask in Task-Schritt 9: eine zweite Zeile, diesmal ein Fork
 > - Klar sagen, dass die farbigen Beschriftungen auf der Folie von uns sind (schematisch) — das echte Panel zeigt die Zeilen, nicht unsere Labels
 
 Sagen:
@@ -103,7 +103,7 @@ Sagen:
 <!-- @note: or-install-one-that-exists -->
 > Tun:
 > - Docs-Link: das README des OWASP-Repos öffnen, den Install-Abschnitt, dann zurück zu den Folien
-> - Task-Schritte 9 bis 11: installieren, /clear, den Reviewer laufen lassen, mit dem eigenen Auditor vergleichen
+> - Task-Schritte 11 bis 17: Marketplace hinzufügen, installieren, /clear, den Reviewer laufen lassen, mit dem eigenen Auditor vergleichen
 
 Sagen:
 - Was es ist: ein Plugin, ein installierbares Bündel. Dieses bringt 5 Subagents und 11 Skills mit. Noch einmal die Marketplace-Folie aus Task 07: den Katalog hinzufügen, dann ein Plugin per Namen installieren.
@@ -141,7 +141,8 @@ Sagen:
 > - Den /context-Stand vor dem Start notieren.
 > - Einen Subagent mit dem engen Briefing starten; ihn jede Datei in app/actions/ lesen lassen.
 > - /context noch einmal lesen
-> - Schritte 9 bis 11: das OWASP-Plugin, /clear, dann seinen Bericht mit dem des eigenen Auditors vergleichen
+> - Schritte 9 und 10: dasselbe Audit als Fork mit /subtask
+> - Schritte 11 bis 17: das OWASP-Plugin, /clear, dann seinen Bericht mit dem des eigenen Auditors vergleichen
 > - Der Teil endet mit einem Cliffhanger: zwei Findings, noch nicht behoben.
 
 Sagen:
