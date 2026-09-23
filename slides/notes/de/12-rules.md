@@ -36,4 +36,4 @@ Sagen:
 > - Recap: diese Regel ist die dauerhafte Version dessen, was der Subagent aus Task 08 einmal gefunden hat
 
 Sagen:
-- "Derselbe Befund, jetzt jedes Mal durchgesetzt, nicht nur das eine Mal, als jemand daran gedacht hat zu auditieren"
+- "Derselbe Befund, jetzt jedes Mal sichtbar, nicht nur das eine Mal, als jemand daran gedacht hat zu auditieren — weiterhin Hinweis, keine Durchsetzung"

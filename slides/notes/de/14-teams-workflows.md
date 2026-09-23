@@ -11,7 +11,7 @@ Sagen:
 
 <!-- @note: task-12-team-and-workflow-audit -->
 > Tun:
-> - Branch: 12-start hat den Ownership-Bug neu eingebaut (gleiche Entfernung wie Task 08), frisch zurückgesetzt für dieses Audit
+> - Branch: 12-start hat den Ownership-Bug neu eingebaut (gleiche Entfernung wie Task 08), frisch zurückgesetzt für dieses Audit — außerdem den fertigen tdd-Skill und das bestandene capacity.ts aus Task 11
 
 Sagen:
 - Gleiches Audit wie Task 08, zwei weitere Wege — ein Team, dann ein dynamischer Workflow

@@ -31,6 +31,7 @@ Sagen:
 > - Schritt 6 machen die Teilnehmenden selbst
 > - Demo: sagen "Remember for next time: always use UserAvatar, never a raw img tag" — warten, bis Claude das Speichern bestätigt
 > - /memory zeigen — den Auto-Memory-Ordner auswählen
+> - Optional: auf den Abschnitt "Auto memory" in den Docs zeigen — die vier Notiz-Typen, und wo die Dateien liegen
 
 Sagen:
 - Das alte #-Kürzel gibt es nicht mehr (entfernt in v2.0.70) — um gezielt zu speichern, in Worten bitten: "Remember …". Von selbst speichert Claude Korrekturen auch, aber nicht jedes Mal

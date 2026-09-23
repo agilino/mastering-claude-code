@@ -4,7 +4,7 @@
 > - Den Moment kurz halten
 
 Sagen:
-- "Die nächsten zwei Tasks drehen sich beide darum, was ein Skill weiß, und wann."
+- "Die nächsten zwei Tasks drehen sich beide darum, was in Claudes Kontext steht, und wann."
 
 <!-- @note: task-09-example-mapping-and-the-discover-skill -->
 > Tun:

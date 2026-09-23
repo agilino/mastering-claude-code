@@ -16,6 +16,7 @@ Say:
 > Do:
 > - Give it time
 > - Mention without demoing
+> - Optional: point at "Clean up worktrees" — an unnamed session's worktree is removed automatically on exit if clean
 
 Say:
 - [click] Every strategy so far shared one working tree
@@ -24,6 +25,9 @@ Say:
 - At home: `claude --worktree "#<pr-number>"` starts from a PR
 
 <!-- @note: headless-in-ci -->
+> Do:
+> - Optional: point at "Start faster with bare mode" — --bare skips hook, skill and CLAUDE.md auto-discovery for a reproducible CI run
+
 Say:
 - Headless = no human watching: the same agent that just paired with you, running unattended, triggered by an event
 - [click] Fill the empty Actions tab with the security audit from task 08, running on every PR
@@ -45,6 +49,7 @@ Say:
 >             --allowedTools "Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*)"
 >           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
 > - A live token is not needed to check that the YAML is valid
+> - Optional: point at "Protect your credentials" under Best practices — never commit a key, always a secret
 
 Say:
 - Without --allowedTools the findings only land in the run log — `Bash(gh pr comment:*)` is what lets Claude post the comment
@@ -55,6 +60,7 @@ Say:
 > Do:
 > - Needs a subscription plan, not an API key — and /login first
 > - Show the connection panel live if the projector setup allows it
+> - Optional: point at "Remote Control vs cloud sessions" — confirms nothing moves off your machine
 
 Say:
 - Nothing moves to the cloud — your machine still runs every tool call, the phone is just a window
@@ -74,6 +80,9 @@ Say:
 - The same agent loop, now hosted inside a small program instead of a terminal session
 
 <!-- @note: same-loop-inside-your-program -->
+> Do:
+> - Optional: point at the "Capabilities" table — lists what carries over: tools, hooks, permissions, sessions, skills
+
 Say:
 - [click:2] Just ran the agent headless in a pipeline
 - [click] Agent SDK: same idea one level further in — the agent lives inside your application
@@ -85,6 +94,7 @@ Say:
 > - FULL WORKING SOLUTION (trainer only): workshop-artifacts/16-agent-sdk/ask-clash.mts
 > - Run with `npx tsx ask-clash.mts "find me something outdoors in Kreuzberg this evening"` after `npm install @anthropic-ai/claude-agent-sdk tsx`
 > - Point at the three controls
+> - Optional: point at the "Options" table — same allowedTools/disallowedTools/maxTurns/hooks fields
 > - Then the result message: the answer, num_turns, total_cost_usd
 > - Say the cost out loud
 

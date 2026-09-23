@@ -4,7 +4,7 @@
 > - Keep the beat short
 
 Say:
-- "The next two tasks are both about shaping what a skill knows, and when."
+- "The next two tasks are both about shaping Claude's context, and when it loads."
 
 <!-- @note: task-09-example-mapping-and-the-discover-skill -->
 > Do:

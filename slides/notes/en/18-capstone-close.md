@@ -15,6 +15,9 @@ Say:
 - No prompts given — the checklist is the deliverable
 
 <!-- @note: security-three-rules -->
+> Do:
+> - Optional: point at "Protect against prompt injection" — the same three rules, as the docs' own core protections list
+
 Say:
 - Prompt injection in one sentence: a model cannot tell data from instructions by looking
 - CLASH is full of user-supplied titles and bios — prime injection surface

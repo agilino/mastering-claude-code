@@ -15,7 +15,7 @@ starting another cycle.
 ## RED
 
 Write exactly one new failing test for the rule named in `$ARGUMENTS`, using its exact wording
-from the spec.
+from the spec. Run `npm run test`.
 
 It must fail on an assertion — the wrong value, or the wrong branch taken — not on a compile or
 import error. A test that errors is testing plumbing, not the rule. If it already passes without
@@ -23,10 +23,11 @@ any change, stop and say so instead of continuing.
 
 ## GREEN
 
-Write the minimum code to make that one test pass, in the file the rule belongs to. Don't
-implement anything beyond what this test requires, and don't touch any other test — especially
-not the one you just wrote. If GREEN would require editing a test to pass, that's a sign the RED
-test was wrong; stop and say so instead of editing it.
+Write the minimum code to make that one test pass, in the file the rule belongs to. Run
+`npm run test` and confirm every test passes, not just the new one. Don't implement anything
+beyond what this test requires, and don't touch any other test — especially not the one you just
+wrote. If GREEN would require editing a test to pass, that's a sign the RED test was wrong; stop
+and say so instead of editing it.
 
 ## REFACTOR
 

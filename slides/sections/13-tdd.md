@@ -67,9 +67,10 @@ allowed-tools: Read, Write, Edit, Bash
 disable-model-invocation: true
 ---
 
-⟵ LIVE: RED must fail on an assertion, not a compile error. GREEN
-     touches the target file only, never the test. STOP: report and
-     wait — don't start another cycle uninvited.
+⟵ LIVE: RED: run it, must fail on an assertion, not a compile error.
+     GREEN: touches the target file only, never the test, run it again
+     to confirm. STOP: report and wait — don't start another cycle
+     uninvited.
 ```
 
 ---

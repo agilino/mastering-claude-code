@@ -36,4 +36,4 @@ Say:
 > - Recap: this rule is the durable version of what task 08's subagent found once
 
 Say:
-- "Same finding, now enforced every time, not just the one time someone thought to audit"
+- "Same finding, surfaced every time now, not just the one time someone thought to audit — still guidance, not enforcement"

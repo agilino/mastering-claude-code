@@ -11,7 +11,7 @@ Say:
 
 <!-- @note: task-12-team-and-workflow-audit -->
 > Do:
-> - Branch: 12-start has the ownership bug re-seeded (same removal as task 08), freshly reset for this audit
+> - Branch: 12-start has the ownership bug re-seeded (same removal as task 08), freshly reset for this audit — it also carries task 11's finished tdd skill and passing capacity.ts
 
 Say:
 - Same audit as task 08, two more ways to run it — a team, then a dynamic workflow

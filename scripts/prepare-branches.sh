@@ -17,7 +17,8 @@
 #   09-start  == 08-start
 #   10-start  ownership checks restored; + discover skill and its resolved spec
 #   11-start  + path-scoped app/actions/** rule; + vitest, one trivial test, the capacity stub
-#   12-start  ownership checks RE-SEEDED for the audit (same seeding as 08-start)
+#   12-start  + finished tdd skill and passing capacity.ts (end of task 11); ownership
+#             checks RE-SEEDED for the audit (same seeding as 08-start)
 #   13-start  ownership checks restored again
 #   14-start  + hook set
 #   15..17    == 14-start
@@ -48,6 +49,9 @@ ART_RULES_FILE="$(find_one '*path-scoped-rules*/server-actions.md')"
 ART_TDD_VITEST_CONFIG="$(find_one '*tdd-inner-loop*/vitest.config.ts')"
 ART_TDD_CAPACITY_STUB="$(find_one '*tdd-inner-loop*/capacity.stub.ts')"
 ART_TDD_FORMAT_TEST="$(find_one '*tdd-inner-loop*/format.test.ts')"
+ART_TDD_SKILL="$(find_one '*tdd-inner-loop*/SKILL.md')"
+ART_TDD_CAPACITY_TS="$(find_one '*tdd-inner-loop*/capacity.ts')"
+ART_TDD_CAPACITY_TEST="$(find_one '*tdd-inner-loop*/capacity.test.ts')"
 
 cd "$CLASH_DIR"
 if [[ -n "$(git status --porcelain)" ]]; then
@@ -266,10 +270,14 @@ a missing import. docs/specs/clash-capacity.md already arrived at
 note 11-start "+ path-scoped rule; + vitest, one trivial test, the capacity stub"
 gate 11-start
 
-# --- 12-start: re-seed the ownership bug for the audit -----------------------
+# --- 12-start: + task 11's finished artifacts; ownership bug re-seeded -------
 # Same exact-string-replacement this script runs at 08-start, run again here
 # because 10-start restored the guards from main.
 git checkout -B 12-start 11-start --quiet
+mkdir -p .claude/skills/tdd
+cp "$ART_TDD_SKILL" .claude/skills/tdd/SKILL.md
+cp "$ART_TDD_CAPACITY_TS" lib/capacity.ts
+cp "$ART_TDD_CAPACITY_TEST" lib/capacity.test.ts
 node <<'JS'
 const fs = require('fs')
 const path = 'app/actions/clashes.ts'
@@ -298,12 +306,14 @@ if (!src.includes(needle)) { console.error(`error: expected deleteVenue guard no
 const out = src.replace(needle, '  if (!venue) return { ok: false, error: "Venue not found." };\n')
 fs.writeFileSync(path, crlf ? out.replace(/\n/g, '\r\n') : out)
 JS
-commit_all 12-start "workshop: re-seed the missing ownership checks for the audit (end of task 11)
+commit_all 12-start "workshop: add the finished tdd skill and capacity.ts; re-seed the missing ownership checks for the audit (end of task 11)
 
-deleteClash and deleteVenue lose their creatorId check again, same as
-08-start. This is workshop content, not a CLASH bug — task 12 finds
-it, task 13 restores the guard."
-note 12-start "ownership checks re-seeded for the audit"
+lib/capacity.ts and lib/capacity.test.ts are task 11's own answer key,
+carried forward the same way every other branch carries its previous
+task's result. deleteClash and deleteVenue lose their creatorId check
+again, same as 08-start. This is workshop content, not a CLASH bug —
+task 12 finds it, task 13 restores the guard."
+note 12-start "+ finished tdd skill and capacity.ts; ownership checks re-seeded"
 gate 12-start
 
 # --- 13-start: ownership checks restored again -------------------------------

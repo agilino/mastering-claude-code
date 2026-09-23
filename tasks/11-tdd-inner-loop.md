@@ -74,9 +74,10 @@ This branch already has vitest installed, one trivial passing test, and a delibe
    `disable-model-invocation: true` keeps this a call you make on purpose — Claude never
    reaches for it on its own.
 
-   Body: RED (one failing test, must fail on an assertion, not a compile or import error) →
-   GREEN (minimum code, the target file only, never the test) → REFACTOR (clean up, rerun
-   everything) → STOP (report the rule, the test name, pass or fail, then wait).
+   Body: RED (one failing test, run it, must fail on an assertion, not a compile or import
+   error) → GREEN (minimum code, the target file only, never the test, run it again and
+   confirm it passes) → REFACTOR (clean up, rerun everything) → STOP (report the rule, the
+   test name, pass or fail, then wait).
 8. Run `/tdd` for the second rule — at capacity, a join is waitlisted — end to end.
 9. Run `/tdd` again for the boundary: one join *below* capacity still accepts, it doesn't
    waitlist early. A separate invocation. Confirm it stops after one cycle instead of cascading

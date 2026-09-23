@@ -16,6 +16,7 @@ Sagen:
 > Tun:
 > - Zeit lassen
 > - Erwähnen, ohne es vorzuführen
+> - Optional: auf "Clean up worktrees" zeigen — der Worktree einer unbenannten Session wird beim Beenden automatisch entfernt, wenn er sauber ist
 
 Sagen:
 - [click] Jede Strategie bisher hat sich einen Working Tree geteilt
@@ -24,6 +25,9 @@ Sagen:
 - Zuhause: `claude --worktree "#<pr-number>"` startet von einem PR aus
 
 <!-- @note: headless-in-ci -->
+> Tun:
+> - Optional: auf "Start faster with bare mode" zeigen — --bare überspringt das automatische Laden von Hooks, Skills und CLAUDE.md für einen reproduzierbaren CI-Lauf
+
 Sagen:
 - Headless = kein Mensch schaut zu: derselbe Agent, der gerade mit dir gepairt hat, läuft unbeaufsichtigt, ausgelöst durch ein Event
 - [click] Den leeren Actions-Tab mit dem Security-Audit aus Task 08 füllen, das bei jedem PR läuft
@@ -45,6 +49,7 @@ Sagen:
 >             --allowedTools "Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*)"
 >           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
 > - Um zu prüfen, ob das YAML gültig ist, braucht es keinen echten Token
+> - Optional: auf "Protect your credentials" unter Best practices zeigen — nie einen Key committen, immer ein Secret
 
 Sagen:
 - Ohne --allowedTools landen die Findings nur im Run-Log — erst `Bash(gh pr comment:*)` erlaubt Claude, den Kommentar zu posten
@@ -55,6 +60,7 @@ Sagen:
 > Tun:
 > - Braucht einen Subscription-Plan, keinen API-Key — und vorher /login
 > - Bei passendem Beamer-Setup live das Verbindungs-Panel zeigen
+> - Optional: auf "Remote Control vs cloud sessions" zeigen — bestätigt, dass nichts die eigene Maschine verlässt
 
 Sagen:
 - Nichts wandert in die Cloud — deine Maschine führt weiter jeden Tool-Call aus, das Handy ist nur ein Fenster
@@ -74,6 +80,9 @@ Sagen:
 - Derselbe Agent-Loop, jetzt in einem kleinen Programm statt in einer Terminal-Sitzung
 
 <!-- @note: same-loop-inside-your-program -->
+> Tun:
+> - Optional: auf die Tabelle "Capabilities" zeigen — listet, was übernommen wird: Tools, Hooks, Permissions, Sessions, Skills
+
 Sagen:
 - [click:2] Gerade den Agent headless in einer Pipeline laufen lassen
 - [click] Agent SDK: dieselbe Idee, eine Stufe weiter innen — der Agent lebt in deiner Anwendung
@@ -85,6 +94,7 @@ Sagen:
 > - VOLLSTÄNDIGE LÖSUNG (nur für Trainer): workshop-artifacts/16-agent-sdk/ask-clash.mts
 > - Starten mit `npx tsx ask-clash.mts "find me something outdoors in Kreuzberg this evening"` nach `npm install @anthropic-ai/claude-agent-sdk tsx`
 > - Auf die drei Controls zeigen
+> - Optional: auf die Tabelle "Options" zeigen — dieselben Felder allowedTools/disallowedTools/maxTurns/hooks
 > - Dann auf die Result-Message: die Antwort, num_turns, total_cost_usd
 > - Die Kosten laut sagen
 
