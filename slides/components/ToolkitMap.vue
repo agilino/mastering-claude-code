@@ -39,7 +39,7 @@ const rows = [
 <template>
   <div class="w-full na-card overflow-hidden">
     <div
-      class="grid text-sm font-semibold px-4 py-2"
+      class="grid text-sm font-semibold px-4 py-1"
       style="grid-template-columns: 9rem 14rem 1fr; background: var(--na-zinc-900); color: var(--na-fg-muted)"
     >
       <div>Primitive</div>
@@ -51,7 +51,7 @@ const rows = [
         v-for="row in rows"
         :key="row.key"
         v-click
-        class="grid px-4 py-2.5 text-sm items-center toolkit-row"
+        class="grid px-4 py-1 text-sm items-center toolkit-row"
         :class="{ 'toolkit-row--active': current === row.key }"
         style="grid-template-columns: 9rem 14rem 1fr; border-top: 1px solid var(--na-border)"
       >
@@ -66,7 +66,7 @@ const rows = [
       <div
         v-for="row in rows"
         :key="row.key"
-        class="grid px-4 py-2.5 text-sm items-center toolkit-row"
+        class="grid px-4 py-1 text-sm items-center toolkit-row"
         :class="{ 'toolkit-row--active': current === row.key }"
         style="grid-template-columns: 9rem 14rem 1fr; border-top: 1px solid var(--na-border)"
       >
