@@ -138,8 +138,8 @@ The slide base URL defaults to the deployed workshop. Override it when testing n
 or if the deployment moves:
 
 ```bash
-SLIDES_BASE_URL=http://localhost:3000 npm run task:check
-SLIDES_BASE_URL=http://localhost:3000 npm run task:new -- 15 My new task
+SLIDES_BASE_URL=http://localhost:3030 npm run task:check
+SLIDES_BASE_URL=http://localhost:3030 npm run task:new -- 15 My new task
 ```
 
 With a localhost override, the linter accepts both existing deployed links and local links. CI
