@@ -6,7 +6,7 @@
 ## Theory
 
 - [The attack surface](https://mastering-claude-code.vercel.app/theory-attack-surface)
-- [The auditor subagent](https://mastering-claude-code.vercel.app/theory-auditor-subagent)
+- [Agent, subagent, fork: which is which](https://mastering-claude-code.vercel.app/theory-agent-subagent-fork)
 - [Two ways to isolate](https://mastering-claude-code.vercel.app/theory-subagents)
 
 > **Reminder:** A subagent gets its own context; give it a narrow, falsifiable read-only brief.
@@ -14,12 +14,36 @@
 ## You will end up with
 
 A `security-auditor` subagent that checked every Server Action in `app/actions/` and
-found exactly two problems. Your own context window barely moved.
+found exactly two problems. Your own context window barely moved. Then the same audit by
+OWASP's `code-security-skills` plugin, so you can compare the two reports.
 
 ## Why
 
 A subagent is a second agent loop with its own context window. It does the noisy work
 (reading many files) and sends back a short report. Your main window stays clean.
+
+Three words, used this way for the rest of the course:
+
+- **Agent**: one running loop. Your own session is one. It is the `main` row in the panel
+  below your prompt input.
+- **Subagent**: a loop that `main` starts, in its own context window.
+- **Fork**: a subagent that starts as a copy of your conversation.
+
+A subagent built from a definition file (`.claude/agents/`, or one a plugin ships) starts
+fresh, with only the tools its `tools:` line allows. A fork gets every tool `main` has, so a
+`tools:` line does not apply to it. A skill is not an agent: it is text loaded into whichever
+conversation runs it.
+
+While a subagent or a fork runs, a row appears in the panel below your prompt input, indented
+under `main`. The row goes away when it finishes, so look while it runs. `/tasks` lists the
+same rows. Here is what starts what in this task:
+
+| Step | What runs | Fork or fresh | In the panel |
+|---|---|---|---|
+| 4 (trainer only) | `main` reads every file | no subagent | only `main` |
+| 6 | `security-auditor` | fresh, tools: Read, Grep, Glob | one row under `main` |
+| Now you | `/subtask` | fork, every tool `main` has | one row under `main` |
+| 10 | `code-security-reviewer` from the plugin | fresh, the plugin's own definition | one row under `main` |
 
 This branch has a real bug on purpose. The ownership check was removed from `deleteClash`
 in `app/actions/clashes.ts` and from `deleteVenue` in `app/actions/venues.ts`. Every other
@@ -48,7 +72,8 @@ check ownership itself. Zod checks the shape of the input, not who may send it.
    existing row.
    ```
    Watch what happens: every file's contents land in the trainer's own context window, not a
-   subagent's. Nothing is delegated, so nothing stays clean.
+   subagent's. Nothing is delegated, so nothing stays clean, and the panel below the prompt
+   shows only `main`.
 5. Create the subagent. Put this in `.claude/agents/security-auditor.md`.
    ```md
    ---
@@ -72,15 +97,48 @@ check ownership itself. Zod checks the shape of the input, not who may send it.
    ```
    Use the security-auditor subagent on app/actions/ and show me its report.
    ```
+   While it runs, look below your prompt input: a row appears, indented under `main`. That row
+   is the subagent. It is a fresh one, built from `security-auditor.md`.
 7. Read `/context` again. It moved a little. The file reads happened in the subagent's window, not yours.
 8. Check the report against the answer key (shared with task 12): `workshop-artifacts/12-team-and-workflow-audit/AUTH-FIX.md`
    in the workshop repository. Do not fix the bug yet. Task 12 does that.
+9. Someone has already built a wider auditor, and you met plugins in task 07. Install OWASP's
+   `code-security-skills` plugin. It bundles subagents and skills. Read what a plugin ships
+   before you install it: it runs on your machine and can carry hooks.
+   ```
+   /plugin marketplace add OWASP/secure-agent-playbook
+   ```
+   ```
+   /plugin install code-security-skills@agent-security-playbook
+   ```
+   Run `/plugin` and check that `code-security-skills` is listed as installed. If the install
+   summary asks for it, run `/reload-plugins`.
+10. Start with a clean context, so the reviewer cannot lean on your auditor's report. Then
+    run the plugin's reviewer.
+    ```
+    /clear
+    ```
+    ```
+    Use the code-security-skills:code-security-reviewer subagent to review
+    app/actions/ for security issues and show me its report.
+    ```
+    A row appears under `main` again. Same kind as step 6: a fresh subagent, this time from a
+    definition the plugin ships.
+11. Compare the two reports. Is `deleteClash` and `deleteVenue` in both? What did the OWASP
+    reviewer report that yours cannot? What did yours give that theirs did not: a PASS or FAIL
+    per action, with the deciding line? Write two sentences. Neither is "the better one": one is
+    narrow and checkable, the other is broad.
 
 ## Now you
 
-- Run the same audit again, but hand it off with `/subtask` instead of naming the
-  `security-auditor` subagent. Compare the `/context` numbers and the time taken against
-  step 6's run.
+- Run the same audit a third way. Hand it off with `/subtask` instead of naming an agent.
+  ```
+  /subtask Audit every exported Server Action in app/actions/ for missing ownership checks on
+  mutations of existing rows. Report file, function, PASS or FAIL.
+  ```
+  A row appears under `main`. This one is a fork: it inherited your conversation and every tool
+  `main` has, `Edit` and `Write` included, so the read-only `tools:` line of `security-auditor`
+  does not apply to it. Compare the `/context` numbers and the time taken against step 6's run.
 - Write a second subagent, `perf-auditor`, that only looks for Prisma queries without a `select`.
 
 ## Check
@@ -89,6 +147,9 @@ check ownership itself. Zod checks the shape of the input, not who may send it.
 - [ ] It does not flag `updateClash`, `updateVenue`, `joinClash`, `acceptRequest`, `markNotificationRead`, `updateProfile` or `updateAvatar`.
 - [ ] Your main `/context` moved only a little.
 - [ ] You can say what a fork shares with its parent and what a fresh subagent does not.
+- [ ] You can point at the panel row of a fresh subagent and at the row of a fork.
+- [ ] You can say which of the two a `tools:` line restricts.
+- [ ] The OWASP reviewer ran after a `/clear`, and you compared its report with your own auditor's.
 
 ## Stuck?
 
@@ -104,3 +165,5 @@ Ask your subagent to explain how.
 
 - Subagents — https://code.claude.com/docs/en/sub-agents
 - Tools reference — https://code.claude.com/docs/en/tools-reference
+- Discover and install plugins — https://code.claude.com/docs/en/discover-plugins
+- OWASP secure-agent-playbook (the `code-security-skills` plugin) — https://github.com/OWASP/secure-agent-playbook

@@ -195,7 +195,13 @@ Parts III and IV run on the finished reference CLASH, as guided tasks.
   (`deleteClash`, `deleteVenue`). `npm run lint` shows an unused `user` warning in
   `deleteVenue` as a tell.
 - One `security-auditor` with Read/Grep/Glob and a falsifiable brief. `/context` barely
-  moves. Fork vs. fresh: forks are on by default in interactive sessions.
+  moves. Say "agent, subagent, fork" once, slowly, and point at the row that appears under
+  `main` below the prompt. Fork mode is on by default in interactive sessions, but a named
+  agent from a definition file stays a fresh subagent. Only `/subtask` (or Claude choosing the
+  fork type) starts a fork, and a fork ignores a `tools:` line.
+- Steps 9 to 11 install OWASP's `code-security-skills` plugin (needs GitHub reachable, and it
+  spends more tokens than the auditor). Compare the two reports, do not crown a winner. Say it
+  is a plugin bundling subagents and skills, and that a plugin can ship hooks: read what you install.
 - Stop slide: task file step 4 is reading every action file yourself, in the main
   conversation — send it live, watch your own `/context` climb, stop, then hand over at step 1
   (they check out, look at both sides and note their own `/context` themselves; skip step 4,
