@@ -111,8 +111,9 @@ check ownership itself. Zod checks the shape of the input, not who may send it.
 10. Look below your prompt input while it runs: a row appears under `main`. This one is a fork.
     It inherited your conversation, so it can see the report from step 6, and every tool `main`
     has, `Edit` and `Write` included. The read-only `tools:` line of `security-auditor` does not
-    apply to it. That is why the brief names the tools itself: nothing else keeps a fork
-    read-only. Compare the `/context` numbers against step 6's run.
+    apply to it. The brief names the tools, but that is only an instruction: the fork can still
+    call `Edit` and `Write`, and nothing stops it. For a hard limit, use a fresh subagent with a
+    `tools:` line. Compare the `/context` numbers against step 6's run.
 11. Someone has already built a wider auditor, and you met plugins in task 07. Add OWASP's
     marketplace. Read what a plugin ships before you install it: it runs on your machine and
     can carry hooks.
@@ -145,8 +146,8 @@ check ownership itself. Zod checks the shape of the input, not who may send it.
 ## Now you
 
 - Hand a different read-only job to a fork with `/subtask`: find every place `requireUser()` is
-  called under `app/`. Goal: a report only, no file edited. Decide yourself what the brief must
-  say so that the fork stays read-only.
+  called under `app/`. Goal: a report only, no file edited. Write the brief so that it asks for
+  that, then check afterwards that no file changed: the brief is an instruction, not a lock.
 - Write a second subagent, `perf-auditor`, that only looks for Prisma queries without a `select`.
 
 ## Check
