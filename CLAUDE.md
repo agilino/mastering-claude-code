@@ -34,7 +34,12 @@ Target codebase: `https://github.com/pawsaw/clash` (Next.js 16 / React 19 / Pris
    a dynamic workflow's script lands under `~/.claude/projects/<session>/` first and only `s` in `/workflows` saves it to `.claude/workflows/`;
    `Date.now()`, `Math.random()` and no-arg `new Date()` throw inside a workflow script; headless CI uses `anthropics/claude-code-action@v1`;
    custom commands (`.claude/commands/*.md`) merged into skills — a command file and a skill with the same name both produce the same
-   `/name` and old command files keep working, but skills are the recommended path for new work.
+   `/name` and old command files keep working, but skills are the recommended path for new work;
+   a project rule in `.claude/rules/*.md` reads only the `paths` frontmatter field — anything else there is ignored without an
+   error — and a rule with no `paths` loads unconditionally, at launch, same priority as `.claude/CLAUDE.md`, while a
+   `paths`-scoped rule loads only when Claude's Read tool matches the glob, not on every tool use; a skill's `context: fork`
+   field runs it as a subagent with the skill body as its prompt, and `disable-model-invocation: true` blocks Claude from
+   auto-triggering the skill while explicit `/name` invocation still works.
 8. **File work in this repo uses Read, Write, Edit, Grep and Glob — never a shell command that reads,
    lists or searches files.** The shell is for the build and check commands under "Build and check"
    below, `git`, and `npx`/`npm`/`node`. A `PreToolUse` hook (`.claude/hooks/no-shell-file-reads.sh`)
@@ -84,7 +89,10 @@ Target codebase: `https://github.com/pawsaw/clash` (Next.js 16 / React 19 / Pris
   `section` (divider with `JourneyMap`, plus `ToolkitMap` in the control/orchestrate parts).
 - Concept slides: ≤ 40 words of body text. Headings ≤ 8 words.
 - Diagrams are small Vue/SVG components in `slides/components/` (`D*.vue` for the LLM and harness ideas, `G*.vue` for the rest). Text inside SVG is never under 13 px.
-- Presenter notes (`<!-- -->`) hold the trainer script: what to say, what to demo, what to watch for. No times.
+- Presenter notes are authored in `slides/notes/en/` and `slides/notes/de/` (one file per section, one
+  `<!-- @note: key -->` block per slide, key = `slugify(heading)`) and hold the trainer script: what to say,
+  what to demo, what to watch for. `slides/scripts/deck.mjs` splices each block into its slide as an
+  `<!-- -->` comment at build time — that generated form is what Slidev reads, not what you author. No times.
 - Every task block, in this order, inside one section file: `task-intro` → every concept/code-live
   slide the task needs → an optional "stop slide" (`G03CarelessVsEngineered`, a live
   careless-vs-engineered demo — only where the task has a real contrast, never forced) → `task`
@@ -108,14 +116,15 @@ Target codebase: `https://github.com/pawsaw/clash` (Next.js 16 / React 19 / Pris
 
 01-setup-first-conversation · 02-foundation · 03-auth-and-clashes · 04-venues-map-people ·
 05-finish-and-ship · 06-context-and-claude-md · 07-clash-feature-skill · 08-subagent-audit ·
-09-team-and-workflow-audit · 10-hooks · 11-browser-loop · 12-letting-go · 13-agent-sdk · 14-capstone
+09-example-mapping · 10-path-scoped-rules · 11-tdd-inner-loop · 12-team-and-workflow-audit ·
+13-hooks · 14-browser-loop · 15-letting-go · 16-agent-sdk · 17-capstone
 
 ## Parts
 
 - Part I — Foundations (White belt): what a model is, the harness, first steps. Task 01.
 - Part II — Build CLASH (Blue belt): tasks 02–05. Participants build CLASH from `docs/SPEC.md`.
-- Part III — Control the context (Brown belt): tasks 06–08, on the reference CLASH (`06-start`).
-- Part IV — Orchestrate and let go (Black belt): tasks 09–14.
+- Part III — Control the context (Brown belt): tasks 06–10, on the reference CLASH (`06-start`).
+- Part IV — Orchestrate and let go (Black belt): tasks 11–17.
 
 ## Build and check
 

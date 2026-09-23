@@ -27,6 +27,7 @@ Sagen:
 > Tun:
 > - Zurückverweisen auf den /new-page-Command aus Task 04 — derselbe Mechanismus, das hier ist die Ordner-Version
 > - Ein verbreitetes Missverständnis korrigieren
+> - Optional: auf "All commands" zeigen — die eigene Referenzliste dieser Docs-Seite
 
 Sagen:
 - Dass Commands in Skills aufgehen, macht .claude/commands/*.md-Dateien nicht kaputt

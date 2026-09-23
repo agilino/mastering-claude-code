@@ -124,7 +124,7 @@ Inside Claude Code:
 /config
 ```
 
-Find the **Dynamic workflows** row and turn it **on**. Task 09 depends on it.
+Find the **Dynamic workflows** row and turn it **on**. Task 12 depends on it.
 
 ### 5b. Turn agent teams on
 
@@ -139,12 +139,12 @@ Agent teams are experimental. Add this to `~/.claude/settings.json`:
 ```
 
 If the file already has an `env` block, add the key inside it. Restart Claude Code.
-Without this flag, task 09 silently spawns ordinary subagents instead of a team.
+Without this flag, task 12 silently spawns ordinary subagents instead of a team.
 If you would rather not enable an experimental flag, you can watch that part.
 
 ## 6. Pre-install the MCP servers
 
-Task 11 uses two MCP servers. Install them now so nothing downloads during the workshop.
+Task 14 uses two MCP servers. Install them now so nothing downloads during the workshop.
 
 ```bash
 claude mcp add playwright -- npx -y @playwright/mcp@latest
@@ -205,5 +205,5 @@ Both appear in this workshop. We always say which one we mean.
 ## A note on usage limits
 
 Agent teams and dynamic workflows use many tokens. If you are on a Pro plan you may hit a
-limit during task 09. That is not a setup problem. Stop the fan-out, watch the trainer's
+limit during task 12. That is not a setup problem. Stop the fan-out, watch the trainer's
 screen, and rejoin at the next branch. Nothing later depends on your own run finishing.

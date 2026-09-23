@@ -202,11 +202,51 @@ Parts III and IV run on the finished reference CLASH, as guided tasks.
   they just watched it) and continue from step 5, the subagent version of the same audit.
 - End on the cliffhanger: two findings, nothing fixed yet.
 
+### Task 09 — Example Mapping and the `discover` skill
+
+- Manual prompt first, then package it: send the raw Example Mapping prompt live in chat, no
+  skill yet, and count how much of it people would have to retype for the next story.
+- `references/example-mapping.md` is the point of this task, not a nice-to-have: the skill body
+  stays short, the method only enters context when the skill actually opens the file.
+- `AskUserQuestion` runs from inside the skill, not just from Claude directly — resolve the
+  capacity-lowering question live and read the options it offers out loud.
+- No stop slide: the contrast here is the manual prompt vs. the packaged skill, not a
+  careless-vs-engineered demo.
+- Answer key: `workshop-artifacts/09-example-mapping/`. The saved spec has no `Questions`
+  section left — say why that's the rule, not an accident.
+
+### Task 10 — Path-scoped rules
+
+- Contrast with task 06's `~/.claude/rules/tone.md`: same directory name, different scope
+  (project vs. personal) and different trigger (`paths:` vs. unconditional).
+- Demo the trigger live: run `/context` before Claude has read anything under `app/actions/`,
+  then after — the rule appears only the second time.
+- `paths` is the only field Claude Code reads from a rule file. Say it plainly: everything else
+  in that frontmatter is silently ignored.
+- No stop slide.
+
 ---
 
 ## Part IV — Orchestrate and let go
 
-### Task 09 — Team and workflow audit
+### Task 11 — The TDD inner loop
+
+- Ships pre-configured: vitest, one trivial passing test, a deliberately wrong `lib/capacity.ts`
+  stub. Do not let anyone fight test-runner config live — that is not the lesson here.
+- The deliberate mistake, same shape as task 13's hooks mistake: send "the test is failing,
+  update the test so the suite passes" live, once, on your own machine. Watch Claude edit the
+  assertion, not the code. Then `Esc`, `/rewind` to the checkpoint before that edit, hand over.
+- RED must fail on an assertion, not a compile error — say why explicitly. Same lesson as task
+  13's silent hook, from the other direction: the wrong kind of failure teaches nothing either.
+- `disable-model-invocation: true` — a one-cycle skill is a deliberate ceremony, not something
+  Claude should reach for on its own.
+- Stop slide ("Update the test, or fix the code?") has a matching anti-pattern step in the task
+  file — click through the careless side, stop on the red bar, send the live prompt, `/rewind`,
+  hand over at the engineered prompt, come back to click through the engineered side once most
+  people are through Check.
+- Answer key: `workshop-artifacts/11-tdd-inner-loop/`.
+
+### Task 12 — Team and workflow audit
 
 - Agent team: needs `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` or it silently spawns plain
   subagents. Teammates message by name via SendMessage. No `@`-mentions. `claude agents` is
@@ -218,14 +258,14 @@ Parts III and IV run on the finished reference CLASH, as guided tasks.
   `Date.now()`, `Math.random()` and no-arg `new Date()` throw inside it.
 - Verifier/refuter and quarantine. Say the token cost out loud.
 - Reconcile three results, fill the toolkit map from evidence, then restore the two
-  `creatorId` checks. `workshop-artifacts/09-team-and-workflow-audit/AUTH-FIX.md` has the diff.
+  `creatorId` checks. `workshop-artifacts/12-team-and-workflow-audit/AUTH-FIX.md` has the diff.
 - Keep a finished run in a second terminal in case the live one is slow.
 - No stop slide: this whole block is the live demo already, mode `watch first`. The real
   contrast here is three-way (subagent vs. team vs. workflow), not careless-vs-engineered — that
   is what "Reconcile, decide, merge" is for, and it stays before the recap on purpose: the
   numbers it compares only exist once you have watched the demo, not once they are back.
 
-### Task 10 — Hooks
+### Task 13 — Hooks
 
 - Say the naming trap again: `hooks/` in CLASH is React hooks. Claude Code hooks live in
   `.claude/settings.json`.
@@ -238,7 +278,7 @@ Parts III and IV run on the finished reference CLASH, as guided tasks.
   and the Stop gate. `hard_deny` is an auto-mode setting, not a hook decision.
 - Skills are advice. Hooks are law.
 
-### Task 11 — The browser closes the loop
+### Task 14 — The browser closes the loop
 
 - MCP is a protocol boundary. Playwright MCP drives a browser; DevTools MCP speaks the
   DevTools protocol.
@@ -247,20 +287,20 @@ Parts III and IV run on the finished reference CLASH, as guided tasks.
 - Four browser tools, one comparison. Do not quote a token-savings percentage for
   agent-browser; it is not an official number.
 
-### Task 12 — Letting go
+### Task 15 — Letting go
 
 - Worktrees: `claude --worktree <name>`. The one thing they use next week.
 - CI: `anthropics/claude-code-action@v1` with `prompt` and `claude_args`. Not `@beta`,
   not a bare `claude -p` in the YAML. Token via a repository secret.
 
-### Task 13 — Agent SDK
+### Task 16 — Agent SDK
 
 - Same loop, hosted in your program. Every primitive carries over: allowed tools, hooks,
   context budget.
-- The script in `workshop-artifacts/13-agent-sdk/` answers one question about the seed data
+- The script in `workshop-artifacts/16-agent-sdk/` answers one question about the seed data
   with Read, Grep and Glob only. Run it, then read it.
 
-### Task 14 — Capstone
+### Task 17 — Capstone
 
 - Three briefs. Each participant picks one and ships it in a worktree with the skill, a
   subagent review, the hook set, a browser check and a PR.
@@ -282,4 +322,5 @@ Parts III and IV run on the finished reference CLASH, as guided tasks.
 | Typecheck hook does not fire | It is the scripted mistake. Make sure they saw the silence before the fix. |
 | Slow workflow run | Second terminal with a finished run. The script read-through is the filler. |
 | Token limits on Pro during Part IV | Warn early. Watch the trainer screen for that segment. Rejoin at the next branch. |
-| Someone hand-edits `prisma/migrations` | The deny hook from Task 10 catches it from `11-start` on. |
+| Someone hand-edits `prisma/migrations` | The deny hook from Task 13 catches it from `14-start` on. |
+| `/tdd` fires on its own mid-conversation | Shouldn't happen — `disable-model-invocation: true` blocks it. If it does, the skill file is wrong; fix it live as a teaching moment. |

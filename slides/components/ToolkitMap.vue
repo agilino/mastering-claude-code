@@ -13,6 +13,7 @@ const props = withDefaults(
     current?:
       | 'context'
       | 'skill'
+      | 'rule'
       | 'subagent'
       | 'team'
       | 'workflow'
@@ -26,6 +27,7 @@ const props = withDefaults(
 const rows = [
   { key: 'context', primitive: 'Context', what: 'the window itself', when: 'always — the constraint everything else works around' },
   { key: 'skill', primitive: 'Skill', what: 'instructions loaded on demand', when: 'the work is repeatable and you keep re-explaining it' },
+  { key: 'rule', primitive: 'Project rule', what: 'scoped instructions in .claude/rules/', when: 'a convention only matters for part of the codebase' },
   { key: 'subagent', primitive: 'Subagent', what: 'a worker with its own context window', when: 'the work is noisy and would pollute your thread' },
   { key: 'team', primitive: 'Agent team', what: 'a lead supervising peer sessions', when: 'workers need to talk to each other over time' },
   { key: 'workflow', primitive: 'Workflow', what: 'a script that holds the plan', when: 'the fan-out is bigger than one conversation can steer' },
@@ -37,7 +39,7 @@ const rows = [
 <template>
   <div class="w-full na-card overflow-hidden">
     <div
-      class="grid text-sm font-semibold px-4 py-2"
+      class="grid text-sm font-semibold px-4 py-1"
       style="grid-template-columns: 9rem 14rem 1fr; background: var(--na-zinc-900); color: var(--na-fg-muted)"
     >
       <div>Primitive</div>
@@ -49,7 +51,7 @@ const rows = [
         v-for="row in rows"
         :key="row.key"
         v-click
-        class="grid px-4 py-2.5 text-sm items-center toolkit-row"
+        class="grid px-4 py-1 text-sm items-center toolkit-row"
         :class="{ 'toolkit-row--active': current === row.key }"
         style="grid-template-columns: 9rem 14rem 1fr; border-top: 1px solid var(--na-border)"
       >
@@ -64,7 +66,7 @@ const rows = [
       <div
         v-for="row in rows"
         :key="row.key"
-        class="grid px-4 py-2.5 text-sm items-center toolkit-row"
+        class="grid px-4 py-1 text-sm items-center toolkit-row"
         :class="{ 'toolkit-row--active': current === row.key }"
         style="grid-template-columns: 9rem 14rem 1fr; border-top: 1px solid var(--na-border)"
       >

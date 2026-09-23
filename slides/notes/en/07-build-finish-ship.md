@@ -31,6 +31,7 @@ Say:
 > - Participants do this in step 6
 > - Demo: say "Remember for next time: always use UserAvatar, never a raw img tag" — wait for Claude to confirm the save
 > - Show /memory — pick the auto memory folder
+> - Optional: point at the docs page's "Auto memory" section — the four note types, and where the files live
 
 Say:
 - The old # shortcut is gone (removed in v2.0.70) — to save on purpose, ask in words: "Remember …". Left alone, Claude also saves corrections by itself, but not every time

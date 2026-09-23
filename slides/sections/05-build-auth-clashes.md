@@ -46,6 +46,7 @@ lines:
 layout: concept
 heading: "Undo a step: /rewind"
 routeAlias: theory-rewind
+docs: https://code.claude.com/docs/en/checkpointing
 lines:
   - "Claude saves a checkpoint before every prompt"
   - "/rewind shows them — pick one, files go back"
@@ -57,6 +58,7 @@ lines:
 layout: concept
 heading: "Watch the window fill"
 routeAlias: theory-context-window
+docs: https://code.claude.com/docs/en/costs
 lines:
   - "/context — what is in the window right now"
   - "Every file Claude read is still there"

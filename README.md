@@ -59,8 +59,8 @@ claude --version
 |---|---|---|
 | I — Foundations | White | 01 |
 | II — Build CLASH | Blue | 02 · 03 · 04 · 05 |
-| III — Control the context | Brown | 06 · 07 · 08 |
-| IV — Orchestrate and let go | Black | 09 · 10 · 11 · 12 · 13 · 14 |
+| III — Control the context | Brown | 06 · 07 · 08 · 09 · 10 |
+| IV — Orchestrate and let go | Black | 11 · 12 · 13 · 14 · 15 · 16 · 17 |
 
 ## Tasks
 
@@ -74,12 +74,15 @@ claude --version
 | 06 | [Context and CLAUDE.md](tasks/06-context-and-claude-md.md) | III | `06-start` |
 | 07 | [The clash-feature skill](tasks/07-clash-feature-skill.md) | III | `07-start` |
 | 08 | [Subagent audit](tasks/08-subagent-audit.md) | III | `08-start` |
-| 09 | [Team and workflow audit](tasks/09-team-and-workflow-audit.md) | IV | `09-start` |
-| 10 | [Hooks](tasks/10-hooks.md) | IV | `10-start` |
-| 11 | [The browser closes the loop](tasks/11-browser-loop.md) | IV | `11-start` |
-| 12 | [Letting go](tasks/12-letting-go.md) | IV | `12-start` |
-| 13 | [Agent SDK](tasks/13-agent-sdk.md) | IV | `13-start` |
-| 14 | [Capstone](tasks/14-capstone.md) | IV | `14-start` |
+| 09 | [Example Mapping and the `discover` skill](tasks/09-example-mapping.md) | III | `09-start` |
+| 10 | [Path-scoped rules](tasks/10-path-scoped-rules.md) | III | `10-start` |
+| 11 | [The TDD inner loop](tasks/11-tdd-inner-loop.md) | IV | `11-start` |
+| 12 | [Team and workflow audit](tasks/12-team-and-workflow-audit.md) | IV | `12-start` |
+| 13 | [Hooks](tasks/13-hooks.md) | IV | `13-start` |
+| 14 | [The browser closes the loop](tasks/14-browser-loop.md) | IV | `14-start` |
+| 15 | [Letting go](tasks/15-letting-go.md) | IV | `15-start` |
+| 16 | [Agent SDK](tasks/16-agent-sdk.md) | IV | `16-start` |
+| 17 | [Capstone](tasks/17-capstone.md) | IV | `17-start` |
 
 Standalone index: [`tasks/README.md`](tasks/README.md). What each branch contains:
 [`docs/BRANCHES.md`](docs/BRANCHES.md).

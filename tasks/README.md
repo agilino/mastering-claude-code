@@ -12,12 +12,15 @@ One file per task. Each task says what you will end up with, what to do, and how
 | 06 | [Context and CLAUDE.md](06-context-and-claude-md.md) | III — Control the context | `06-start` |
 | 07 | [The clash-feature skill](07-clash-feature-skill.md) | III — Control the context | `07-start` |
 | 08 | [Subagent audit](08-subagent-audit.md) | III — Control the context | `08-start` |
-| 09 | [Team and workflow audit](09-team-and-workflow-audit.md) | IV — Orchestrate and let go | `09-start` |
-| 10 | [Hooks](10-hooks.md) | IV — Orchestrate and let go | `10-start` |
-| 11 | [The browser closes the loop](11-browser-loop.md) | IV — Orchestrate and let go | `11-start` |
-| 12 | [Letting go](12-letting-go.md) | IV — Orchestrate and let go | `12-start` |
-| 13 | [Agent SDK](13-agent-sdk.md) | IV — Orchestrate and let go | `13-start` |
-| 14 | [Capstone](14-capstone.md) | IV — Orchestrate and let go | `14-start` |
+| 09 | [Example Mapping and the `discover` skill](09-example-mapping.md) | III — Control the context | `09-start` |
+| 10 | [Path-scoped rules](10-path-scoped-rules.md) | III — Control the context | `10-start` |
+| 11 | [The TDD inner loop](11-tdd-inner-loop.md) | IV — Orchestrate and let go | `11-start` |
+| 12 | [Team and workflow audit](12-team-and-workflow-audit.md) | IV — Orchestrate and let go | `12-start` |
+| 13 | [Hooks](13-hooks.md) | IV — Orchestrate and let go | `13-start` |
+| 14 | [The browser closes the loop](14-browser-loop.md) | IV — Orchestrate and let go | `14-start` |
+| 15 | [Letting go](15-letting-go.md) | IV — Orchestrate and let go | `15-start` |
+| 16 | [Agent SDK](16-agent-sdk.md) | IV — Orchestrate and let go | `16-start` |
+| 17 | [Capstone](17-capstone.md) | IV — Orchestrate and let go | `17-start` |
 
 ## Stuck?
 

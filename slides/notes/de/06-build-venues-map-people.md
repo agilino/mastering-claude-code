@@ -18,6 +18,7 @@ Sagen:
 > Tun:
 > - Kurz erwähnen: Commands sind in Skills aufgegangen — diese Datei funktioniert weiterhin, Task 07 zeigt den bevorzugten Weg, einen zu schreiben
 > - Schritt 4 machen die Teilnehmenden selbst
+> - Optional: auf den Hinweis der Docs-Seite zeigen: "To add your own commands, see skills"
 > VOLLSTÄNDIGE DATEI (wörtlich aus tasks/04-venues-map-people.md):
 >
 > Add a new page to this app for: $ARGUMENTS
@@ -47,6 +48,7 @@ Sagen:
 > - Schritt 7 machen die Teilnehmenden selbst
 > - [click] Demo: Claude bitten, mit agent-browser die Karte zu öffnen, sich als Anna einzuloggen, einen Screenshot zu machen und zu sagen, ob Pins sichtbar sind
 > - Die Befehle zeigen, die es ausführt
+> - Optional: auf den Abschnitt "Work with images" in den Docs zeigen — dieselbe Idee, eingefügt statt von agent-browser aufgenommen
 
 Sagen:
 - [click:4] Schließt eine Schleife, die die meisten offenlassen: Claude ändert den Code UND Claude prüft das Ergebnis
