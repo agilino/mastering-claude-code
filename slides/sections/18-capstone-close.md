@@ -62,6 +62,7 @@ lines:
 ---
 layout: concept
 heading: "BMAD: five agents, one Party Mode"
+docs: https://github.com/bmad-code-org/bmad-method
 lines:
   - "Analyst, PM, Architect, Developer, UX — five agents, installed as a skill."
   - "Party Mode puts them all in one conversation, arguing in character."
@@ -77,6 +78,9 @@ lines:
 <div class="text-base mt-6 max-w-2xl text-center" style="color: var(--na-fg-muted)" v-click>
   <span class="font-mono" style="color: var(--na-accent-500)">/bmad-party-mode</span> — for a decision with a real tradeoff, not a routine step.
 </div>
+<div class="text-base mt-3 max-w-2xl text-center" style="color: var(--na-fg-muted)" v-click>
+  <span class="font-mono" style="color: var(--na-accent-500)">bmad-build</span> — intent, plan, spec, code, review: <a href="https://docs.bmad-method.org/build/build-a-change/#run-bmad-build" target="_blank" rel="noopener" style="color: var(--na-accent-500)">run bmad-build</a>
+</div>
 
 ---
 layout: concept
@@ -88,20 +92,3 @@ lines:
 ---
 
 <G20SpecKitVsBmad />
-
----
-layout: concept
-heading: "What we did not cover"
-lines:
-  - "/loop, routines, output styles"
-  - "/background and claude agents, plus building your own MCP server"
----
-
-
----
-layout: concept
-heading: "Context is king. You push it, you own it."
-routeAlias: theory-context-is-king
----
-
-
