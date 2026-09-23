@@ -1,6 +1,15 @@
 # Task 07 — The `clash-feature` skill
 
 > Part: Control the context · Reset branch: `07-start`
+> Slides: https://mastering-claude-code.vercel.app/task-07
+
+## Theory
+
+- [Loaded only when needed](https://mastering-claude-code.vercel.app/theory-skills)
+- [Commands became skills. Nothing broke.](https://mastering-claude-code.vercel.app/theory-commands-and-skills)
+- [A skill is advice](https://mastering-claude-code.vercel.app/theory-skill-advice)
+
+> **Reminder:** Skills package repeatable guidance, load on demand, and do not enforce behavior like hooks do.
 
 ## You will end up with
 
@@ -83,8 +92,9 @@ commands in `.claude/commands/*.md` still work. Skills are the richer format for
 
 ## Stuck?
 
-`git checkout 07-start` — the reference CLASH with the task 06 `CLAUDE.md`. The vendored `.agents/skills/`
-folder is there; `.claude/skills/` is not.
+`git checkout 07-start` — the reference CLASH with the task 06 `CLAUDE.md`. Eight of the nine vendored
+skills in `.agents/skills/` are already copied into `.claude/skills/` (`agent-browser` stays
+personal-only). Your own `.claude/skills/clash-feature/` is not — that is what this task builds.
 
 ## Go further
 
@@ -96,3 +106,4 @@ Then run `/skill-doctor` again and check that your description is specific enoug
 - Skills — https://code.claude.com/docs/en/skills
 - Commands — https://code.claude.com/docs/en/commands
 - Tools reference — https://code.claude.com/docs/en/tools-reference
+- agent-browser skill — https://www.skills.sh/vercel-labs/agent-browser/agent-browser

@@ -8,6 +8,13 @@ Say:
 - This task runs the first — a single subagent auditing on its own
 - Task 09 runs the other two, agent team and dynamic workflow, on the exact same problem
 
+<!-- @note: task-08-subagent-audit -->
+> Do:
+> - Branch: 08-start is reference CLASH plus tasks 06 and 07, with a seeded bug
+
+Say:
+- One subagent, one narrow brief — your own context barely moves while it does the noisy reading
+
 <!-- @note: page-guard-action-guard -->
 > Do:
 > - Do not skip this: many strong React developers don't know it — if it doesn't land, the rest of the part is people watching agents audit a danger they don't understand.
@@ -42,7 +49,7 @@ Say:
 
 <!-- @note: the-auditor-subagent -->
 > Do:
-> - Live-build reference — the exact body is in tasks/08-subagent-audit.md step 4
+> - Live-build reference — the exact body is in tasks/08-subagent-audit.md step 5
 
 Say:
 - The tools: line matters — Read, Grep, Glob only.
@@ -62,6 +69,43 @@ Say:
 - Fork is on by default in interactive sessions, off under -p and the Agent SDK.
 - Neither is better — know which one you invoked and why.
 - `/tasks` lists this session's background work: running subagents and forks. A finished one stays listed, marked done, only briefly — open it while it runs, or right after it returns.
+
+<!-- @note: six-agents-ship-with-claude-code -->
+> Do:
+> - The subagent audit task (08) wrote a custom one — these are the ones already on your machine
+> - Docs link: open it, scroll to "Built-in subagents", then back to the slides
+
+Say:
+- These run without any file in .claude/agents/ — nothing to write, nothing to check in
+- [click] Plan is what runs, invisibly, every time you use plan mode
+- [click] general-purpose is the default a task delegates to when nothing more specific fits
+- [click] claude is the fallback of the fallback — every tool, no restriction
+- [click] statusline-setup only fires from /statusline
+- [click] claude-code-guide is what answers "can Claude Code do X" questions like this one
+
+<!-- @note: one-subagent-or-read-it-yourself -->
+> Do:
+> - Handoff: FACILITATOR.md, Rhythm for every task. Manual read-through is step 4 (they watched it) — hand off at step 1, the subagent starts at step 5
+> - Left (careless), one step per click:
+>   - [click] one prompt: read every file in app/actions/ yourself
+>   - [click] every action file lands in the main thread
+>   - [click] your own /context climbs with every file
+>   - [click] a wall of prose back, nothing falsifiable
+>   - [click] context bar: ~50% consumed
+> FULL PROMPT (verbatim from tasks/08-subagent-audit.md step 4, trainer only, do not send it from a participant machine):
+>
+> Read every file in app/actions/ yourself, in this conversation, and report
+> which exported actions are missing an ownership check before mutating an
+> existing row.
+> - Right (engineered), when they are back — one step per click:
+>   - [click] a security-auditor subagent: Read, Grep, Glob
+>   - [click] one falsifiable brief: PASS or FAIL, cited line
+>   - [click] the reads happen in its window, not yours
+>   - [click] your own /context barely moves
+>   - [click] context bar: ~5% consumed
+
+Say:
+- Same audit, same two bugs. The difference is whose context window fills up
 
 <!-- @note: subagent-audit -->
 > Do:

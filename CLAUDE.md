@@ -48,6 +48,12 @@ Target codebase: `https://github.com/pawsaw/clash` (Next.js 16 / React 19 / Pris
 ```
 # Task NN — Title
 > Part: <part name> · Reset branch: `NN-start`
+> Slides: https://mastering-claude-code.vercel.app/task-NN
+
+## Theory
+- [Exact slide heading](https://mastering-claude-code.vercel.app/theory-example)
+
+> **Reminder:** One sentence with the key idea to carry into the task.
 
 ## You will end up with
 ## Why
@@ -59,6 +65,9 @@ Target codebase: `https://github.com/pawsaw/clash` (Next.js 16 / React 19 / Pris
 ## Links
 ```
 
+- **Theory**: one to three links to the exact slide headings this task depends on. Use stable `theory-*`
+  route aliases, keep the Markdown link text identical to the slide heading, then add one short **Reminder**.
+- Start new task files with `npm run task:new -- 15 My new task`; omit the number to use the next available task number.
 - **Do this**: numbered steps. Each step is one action. Exact commands and exact prompts in code blocks.
   Say what the participant should see after the step.
 - **Now you**: the same shape again on a new target. State the goal. Give no prompt. One to four items.
@@ -69,12 +78,31 @@ Target codebase: `https://github.com/pawsaw/clash` (Next.js 16 / React 19 / Pris
 
 ## Slide rules
 
-- Layouts: `concept` (graphic + ≤ 3 lines), `code-live` (skeleton), `task` (recap: number, goal, success, reset branch), `section` (divider with `JourneyMap`, plus `ToolkitMap` in the control/orchestrate parts).
+- Layouts: `concept` (graphic + ≤ 3 lines), `code-live` (skeleton), `task-intro` (opens a task
+  block: title, `git checkout`, "You learn" / outcome columns — this is the `routeAlias:
+  task-NN` link target), `task` (closes it: the recap, with goal, success, reset branch),
+  `section` (divider with `JourneyMap`, plus `ToolkitMap` in the control/orchestrate parts).
 - Concept slides: ≤ 40 words of body text. Headings ≤ 8 words.
 - Diagrams are small Vue/SVG components in `slides/components/` (`D*.vue` for the LLM and harness ideas, `G*.vue` for the rest). Text inside SVG is never under 13 px.
 - Presenter notes (`<!-- -->`) hold the trainer script: what to say, what to demo, what to watch for. No times.
-- Task slide frontmatter: `number` (matches `tasks/NN-*.md`), `heading`, `goal`, `mode` (`you do` | `watch first`), `success`, `branch`. No QR code and no task URL on slides: the trainer picks the medium.
-- Docs links: a `docs:` frontmatter field holds one official English docs URL (`https://code.claude.com/docs/en/…`). The `concept`, `code-live` and `section` layouts draw it bottom-right as a chain icon plus the word "docs" (`slides/components/DocLink.vue`) — bottom-right because Slidev's navigation bar pops up bottom-left. Never a `<DocLink>` tag in a slide body, never on a `task` slide. Use it sparingly, where a mechanism is first explained. The slide's presenter note names the docs heading to scroll to, and the same URL is in that task's `## Links`.
+- Every task block, in this order, inside one section file: `task-intro` → every concept/code-live
+  slide the task needs → an optional "stop slide" (`G03CarelessVsEngineered`, a live
+  careless-vs-engineered demo — only where the task has a real contrast, never forced) → `task`
+  recap → an optional debrief (content that only makes sense once the task is done, e.g. quality
+  gates). `task-intro` carries `routeAlias: task-NN`; the `task` recap never does — one link
+  target per task, at the top of its block, not the bottom.
+- `task-intro` frontmatter: `number` (matches `tasks/NN-*.md`), `routeAlias` (`task-NN`),
+  `heading` (`"Task NN — Title"`), `branch`, `learn` (string list, the Claude Code mechanisms
+  taught), `outcome` (string list, what gets built), `outcomeHeading` (optional, `"You build"`
+  in Part II, otherwise omitted). `task` (recap) frontmatter: `number`, `heading`, `goal`, `mode`
+  (`you do` | `watch first`), `success`, `branch`. No QR code and no task URL on any task slide
+  beyond the `task-intro` routeAlias: the trainer never reads a URL aloud, they open `/task-NN`.
+- The task file's own `## Theory` section (stable `theory-*` route aliases on individual
+  concept/code-live slides, one to three links back from the task file) is a separate mechanism
+  from `task-intro`/`task` and coexists with it: `task-intro` is the slide-side overview a
+  participant sees watching the deck; `## Theory` is the task-file-side deep link for someone
+  who skips the slides.
+- Docs links: a `docs:` frontmatter field normally holds one official English Claude Code docs URL (`https://code.claude.com/docs/en/…`). When the slide's mechanism belongs to a third-party tool Claude Code consumes, not a Claude Code feature itself, `docs:` may instead hold that tool's own official page — each one a deliberate addition to the allowlist in `slides/scripts/lint-slides.mjs`, never an arbitrary URL. The `concept`, `code-live` and `section` layouts draw it bottom-right as a chain icon plus the word "docs" (`slides/components/DocLink.vue`) — bottom-right because Slidev's navigation bar pops up bottom-left. Never a `<DocLink>` tag in a slide body, never on a `task` or `task-intro` slide. Use it sparingly, where a mechanism is first explained. The slide's presenter note names what to scroll to or point at, and the same URL is in that task's `## Links`.
 
 ## Task slugs (fixed — README, docs and task numbers on slides depend on them)
 
@@ -90,6 +118,8 @@ Target codebase: `https://github.com/pawsaw/clash` (Next.js 16 / React 19 / Pris
 - Part IV — Orchestrate and let go (Black belt): tasks 09–14.
 
 ## Build and check
+
+Driving agent-browser by hand: run `agent-browser skills get core` first for the command reference.
 
 ```bash
 cd slides && npm install && npm run build      # also exports dist/mastering-claude-code.pdf

@@ -1,6 +1,14 @@
 # Task 01 — Setup and first conversation
 
 > Part: Foundations · Reset branch: `01-start`
+> Slides: https://mastering-claude-code.vercel.app/task-01
+
+## Theory
+
+- [Slash commands](https://mastering-claude-code.vercel.app/theory-slash-commands)
+- [CLAUDE.md is your standing instruction](https://mastering-claude-code.vercel.app/theory-claude-md)
+
+> **Reminder:** Commands control the session; `CLAUDE.md` carries project guidance into each conversation.
 
 ## You will end up with
 
@@ -38,11 +46,14 @@ does not exist yet. That is the safest place to learn how it thinks.
    ```
    If `claude` is not found, open a new terminal and try again. The first start opens a browser window for login. Come back to the terminal when it says you are logged in. Type `/exit` to leave.
    If the installer does not work for you, `npm install -g @anthropic-ai/claude-code` installs the same program.
-3. Install agent-browser. Claude will use it later to look at your app.
+3. Install agent-browser and its skill. Claude will use it later to look at your app.
    ```bash
    npm install -g agent-browser
    agent-browser install
+   npx skills add vercel-labs/agent-browser -g
    ```
+   The first two install the tool. The third adds the skill that tells Claude how to drive
+   it. You confirm it in step 10.
 4. Clone CLASH and switch to the empty starting branch.
    ```bash
    git clone https://github.com/pawsaw/clash
@@ -81,12 +92,14 @@ does not exist yet. That is the safest place to learn how it thinks.
     ```
     /clear
     /context
+    /skills
     /help
     ```
     `/clear` clears the current conversation context; it does not remove `CLAUDE.md`.
     In `/context`, notice that the repository guidance is still there. That is the point of
-    clearing here — not because the context is full. Scroll through `/help` once. You do not
-    need to remember it.
+    clearing here — not because the context is full. `/skills` lists `agent-browser`; if it
+    is missing, see `docs/SETUP.md`. Scroll through `/help` once. You do not need to
+    remember it.
 
 ## Now you
 
@@ -100,6 +113,7 @@ does not exist yet. That is the safest place to learn how it thinks.
 - [ ] `git branch` shows `01-start` in your `clash` folder
 - [ ] Claude answered a question about `docs/SPEC.md` and you saw it read the file first
 - [ ] `CLAUDE.md` exists in the repository root
+- [ ] `/skills` lists `agent-browser`
 - [ ] You ran `/clear` and `/help`
 
 ## Stuck?
@@ -119,3 +133,4 @@ Ask Claude to find a gap or a contradiction in the spec. Decide if it is right.
 - Commands — https://code.claude.com/docs/en/commands
 - Keyboard shortcuts — https://code.claude.com/docs/en/interactive-mode
 - agent-browser — https://github.com/vercel-labs/agent-browser
+- agent-browser skill — https://www.skills.sh/vercel-labs/agent-browser/agent-browser

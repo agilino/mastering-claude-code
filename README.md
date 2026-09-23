@@ -123,6 +123,25 @@ npm run build      # also exports dist/mastering-claude-code.pdf
 [`FACILITATOR.md`](FACILITATOR.md) holds the talking points, demo scripts and pitfalls per part.
 Answer keys live in [`workshop-artifacts/`](workshop-artifacts/).
 
+Create a new task from the shared template, or check that task structure and theory links still match:
+
+```bash
+npm run task:new -- 15 My new task
+npm run task:new -- My new task    # picks the next task number
+npm run task:check
+```
+
+The slide base URL defaults to the deployed workshop. Override it when testing new aliases locally
+or if the deployment moves:
+
+```bash
+SLIDES_BASE_URL=http://localhost:3000 npm run task:check
+SLIDES_BASE_URL=http://localhost:3000 npm run task:new -- 15 My new task
+```
+
+With a localhost override, the linter accepts both existing deployed links and local links. CI
+still uses the deployed URL by default, so a localhost link cannot be committed unnoticed.
+
 The speaker notes come in English and German. They live in `slides/notes/en/` and
 `slides/notes/de/`. The slides are the same in both languages. Only the notes change.
 Pick the language when you start the deck:

@@ -1,6 +1,15 @@
 # Task 04 — Venues, map, people
 
 > Part: Build CLASH · Reset branch: `04-start`
+> Slides: https://mastering-claude-code.vercel.app/task-04
+
+## Theory
+
+- [Your first slash command](https://mastering-claude-code.vercel.app/theory-custom-command)
+- [Let Claude read the error](https://mastering-claude-code.vercel.app/theory-error-feedback)
+- [Let Claude look at the page](https://mastering-claude-code.vercel.app/theory-browser-feedback)
+
+> **Reminder:** Reuse patterns you already have; when something breaks, give Claude the error or the page instead of guessing for it.
 
 ## You will end up with
 
@@ -20,7 +29,19 @@ page itself. And you add quality gates so Claude checks its own work.
    git checkout 04-start
    claude
    ```
-2. Reuse the pattern for venues. Short brief, because the pattern exists.
+2. Watch. Your trainer sends this once, live, on their own machine. Do not send it yourself —
+   you build the same four things properly, in small steps, starting with the next step.
+   ```
+   Build venues exactly like clashes, a full-screen map of Berlin with pins for
+   clashes and venues and click-to-create, join/leave/accept/reject for clashes
+   with a People panel on the clash detail page, and notifications with a bell
+   that shows unread requests in the top bar. Follow the existing patterns in
+   the app everywhere they apply.
+   ```
+   Watch what happens: Claude works for a long stretch, touching venues, the map, participation
+   and notifications together, and there is nothing to check until it stops — or drifts. If one
+   part is wrong, you cannot yet tell which.
+3. Reuse the pattern for venues. Short brief, because the pattern exists.
    ```
    Build venues exactly like clashes: lib/data/venues.ts, app/actions/venues.ts
    (createVenue, updateVenue, deleteVenue with the ownership check),
@@ -29,7 +50,7 @@ page itself. And you add quality gates so Claude checks its own work.
    and has a button "Host a clash here" that opens clashes/new with the venue preselected.
    Follow @app/actions/clashes.ts and @lib/data/clashes.ts.
    ```
-3. Turn the repeated brief into a command. Create `.claude/commands/new-page.md`:
+4. Turn the repeated brief into a command. Create `.claude/commands/new-page.md`:
    ```
    Create the file .claude/commands/new-page.md with this content:
 
@@ -48,30 +69,28 @@ page itself. And you add quality gates so Claude checks its own work.
    ```
    Stop. We will build participation first.
    ```
-4. The map. Let Claude read the docs first.
+5. The map. Let Claude read the docs first.
    ```
    Fetch https://react-leaflet.js.org/docs/start-installation/ and read how to use react-leaflet in Next.js.
-   Then add a Leaflet map with OpenStreetMap tiles:
-   - components/map/leaflet-map.tsx (client), components/map/map.tsx that loads it with next/dynamic and ssr: false
-     inside a 'use client' file
-   - a full-screen page app/(app)/map with pins for clashes and venues, popups with links,
-     and click-to-create: a click on the map opens clashes/new with the coordinates filled in
-   - a location picker in the clash form and the venue form that replaces the two number inputs
-     (if you reset to 04-start, the picker is already there: extend it, do not rebuild it)
+   Then extend the map starter that is already on 04-start:
+   - keep components/map/leaflet-map.tsx and components/map/map.tsx; reuse or extend them, do not rebuild them
+   - components/map/explore-map.tsx already has the interactive map shell; use it for a full-screen
+     app/(app)/map page with pins for clashes and venues, popups with links, and click-to-create
+   - keep the existing location picker in the clash form and add the same pattern to the venue form
    ```
-5. The map will probably break once. Common: a window-is-not-defined error. Do not fix it yourself.
+6. The map will probably break once. Common: a window-is-not-defined error. Do not fix it yourself.
    ```
    The dev server shows an error. Read the terminal output, find the cause, and fix it.
    ```
    If Claude cannot see the terminal, paste the error text into the prompt.
-6. Let Claude look at the page. Keep `npm run dev` running in another terminal.
+7. Let Claude look at the page. Keep `npm run dev` running in another terminal.
    ```
    Use agent-browser to open http://localhost:3000/map, log in as anna.schmidt@example.com
    with password test, take a screenshot, and tell me if the pins are visible.
    ```
    Claude runs `agent-browser open`, `snapshot -i`, `screenshot`. It reads the page like a user.
-7. If something looks wrong to you, take a screenshot yourself and paste it into the prompt (`Ctrl+V` on most terminals). Describe what is wrong in one sentence.
-8. Participation.
+8. If something looks wrong to you, take a screenshot yourself and paste it into the prompt (`Ctrl+V` on most terminals). Describe what is wrong in one sentence.
+9. Participation.
    ```
    Add participation from @docs/SPEC.md:
    - model exists already; add actions joinClash, leaveClash, acceptRequest, rejectRequest to app/actions/clashes.ts
@@ -80,15 +99,15 @@ page itself. And you add quality gates so Claude checks its own work.
    - a page app/(app)/participations grouped into Going, Awaiting approval, Declined
    Use lib/data/participations.ts for reads.
    ```
-9. Notifications.
-   ```
-   Add notifications: lib/notify.ts with createNotification, called from joinClash (to the host),
-   acceptRequest and rejectRequest (to the requester), and createClash when the clash is at a venue
-   (to the venue creator, type venue_clash). Reads in lib/data/notifications.ts.
-   A bell in the top bar with an unread dot, a menu that lists them, mark one and mark all as read
-   in app/actions/notifications.ts. A click opens the related clash or venue.
-   ```
-10. Quality gates. Add them to `CLAUDE.md` so Claude runs them without being asked.
+10. Notifications.
+    ```
+    Add notifications: lib/notify.ts with createNotification, called from joinClash (to the host),
+    acceptRequest and rejectRequest (to the requester), and createClash when the clash is at a venue
+    (to the venue creator, type venue_clash). Reads in lib/data/notifications.ts.
+    A bell in the top bar with an unread dot, a menu that lists them, mark one and mark all as read
+    in app/actions/notifications.ts. A click opens the related clash or venue.
+    ```
+11. Quality gates. Add them to `CLAUDE.md` so Claude runs them without being asked.
     ```
     Add a section "Quality gates" to CLAUDE.md:
     Before you say a task is done, run all three and fix what fails:
@@ -97,7 +116,7 @@ page itself. And you add quality gates so Claude checks its own work.
     npm run build
     Then run all three now.
     ```
-11. Commit.
+12. Commit.
     ```
     Commit in three commits: venues and map, participation, notifications.
     ```

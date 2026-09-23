@@ -5,6 +5,13 @@ Sagen:
 - Headless CI: macht aus dem Audit dauerhafte Infrastruktur
 - Agent SDK: jede Kontrolle aus diesem Workshop gilt unverändert weiter, wenn der Agent in deiner eigenen Software lebt
 
+<!-- @note: task-12-letting-go -->
+> Tun:
+> - Branch: 12-start hat bereits CLAUDE.md, den Skill, den Fix und das Hook-Set
+
+Sagen:
+- Zwei Ideen: Worktrees verhindern Kollisionen zwischen parallelen Agents, Headless CI lässt denselben Audit laufen, ohne dass jemand zuschaut
+
 <!-- @note: one-repo-n-isolated-agents -->
 > Tun:
 > - Zeit lassen
@@ -44,10 +51,27 @@ Sagen:
 - Authentifizierung über den Action-Input `claude_code_oauth_token`, gespeist aus einem benannten Repository-Secret (erstellt mit `claude setup-token`) — niemals ein fest codierter Key
 - `id-token: write` ist erforderlich
 
+<!-- @note: drive-a-session-from-your-phone -->
+> Tun:
+> - Braucht einen Subscription-Plan, keinen API-Key — und vorher /login
+> - Bei passendem Beamer-Setup live das Verbindungs-Panel zeigen
+
+Sagen:
+- Nichts wandert in die Cloud — deine Maschine führt weiter jeden Tool-Call aus, das Handy ist nur ein Fenster
+- [click] claude --rc ist zum bereits verbunden starten, nützlich bevor du vom Schreibtisch weggehst
+- [click] /loop ist ein anderes Tool für ein ähnliches Bedürfnis: Automatisierung ohne Menschen, aber ganz ohne Fremdgerät
+
 <!-- @note: letting-go -->
 > Tun:
 > - Zwei Terminals für die Worktree-Hälfte
 > - CI-Hälfte braucht keinen echten Token, um die YAML-Struktur zu prüfen
+
+<!-- @note: task-13-the-agent-sdk -->
+> Tun:
+> - Branch: 13-start hat bereits CLAUDE.md, den Skill, den Fix und das Hook-Set
+
+Sagen:
+- Derselbe Agent-Loop, jetzt in einem kleinen Programm statt in einer Terminal-Sitzung
 
 <!-- @note: same-loop-inside-your-program -->
 Sagen:

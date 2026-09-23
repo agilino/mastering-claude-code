@@ -1,6 +1,26 @@
 ---
+layout: task-intro
+number: "05"
+routeAlias: task-05
+heading: "Task 05 — Finish and ship"
+branch: "05-start"
+learn:
+  - "Batch jobs, run long work in the background"
+  - "Ask Claude to remember something, for later"
+  - "Review your own diff like a stranger"
+  - "Ship through Claude: branch, commit, PR"
+outcome:
+  - "Profile with avatar crop, public profiles"
+  - "A dashboard, and ⌘K search everywhere"
+  - "Light, dark, system theme"
+  - "A pull request, reviewed by Claude"
+outcomeHeading: "You build"
+---
+
+---
 layout: concept
 heading: "Batch what does not touch"
+routeAlias: theory-batching
 lines:
   - "Profile · search · dashboard · theme — four jobs, no shared files"
   - "One brief, each job names its files"
@@ -27,6 +47,7 @@ lines:
 ---
 layout: concept
 heading: "Remember it"
+routeAlias: theory-memory
 lines:
   - "Remember: always use UserAvatar, never a raw img tag"
   - "Saved to memory. Loaded next time."
@@ -37,6 +58,7 @@ lines:
 ---
 layout: code-live
 heading: "Review like a stranger"
+routeAlias: theory-code-review
 filePath: "prompt to Claude Code — on the finish branch"
 success: "Findings come back with file and line, and you decide which ones to fix."
 ---

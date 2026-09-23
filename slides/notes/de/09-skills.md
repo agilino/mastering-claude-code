@@ -5,6 +5,13 @@
 Sagen:
 - "Auch hier startest du nicht bei null. CLASH bringt neun mitgelieferte Skills mit. Wir fügen einen eigenen hinzu."
 
+<!-- @note: task-07-the-clash-feature-skill -->
+> Tun:
+> - Branch: 07-start hat schon die CLAUDE.md aus Task 06
+
+Sagen:
+- Drei Dinge baut dieser Block: den Skill selbst, ein Feature komplett darüber ausgeliefert, dann das Plugin drumherum
+
 <!-- @note: loaded-only-when-needed -->
 > Tun:
 > - Verweis zurück auf /skill-doctor
@@ -55,10 +62,45 @@ Sagen:
 - Das Feature hat vielleicht sechs Dateien angefasst
 - Der Kontrast ist der ganze Pitch für Skills, sichtbar gemacht
 
+<!-- @note: where-claude-code-looks-for-skills -->
+> Tun:
+> - /skills irgendwo ausführen — agent-browser ist gelistet, aus der persönlichen Installation in Task 01
+> - Auf skills-lock.json zeigen — das Protokoll des Installers, was woher kam
+> - Docs-Link: öffnen, die aktive agent-browser-Skill-Seite zeigen, dann zurück zu den Folien
+
+Sagen:
+- Claude Code liest zwei Ordner und sonst nichts. .agents/skills/ gehört nicht dazu
+- [click] npx skills add vercel-labs/agent-browser -g legt die echte Kopie in ~/.agents/skills/ ab
+- [click] Danach verlinkt es diesen Ordner nach ~/.claude/skills/ — genau dort darf ein Symlink stehen
+- [click] Ohne den Link ist der Skill schlicht nicht da. Kein Fehler, keine Warnung — /skills zeigt es dir
+
+<!-- @note: a-plugin-bundles-your-setup -->
+> Tun:
+> - Docs-Link: öffnen, bis "Plugin structure overview" scrollen, dann zurück zu den Folien
+
+Sagen:
+- Ein einzelner Skill oder Hook lebt in .claude/ und bleibt lokal für ein Projekt
+- Ein Plugin ist die verpackte, teilbare Version derselben Idee
+- [click] skills/ — ein SKILL.md pro Skill, genau wie .claude/skills/
+- [click] agents/ — Subagent-Dateien, gleiche Form wie .claude/agents/
+- [click] hooks/ — eine hooks.json statt Einträgen in settings.json
+- [click] .mcp.json — das Plugin kann eigene MCP-Server mitbringen
+- [click] Jeder Skill ist mit dem Plugin-Namen namensraumgetrennt, zwei Plugins kollidieren nie
+
+<!-- @note: install-from-a-marketplace -->
+> Tun:
+> - VOLLSTÄNDIGE LÖSUNG (nur für Trainer): /plugin marketplace add anthropics/claude-plugins-community
+>   dann /plugin install <ein kleines Plugin aus der Liste>@claude-community
+> - Danach /plugin ausführen, um den Tab Installed zu zeigen
+
+Sagen:
+- Ein Marketplace ist nur ein Katalog — einen hinzufügen, dann per Namen installieren
+- Die Install-Zusammenfassung sagt, ob ein Neustart oder /reload-plugins nötig ist
+
 <!-- @note: the-clash-feature-skill -->
 > Tun:
 > - Task-07-Rückblick
-> - Übergabe an tasks/07-clash-feature-skill.md, alle 7 Schritte — keine Folien mehr bis Task 08
+> - Übergabe an tasks/07-clash-feature-skill.md, alle 8 Schritte — keine Folien mehr bis Task 08
 > - Den Chat beobachten, während gearbeitet wird
 
 Sagen:

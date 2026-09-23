@@ -1,6 +1,14 @@
 # Task 12 — Letting go
 
 > Part: Orchestrate and let go · Reset branch: `12-start`
+> Slides: https://mastering-claude-code.vercel.app/task-12
+
+## Theory
+
+- [One repo, N isolated agents](https://mastering-claude-code.vercel.app/theory-worktrees)
+- [Headless in CI](https://mastering-claude-code.vercel.app/theory-headless-ci)
+
+> **Reminder:** Worktrees isolate concurrent agents; headless runs move the same agent loop into CI.
 
 ## You will end up with
 

@@ -15,6 +15,13 @@ Sagen:
 - Gleiches Problem, gleicher präparierter Branch (09-start), andere Strategie
 - Agent-Teams sind experimentell und standardmäßig aus
 
+<!-- @note: task-09-team-and-workflow-audit -->
+> Tun:
+> - Branch: 09-start hat denselben eingebauten Bug wie Task 08, frisch zurückgesetzt
+
+Sagen:
+- Gleiches Audit wie Task 08, zwei weitere Wege — ein Team, dann ein dynamischer Workflow
+
 <!-- @note: describe-the-audit-team -->
 > Tun:
 > - Prompt ist der aus Task 09, Schritt 2, wortwörtlich — Gruppe sieht auf der Folie und in der Task-Datei denselben Text

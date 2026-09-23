@@ -12,7 +12,7 @@ workshop wifi. If something fails, see the table at the end.
 | Node.js 20 or newer | `node --version` | https://nodejs.org |
 | git | `git --version` | https://git-scm.com |
 | Claude Code | `claude --version` | See "Install Claude Code" below, then `claude` and log in |
-| agent-browser | `agent-browser --version` | `npm install -g agent-browser && agent-browser install` |
+| agent-browser | `agent-browser --version` | `npm install -g agent-browser && agent-browser install`, then see "Add the agent-browser skill" below |
 | GitHub CLI (Part II, IV) | `gh --version` | https://cli.github.com then `gh auth login` |
 
 Claude Code must be **2.1.252 or newer**. Older builds miss `/workflow-authoring` and `/skill-doctor`.
@@ -39,6 +39,25 @@ https://code.claude.com/docs/en/quickstart#step-1-install-claude-code
 
 npm works too and installs the same program: `npm install -g @anthropic-ai/claude-code`, without `sudo`.
 On Node older than 22 it prints an `EBADENGINE` warning. That is harmless.
+
+### Add the agent-browser skill
+
+The CLI is the tool. The skill is what tells Claude the tool exists and how to drive it.
+
+```bash
+npx skills add vercel-labs/agent-browser -g
+```
+
+This writes the skill to `~/.agents/skills/agent-browser/` and links it into
+`~/.claude/skills/agent-browser/`. Claude Code reads only `~/.claude/skills/`.
+
+Start Claude Code and check:
+
+```
+/skills
+```
+
+`agent-browser` should be listed.
 
 ## 2. Get the codebase
 
@@ -161,6 +180,7 @@ Both appear in this workshop. We always say which one we mean.
 - [ ] `node --version` is 20 or newer
 - [ ] `claude --version` is 2.1.252 or newer, and you are logged in
 - [ ] `agent-browser --version` prints a version
+- [ ] `/skills` lists `agent-browser`
 - [ ] `git checkout 01-start` works in your clone of `pawsaw/clash`
 - [ ] `.env` exists with `DATABASE_URL` and `SESSION_SECRET`
 - [ ] `/config` shows Dynamic workflows **on**
@@ -180,6 +200,7 @@ Both appear in this workshop. We always say which one we mean.
 | Map tiles are blank | Expected without network. The rest of the app works offline |
 | No workflow option in `/config` | Upgrade Claude Code to 2.1.252 or newer |
 | Agent team behaves like plain subagents | Step 5b: set the flag and restart Claude Code |
+| `/skills` does not list `agent-browser` | The link into `~/.claude/skills/` is missing. macOS, Linux or WSL: `ln -s ~/.agents/skills/agent-browser ~/.claude/skills/agent-browser`. Windows, in PowerShell: `New-Item -ItemType Junction -Path $HOME\.claude\skills\agent-browser -Target $HOME\.agents\skills\agent-browser` (a junction, not a symlink — no Developer Mode or admin shell needed) |
 
 ## A note on usage limits
 

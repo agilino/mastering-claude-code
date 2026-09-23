@@ -10,12 +10,31 @@ heading: "Orchestrate and let go"
 ---
 layout: section
 heading: "Strategy two: agent teams"
+routeAlias: theory-agent-teams
 docs: https://code.claude.com/docs/en/agent-teams
 ---
 
 <template #map>
   <ToolkitMap current="team" />
 </template>
+
+---
+layout: task-intro
+number: "09"
+routeAlias: task-09
+heading: "Task 09 — Team and workflow audit"
+branch: "09-start"
+learn:
+  - "Describe an agent team in words, no config"
+  - "Watch teammates message each other by name"
+  - "Describe a workflow; Claude writes the script"
+  - "Know where a workflow script first lands"
+outcome:
+  - "The same audit, by team and by workflow"
+  - "A saved workflow script in .claude/workflows/"
+  - "Ownership checks restored and merged"
+  - "Findings, time, tokens — compared across three runs"
+---
 
 ---
 layout: code-live
@@ -46,6 +65,7 @@ heading: "Lead, peers, and a disagreement"
 ---
 layout: section
 heading: "Strategy three: dynamic workflows"
+routeAlias: theory-dynamic-workflows
 docs: https://code.claude.com/docs/en/workflows
 ---
 
@@ -108,6 +128,7 @@ return { verified: verified.filter(Boolean) }
 ---
 layout: concept
 heading: "Reconcile, decide, merge"
+routeAlias: theory-reconcile
 ---
 
 <G10OrchestrationLadder />

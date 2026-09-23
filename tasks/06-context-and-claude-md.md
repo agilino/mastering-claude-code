@@ -1,6 +1,15 @@
 # Task 06 — Context and CLAUDE.md
 
 > Part: Control the context · Reset branch: `06-start`
+> Slides: https://mastering-claude-code.vercel.app/task-06
+
+## Theory
+
+- [/context is an instrument](https://mastering-claude-code.vercel.app/theory-context-instrument)
+- [Plan mode: review first](https://mastering-claude-code.vercel.app/theory-plan-review)
+- [/skill-doctor: what it costs](https://mastering-claude-code.vercel.app/theory-skill-doctor)
+
+> **Reminder:** Context is a budget; keep standing instructions small and review plans before implementation.
 
 ## You will end up with
 
@@ -62,15 +71,15 @@ out, Claude has to guess or search for.
    ```
    Save this plan as docs/plans/realtime-notifications.md. Do not implement it.
    ```
-9. See what loaded skills cost you.
+9. See what loaded skills cost you. `.agents/skills/` ships nine vendored skills for this
+   reference build. Eight are copied into `.claude/skills/` — the project-level folder
+   Claude Code actually reads; `agent-browser` stays personal-only, already installed
+   there in task 01.
    ```
    /skill-doctor
    ```
-   Look at `.agents/skills/` in the CLASH repository. These are the app's vendored skills,
-   not the workshop repository's own `.agents/skills/agent-browser` tooling skill.
-   CLASH ships nine vendored skills. Two of them, `react-best-practices` and
-   `vercel-react-best-practices`, are near-duplicates of about 100 KB each. Both are
-   scanned every session.
+   Two of them, `react-best-practices` and `vercel-react-best-practices`, are
+   near-duplicates of about 100 KB each. Both are scanned every session.
 10. See what a personal rule adds, not overrides.
     ```bash
     mkdir -p ~/.claude/rules

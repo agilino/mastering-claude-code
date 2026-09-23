@@ -8,6 +8,13 @@ Sagen:
 - Diese Task läuft mit der ersten — ein einzelner Subagent, der allein auditiert
 - Task 09 läuft mit den anderen beiden, Agent-Team und Dynamic Workflow, am exakt gleichen Problem
 
+<!-- @note: task-08-subagent-audit -->
+> Tun:
+> - Branch: 08-start ist das Referenz-CLASH plus Task 06 und 07, mit einem eingebauten Bug
+
+Sagen:
+- Ein Subagent, ein enges Briefing — dein eigener Context bewegt sich kaum, während er die laute Leserei übernimmt
+
 <!-- @note: page-guard-action-guard -->
 > Tun:
 > - Nicht überspringen: viele starke React-Devs kennen das nicht — wenn es nicht sitzt, besteht der Rest des Teils aus Leuten, die Agents beim Auditieren einer Gefahr zuschauen, die sie nicht verstehen.
@@ -42,7 +49,7 @@ Sagen:
 
 <!-- @note: the-auditor-subagent -->
 > Tun:
-> - Referenz zum Live-Aufbauen — der genaue Body steht in tasks/08-subagent-audit.md Schritt 4
+> - Referenz zum Live-Aufbauen — der genaue Body steht in tasks/08-subagent-audit.md Schritt 5
 
 Sagen:
 - Die tools:-Zeile zählt — nur Read, Grep, Glob.
@@ -62,6 +69,43 @@ Sagen:
 - Fork ist in interaktiven Sessions standardmäßig an, unter -p und im Agent SDK aus.
 - Keins von beiden ist besser — wissen, welches du aufgerufen hast und warum.
 - `/tasks` listet die Hintergrundarbeit dieser Session: laufende Subagents und Forks. Ein fertiger bleibt nur kurz in der Liste, als erledigt markiert — also reinschauen, solange er läuft oder direkt nachdem er zurückkommt.
+
+<!-- @note: six-agents-ship-with-claude-code -->
+> Tun:
+> - Die Subagent-Audit-Aufgabe (08) hat einen eigenen geschrieben — diese sind schon auf der Maschine
+> - Docs-Link: öffnen, bis "Built-in subagents" scrollen, dann zurück zu den Folien
+
+Sagen:
+- Die laufen ohne jede Datei in .claude/agents/ — nichts zu schreiben, nichts einzuchecken
+- [click] Plan ist das, was unsichtbar läuft, jedes Mal, wenn du den Plan-Modus benutzt
+- [click] general-purpose ist der Standard, an den eine Aufgabe delegiert, wenn nichts Spezifischeres passt
+- [click] claude ist der Fallback des Fallbacks — jedes Tool, keine Einschränkung
+- [click] statusline-setup feuert nur bei /statusline
+- [click] claude-code-guide beantwortet Fragen wie "kann Claude Code X" — genau wie diese hier
+
+<!-- @note: one-subagent-or-read-it-yourself -->
+> Tun:
+> - Handoff: FACILITATOR.md, Rhythm for every task. Manueller Durchgang ist Schritt 4 (haben sie gesehen) — Übergabe bei Schritt 1, der Subagent startet bei Schritt 5
+> - Links (unbedacht), ein Schritt pro Klick:
+>   - [click] ein Prompt: alle Dateien in app/actions/ selbst lesen
+>   - [click] jede Action-Datei landet im Haupt-Thread
+>   - [click] der eigene /context steigt mit jeder Datei
+>   - [click] eine Wand aus Prosa zurück, nichts Falsifizierbares
+>   - [click] Context-Balken: ~50% verbraucht
+> VOLLSTÄNDIGER PROMPT (wortwörtlich aus tasks/08-subagent-audit.md Schritt 4, nur für den Trainer, nicht von einer Teilnehmer-Maschine senden):
+>
+> Read every file in app/actions/ yourself, in this conversation, and report
+> which exported actions are missing an ownership check before mutating an
+> existing row.
+> - Rechts (durchdacht), sobald sie zurück sind — ein Schritt pro Klick:
+>   - [click] ein security-auditor-Subagent: Read, Grep, Glob
+>   - [click] ein falsifizierbares Briefing: PASS oder FAIL, mit Zeile
+>   - [click] die Reads passieren in seinem Fenster, nicht in deinem
+>   - [click] der eigene /context bewegt sich kaum
+>   - [click] Context-Balken: ~5% verbraucht
+
+Sagen:
+- Gleiches Audit, gleiche zwei Bugs. Der Unterschied: wessen Context-Fenster sich füllt
 
 <!-- @note: subagent-audit -->
 > Tun:

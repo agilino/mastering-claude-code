@@ -7,10 +7,29 @@ lines:
   - "The Agent SDK: the same loop, inside your program."
 ---
 
+---
+layout: task-intro
+number: "12"
+routeAlias: task-12
+heading: "Task 12 — Letting go"
+branch: "12-start"
+learn:
+  - "Several agents, separate worktrees, no collisions"
+  - "Move the audit into CI, unattended"
+  - "Wire up claude-code-action@v1 with a named secret"
+  - "Set up the GitHub App with /install-github-app"
+outcome:
+  - "Two worktrees running at once, no file collisions"
+  - "A GitHub Actions workflow, audits every PR"
+  - "Findings posted as a PR comment, unattended"
+  - "GitHub App installed, OAuth secret working"
+---
+
 
 ---
 layout: concept
 heading: "One repo, N isolated agents"
+routeAlias: theory-worktrees
 lines:
   - "claude --worktree <name>   (short: -w)"
   - "Copy under .claude/worktrees/<name>/, on branch worktree-<name>"
@@ -21,6 +40,7 @@ lines:
 ---
 layout: concept
 heading: "Headless in CI"
+routeAlias: theory-headless-ci
 lines:
   - "CLASH has no .github/workflows/. Nothing runs on a pull request."
   - "anthropics/claude-code-action@v1. Not @beta. Not a raw claude -p."
@@ -62,6 +82,21 @@ jobs:
 ```
 
 ---
+layout: concept
+heading: "Drive a session from your phone"
+docs: https://code.claude.com/docs/en/remote-control
+lines:
+  - "/remote-control connects claude.ai/code or the mobile app to this session."
+  - "Your files, your tools, stay on your machine the whole time."
+---
+
+<div class="flex flex-col gap-3 w-full max-w-2xl">
+  <div class="na-card px-5 py-3 flex gap-4 items-center"><span class="font-mono text-sm w-40" style="color: var(--na-accent-500)">/remote-control</span><span style="color: var(--na-fg-muted)">from inside a running session</span></div>
+  <div class="na-card px-5 py-3 flex gap-4 items-center" v-click><span class="font-mono text-sm w-40" style="color: var(--na-accent-500)">claude --rc</span><span style="color: var(--na-fg-muted)">start a new session already connected</span></div>
+  <div class="na-card px-5 py-3 flex gap-4 items-center" v-click><span class="font-mono text-sm w-40" style="color: var(--na-accent-500)">/loop</span><span style="color: var(--na-fg-muted)">a prompt that repeats on an interval, no phone needed</span></div>
+</div>
+
+---
 layout: task
 number: "12"
 heading: "Letting go"
@@ -73,8 +108,27 @@ branch: "12-start"
 
 
 ---
+layout: task-intro
+number: "13"
+routeAlias: task-13
+heading: "Task 13 — The Agent SDK"
+branch: "13-start"
+learn:
+  - "Host the Claude Code loop in your own program"
+  - "Carry context budget, tool limits, hooks unchanged"
+  - "Restrict a scripted agent to read-only tools"
+  - "Log every tool call via a PreToolUse hook"
+outcome:
+  - "ask-clash.mts: answers one question about CLASH"
+  - "Only Read, Grep, Glob — no edits, no commands"
+  - "A capped turn limit, every tool call logged"
+  - "A printed answer: a clash, a place, a time"
+---
+
+---
 layout: concept
 heading: "Same loop, inside your program"
+routeAlias: theory-agent-sdk-loop
 lines:
   - "Context budget, tool limits, hooks: all carry over unchanged."
   - "Only the host changes."

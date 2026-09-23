@@ -16,7 +16,7 @@ on a local clone. The script never pushes. Every branch with code passes
 | `03-start` | The Next.js 16 scaffold (Tailwind v4, shadcn/ui primitives, theme provider), the Prisma schema with all five models, the migration and the seed. A placeholder home page. `CLAUDE.md` with the first invariants. | Files listed in `scripts/checkpoints/03/manifest.txt` are taken from `main`; `overrides/` replaces `app/page.tsx` and `CLAUDE.md`. |
 | `04-start` | Register, login, logout, the session cookie, `requireUser`, the `(auth)` and `(app)` route groups, sidebar and top bar, and the clashes list, detail, new, edit and delete. Also the map components (`components/map/*`, `lib/data/map.ts`) and the location picker, because the clash form uses them; the map page is not there yet. | Manifest 04 from `main`; overrides trim the sidebar to Dashboard, Clashes and My Clashes, give the top bar no bell and no search, replace the dashboard with a placeholder, remove the join, leave, accept and reject actions and the notification emit from `app/actions/clashes.ts`, and remove the join controls and the requests tab from the clash detail page. |
 | `05-start` | Venues (list, detail, new, edit, delete, "host a clash here"), the map page, join, leave, accept and reject, `lib/notify.ts` and the notification bell. | Manifest 05 from `main` restores the full clashes actions and detail page; overrides keep the dashboard placeholder, keep Profile and Settings out of the sidebar, and give the top bar the bell but no search. |
-| `06-start` | The reference CLASH. Profile with avatar crop, public profiles, search, dashboard, theme, settings, the vendored skills in `.agents/skills/`. | Identical to `main`. |
+| `06-start` | The reference CLASH. Profile with avatar crop, public profiles, search, dashboard, theme, settings, the vendored skills in `.agents/skills/`, 8 of the 9 copied into `.claude/skills/` so Claude Code actually loads them. | `main`, plus one workshop commit copying `.agents/skills/*` into `.claude/skills/*`, except `agent-browser` — task 01 already installs that one as a personal skill, which always shadows a project copy of the same name. |
 | `07-start` | `CLAUDE.md` authored around the real invariants (the answer key of task 06). | `workshop-artifacts/06-context-and-claude-md/CLAUDE.md`. |
 | `08-start` | The `clash-feature` skill (answer key of task 07). **Seeded vulnerability**: the `creatorId` ownership check is removed from `deleteClash` and `deleteVenue`. | `workshop-artifacts/07-clash-feature-skill/SKILL.md`; the two guards are removed by an exact string replacement, which aborts if the code has changed. |
 | `09-start` | Nothing. | Identical to `08-start`. |
@@ -33,8 +33,10 @@ on a local clone. The script never pushes. Every branch with code passes
 - The seed on `03-start` already creates 8 users, 8 venues and 8 clashes, so a participant who resets
   to any build stage has data to look at.
 - The vendored skills in CLASH's `.agents/skills/` and `skills-lock.json` are not on the build stages.
-  They arrive with the reference on `06-start`, where task 06 runs `/skill-doctor` on them.
-  They are unrelated to this workshop repository's own `.agents/skills/agent-browser` tooling skill.
+  They arrive with the reference on `06-start`, with 8 of the 9 copied into `.claude/skills/` at
+  the project level — `agent-browser` is skipped since task 01 already installs it as a personal
+  skill, and a project copy of the same name would just be shadowed. Real data for task 06's
+  `/skill-doctor` step from the first checkout.
 
 ## Seeded vulnerability, said plainly
 

@@ -8,9 +8,16 @@ Sagen:
 Maschine. Die Spec ist docs/SPEC.md. Claude schreibt den Code. Du entscheidest, was gut ist."
 - Jedes ist eine Task; jede Task hat einen Reset-Branch
 
+<!-- @note: task-02-foundation -->
+> Tun:
+> - Branch: 02-start hat die Spec plus eine erste CLAUDE.md
+
+Sagen:
+- Vom Briefing zur laufenden App: Scaffold aufsetzen, Datenmodell planen, dann bauen
+
 <!-- @note: a-brief-has-three-parts -->
 > Tun:
-> - tasks/02-foundation.md Schritte 1-2, dann zurück zu den Folien
+> - Schritt 1-2 machen die Teilnehmenden selbst
 > - Im Manual-Modus starten, die Gruppe die ersten zwei, drei Permission-Prompts sehen lassen
 > - Das Repo ist absichtlich nicht leer. Darauf hinweisen, dass das Briefing die Workshop-Dateien vor create-next-app schützen lässt
 > - Dann zu Auto wechseln — ein Next.js-Scaffold aufzusetzen ist Standard, geringes Risiko
@@ -24,7 +31,7 @@ Sagen:
 
 <!-- @note: read-the-diff-not-the-summary -->
 > Tun:
-> - tasks/02-foundation.md Schritte 3-4, dann zurück zu den Folien
+> - Schritt 3-4 machen die Teilnehmenden selbst
 > - Nach `git status` fragen, dann `/diff` nach dem Scaffold live zeigen — nur Scaffold-Änderungen sollten da sein, bevor Plan Mode irgendwas anderes anfasst
 > - Das Panel meldet manchmal, dass Dateien "not shown" sind, und brandneue Dateien aus einem Shell-Befehl können dazugehören — `git status` ist die vollständige Liste, deshalb kommt es zuerst
 > - Claude bitten zu committen, die Commit-Message lesen, die Claude geschrieben hat
@@ -36,7 +43,7 @@ Sagen:
 
 <!-- @note: plan-mode-read-think-propose -->
 > Tun:
-> - tasks/02-foundation.md Schritte 5, 7-8, dann zurück zu den Folien — Schritt 6 (der eigentliche Prompt) kommt als Nächstes, auf seiner eigenen Live-Coding-Folie
+> - Schritt 5, 7-8 machen die Teilnehmenden selbst — Schritt 6 (der eigentliche Prompt) kommt als Nächstes, auf seiner eigenen Live-Coding-Folie
 > - Live demonstrieren: Shift+Tab, bis die Statusleiste "plan mode on" zeigt (zweimal ab Manual-Modus, dreimal ab Auto — Pro/Max/Team-Sessions starten im Auto-Modus)
 > - Den Plan erscheinen lassen, sobald der Prompt von der nächsten Folie geschickt ist
 > - Einen Teil davon laut vorlesen, der Gruppe eine Frage stellen ("warum lib/generated/prisma?")
@@ -47,7 +54,7 @@ Sagen:
 
 <!-- @note: plan-the-data-model -->
 > Tun:
-> - tasks/02-foundation.md Schritt 6, dann zurück zu den Folien
+> - Schritt 6 machen die Teilnehmenden selbst
 > - Den Prompt mit den Regeln als Bullet Points einfügen — mit "\" am Zeilenende weiter in einer neuen Zeile, ohne abzuschicken
 
 Sagen:

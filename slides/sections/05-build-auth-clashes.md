@@ -1,4 +1,23 @@
 ---
+layout: task-intro
+number: "03"
+routeAlias: task-03
+heading: "Task 03 — Auth and clashes"
+branch: "03-start"
+learn:
+  - "Work in small steps, undo one with /rewind"
+  - "Watch the context window: /context, /compact"
+  - "Point at files with @, not a guess"
+  - "Every Server Action is its own public endpoint"
+outcome:
+  - "Register, login and logout"
+  - "An app shell: sidebar and top bar"
+  - "Clashes: list, create, edit, delete"
+  - "An ownership rule blocks a stranger's delete"
+outcomeHeading: "You build"
+---
+
+---
 layout: concept
 heading: "Small steps beat big asks"
 lines:
@@ -26,6 +45,7 @@ lines:
 ---
 layout: concept
 heading: "Undo a step: /rewind"
+routeAlias: theory-rewind
 lines:
   - "Claude saves a checkpoint before every prompt"
   - "/rewind shows them — pick one, files go back"
@@ -36,6 +56,7 @@ lines:
 ---
 layout: concept
 heading: "Watch the window fill"
+routeAlias: theory-context-window
 lines:
   - "/context — what is in the window right now"
   - "Every file Claude read is still there"
@@ -45,15 +66,9 @@ lines:
 <G02ContextBudget />
 
 ---
-layout: concept
-heading: "Point, don't let it guess"
----
-
-<G03CarelessVsEngineered />
-
----
 layout: code-live
 heading: "The safety moment"
+routeAlias: theory-server-action-safety
 filePath: "prompt to Claude Code — after clashes work"
 success: "Claude explains that the layout guards the page and not the action, and the ownership rule lands in CLAUDE.md."
 ---
@@ -66,6 +81,13 @@ from being called by someone who is not the creator?
 ⟵ LIVE: ask for the explanation first. Then, in a second message,
         ask for the fix and the CLAUDE.md rule.
 ```
+
+---
+layout: concept
+heading: "Point, don't let it guess"
+---
+
+<G03CarelessVsEngineered />
 
 ---
 layout: task

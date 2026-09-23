@@ -4,13 +4,71 @@
 //  - a code-live slide without a "⟵ LIVE" marker
 //  - a concept slide with more than 40 words of body text (warning)
 //  - a docs link that breaks the convention: the `docs:` frontmatter field, an official
-//    English docs URL, never on a task slide, never an inline <DocLink> tag in a slide body
+//    English Claude Code docs URL or an allowlisted third-party tool's own official page
+//    (THIRD_PARTY_DOCS below), never on a task slide, never an inline <DocLink> tag in a body
 import { readFile, readdir } from 'node:fs/promises'
 import { existsSync, readdirSync } from 'node:fs'
 import { join, dirname, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
+const defaultSlidesBaseUrl = 'https://mastering-claude-code.vercel.app'
+const slidesBaseUrl = (process.env.SLIDES_BASE_URL ?? defaultSlidesBaseUrl).replace(/\/+$/, '')
+const slidesBase = new URL(slidesBaseUrl)
+const defaultSlidesBase = new URL(defaultSlidesBaseUrl)
+const allowDefaultAlongsideLocal = ['localhost', '127.0.0.1', '[::1]'].includes(slidesBase.hostname)
+const allowedSlidesOrigins = new Set([
+  slidesBase.origin,
+  ...(allowDefaultAlongsideLocal ? [defaultSlidesBase.origin] : []),
+])
+
+// `docs:` normally holds a Claude Code docs URL (checked by pattern below). A slide whose
+// mechanism belongs to a third-party tool Claude Code consumes, not a Claude Code feature
+// itself, may instead cite that tool's own official page — added here one at a time, verified
+// live, never opened up to an arbitrary URL. check-doc-links.mjs does not reach these (it only
+// re-checks code.claude.com pages); scripts/audit-links.sh's plain-200 sweep still covers them.
+const THIRD_PARTY_DOCS = new Set([
+  'https://www.skills.sh/vercel-labs/agent-browser/agent-browser', // the agent-browser skill itself — npx skills add's source
+])
+
+function stripFencedCode(text) {
+  const lines = []
+  let fence = null
+  for (const line of text.split('\n')) {
+    const marker = /^[ \t]*(\`\`\`|~~~)/.exec(line)?.[1]
+    if (marker && fence === null) {
+      fence = marker
+      lines.push('')
+      continue
+    }
+    if (marker === fence) {
+      fence = null
+      lines.push('')
+      continue
+    }
+    lines.push(fence ? '' : line)
+  }
+  return lines.join('\n')
+}
+
+function validateSlideUrl(rel, rawUrl, expectedAlias, label) {
+  let url
+  try {
+    url = new URL(rawUrl)
+  } catch {
+    err(rel, `${label} is not a valid URL: ${rawUrl}`)
+    return null
+  }
+
+  if (!allowedSlidesOrigins.has(url.origin)) {
+    err(rel, `${label} must use ${slidesBase.origin}: ${rawUrl}`)
+  }
+  if (url.pathname !== `/${expectedAlias}` || url.search || url.hash) {
+    err(rel, `${label} must point to /${expectedAlias}: ${rawUrl}`)
+  }
+
+  return expectedAlias
+}
 const forbidden = [
   [/\b\d{1,2}:\d{2}\b/, 'clock time'],
   [/(?<![-\w\/.])\b\d+\s?(min|mins|minutes?|hours?|h)\b(?![-\w])/i, 'duration'],
@@ -40,6 +98,10 @@ const forbiddenOutsideWelcome = [[/\bQR\b/, 'QR code']]
 
 let errors = 0
 let warnings = 0
+const introSlides = new Map()
+const recapSlides = new Map()
+const taskFiles = new Map()
+const theorySlides = new Map()
 const err = (f, msg) => { errors++; console.log(`ERROR ${f}: ${msg}`) }
 const warn = (f, msg) => { warnings++; console.log(`warn  ${f}: ${msg}`) }
 
@@ -64,6 +126,12 @@ for (const file of files) {
   // silently skipped on Windows (backslash paths never start with 'slides/sections/')
   const text = (await readFile(file, 'utf8')).replace(/\r\n/g, '\n')
   const rel = relative(root, file).split('\\').join('/')
+  const taskFileMatch = /^tasks\/(\d\d)-.+\.md$/.exec(rel)
+  if (taskFileMatch) {
+    const num = taskFileMatch[1]
+    if (taskFiles.has(num)) err(rel, `duplicate task number ${num}; also used by ${taskFiles.get(num)}`)
+    else taskFiles.set(num, rel)
+  }
   text.split('\n').forEach((line, i) => {
     const rules = rel.endsWith('00-welcome.md') ? forbidden : [...forbidden, ...forbiddenOutsideWelcome]
     for (const [re, label] of rules) {
@@ -89,11 +157,22 @@ for (const file of files) {
     const body = raw.replace(/<!--[\s\S]*?-->/g, '')
     const layout = /layout:\s*(\S+)/.exec(fm)?.[1]
     const n = Math.ceil(i / 2)
+    const heading = /heading:\s*"([^"]*)"/.exec(fm)?.[1] ?? ''
+    const routeAliasRaw = /^routeAlias:[ \t]*(.*)$/m.exec(fm)?.[1]
+    const routeAlias = routeAliasRaw?.replace(/\s+#.*$/, '').trim().replace(/^["']|["']$/g, '')
+    if (routeAlias?.startsWith('theory-')) {
+      if (!heading) err(rel, `slide ${n}: theory routeAlias ${routeAlias} has no heading`)
+      if (theorySlides.has(routeAlias)) err(rel, `slide ${n}: duplicate theory routeAlias ${routeAlias}`)
+      theorySlides.set(routeAlias, { heading, rel, slide: n })
+    }
     // wording limits (see plan: no orphan words, no clipped code)
-    const linesBlock = /lines:\n((?:\s+- .*\n)+)/.exec(fm)?.[1] ?? ''
-    for (const ln of linesBlock.split('\n')) {
-      const txt = ln.replace(/^\s+- /, '').replace(/^"|"$/g, '')
-      if (txt.length > 80) err(rel, `slide ${n}: line has ${txt.length} chars (> 80): ${txt.slice(0, 60)}…`)
+    // task-intro slides carry two lists (learn:, outcome:) — check every
+    // lines:/learn:/outcome: block on the slide, not just the first
+    for (const m of fm.matchAll(/(?:lines|learn|outcome):\n((?:\s+- .*\n)+)/g)) {
+      for (const ln of m[1].split('\n')) {
+        const txt = ln.replace(/^\s+- /, '').replace(/^"|"$/g, '')
+        if (txt.length > 80) err(rel, `slide ${n}: line has ${txt.length} chars (> 80): ${txt.slice(0, 60)}…`)
+      }
     }
     for (const fence of raw.match(/```[\s\S]*?```/g) ?? []) {
       const count = fence.split('\n').length - 2
@@ -109,11 +188,27 @@ for (const file of files) {
       const th = /heading:\s*"([^"]*)"/.exec(fm)?.[1] ?? ''
       if (th.trim().split(/\s+/).length > 5) err(rel, `slide ${n}: task heading "${th}" has more than 5 words`)
     }
-    if (layout === 'task') {
+    if (layout === 'task-intro' || layout === 'task') {
       const num = /number:\s*"?(\d\d)"?/.exec(fm)?.[1]
-      if (!num) err(rel, `slide ${n}: task slide without number`)
-      else if (!readdirSync(join(root, 'tasks')).some((f) => f.startsWith(`${num}-`))) err(rel, `slide ${n}: no tasks/${num}-*.md for this task slide`)
-      if (/timebox:|qrSlug:|repoUrl:/.test(fm)) err(rel, `slide ${n}: task slide still has timebox/qrSlug/repoUrl`)
+      const label = layout === 'task-intro' ? 'task-intro slide' : 'task slide'
+      if (!num) err(rel, `slide ${n}: ${label} without number`)
+      else {
+        if (!readdirSync(join(root, 'tasks')).some((f) => f.startsWith(`${num}-`))) err(rel, `slide ${n}: no tasks/${num}-*.md for this ${label}`)
+        const registry = layout === 'task-intro' ? introSlides : recapSlides
+        if (registry.has(num)) err(rel, `slide ${n}: duplicate ${label} number ${num}; also used by ${registry.get(num).rel}`)
+        const aliasRaw = /^routeAlias:[ \t]*(.*)$/m.exec(fm)?.[1]
+        const alias = aliasRaw?.replace(/\s+#.*$/, '').trim().replace(/^["']|["']$/g, '')
+        const expectedAlias = `task-${num}`
+        // routeAlias creates the /task-NN route. It lives on the intro slide,
+        // the link target — the recap must not carry a second one.
+        if (layout === 'task-intro') {
+          if (alias !== expectedAlias) err(rel, `slide ${n}: task ${num} intro must use routeAlias: ${expectedAlias}`)
+        } else if (alias !== undefined) {
+          err(rel, `slide ${n}: task ${num} recap must not carry routeAlias — it belongs on the task-intro slide`)
+        }
+        registry.set(num, { rel, slide: n, alias })
+      }
+      if (/timebox:|qrSlug:|repoUrl:/.test(fm)) err(rel, `slide ${n}: ${label} still has timebox/qrSlug/repoUrl`)
     }
     if (layout === 'code-live' && !/⟵ LIVE/.test(fences)) err(rel, `slide ${n}: code-live slide without a ⟵ LIVE marker`)
     // [ \t]*, not \s*: an empty `docs:` must not swallow the next frontmatter line. Quotes are
@@ -124,7 +219,8 @@ for (const file of files) {
       : docsRaw.replace(/\s+#.*$/, '').trim().replace(/^["']|["']$/g, '')
     if (docs !== undefined) {
       // pages can be nested (en/agent-sdk/overview); anchors may hold dots, underscores and %2F
-      if (!/^https:\/\/code\.claude\.com\/docs\/en\/[a-z0-9-]+(\/[a-z0-9-]+)*(#[A-Za-z0-9%._-]+)?$/.test(docs)) err(rel, `slide ${n}: docs link is not an official English docs URL: ${docs || '(empty)'}`)
+      const isClaudeDocs = /^https:\/\/code\.claude\.com\/docs\/en\/[a-z0-9-]+(\/[a-z0-9-]+)*(#[A-Za-z0-9%._-]+)?$/.test(docs)
+      if (!isClaudeDocs && !THIRD_PARTY_DOCS.has(docs)) err(rel, `slide ${n}: docs link is not an official Claude Code docs URL or an allowlisted third-party docs URL: ${docs || '(empty)'}`)
       // only these layouts draw the link; anywhere else the field would pass silently and show nothing
       if (!['concept', 'code-live', 'section'].includes(layout)) err(rel, `slide ${n}: docs link on a ${layout ?? 'default'} slide — only concept, code-live and section slides draw it (task slides carry no URL)`)
     }
@@ -140,6 +236,65 @@ for (const file of files) {
       if (words > 40) warn(rel, `slide ${n}: concept body has ${words} words (> 40)`)
     }
   }
+}
+
+for (const [num, rel] of taskFiles) {
+  const text = (await readFile(join(root, rel), 'utf8')).replace(/\r\n/g, '\n')
+  const structuralText = stripFencedCode(text)
+  const links = [...structuralText.matchAll(/^> Slides:[ \t]*(\S+)[ \t]*$/gm)].map((m) => m[1])
+  if (links.length !== 1) err(rel, `expected exactly one Slides link for task ${num}, found ${links.length}`)
+  else validateSlideUrl(rel, links[0], `task-${num}`, `task ${num} Slides link`)
+  if (!introSlides.has(num)) err(rel, `no task-intro slide with number ${num} and routeAlias task-${num}`)
+  if (!recapSlides.has(num)) err(rel, `no task recap slide with number ${num}`)
+
+  const expectedHeadings = ['Theory', 'You will end up with', 'Why', 'Do this', 'Now you', 'Check', 'Stuck?', 'Go further', 'Links']
+  const headings = [...structuralText.matchAll(/^## (.+)$/gm)].map((m) => m[1])
+  if (JSON.stringify(headings) !== JSON.stringify(expectedHeadings)) {
+    err(rel, `task headings must be exactly: ${expectedHeadings.join(' → ')}`)
+  }
+
+  const theory = /## Theory\n\n([\s\S]*?)(?=\n## )/.exec(structuralText)?.[1] ?? ''
+  const theoryLinks = [...theory.matchAll(/^- \[([^\]]+)\]\(([^)]+)\)$/gm)]
+  if (theoryLinks.length < 1 || theoryLinks.length > 3) {
+    err(rel, `Theory must contain one to three slide links; found ${theoryLinks.length}`)
+  }
+  const reminders = [...theory.matchAll(/^> \*\*Reminder:\*\* .+$/gm)]
+  if (reminders.length !== 1) err(rel, `Theory must contain exactly one Reminder line; found ${reminders.length}`)
+  for (const [, label, rawUrl] of theoryLinks) {
+    let url
+    try {
+      url = new URL(rawUrl)
+    } catch {
+      err(rel, `Theory link is not a valid URL: ${rawUrl}`)
+      continue
+    }
+    const alias = url.pathname.replace(/^\//, '')
+    if (!alias.startsWith('theory-')) {
+      err(rel, `Theory link must point to a /theory-* route: ${rawUrl}`)
+      continue
+    }
+    validateSlideUrl(rel, rawUrl, alias, `Theory link "${label}"`)
+    const slide = theorySlides.get(alias)
+    if (!slide) err(rel, `Theory link /${alias} has no matching slide routeAlias`)
+    else if (label !== slide.heading) err(rel, `Theory link text "${label}" must match slide heading "${slide.heading}" for /${alias}`)
+  }
+}
+
+for (const [num, slide] of introSlides) {
+  if (!taskFiles.has(num)) err(slide.rel, `slide ${slide.slide}: no tasks/${num}-*.md for this task-intro slide`)
+}
+for (const [num, slide] of recapSlides) {
+  if (!taskFiles.has(num)) err(slide.rel, `slide ${slide.slide}: no tasks/${num}-*.md for this task recap slide`)
+}
+
+// Block order: for every task with both an intro and a recap, they must sit
+// in the same section file, intro before recap — the deck order the
+// Explain-Show-You-do flow depends on (see CLAUDE.md's block-order rule).
+for (const [num, intro] of introSlides) {
+  const recap = recapSlides.get(num)
+  if (!recap) continue // already reported above
+  if (intro.rel !== recap.rel) err(recap.rel, `task ${num}: intro is in ${intro.rel}, recap is in ${recap.rel} — both must be in the same section file`)
+  else if (intro.slide >= recap.slide) err(recap.rel, `task ${num}: intro (slide ${intro.slide}) must come before the recap (slide ${recap.slide}) in the same file`)
 }
 
 console.log(`\n${errors} error(s), ${warnings} warning(s) across ${files.length} files`)

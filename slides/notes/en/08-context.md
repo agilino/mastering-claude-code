@@ -31,6 +31,13 @@ Say:
 Say:
 - "We start here because it is the row that is always in play."
 
+<!-- @note: task-06-context-and-claude-md -->
+> Do:
+> - Branch: 06-start is the reference CLASH, seeded, CLAUDE.md still just `@AGENTS.md`
+
+Say:
+- Five things to learn, four things to end up with — starting from a CLAUDE.md that is 11 bytes
+
 <!-- @note: context-is-an-instrument -->
 > Do:
 > - Demo: run `/context` live on a fresh session in the reference CLASH
@@ -86,26 +93,6 @@ Say:
   - Next 16 `params` and `searchParams` are Promises
 - "could a hook enforce this? If not, is it a rule or a preference?"
 
-<!-- @note: references-beat-grep-and-guess -->
-> Do:
-> - Say plainly
-
-Say:
-- Left (careless), one step per click:
-  - [click] grep -r "notif" app/
-  - [click] read 40 files
-  - [click] guess the notification model
-  - [click] guess the Server Action shape
-  - [click] write code, hope it compiles
-  - [click] context bar: ~85% consumed
-- Right (engineered), one step per click:
-  - [click] @lib/data/notifications.ts
-  - [click] @app/actions/clashes.ts
-  - [click] @prisma/schema.prisma
-  - [click] Plan Mode: review before a byte moves
-  - [click] context bar: ~18% consumed
-- The difference between the two columns is not a smarter model — it is the same model, pointed on purpose
-
 <!-- @note: plan-mode-review-first -->
 > Do:
 > - Demo: switch into plan mode live (Shift+Tab until it says plan)
@@ -132,13 +119,54 @@ Say:
 
 <!-- @note: skill-doctor-what-it-costs -->
 > Do:
+> - Already copied on this branch — .claude/skills/ holds eight of the nine .agents/skills/ folders; agent-browser stays personal (task 01)
 > - Demo: run `/skill-doctor` live
 > - Show the two folders side by side — the overlap is obvious on sight
 
 Say:
+- Claude Code reads .claude/skills/ at the project level — this reference build copies eight of the nine .agents/skills/ folders in for you; agent-browser is already a personal skill from task 01
 - Unused skills cost you every session — but only their short description loads, not the ~100 KB body. The body loads when the skill is used
 - Not in a bloated CLAUDE.md (there is none) — it's in `.agents/skills/react-best-practices` and `.agents/skills/vercel-react-best-practices`
 - Two real, near-duplicate rule sets, each about 100 KB
+
+<!-- @note: claude-md-files-add-up-they-don-t-compete -->
+> Do:
+> - Docs link: open it, scroll to "How CLAUDE.md files load", then back to the slides
+
+Say:
+- [click] ~/.claude/CLAUDE.md — your personal instructions, every project
+- [click] CLAUDE.md at the repository root — read first, closest to launch
+- [click] CLAUDE.local.md — gitignored, appended right after CLAUDE.md at the same level
+- [click] A subdirectory's CLAUDE.md loads when Claude reads a file there — read last, closest to the work
+- [click] .claude/rules/*.md loads the same way, on demand
+- [click] All of it lands in one context — nothing is dropped, nothing is chosen
+- [click] Two files disagree? Claude picks one. That is a bug you created, not a feature
+
+<!-- @note: rules-can-load-only-for-matching-files -->
+Say:
+- A rule with no paths: field loads for every session, like an extra CLAUDE.md
+- [click] ~/.claude/rules/ — yours, every project, for things that are not this repo's business
+- Symlink a shared rules folder into multiple repos to keep one copy in sync
+
+<!-- @note: references-beat-grep-and-guess -->
+> Do:
+> - Say plainly
+
+Say:
+- Left (careless), one step per click:
+  - [click] grep -r "notif" app/
+  - [click] read 40 files
+  - [click] guess the notification model
+  - [click] guess the Server Action shape
+  - [click] write code, hope it compiles
+  - [click] context bar: ~85% consumed
+- Right (engineered), one step per click:
+  - [click] @lib/data/notifications.ts
+  - [click] @app/actions/clashes.ts
+  - [click] @prisma/schema.prisma
+  - [click] Plan Mode: review before a byte moves
+  - [click] context bar: ~18% consumed
+- The difference between the two columns is not a smarter model — it is the same model, pointed on purpose
 
 <!-- @note: context-and-claude-md -->
 > Do:

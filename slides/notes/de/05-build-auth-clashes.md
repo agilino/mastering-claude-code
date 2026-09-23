@@ -1,6 +1,13 @@
+<!-- @note: task-03-auth-and-clashes -->
+> Tun:
+> - Branch: 03-start hat schon das Scaffold, das Schema und die Seed-Daten — das Ergebnis von Task 02
+
+Sagen:
+- Fünf Dinge zu lernen, vier Dinge zu bauen — die längste Task in diesem Teil, hier zählen kleine Schritte am meisten
+
 <!-- @note: small-steps-beat-big-asks -->
 > Tun:
-> - tasks/03-auth-and-clashes.md Schritte 2-4, dann zurück zu den Folien
+> - Schritte 2-4 machen die Teilnehmenden selbst
 > - [click] Zeigen, wie die große Anfrage in einer Zeile scheitert oder abdriftet, dann dieselbe Arbeit in drei Schritten
 
 Sagen:
@@ -10,7 +17,7 @@ Sagen:
 
 <!-- @note: undo-a-step-rewind -->
 > Tun:
-> - tasks/03-auth-and-clashes.md Schritte 6-7, dann zurück zu den Folien
+> - Schritte 6-7 machen die Teilnehmenden selbst
 > - Demo: nach dem Shell-Schritt /rewind ausführen, die Liste der Checkpoints zeigen
 > - Den Checkpoint vor dem letzten Schritt auswählen, zeigen, dass die Dateien zurück sind
 > - Esc drücken, um abzubrechen, falls es doch nicht gewollt war
@@ -21,7 +28,7 @@ Sagen:
 
 <!-- @note: watch-the-window-fill -->
 > Tun:
-> - tasks/03-auth-and-clashes.md Schritte 8-9, dann zurück zu den Folien
+> - Schritte 8-9 machen die Teilnehmenden selbst
 > - Nach den Auth- und Shell-Schritten live /context ausführen
 > - [click] Die Bänder lesen: System-Prompt, CLAUDE.md, Tool-Ergebnisse, Gespräch
 > - Dann /compact ausführen, dann noch mal /context
@@ -31,29 +38,9 @@ Sagen:
 - Das erste Mal, dass die Gruppe das Context Window als etwas sieht, das sie managen kann
 - Teil III macht daraus eine Disziplin
 
-<!-- @note: point-don-t-let-it-guess -->
-> Tun:
-> - Bereitet tasks/03-auth-and-clashes.md Schritt 10 vor, dann zurück zu den Folien
-> - Links (unachtsam), ein Schritt pro Klick:
->   - [click] grep -r "notif" app/
->   - [click] 40 Dateien lesen
->   - [click] das Notification-Modell raten
->   - [click] die Server-Action-Form raten
->   - [click] Code schreiben, hoffen, dass er kompiliert
->   - [click] Context-Balken: ~85 % verbraucht
-> - Rechts (gezielt), ein Schritt pro Klick:
->   - [click] @lib/data/notifications.ts
->   - [click] @app/actions/clashes.ts
->   - [click] @prisma/schema.prisma
->   - [click] Plan Mode: erst prüfen, bevor sich ein Byte bewegt
->   - [click] Context-Balken: ~18 % verbraucht — dieselbe Aufgabe, dasselbe Modell, gezielt eingesetzt
-
-Sagen:
-- Deshalb ist der Clashes-Prompt in Task 03 voller @-Referenzen
-
 <!-- @note: the-safety-moment -->
 > Tun:
-> - tasks/03-auth-and-clashes.md Schritte 11-12, dann zurück zu den Folien
+> - Schritte 11-12 machen die Teilnehmenden selbst
 > - VOLLSTÄNDIGE PROMPTS (wörtlich aus tasks/03-auth-and-clashes.md):
 >
 > 1) requireUser() runs in app/(app)/layout.tsx. Does that protect the deleteClash action
@@ -71,6 +58,26 @@ Sagen:
 - Eine Server Action ist ein öffentlicher Endpoint mit einer generierten id
 - Das Layout schützt die Seite, nicht die Action
 - Zod prüft die Form, nicht die Berechtigung
+
+<!-- @note: point-don-t-let-it-guess -->
+> Tun:
+> - Bereitet tasks/03-auth-and-clashes.md Schritt 10 vor, den Clash-Bau-Schritt
+> - Links (unachtsam), ein Schritt pro Klick:
+>   - [click] grep -r "notif" app/
+>   - [click] 40 Dateien lesen
+>   - [click] das Notification-Modell raten
+>   - [click] die Server-Action-Form raten
+>   - [click] Code schreiben, hoffen, dass er kompiliert
+>   - [click] Context-Balken: ~85 % verbraucht
+> - Rechts (gezielt), ein Schritt pro Klick:
+>   - [click] @lib/data/notifications.ts
+>   - [click] @app/actions/clashes.ts
+>   - [click] @prisma/schema.prisma
+>   - [click] Plan Mode: erst prüfen, bevor sich ein Byte bewegt
+>   - [click] Context-Balken: ~18 % verbraucht — dieselbe Aufgabe, dasselbe Modell, gezielt eingesetzt
+
+Sagen:
+- Deshalb ist der Clashes-Prompt in Task 03 voller @-Referenzen
 
 <!-- @note: auth-and-clashes -->
 > Tun:
