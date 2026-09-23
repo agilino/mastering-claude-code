@@ -5,16 +5,14 @@ routeAlias: task-05
 heading: "Task 05 — Finish and ship"
 branch: "05-start"
 learn:
-  - "Batch independent jobs into one brief"
-  - "Run long work in the background and keep going"
-  - "Ask Claude to remember something for next time"
-  - "Review your own diff like a stranger before fixing it"
-  - "Ship through Claude: branch, commit, pull request"
+  - "Batch jobs, run long work in the background"
+  - "Ask Claude to remember something, for later"
+  - "Review your own diff like a stranger"
+  - "Ship through Claude: branch, commit, PR"
 outcome:
-  - "Profile with avatar crop, and public profiles"
-  - "⌘K search across clashes, venues and people"
-  - "A dashboard with counts and recent activity"
-  - "Light, dark and system theme"
+  - "Profile with avatar crop, public profiles"
+  - "A dashboard, and ⌘K search everywhere"
+  - "Light, dark, system theme"
   - "A pull request, reviewed by Claude"
 outcomeHeading: "You build"
 ---

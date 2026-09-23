@@ -32,13 +32,12 @@ routeAlias: task-06
 heading: "Task 06 — Context and CLAUDE.md"
 branch: "06-start"
 learn:
-  - "Read /context before you write a single rule"
-  - "Write CLAUDE.md from grounded rules, not guesses"
+  - "Read /context, write CLAUDE.md from grounded rules"
   - "Point Claude with @-references, not grep-and-guess"
   - "Review a plan before any code moves"
-  - "See what a loaded skill costs with /skill-doctor"
+  - "See a skill's cost with /skill-doctor"
 outcome:
-  - "CLAUDE.md with six grounded rules, from nothing"
+  - "CLAUDE.md: six grounded rules, from nothing"
   - "A reviewed plan: docs/plans/realtime-notifications.md"
   - "One vendored skill flagged for removal"
   - "A personal rule in ~/.claude/rules/"
@@ -126,7 +125,8 @@ layout: concept
 heading: "/skill-doctor: what it costs"
 routeAlias: theory-skill-doctor
 lines:
-  - "CLASH ships nine vendored skills in .agents/skills/"
+  - "CLASH ships nine vendored skills in .agents/skills/."
+  - "Claude Code only reads .claude/skills/ — link them in first."
   - "Two ~100 KB near-duplicates — only their descriptions scan every session."
 ---
 

@@ -119,10 +119,12 @@ Say:
 
 <!-- @note: skill-doctor-what-it-costs -->
 > Do:
+> - Step 9 links .agents/skills/* into .claude/skills/ first — skip it and /skill-doctor shows nothing
 > - Demo: run `/skill-doctor` live
 > - Show the two folders side by side — the overlap is obvious on sight
 
 Say:
+- Claude Code only reads .claude/skills/ — vendored skills in .agents/skills/ do nothing until linked
 - Unused skills cost you every session — but only their short description loads, not the ~100 KB body. The body loads when the skill is used
 - Not in a bloated CLAUDE.md (there is none) — it's in `.agents/skills/react-best-practices` and `.agents/skills/vercel-react-best-practices`
 - Two real, near-duplicate rule sets, each about 100 KB

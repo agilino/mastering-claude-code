@@ -5,7 +5,7 @@ routeAlias: task-04
 heading: "Task 04 — Venues, map, people"
 branch: "04-start"
 learn:
-  - "Reuse a pattern instead of re-explaining it"
+  - "Reuse a pattern, don't re-explain it"
   - "Turn a repeated brief into a slash command"
   - "Hand Claude the evidence: an error, a screenshot"
   - "Let Claude look at its own work with agent-browser"

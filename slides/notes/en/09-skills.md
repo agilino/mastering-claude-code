@@ -62,6 +62,18 @@ Say:
 - Feature touched maybe six files
 - Contrast is the whole pitch for skills, made visible
 
+<!-- @note: where-claude-code-looks-for-skills -->
+> Do:
+> - On 07-start, run /skills — none of the nine skills in .agents/skills/ show up
+> - Point at skills-lock.json — the installer's record of what came from where
+> - Docs link: open it, show the live agent-browser skill page, then back to the slides
+
+Say:
+- Claude Code reads two folders and nothing else. .agents/skills/ is not one of them
+- [click] npx skills add vercel-labs/agent-browser -g puts the real copy in ~/.agents/skills/
+- [click] Then it links that folder into ~/.claude/skills/ — a skill entry is allowed to be a symlink
+- [click] Without the link the skill is simply absent. No error, no warning — /skills is how you check
+
 <!-- @note: a-plugin-bundles-your-setup -->
 > Do:
 > - Docs link: open it, scroll to "Plugin structure overview", then back to the slides

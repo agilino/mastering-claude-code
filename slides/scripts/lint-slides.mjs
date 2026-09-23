@@ -4,7 +4,8 @@
 //  - a code-live slide without a "⟵ LIVE" marker
 //  - a concept slide with more than 40 words of body text (warning)
 //  - a docs link that breaks the convention: the `docs:` frontmatter field, an official
-//    English docs URL, never on a task slide, never an inline <DocLink> tag in a slide body
+//    English Claude Code docs URL or an allowlisted third-party tool's own official page
+//    (THIRD_PARTY_DOCS below), never on a task slide, never an inline <DocLink> tag in a body
 import { readFile, readdir } from 'node:fs/promises'
 import { existsSync, readdirSync } from 'node:fs'
 import { join, dirname, relative } from 'node:path'
@@ -19,6 +20,15 @@ const allowDefaultAlongsideLocal = ['localhost', '127.0.0.1', '[::1]'].includes(
 const allowedSlidesOrigins = new Set([
   slidesBase.origin,
   ...(allowDefaultAlongsideLocal ? [defaultSlidesBase.origin] : []),
+])
+
+// `docs:` normally holds a Claude Code docs URL (checked by pattern below). A slide whose
+// mechanism belongs to a third-party tool Claude Code consumes, not a Claude Code feature
+// itself, may instead cite that tool's own official page — added here one at a time, verified
+// live, never opened up to an arbitrary URL. check-doc-links.mjs does not reach these (it only
+// re-checks code.claude.com pages); scripts/audit-links.sh's plain-200 sweep still covers them.
+const THIRD_PARTY_DOCS = new Set([
+  'https://www.skills.sh/vercel-labs/agent-browser/agent-browser', // the agent-browser skill itself — npx skills add's source
 ])
 
 function stripFencedCode(text) {
@@ -209,7 +219,8 @@ for (const file of files) {
       : docsRaw.replace(/\s+#.*$/, '').trim().replace(/^["']|["']$/g, '')
     if (docs !== undefined) {
       // pages can be nested (en/agent-sdk/overview); anchors may hold dots, underscores and %2F
-      if (!/^https:\/\/code\.claude\.com\/docs\/en\/[a-z0-9-]+(\/[a-z0-9-]+)*(#[A-Za-z0-9%._-]+)?$/.test(docs)) err(rel, `slide ${n}: docs link is not an official English docs URL: ${docs || '(empty)'}`)
+      const isClaudeDocs = /^https:\/\/code\.claude\.com\/docs\/en\/[a-z0-9-]+(\/[a-z0-9-]+)*(#[A-Za-z0-9%._-]+)?$/.test(docs)
+      if (!isClaudeDocs && !THIRD_PARTY_DOCS.has(docs)) err(rel, `slide ${n}: docs link is not an official Claude Code docs URL or an allowlisted third-party docs URL: ${docs || '(empty)'}`)
       // only these layouts draw the link; anywhere else the field would pass silently and show nothing
       if (!['concept', 'code-live', 'section'].includes(layout)) err(rel, `slide ${n}: docs link on a ${layout ?? 'default'} slide — only concept, code-live and section slides draw it (task slides carry no URL)`)
     }

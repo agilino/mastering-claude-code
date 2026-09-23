@@ -14,7 +14,7 @@ routeAlias: task-08
 heading: "Task 08 — Subagent audit"
 branch: "08-start"
 learn:
-  - "Spin up a subagent with its own context window"
+  - "Spin up a subagent, its own context window"
   - "Write a falsifiable brief, not 'find bugs'"
   - "Restrict a subagent's tools to Read, Grep, Glob"
   - "Tell a fork from a fresh subagent"

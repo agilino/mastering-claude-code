@@ -15,15 +15,15 @@ routeAlias: task-10
 heading: "Task 10 — Hooks"
 branch: "10-start"
 learn:
-  - "Wire an event, a matcher and an exit code together"
-  - "Scope a hook to one path with the sibling if field"
-  - "See why only exit code 2 blocks the agent"
-  - "Tell a hook (law) apart from a skill (advice)"
+  - "Wire an event, a matcher, an exit code"
+  - "Scope a hook to one path with if"
+  - "Only exit code 2 blocks the agent"
+  - "A hook is law; a skill is advice"
 outcome:
-  - "A typecheck hook that fires after edits under app/actions/"
-  - "A deny set for migrations, rm and .env reads"
-  - "A build log collapsed to one pass/fail line"
-  - "A Stop gate that blocks ending the turn on a red build"
+  - "A typecheck hook, fires after edits in app/actions/"
+  - "A deny set: migrations, rm, .env reads"
+  - "A build log, collapsed to one line"
+  - "A Stop gate blocks ending on a red build"
 ---
 
 ---

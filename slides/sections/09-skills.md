@@ -15,9 +15,9 @@ heading: "Task 07 — The clash-feature skill"
 branch: "07-start"
 learn:
   - "Package a repeatable recipe as a skill"
-  - "Skills load on demand: by description, or via /skill-name"
-  - "Commands and skills both produce the same /name"
-  - "A skill is advice, not enforcement — easy to skip"
+  - "Skills load on demand, by description or /skill-name"
+  - "Commands and skills both produce /name"
+  - "A skill is advice — easy to skip"
 outcome:
   - "clash-feature skill: Prisma to page, one recipe"
   - "Venue favourites, shipped end to end through it"
@@ -89,6 +89,19 @@ lines:
   - "Then /context. Compare with task 06."
 ---
 
+
+---
+layout: concept
+heading: "Where Claude Code looks for skills"
+routeAlias: theory-skill-install
+docs: https://www.skills.sh/vercel-labs/agent-browser/agent-browser
+lines:
+  - "Two folders only: ~/.claude/skills/ and .claude/skills/."
+  - "npx skills add writes to .agents/skills/, then symlinks it in."
+  - "No link, no skill — and no error."
+---
+
+<G23SkillSymlink />
 
 ---
 layout: concept

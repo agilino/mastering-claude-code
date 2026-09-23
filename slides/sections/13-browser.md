@@ -14,14 +14,14 @@ routeAlias: task-11
 heading: "Task 11 — The browser closes the loop"
 branch: "11-start"
 learn:
-  - "Reach a real browser through an MCP server"
-  - "Drive a flow by hand before generating a test from it"
-  - "Measure a real payload before and after a fix"
-  - "Tell a local MCP server (stdio) from a remote one (http)"
+  - "Reach a real browser through MCP"
+  - "Drive a flow by hand, then generate the test"
+  - "Measure a payload before and after a fix"
+  - "Local MCP is stdio; remote is http"
 outcome:
-  - "A Playwright test for the join, accept and reject flow"
-  - "A measured, smaller avatar payload on every page load"
-  - "A remote MCP server added, and its login flow seen"
+  - "A Playwright test: join, accept, reject"
+  - "A smaller avatar payload, measured"
+  - "A remote MCP server, login flow seen"
 ---
 
 ---

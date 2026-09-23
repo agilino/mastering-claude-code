@@ -5,16 +5,14 @@ routeAlias: task-01
 heading: "Task 01 — Setup and first conversation"
 branch: "01-start"
 learn:
-  - "Watch Claude choose a tool before it answers"
-  - "Point at a file with @ instead of describing it"
-  - "Read the permission prompt before you answer it"
-  - "Run /init, /clear and /context in a real session"
-  - "Keep CLAUDE.md short — it loads into every prompt"
+  - "Point Claude at files with @"
+  - "Read the permission prompt before answering"
+  - "Run /init, /clear, /context for real"
+  - "Keep CLAUDE.md short"
 outcome:
-  - "Claude Code installed and logged in"
-  - "A clone of CLASH on the 01-start branch"
-  - "Three answered questions about docs/SPEC.md"
-  - "A first CLAUDE.md, written by /init"
+  - "CLASH cloned on the 01-start branch"
+  - "Three questions answered about the spec"
+  - "A first CLAUDE.md, from /init"
 ---
 
 ---

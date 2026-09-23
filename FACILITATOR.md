@@ -11,9 +11,9 @@ Parts III and IV run on the reference app from `06-start`.
 toolkit map on the primitive dividers in Parts III and IV.
 
 **Before the first session:** push the branches (`docs/BRANCHES.md`), confirm your own
-machine passes `docs/SETUP.md`, confirm `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` is set and
-Dynamic workflows are on in `/config`, pre-install the MCP servers, run the deck once
-(`cd slides && npm run dev`).
+machine passes `docs/SETUP.md` including `/skills` listing `agent-browser`, confirm
+`CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` is set and Dynamic workflows are on in `/config`,
+pre-install the MCP servers, run the deck once (`cd slides && npm run dev`).
 
 **Rhythm for every task:** the deck explains and shows, the task file is where they do it.
 

@@ -5,16 +5,15 @@ routeAlias: task-03
 heading: "Task 03 — Auth and clashes"
 branch: "03-start"
 learn:
-  - "Work in small steps you can check one at a time"
-  - "Undo a step with /rewind instead of by hand"
-  - "Watch the context window with /context and /compact"
-  - "Point Claude at files with @ instead of letting it guess"
-  - "Treat every Server Action as its own public endpoint"
+  - "Work in small steps, undo one with /rewind"
+  - "Watch the context window: /context, /compact"
+  - "Point at files with @, not a guess"
+  - "Every Server Action is its own public endpoint"
 outcome:
   - "Register, login and logout"
-  - "An app shell with sidebar and top bar"
-  - "Clashes: list, create, edit and delete"
-  - "An ownership rule that blocks a stranger's delete"
+  - "An app shell: sidebar and top bar"
+  - "Clashes: list, create, edit, delete"
+  - "An ownership rule blocks a stranger's delete"
 outcomeHeading: "You build"
 ---
 

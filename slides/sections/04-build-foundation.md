@@ -15,14 +15,14 @@ heading: "Task 02 — Foundation"
 branch: "02-start"
 learn:
   - "Write a brief: goal, rules, done when"
-  - "Read git status and /diff instead of the summary"
-  - "Use plan mode before a hard-to-undo change"
+  - "Read git status and /diff, not the summary"
+  - "Use plan mode before a risky change"
   - "Let Claude write the commit message"
 outcome:
-  - "A running Next.js 16 app with Tailwind and shadcn/ui"
-  - "A Prisma schema with five models"
+  - "Next.js 16, Tailwind and shadcn/ui, running"
+  - "A Prisma schema, five models"
   - "A seed with eight users"
-  - "Your first commit made through Claude"
+  - "First commit, made through Claude"
 outcomeHeading: "You build"
 ---
 

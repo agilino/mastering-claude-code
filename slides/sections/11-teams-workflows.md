@@ -25,15 +25,15 @@ routeAlias: task-09
 heading: "Task 09 — Team and workflow audit"
 branch: "09-start"
 learn:
-  - "Describe an agent team in words, no config file"
+  - "Describe an agent team in words, no config"
   - "Watch teammates message each other by name"
-  - "Describe a dynamic workflow; Claude writes the script"
-  - "Know where a generated workflow script lands first"
+  - "Describe a workflow; Claude writes the script"
+  - "Know where a workflow script first lands"
 outcome:
-  - "The same audit, run by a team and by a workflow"
+  - "The same audit, by team and by workflow"
   - "A saved workflow script in .claude/workflows/"
-  - "The ownership checks restored and merged"
-  - "Findings, time and tokens compared across three runs"
+  - "Ownership checks restored and merged"
+  - "Findings, time, tokens — compared across three runs"
 ---
 
 ---

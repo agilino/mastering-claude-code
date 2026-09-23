@@ -5,16 +5,15 @@ routeAlias: task-14
 heading: "Task 14 — Capstone"
 branch: "14-start"
 learn:
-  - "Build the whole feature with the clash-feature skill"
-  - "Get a subagent's review before calling it done"
-  - "Let hooks gate the work without being asked"
-  - "Verify the flow with an agent in a real browser"
-  - "Have Claude draft the pull request, then edit it"
+  - "Build the feature with the clash-feature skill"
+  - "Verify with a subagent review, a real browser check"
+  - "Hooks gate the work automatically"
+  - "Claude drafts the pull request; you edit it"
 outcome:
-  - "One of three feature briefs, shipped end to end"
-  - "A pull request open on the reference CLASH"
-  - "Every quality gate green: types, lint, build"
-  - "A /context reading you can explain, start to finish"
+  - "One of three briefs, shipped end to end"
+  - "A pull request on the reference CLASH"
+  - "Every gate green: types, lint, build"
+  - "A /context reading, explained start to finish"
 ---
 
 ---

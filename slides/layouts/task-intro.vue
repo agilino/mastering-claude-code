@@ -38,7 +38,7 @@ defineProps<{
       <div>
         <div class="text-sm font-semibold mb-3" style="color: var(--na-accent-500)">You learn</div>
         <ul class="space-y-2">
-          <li v-for="item in learn" :key="item" class="text-xl flex items-start gap-2">
+          <li v-for="item in learn" :key="item" class="text-lg flex items-start gap-2">
             <span style="color: var(--na-accent-500)">·</span>
             <span>{{ item }}</span>
           </li>
@@ -47,7 +47,7 @@ defineProps<{
       <div>
         <div class="text-sm font-semibold mb-3" style="color: var(--na-accent-500)">{{ outcomeHeading ?? "You end up with" }}</div>
         <ul class="space-y-2">
-          <li v-for="item in outcome" :key="item" class="text-xl flex items-start gap-2">
+          <li v-for="item in outcome" :key="item" class="text-lg flex items-start gap-2">
             <span style="color: var(--na-success-500)">·</span>
             <span>{{ item }}</span>
           </li>

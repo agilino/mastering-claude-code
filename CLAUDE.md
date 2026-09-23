@@ -102,7 +102,7 @@ Target codebase: `https://github.com/pawsaw/clash` (Next.js 16 / React 19 / Pris
   from `task-intro`/`task` and coexists with it: `task-intro` is the slide-side overview a
   participant sees watching the deck; `## Theory` is the task-file-side deep link for someone
   who skips the slides.
-- Docs links: a `docs:` frontmatter field holds one official English docs URL (`https://code.claude.com/docs/en/…`). The `concept`, `code-live` and `section` layouts draw it bottom-right as a chain icon plus the word "docs" (`slides/components/DocLink.vue`) — bottom-right because Slidev's navigation bar pops up bottom-left. Never a `<DocLink>` tag in a slide body, never on a `task` or `task-intro` slide. Use it sparingly, where a mechanism is first explained. The slide's presenter note names the docs heading to scroll to, and the same URL is in that task's `## Links`.
+- Docs links: a `docs:` frontmatter field normally holds one official English Claude Code docs URL (`https://code.claude.com/docs/en/…`). When the slide's mechanism belongs to a third-party tool Claude Code consumes, not a Claude Code feature itself, `docs:` may instead hold that tool's own official page — each one a deliberate addition to the allowlist in `slides/scripts/lint-slides.mjs`, never an arbitrary URL. The `concept`, `code-live` and `section` layouts draw it bottom-right as a chain icon plus the word "docs" (`slides/components/DocLink.vue`) — bottom-right because Slidev's navigation bar pops up bottom-left. Never a `<DocLink>` tag in a slide body, never on a `task` or `task-intro` slide. Use it sparingly, where a mechanism is first explained. The slide's presenter note names what to scroll to or point at, and the same URL is in that task's `## Links`.
 
 ## Task slugs (fixed — README, docs and task numbers on slides depend on them)
 
@@ -118,6 +118,8 @@ Target codebase: `https://github.com/pawsaw/clash` (Next.js 16 / React 19 / Pris
 - Part IV — Orchestrate and let go (Black belt): tasks 09–14.
 
 ## Build and check
+
+Driving agent-browser by hand: run `agent-browser skills get core` first for the command reference.
 
 ```bash
 cd slides && npm install && npm run build      # also exports dist/mastering-claude-code.pdf

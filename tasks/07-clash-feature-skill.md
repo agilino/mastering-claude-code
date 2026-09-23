@@ -105,3 +105,4 @@ Then run `/skill-doctor` again and check that your description is specific enoug
 - Skills — https://code.claude.com/docs/en/skills
 - Commands — https://code.claude.com/docs/en/commands
 - Tools reference — https://code.claude.com/docs/en/tools-reference
+- agent-browser skill — https://www.skills.sh/vercel-labs/agent-browser/agent-browser

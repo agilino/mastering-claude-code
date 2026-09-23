@@ -14,15 +14,15 @@ routeAlias: task-12
 heading: "Task 12 — Letting go"
 branch: "12-start"
 learn:
-  - "Run several agents in separate worktrees, no collisions"
-  - "Move the same audit into CI, running unattended"
-  - "Wire up claude-code-action@v1, authenticated by a named secret"
-  - "Set up the GitHub App and secret with /install-github-app"
+  - "Several agents, separate worktrees, no collisions"
+  - "Move the audit into CI, unattended"
+  - "Wire up claude-code-action@v1 with a named secret"
+  - "Set up the GitHub App with /install-github-app"
 outcome:
-  - "Two worktree sessions running at once, never touching each other's files"
-  - "A GitHub Actions workflow that audits every pull request"
-  - "The audit's findings posted as a PR comment, unattended"
-  - "The GitHub App installed, with a working OAuth secret"
+  - "Two worktrees running at once, no file collisions"
+  - "A GitHub Actions workflow, audits every PR"
+  - "Findings posted as a PR comment, unattended"
+  - "GitHub App installed, OAuth secret working"
 ---
 
 
@@ -114,15 +114,15 @@ routeAlias: task-13
 heading: "Task 13 — The Agent SDK"
 branch: "13-start"
 learn:
-  - "Host the same Claude Code loop inside your own program"
-  - "Carry context budget, tool limits and hooks over unchanged"
+  - "Host the Claude Code loop in your own program"
+  - "Carry context budget, tool limits, hooks unchanged"
   - "Restrict a scripted agent to read-only tools"
-  - "Log every tool call to stderr with a PreToolUse hook"
+  - "Log every tool call via a PreToolUse hook"
 outcome:
-  - "ask-clash.mts, a script that answers one question about CLASH"
-  - "Only Read, Grep and Glob allowed — no edits, no commands"
-  - "A capped turn limit and a hook that logs every tool call"
-  - "A printed answer naming a clash, a place and a time"
+  - "ask-clash.mts: answers one question about CLASH"
+  - "Only Read, Grep, Glob — no edits, no commands"
+  - "A capped turn limit, every tool call logged"
+  - "A printed answer: a clash, a place, a time"
 ---
 
 ---

@@ -34,7 +34,6 @@ on a local clone. The script never pushes. Every branch with code passes
   to any build stage has data to look at.
 - The vendored skills in CLASH's `.agents/skills/` and `skills-lock.json` are not on the build stages.
   They arrive with the reference on `06-start`, where task 06 runs `/skill-doctor` on them.
-  They are unrelated to this workshop repository's own `.agents/skills/agent-browser` tooling skill.
 
 ## Seeded vulnerability, said plainly
 
