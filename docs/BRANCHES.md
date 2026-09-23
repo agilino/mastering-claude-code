@@ -3,16 +3,23 @@
 Every task has a branch named `NN-start`. It holds the state at the **start** of task NN,
 so `git checkout NN-start` lets you rejoin at that task without debugging your own build.
 
+One branch breaks that naming on purpose: `19-solution` holds the finished MCP server, so the
+second half of task 19 works even for someone whose own server does not.
+
 The branches are created by [`scripts/prepare-branches.sh`](../scripts/prepare-branches.sh)
-on a local clone. The script never pushes. Every branch with code passes
+on a local CLASH clone. The script never pushes. Every branch with code passes
 `npx tsc --noEmit`, `npm run lint` and `npm run build` before the script prints its summary.
+`19-solution` gets one check more: the script migrates and seeds `dev.db` in that CLASH clone,
+then runs `npx tsx mcp/smoke.ts`. The MCP server has to answer there, not only compile. Seeding
+clears and rewrites that `dev.db`, so run the script on a scratch CLASH clone, never on the
+CLASH clone you demo from. `SKIP_GATE=1` skips the gates and this smoke run with them.
 
 ## What each branch holds
 
 | Branch | Adds, compared with the branch before | How it is built |
 |---|---|---|
-| `01-start` | An empty repository: `README.md`, `docs/SPEC.md`, `.gitignore`. No code. | Orphan branch from `scripts/checkpoints/01/` plus this repo's `docs/SPEC.md`. |
-| `02-start` | A curated `CLAUDE.md` v0 for the empty repo + spec stage. Current `/init` output can vary by Claude Code version, so this checkpoint is intentionally stable rather than byte-for-byte generated. | `scripts/checkpoints/02/CLAUDE.md`. |
+| `01-start` | An empty CLASH repository: `README.md`, `docs/SPEC.md`, `.gitignore`. No code. | Orphan branch from `scripts/checkpoints/01/` plus the workshop repository's `docs/SPEC.md`. |
+| `02-start` | A curated `CLAUDE.md` v0 for the stage where CLASH has no code yet, only `docs/SPEC.md`. Current `/init` output can vary by Claude Code version, so this checkpoint is intentionally stable rather than byte-for-byte generated. | `scripts/checkpoints/02/CLAUDE.md`. |
 | `03-start` | The Next.js 16 scaffold (Tailwind v4, shadcn/ui primitives, theme provider), the Prisma schema with all five models, the migration and the seed. A placeholder home page. `CLAUDE.md` with the first invariants. | Files listed in `scripts/checkpoints/03/manifest.txt` are taken from `main`; `overrides/` replaces `app/page.tsx` and `CLAUDE.md`. |
 | `04-start` | Register, login, logout, the session cookie, `requireUser`, the `(auth)` and `(app)` route groups, sidebar and top bar, and the clashes list, detail, new, edit and delete. Also the map components (`components/map/*`, `lib/data/map.ts`) and the location picker, because the clash form uses them; the map page is not there yet. | Manifest 04 from `main`; overrides trim the sidebar to Dashboard, Clashes and My Clashes, give the top bar no bell and no search, replace the dashboard with a placeholder, remove the join, leave, accept and reject actions and the notification emit from `app/actions/clashes.ts`, and remove the join controls and the requests tab from the clash detail page. |
 | `05-start` | Venues (list, detail, new, edit, delete, "host a clash here"), the map page, join, leave, accept and reject, `lib/notify.ts` and the notification bell. | Manifest 05 from `main` restores the full clashes actions and detail page; overrides keep the dashboard placeholder, keep Profile and Settings out of the sidebar, and give the top bar the bell but no search. |
@@ -25,7 +32,23 @@ on a local clone. The script never pushes. Every branch with code passes
 | `12-start` | The finished `.claude/skills/tdd/SKILL.md` and a passing `lib/capacity.ts` and `lib/capacity.test.ts` (answer key of task 11). **Ownership checks re-seeded** for the audit — the same exact-string removal `08-start` used, run again against the restored code. | `workshop-artifacts/11-tdd-inner-loop/`; the ownership guards are removed by the same Node script `08-start` uses. |
 | `13-start` | The ownership checks are back again (the fix merged in task 12). | `app/actions/clashes.ts` and `app/actions/venues.ts` restored from `main`. |
 | `14-start` | The hook set: `.claude/settings.json`, `.claude/hooks/typecheck-actions.sh`, `.claude/hooks/build-gate.sh` (answer key of task 13). | `workshop-artifacts/13-hooks/`. |
-| `15-start`, `16-start`, `17-start` | Nothing. Worktrees, CI, the Agent SDK and the capstone add files outside the app or in your own worktree. | Identical to `14-start`. |
+| `15-start`, `16-start`, `17-start`, `18-start`, CLASH's `19-start` | Nothing. Each of these tasks only adds new files, or works in your own worktree, so the start state is unchanged. Task 19's server does get seeded, on `19-solution` in the row below. clash-conference's own `19-start` is in the section below. | Identical to `14-start`. |
+| `19-solution` | The finished CLASH MCP server: `mcp/server.ts`, `mcp/smoke.ts`, `.mcp.json`, and `permissions.allow` in `.claude/settings.json` for the two read tools. The two npm packages are in `package.json`. | `workshop-artifacts/19-build-mcp/`, branched from CLASH's `19-start`. |
+
+## A second repository for task 19
+
+`clash-conference` (`https://github.com/agilino/clash-conference.git`) is a second, small app. It
+publishes its talks as clashes into CLASH through the MCP server task 19 builds. It is published
+once clash-conference is finished; until then clash-conference holds no app and no `19-start` of
+its own. Once out, clash-conference has two branches of its own: `main` is the finished
+clash-conference, and clash-conference's `19-start` is the same without
+`app/api/publish/route.ts`, the route task 19 writes. Clone clash-conference next to your CLASH
+clone (`docs/SETUP.md`). `scripts/prepare-branches.sh` does not touch clash-conference.
+
+The two repositories mirror each other: `main` in clash-conference is the finished route,
+`19-solution` in CLASH is the finished server. Both halves have to exist before a talk can
+reach CLASH, so each half can come from your own work or from its solution branch:
+`19-solution` in your CLASH clone, `main` in clash-conference.
 
 ## Notes on the build stages (03 to 05)
 
@@ -73,7 +96,7 @@ Review, then push in a separate, explicit step:
 git -C /tmp/clash-branches push origin \
   01-start 02-start 03-start 04-start 05-start 06-start 07-start \
   08-start 09-start 10-start 11-start 12-start 13-start 14-start \
-  15-start 16-start 17-start
+  15-start 16-start 17-start 18-start 19-start 19-solution
 ```
 
 The existing `wk/*` branches on `pawsaw/clash` belong to another workshop and are not touched.

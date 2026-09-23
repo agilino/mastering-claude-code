@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Creates the catch-up branches 01-start .. 17-start on a LOCAL clone of
+# Creates the catch-up branches 01-start .. 19-start on a LOCAL clone of
 # pawsaw/clash. Never pushes. Run from anywhere:
 #
 #   ./scripts/prepare-branches.sh /path/to/clash-clone
@@ -21,9 +21,15 @@
 #             checks RE-SEEDED for the audit (same seeding as 08-start)
 #   13-start  ownership checks restored again
 #   14-start  + hook set
-#   15..17    == 14-start
+#   15..19    == 14-start   (each of these tasks only adds new files, or works in your own
+#             worktree, so the start state is unchanged — nothing this script has to seed.
+#             The MCP server of task 19 does get seeded, on 19-solution below)
+#   19-solution  + mcp/server.ts, mcp/smoke.ts, .mcp.json and the two read tools allowed
+#             (answer key of task 19, CLASH side — the one branch that is not an NN-start)
 #
 # Every branch with code is gated: npm install, tsc, lint, test (if present), build.
+# 19-solution is gated once more, by running its server: the script migrates and seeds
+# dev.db in the CLASH clone and runs mcp/smoke.ts, which tsc and lint alone cannot do.
 
 set -euo pipefail
 
@@ -35,7 +41,9 @@ LOG_DIR="${PREPARE_LOG_DIR:-$(mktemp -d)}"
 SKIP_GATE="${SKIP_GATE:-0}"
 
 # Answer keys, located by shape so a renamed folder still resolves.
-find_one() { local hit; hit="$(find "$ARTIFACTS" -path "$1" -type f | head -n 1)"; [[ -n "$hit" ]] || { echo "error: no artifact matches $1" >&2; exit 1; }; echo "$hit"; }
+# `|| true`: head closing the pipe can hand find a SIGPIPE, and pipefail would turn that
+# into an abort. The empty check below is what decides whether the lookup worked.
+find_one() { local hit; hit="$(find "$ARTIFACTS" -path "$1" -type f | head -n 1 || true)"; [[ -n "$hit" ]] || { echo "error: no artifact matches $1" >&2; exit 1; }; echo "$hit"; }
 ART_CLAUDE_MD="$(find_one '*context*/CLAUDE.md')"
 ART_SKILL_MD="$(find_one '*skill*/SKILL.md')"
 ART_HOOKS_SETTINGS="$(find_one '*hook*/settings.json')"
@@ -53,10 +61,14 @@ ART_TDD_FORMAT_TEST="$(find_one '*tdd-inner-loop*/format.test.ts')"
 ART_TDD_SKILL="$(find_one '*tdd-inner-loop*/SKILL.md')"
 ART_TDD_CAPACITY_TS="$(find_one '*tdd-inner-loop*/capacity.ts')"
 ART_TDD_CAPACITY_TEST="$(find_one '*tdd-inner-loop*/capacity.test.ts')"
+ART_MCP_SERVER="$(find_one '*build-mcp*/server.ts')"
+ART_MCP_SMOKE="$(find_one '*build-mcp*/smoke.ts')"
+ART_MCP_JSON="$(find_one '*build-mcp*/.mcp.json')"
+ART_MCP_ALLOW="$(find_one '*build-mcp*/settings.allow.json')"
 
 cd "$CLASH_DIR"
 if [[ -n "$(git status --porcelain)" ]]; then
-  echo "error: $CLASH_DIR has uncommitted changes. Commit, stash, or use a fresh clone." >&2
+  echo "error: $CLASH_DIR has uncommitted changes. Commit, stash, or use a fresh CLASH clone." >&2
   exit 1
 fi
 git fetch origin --quiet
@@ -109,7 +121,7 @@ gate() {                 # gate <branch>
 note() { echo "== $1 == $2"; }
 
 # --- 01-start: empty repo ---------------------------------------------------
-for b in 01-start 02-start 03-start 04-start 05-start 06-start 07-start 08-start 09-start 10-start 11-start 12-start 13-start 14-start 15-start 16-start 17-start; do
+for b in 01-start 02-start 03-start 04-start 05-start 06-start 07-start 08-start 09-start 10-start 11-start 12-start 13-start 14-start 15-start 16-start 17-start 18-start 19-start 19-solution; do
   git branch -D "$b" >/dev/null 2>&1 || true
 done
 git checkout --orphan 01-start --quiet
@@ -268,7 +280,7 @@ commit_all 11-start "workshop: add the path-scoped app/actions/** ownership rule
 lib/capacity.ts ships deliberately wrong (always \"waitlisted\") so the
 first test a participant writes against it fails on an assertion, not
 a missing import. docs/specs/clash-capacity.md already arrived at
-10-start, so this branch works standalone from a reset too."
+10-start, so 11-start works standalone from a reset too."
 note 11-start "+ path-scoped rule; + vitest, one trivial test, the capacity stub"
 gate 11-start
 
@@ -337,11 +349,65 @@ commit_all 14-start "workshop: install the hook set — typecheck, deny rules, S
 note 14-start "+ hook set"
 gate 14-start
 
-for b in 15-start 16-start 17-start; do
+for b in 15-start 16-start 17-start 18-start 19-start; do
   git checkout -B "$b" 14-start --quiet
   note "$b" "identical to 14-start"
   SUMMARY+=("$b|$(git rev-parse --short HEAD)|$(git ls-files | wc -l | tr -d ' ')|== 14-start")
 done
+
+# --- 19-solution: + the CLASH MCP server (answer key of task 19) --------------
+# The only branch that is not an NN-start. clash-conference's own `main` carries
+# the finished publish route; this is its counterpart on the CLASH side, so a
+# participant who did not finish the server can still do the publish steps.
+# Branched from CLASH's 19-start; clash-conference's own 19-start is not built here.
+git checkout -B 19-solution 19-start --quiet
+mkdir -p mcp
+cp "$ART_MCP_SERVER" mcp/server.ts
+cp "$ART_MCP_SMOKE" mcp/smoke.ts
+cp "$ART_MCP_JSON" .mcp.json
+ALLOW_FILE="$ART_MCP_ALLOW" node - <<'JS'
+const fs = require('fs')
+const allow = JSON.parse(fs.readFileSync(process.env.ALLOW_FILE, 'utf8')).permissions.allow
+const path = '.claude/settings.json'
+const raw = fs.readFileSync(path, 'utf8')
+const crlf = raw.includes('\r\n')
+const settings = JSON.parse(raw)
+if (settings.permissions) { console.error(`error: ${path} already has a permissions key`); process.exit(1) }
+settings.permissions = { allow }
+const out = JSON.stringify(settings, null, 2) + '\n'
+fs.writeFileSync(path, crlf ? out.replace(/\n/g, '\r\n') : out)
+JS
+echo "   19-solution: npm install the MCP packages"
+npm install --save @modelcontextprotocol/server --no-audit --no-fund --loglevel=error
+npm install --save-dev @modelcontextprotocol/client --no-audit --no-fund --loglevel=error
+commit_all 19-solution "workshop: the CLASH MCP server — three tools over the database (answer key of task 19)
+
+mcp/server.ts offers list_upcoming_clashes, find_venue and create_clash over
+stdio. .mcp.json registers it at project scope; .claude/settings.json allows
+the two read tools, so a write still asks. mcp/smoke.ts calls every tool and
+every refusal. clash-conference's publish route starts this server to write into CLASH."
+note 19-solution "+ mcp/server.ts, mcp/smoke.ts, .mcp.json, the two read tools allowed"
+gate 19-solution
+
+# The gate only type-checks and lints mcp/. Running the server is the one check that proves
+# the Prisma fields and relations behind the three tools, and mcp/smoke.ts needs a database:
+# up to here the script only writes the CLASH clone's .env that points at dev.db, it never creates one.
+# smoke.ts creates one clash and removes it again, so the seed data stays as it was. The
+# seed step before it does clear and rewrite dev.db in the CLASH clone — one more reason to
+# run this script on a scratch CLASH clone, as docs/BRANCHES.md says.
+if [[ "$SKIP_GATE" == "1" ]]; then
+  echo "   19-solution: smoke test skipped (SKIP_GATE=1)"
+else
+  SMOKE_LOG="$LOG_DIR/19-solution-smoke.log"
+  echo "   19-solution: prisma migrate deploy"
+  npx prisma migrate deploy >"$SMOKE_LOG" 2>&1 || { echo "SMOKE FAILED on 19-solution (prisma migrate deploy). Log: $SMOKE_LOG" >&2; tail -n 30 "$SMOKE_LOG" >&2; exit 1; }
+  echo "   19-solution: prisma db seed"
+  npx prisma db seed >>"$SMOKE_LOG" 2>&1 || { echo "SMOKE FAILED on 19-solution (prisma db seed). Log: $SMOKE_LOG" >&2; tail -n 30 "$SMOKE_LOG" >&2; exit 1; }
+  echo "   19-solution: npx tsx mcp/smoke.ts"
+  npx tsx mcp/smoke.ts >>"$SMOKE_LOG" 2>&1 || { echo "SMOKE FAILED on 19-solution (mcp/smoke.ts). Log: $SMOKE_LOG" >&2; tail -n 40 "$SMOKE_LOG" >&2; exit 1; }
+  LAST_ROW=$((${#SUMMARY[@]} - 1))
+  SUMMARY[$LAST_ROW]="${SUMMARY[$LAST_ROW]} + smoke"
+fi
 
 git checkout main --quiet
 
@@ -357,14 +423,14 @@ echo
 echo "Elapsed: $((END_TS - START_TS))s. Logs: $LOG_DIR"
 cat <<'EOT'
 
-All branches created LOCALLY. Nothing has been pushed.
+All branches created LOCALLY in the CLASH clone you passed in. Nothing has been pushed.
 
-Review:
+Review (in that CLASH clone, not in the workshop repository):
   git log --oneline --all --graph | head -40
   git diff 07-start 08-start -- app/actions/
 
-To publish (separate, explicit step):
+To publish (separate, explicit step, in that CLASH clone):
   git push origin 01-start 02-start 03-start 04-start 05-start 06-start 07-start \
     08-start 09-start 10-start 11-start 12-start 13-start 14-start 15-start \
-    16-start 17-start
+    16-start 17-start 18-start 19-start 19-solution
 EOT
