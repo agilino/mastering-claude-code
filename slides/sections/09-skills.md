@@ -68,9 +68,10 @@ allowed-tools: Read, Edit, Write, Grep, Glob, Bash(npm run *) Bash(npx prisma *)
 
 ## Steps
 
-⟵ LIVE: the ten-step recipe — Prisma model, migration, constants,
+⟵ LIVE: the eleven-step recipe — Prisma model, migration, constants,
      Zod schema, lib/data/ read helper, Server Action WITH ITS OWN
-     OWNERSHIP CHECK, page, shadcn component, revalidatePath, notification
+     OWNERSHIP CHECK AND THE REASON FOR IT, page, shadcn component,
+     revalidatePath, notification, then verify
 ```
 
 ---

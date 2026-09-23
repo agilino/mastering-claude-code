@@ -43,12 +43,21 @@ commands in `.claude/commands/*.md` still work. Skills are the richer format for
    Prisma model → migration → constants → Zod schema in `lib/validation.ts` → read helper
    in `lib/data/` → Server Action in `app/actions/` **with its own ownership check** →
    page → shadcn component → `revalidatePath` → notification via `lib/notify.ts`.
-4. In the Server Action step, say why the check is its own step.
+4. Give the Server Action step its reason, not only its rule. The reason: `requireUser()` in
+   the layout guards the *page*. A Server Action is a public endpoint anyone with a session
+   cookie can call directly, so the action has to check ownership itself.
+
+   Why write the reason into the skill? A bare rule gets skipped when a case looks different,
+   for example an action that resembles a safe one. A rule that carries its reason lets Claude
+   decide the new case correctly.
    ```
-   Walk me through why the Server Action step in this skill insists on its own
-   authorization check, given the layout already calls requireUser().
+   In .claude/skills/clash-feature/SKILL.md, under the Server Action step, add
+   this note: "Why this step is not optional: requireUser() in the layout only
+   guards the page. A Server Action is a public endpoint anyone with a session
+   cookie can call directly, so the action must check that the current user
+   owns the row."
    ```
-   Put the answer into the skill in two sentences.
+   Open the file and check the note sits under the Server Action step.
 5. Use the skill to ship a feature.
    ```
    /clash-feature Add venue favourites: a user can favourite a venue from its
@@ -84,7 +93,7 @@ commands in `.claude/commands/*.md` still work. Skills are the richer format for
 ## Check
 
 - [ ] `.claude/skills/clash-feature/SKILL.md` exists with `name`, `description` and `allowed-tools`.
-- [ ] The Server Action step names an ownership check, not only `requireUser()`.
+- [ ] The Server Action step names an ownership check, not only `requireUser()`, and says why.
 - [ ] Venue favourites work end to end.
 - [ ] `npx tsc --noEmit`, `npm run lint` and `npm run build` pass.
 - [ ] You can say why `.claude/commands/*.md` files still work.

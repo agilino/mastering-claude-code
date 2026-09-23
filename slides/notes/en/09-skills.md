@@ -40,10 +40,12 @@ Say:
 > - Build it on screen step by step, not pasted whole
 > - At the Server Action step, stop and explain
 > - Most important sentence in the whole skill — it lands again in task 08
+> - Task step 4 hands participants the reason and one verbatim edit prompt — they add the note, they do not have to work the reason out (task 08 teaches it properly)
 
 Say:
 - It insists on its own ownership check even though requireUser() runs in the layout
 - Why: a Server Action is a public POST endpoint with a generated id — the layout guard never sees a direct call
+- Why write the reason into the skill: a bare rule gets skipped when a case looks different. A rule with its reason lets Claude decide the new case correctly
 
 <!-- @note: a-skill-is-advice -->
 > Do:
