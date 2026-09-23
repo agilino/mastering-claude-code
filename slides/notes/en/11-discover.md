@@ -29,16 +29,19 @@ Say:
 
 Say:
 - The skill body stays short on purpose
-- references/ only enters context when the skill actually opens the file — same idea as a subagent's isolated window, one size smaller
+- references/ and templates/ only enter context when the skill actually opens the file — same idea as a subagent's isolated window, one size smaller
+- references/ holds the method it reads while it works. templates/ holds the format it writes the spec in
 
 <!-- @note: anatomy-of-discover -->
 > Do:
-> - Live-build reference — the exact body is in tasks/09-example-mapping.md steps 2-4
-> - Point at $ARGUMENTS, then at the reference file it's told to open
+> - Live-build reference — the exact files are in tasks/09-example-mapping.md steps 2-4: the body, the reference, the template
+> - Point at $ARGUMENTS, then at the reference file it's told to open, then at the template it saves with
+> - Walk the numbered steps out loud: the order is the design — interview first, spec shown before it is saved
 
 Say:
 - argument-hint tells people what to type after /discover
 - allowed-tools includes AskUserQuestion — the skill can ask, not just answer
+- A skill, not a subagent: it runs in your own conversation, so the interview is a live back-and-forth with you
 
 <!-- @note: the-discover-skill -->
 > Do:

@@ -212,10 +212,15 @@ Parts III and IV run on the finished reference CLASH, as guided tasks.
 
 - Manual prompt first, then package it: send the raw Example Mapping prompt live in chat, no
   skill yet, and count how much of it people would have to retype for the next story.
-- `references/example-mapping.md` is the point of this task, not a nice-to-have: the skill body
-  stays short, the method only enters context when the skill actually opens the file.
-- `AskUserQuestion` runs from inside the skill, not just from Claude directly — resolve the
+- The task file shows every file of the skill verbatim: the body, `references/example-mapping.md`
+  and `templates/spec-template.md`. The body is the point: eight numbered steps, interview first,
+  the spec shown before it is saved. Walk the steps out loud. The method and the save format stay
+  in their own files and only enter context when the skill opens them.
+- It is a skill, not a subagent: it runs in the participant's own conversation, so the interview
+  is a live back-and-forth. `AskUserQuestion` runs from inside the skill — resolve the
   capacity-lowering question live and read the options it offers out loud.
+- Judge the run by the interview: several questions before any draft, several examples per
+  rule, at least one counter-example each. A thin run means the body was typed short.
 - No stop slide: the contrast here is the manual prompt vs. the packaged skill, not a
   careless-vs-engineered demo.
 - Answer key: `workshop-artifacts/09-example-mapping/`. The saved spec has no `Questions`
