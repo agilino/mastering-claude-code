@@ -35,9 +35,10 @@ reference when it actually needs it.
    You are a domain expert in social apps. Run Example Mapping on this story:
    "As a host, I want to cap how many people can join my clash, so the venue
    doesn't get overcrowded." For each rule, state it as "Should..." or
-   "Must...", give at least two examples as "The one where...", give at
-   least one counter-example, and list any open questions. Don't write code
-   or Gherkin — plain business language only.
+   "Must...", give at least one example as "The one where..." (a second only
+   for a boundary or a different outcome), give at least one counter-example
+   where a real edge case exists, and list any open questions. Don't write
+   code or Gherkin — plain business language only.
    ```
    See how much of that scaffolding you'd have to retype for the next story.
 2. Create `.claude/skills/discover/SKILL.md`.

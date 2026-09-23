@@ -6,6 +6,13 @@
 Say:
 - "A rule that only shows up when it's actually relevant."
 
+<!-- @note: task-10-path-scoped-rules -->
+> Do:
+> - Branch: 10-start already has the discover skill from task 09
+
+Say:
+- Two things to learn, one thing to end up with
+
 <!-- @note: rules-scoped-to-a-path -->
 > Do:
 > - Point back at task 06's ~/.claude/rules/tone.md — that one had no paths: field
@@ -14,13 +21,6 @@ Say:
 Say:
 - paths is the only field Claude Code reads from a rule file — everything else in the frontmatter is silently ignored
 - No paths: field means it loads every session, same priority as CLAUDE.md itself
-
-<!-- @note: task-10-path-scoped-rules -->
-> Do:
-> - Branch: 10-start already has the discover skill from task 09
-
-Say:
-- Two things to learn, one thing to end up with
 
 <!-- @note: a-rule-that-only-loads-when-it-matters -->
 > Do:

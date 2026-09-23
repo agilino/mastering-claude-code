@@ -6,6 +6,13 @@
 Sagen:
 - "Die nächsten zwei Tasks drehen sich beide darum, was ein Skill weiß, und wann."
 
+<!-- @note: task-09-example-mapping-and-the-discover-skill -->
+> Tun:
+> - Branch: 09-start hat den geseedeten Bug aus 08-start noch, der discover-Skill ist auch noch nicht gebaut
+
+Sagen:
+- Drei Dinge zu lernen, zwei Dinge, mit denen man rauskommt
+
 <!-- @note: story-rule-example-question -->
 > Tun:
 > - Die vier Karten der Reihe nach durchgehen: Story, Rule, Example, Question
@@ -23,13 +30,6 @@ Sagen:
 Sagen:
 - Der Skill-Body bleibt absichtlich kurz
 - references/ kommt erst in den Kontext, wenn der Skill die Datei tatsächlich öffnet — dieselbe Idee wie der isolierte Kontext eines Subagenten, nur eine Nummer kleiner
-
-<!-- @note: task-09-example-mapping-and-the-discover-skill -->
-> Tun:
-> - Branch: 09-start hat den Ownership-Fix schon wiederhergestellt, der discover-Skill ist noch nicht gebaut
-
-Sagen:
-- Drei Dinge zu lernen, zwei Dinge, mit denen man rauskommt
 
 <!-- @note: anatomy-of-discover -->
 > Tun:

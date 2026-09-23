@@ -5,7 +5,7 @@
 
 Sagen:
 - Nicht mehr bauen, jetzt kontrollieren
-- Drei Tasks: Context, Skills, Subagents
+- Fünf Tasks: Context, Skills, Subagents, Example Mapping, Path-scoped rules
 - Jede ist eine andere Art zu entscheiden, was ins Fenster kommt
 
 <!-- @note: eight-tools-one-constraint -->

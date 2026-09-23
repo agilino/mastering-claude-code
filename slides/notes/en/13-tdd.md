@@ -15,6 +15,13 @@ Say:
 Say:
 - "The last brown-belt task built a spec. This one builds the code from it, one rule at a time."
 
+<!-- @note: task-11-the-tdd-inner-loop -->
+> Do:
+> - Branch: 11-start already has vitest installed, one trivial test passing, and a deliberately wrong capacity.ts stub
+
+Say:
+- Four things to learn, two things to end up with, and one moment you only watch
+
 <!-- @note: a-skill-that-stops-itself -->
 > Do:
 > - Docs link: open it, scroll to the SKILL.md frontmatter reference, point at disable-model-invocation, then back to the slides
@@ -30,13 +37,6 @@ Say:
 Say:
 - A test checked against a saved spec is a contract
 - Told to make a test pass, a model edits whichever file is easier — sometimes that's the test itself
-
-<!-- @note: task-11-the-tdd-inner-loop -->
-> Do:
-> - Branch: 11-start already has vitest installed, one trivial test passing, and a deliberately wrong capacity.ts stub
-
-Say:
-- Four things to learn, two things to end up with, and one moment you only watch
 
 <!-- @note: one-cycle-red-green-stop -->
 > Do:

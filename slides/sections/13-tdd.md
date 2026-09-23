@@ -17,6 +17,21 @@ heading: "TDD"
 </template>
 
 ---
+layout: task-intro
+number: "11"
+routeAlias: task-11
+heading: "Task 11 — The TDD inner loop"
+branch: "11-start"
+learn:
+  - "Drive one rule at a time: red, green, refactor, stop"
+  - "Tell a spec-grounded test apart from one that proves nothing"
+  - "Design a skill that stops itself: disable-model-invocation"
+outcome:
+  - "lib/capacity.ts, correct against every rule in the spec"
+  - "The tdd skill: .claude/skills/tdd/SKILL.md"
+---
+
+---
 layout: concept
 heading: "A skill that stops itself"
 routeAlias: theory-tdd-cycle
@@ -34,21 +49,6 @@ lines:
   - "A test that has never failed hasn't proven it can catch the bug."
   - "A test checked against a saved spec is a contract, not a guess."
   - "Told to make a test pass, a model edits whichever file is easier."
----
-
----
-layout: task-intro
-number: "11"
-routeAlias: task-11
-heading: "Task 11 — The TDD inner loop"
-branch: "11-start"
-learn:
-  - "Drive one rule at a time: red, green, refactor, stop"
-  - "Tell a spec-grounded test apart from one that proves nothing"
-  - "Design a skill that stops itself: disable-model-invocation"
-outcome:
-  - "lib/capacity.ts, correct against every rule in the spec"
-  - "The tdd skill: .claude/skills/tdd/SKILL.md"
 ---
 
 ---

@@ -22,7 +22,8 @@ Run Example Mapping on the story above:
 1. Identify the rules. Each one is a single testable business constraint, stated as
    "Should..." or "Must...". If a rule needs "and" to hold two different constraints
    together, split it into two rules.
-2. Give at least two examples per rule, in "The one where..." form, with real numbers.
+2. Give at least one example per rule, in "The one where..." form, with real numbers — a
+   second only for a boundary or a genuinely different outcome.
 3. Give at least one counter-example per rule where a meaningful edge case exists — a valid
    boundary or exclusion, never a bug.
 4. List any open question that only the user can resolve.

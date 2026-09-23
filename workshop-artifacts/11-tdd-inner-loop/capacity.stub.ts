@@ -9,6 +9,5 @@ export function decideParticipation(
   capacity: number | null,
   acceptedCount: number,
 ): ParticipationDecision {
-  if (capacity === null) return "accepted";
-  return acceptedCount < capacity ? "accepted" : "waitlisted";
+  return "waitlisted";
 }

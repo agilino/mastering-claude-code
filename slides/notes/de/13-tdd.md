@@ -15,6 +15,13 @@ Sagen:
 Sagen:
 - "Der letzte Brown-Belt-Task hat eine Spec gebaut. Dieser baut daraus den Code, eine Regel nach der anderen."
 
+<!-- @note: task-11-the-tdd-inner-loop -->
+> Tun:
+> - Branch: 11-start hat vitest schon installiert, einen trivialen Test, der läuft, und einen absichtlich falschen capacity.ts-Stub
+
+Sagen:
+- Vier Dinge zu lernen, zwei Dinge, mit denen man rauskommt, und ein Moment, den man nur beobachtet
+
 <!-- @note: a-skill-that-stops-itself -->
 > Tun:
 > - Docs-Link: öffnen, zur SKILL.md-Frontmatter-Referenz scrollen, auf disable-model-invocation zeigen, dann zurück zu den Slides
@@ -30,13 +37,6 @@ Sagen:
 Sagen:
 - Ein Test, der gegen eine gespeicherte Spec geprüft wird, ist ein Vertrag
 - Aufgefordert, einen Test grün zu machen, ändert ein Modell die Datei, die einfacher zu ändern ist — manchmal ist das der Test selbst
-
-<!-- @note: task-11-the-tdd-inner-loop -->
-> Tun:
-> - Branch: 11-start hat vitest schon installiert, einen trivialen Test, der läuft, und einen absichtlich falschen capacity.ts-Stub
-
-Sagen:
-- Vier Dinge zu lernen, zwei Dinge, mit denen man rauskommt, und ein Moment, den man nur beobachtet
 
 <!-- @note: one-cycle-red-green-stop -->
 > Tun:

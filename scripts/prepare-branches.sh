@@ -46,7 +46,7 @@ ART_DISCOVER_REFERENCE="$(find_one '*example-mapping*/example-mapping-reference.
 ART_DISCOVER_SPEC="$(find_one '*example-mapping*/clash-capacity-spec.md')"
 ART_RULES_FILE="$(find_one '*path-scoped-rules*/server-actions.md')"
 ART_TDD_VITEST_CONFIG="$(find_one '*tdd-inner-loop*/vitest.config.ts')"
-ART_TDD_CAPACITY_STUB="$(find_one '*tdd-inner-loop*/capacity.ts')"
+ART_TDD_CAPACITY_STUB="$(find_one '*tdd-inner-loop*/capacity.stub.ts')"
 ART_TDD_FORMAT_TEST="$(find_one '*tdd-inner-loop*/format.test.ts')"
 
 cd "$CLASH_DIR"
@@ -256,6 +256,7 @@ pkg.scripts.test = 'vitest run'
 pkg.devDependencies.vitest = '^3.0.0'
 fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n')
 JS
+npm install --package-lock-only --no-audit --no-fund --loglevel=error
 commit_all 11-start "workshop: add the path-scoped app/actions/** ownership rule; install vitest, a trivial passing test, and the capacity stub (end of task 10)
 
 lib/capacity.ts ships deliberately wrong (always \"waitlisted\") so the

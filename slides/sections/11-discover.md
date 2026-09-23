@@ -8,6 +8,21 @@ heading: "Example Mapping"
 </template>
 
 ---
+layout: task-intro
+number: "09"
+routeAlias: task-09
+heading: "Task 09 — Example Mapping and the `discover` skill"
+branch: "09-start"
+learn:
+  - "Run Example Mapping: rules, examples, counter-examples, questions"
+  - "Move method detail into a skill's references/ folder"
+  - "Resolve open questions live with AskUserQuestion"
+outcome:
+  - "The discover skill: .claude/skills/discover/SKILL.md"
+  - "A resolved spec: docs/specs/clash-capacity.md"
+---
+
+---
 layout: concept
 heading: "Story, rule, example, question"
 routeAlias: theory-example-mapping
@@ -27,25 +42,10 @@ lines:
 ---
 
 ---
-layout: task-intro
-number: "09"
-routeAlias: task-09
-heading: "Task 09 — Example Mapping and the `discover` skill"
-branch: "09-start"
-learn:
-  - "Run Example Mapping: rules, examples, counter-examples, questions"
-  - "Move method detail into a skill's references/ folder"
-  - "Resolve open questions live with AskUserQuestion"
-outcome:
-  - "The discover skill: .claude/skills/discover/SKILL.md"
-  - "A resolved spec: docs/specs/clash-capacity.md"
----
-
----
 layout: code-live
 heading: "Anatomy of /discover"
 filePath: ".claude/skills/discover/SKILL.md"
-success: "Every rule has at least one example and one counter-example; no Questions section is left in the saved spec."
+success: "Every rule has at least one example; no Questions section is left in the saved spec."
 ---
 
 ```yaml
@@ -60,8 +60,9 @@ Read CLAUDE.md first — fit this codebase's real domain.
 ## Story
 $ARGUMENTS
 
-⟵ LIVE: rules, ≥2 examples + ≥1 counter-example each, open questions.
-     Point at references/example-mapping.md — don't inline the method.
+⟵ LIVE: rules, ≥1 example each, a counter-example wherever a real
+     edge case exists, open questions. Point at references/ — don't
+     inline the method.
 ```
 
 ---

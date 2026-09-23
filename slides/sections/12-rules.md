@@ -8,16 +8,6 @@ heading: "Path-scoped rules"
 </template>
 
 ---
-layout: concept
-heading: "Rules scoped to a path"
-routeAlias: theory-path-scoped-rules
-docs: https://code.claude.com/docs/en/memory
-lines:
-  - "paths is the only field a rule's frontmatter reads — the rest is ignored."
-  - "No paths: loads every session. With it: loads only on a matching Read."
----
-
----
 layout: task-intro
 number: "10"
 routeAlias: task-10
@@ -28,6 +18,16 @@ learn:
   - "Tell a project rule apart from a personal, unconditional one"
 outcome:
   - "A project rule: .claude/rules/server-actions.md"
+---
+
+---
+layout: concept
+heading: "Rules scoped to a path"
+routeAlias: theory-path-scoped-rules
+docs: https://code.claude.com/docs/en/memory
+lines:
+  - "paths is the only field a rule's frontmatter reads — the rest is ignored."
+  - "No paths: loads every session. With it: loads only on a matching Read."
 ---
 
 ---

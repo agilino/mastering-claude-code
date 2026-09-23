@@ -6,6 +6,13 @@
 Sagen:
 - "Eine Regel, die nur auftaucht, wenn sie wirklich relevant ist."
 
+<!-- @note: task-10-path-scoped-rules -->
+> Tun:
+> - Branch: 10-start hat den discover-Skill aus Task 09 schon
+
+Sagen:
+- Zwei Dinge zu lernen, ein Ding, mit dem man rauskommt
+
 <!-- @note: rules-scoped-to-a-path -->
 > Tun:
 > - Zurück auf ~/.claude/rules/tone.md aus Task 06 verweisen — die hatte kein paths:-Feld
@@ -14,13 +21,6 @@ Sagen:
 Sagen:
 - paths ist das einzige Feld, das Claude Code aus einer Rule-Datei liest — alles andere im Frontmatter wird stillschweigend ignoriert
 - Kein paths:-Feld heißt, sie lädt jede Session, mit derselben Priorität wie CLAUDE.md selbst
-
-<!-- @note: task-10-path-scoped-rules -->
-> Tun:
-> - Branch: 10-start hat den discover-Skill aus Task 09 schon
-
-Sagen:
-- Zwei Dinge zu lernen, ein Ding, mit dem man rauskommt
 
 <!-- @note: a-rule-that-only-loads-when-it-matters -->
 > Tun:

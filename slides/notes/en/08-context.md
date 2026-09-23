@@ -5,7 +5,7 @@
 
 Say:
 - Not building any more, now controlling
-- Three tasks: context, skills, subagents
+- Five tasks: context, skills, subagents, Example Mapping, path-scoped rules
 - Each is a different way of deciding what enters the window
 
 <!-- @note: eight-tools-one-constraint -->

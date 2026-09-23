@@ -6,6 +6,13 @@
 Say:
 - "The next two tasks are both about shaping what a skill knows, and when."
 
+<!-- @note: task-09-example-mapping-and-the-discover-skill -->
+> Do:
+> - Branch: 09-start is still on the seeded bug from 08-start — the discover skill isn't built yet either
+
+Say:
+- Three things to learn, two things to end up with
+
 <!-- @note: story-rule-example-question -->
 > Do:
 > - Walk the four cards in order: story, rule, example, question
@@ -23,13 +30,6 @@ Say:
 Say:
 - The skill body stays short on purpose
 - references/ only enters context when the skill actually opens the file — same idea as a subagent's isolated window, one size smaller
-
-<!-- @note: task-09-example-mapping-and-the-discover-skill -->
-> Do:
-> - Branch: 09-start already has the ownership fix restored and the discover skill not yet built
-
-Say:
-- Three things to learn, two things to end up with
 
 <!-- @note: anatomy-of-discover -->
 > Do:

@@ -78,8 +78,8 @@ This branch already has vitest installed, one trivial passing test, and a delibe
    GREEN (minimum code, the target file only, never the test) → REFACTOR (clean up, rerun
    everything) → STOP (report the rule, the test name, pass or fail, then wait).
 8. Run `/tdd` for the second rule — at capacity, a join is waitlisted — end to end.
-9. Run `/tdd` again for the boundary: exactly at capacity still accepts, `capacity: null`
-   always accepts. A separate invocation. Confirm it stops after one cycle instead of cascading
+9. Run `/tdd` again for the boundary: one join *below* capacity still accepts, it doesn't
+   waitlist early. A separate invocation. Confirm it stops after one cycle instead of cascading
    through every remaining rule.
 10. Run the gates.
     ```bash
@@ -108,8 +108,8 @@ implementations yet.
 ## Go further
 
 Compare with `workshop-artifacts/11-tdd-inner-loop/` in the workshop repository. Then sketch a
-`spec-coverage` subagent that checks every rule in `docs/specs/*.md` has a passing test —
-read-only, same shape as task 08's `security-auditor`.
+`spec-coverage` subagent (tools: Read, Grep, Glob) that checks every rule in `docs/specs/*.md`
+has a passing test — read-only, same shape as task 08's `security-auditor`.
 
 ## Links
 
