@@ -11,7 +11,7 @@ const parts = [
   { key: 'foundations', belt: 'White belt', title: 'Foundations', modules: ['What a model is', 'The harness', 'First steps'] },
   { key: 'build', belt: 'Blue belt', title: 'Build CLASH', modules: ['Foundation', 'Auth and clashes', 'Venues, map, people', 'Finish and ship'] },
   { key: 'control', belt: 'Brown belt', title: 'Control the context', modules: ['Context', 'Skills', 'Subagents', 'Example Mapping', 'Path-scoped rules'] },
-  { key: 'orchestrate', belt: 'Black belt', title: 'Orchestrate and let go', modules: ['TDD', 'Teams and workflows', 'Hooks', 'The browser', 'Letting go', 'Agent SDK', 'Capstone'] },
+  { key: 'orchestrate', belt: 'Black belt', title: 'Orchestrate and let go', modules: ['TDD', 'Teams and workflows', 'Hooks', 'The browser', 'Letting go', 'Agent SDK', 'Capstone', 'Automate', 'Build your own MCP'] },
 ] as const
 
 const beltColor: Record<string, string> = {

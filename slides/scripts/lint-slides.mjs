@@ -30,6 +30,8 @@ const allowedSlidesOrigins = new Set([
 const THIRD_PARTY_DOCS = new Set([
   'https://www.skills.sh/vercel-labs/agent-browser/agent-browser', // the agent-browser skill itself — npx skills add's source
   'https://github.com/OWASP/secure-agent-playbook', // the code-security-skills plugin task 08 installs — its marketplace repo
+  'https://modelcontextprotocol.io/docs/develop/build-server', // the MCP TypeScript server tutorial task 19 builds from
+  'https://github.com/bmad-code-org/bmad-method', // the BMAD method itself — the repo the capstone's BMAD slide describes and the note's npx skills add installs from
 ])
 
 function stripFencedCode(text) {
@@ -75,7 +77,8 @@ const forbidden = [
   [/(?<![-\w\/.])\b\d+\s?(min|mins|minutes?|hours?|h)\b(?![-\w])/i, 'duration'],
   [/\bDay\s?[123]\b/, 'day number'],
   [/\b(React Day|GitNation|Zoom)\b/, 'event reference'],
-  [/\bconference\b/i, 'event reference'],
+  // the product name clash-conference (task 19's second app) is the one allowed use of the word
+  [/(?<!clash-)\bconference\b/i, 'event reference'],
   [/\b20[2-3]\d-\d\d(-\d\d)?\b/, 'date'],
   [/\btime-?box\b/i, 'time-box'],
   [/\b(this morning|this afternoon|after the break|tomorrow morning)\b/i, 'time of day'],
@@ -90,7 +93,7 @@ const forbidden = [
   [/\b(Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Sonntag)\b/, 'weekday (de)'],
   [/\b20[2-3]\d-\d\d(-\d\d)?\b/, 'date (de)'],
   [/\b\d{1,2}\.\d{1,2}\.\d{4}\b/, 'date (de, DD.MM.YYYY)'],
-  [/\bKonferenz\b/i, 'event reference (de)'],
+  [/(?<!clash-)\bKonferenz\b/i, 'event reference (de)'],
   [/\b(heute (früh|Morgen)|heute Nachmittag|nach der Pause|morgen früh)\b/i, 'time of day (de)'],
   [/\bim Raum\b/i, 'room wording (de)'],
 ]

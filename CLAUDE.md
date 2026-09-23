@@ -9,10 +9,12 @@ Trainer: Adam Furmanczuk · nextacademy.io. Not tied to any event or date.
 - `README.md` — participant entry point. `FACILITATOR.md` — trainer guide.
 - `docs/SPEC.md` — the CLASH product spec participants build from (no code).
 - `docs/SETUP.md` — pre-flight. `docs/BRANCHES.md` — what every `NN-start` branch holds.
-- `tasks/NN-slug.md` — one file per task, 01–14. `tasks/README.md` — index.
+- `tasks/NN-slug.md` — one file per task, 01–19. `tasks/README.md` — index.
 - `slides/` — one Slidev project, one deck. `slides/sections/*.md` are composed into `slides/slides.md`.
 - `scripts/prepare-branches.sh` + `scripts/checkpoints/` — build the catch-up branches on a local CLASH clone. Never pushes.
 - `workshop-artifacts/` — answer keys.
+- `slides/scripts/lint-slides.mjs` — the content linter. "conference"/"Konferenz" are forbidden event words; the one exception is the product name `clash-conference` (a `(?<!clash-)` lookbehind), so prose says "talk" or "programme".
+- `../clash-conference` (`https://github.com/agilino/clash-conference.git`) — a second repository for task 19, cloned next to the CLASH clone. Published once the app is finished; until then it holds no app and no `19-start` branch. Once out, its `main` is the finished app, its `19-start` is the app without `app/api/publish/route.ts`. Not built by `scripts/prepare-branches.sh`.
 
 Target codebase: `https://github.com/pawsaw/clash` (Next.js 16 / React 19 / Prisma 7 + SQLite / shadcn / Leaflet).
 
@@ -47,6 +49,13 @@ Target codebase: `https://github.com/pawsaw/clash` (Next.js 16 / React 19 / Pris
 9. **Every subagent brief for read-only work names its tools**, e.g. `tools: Read, Grep, Glob` in
    `.claude/agents/repo-explorer.md`. A subagent inherits this file but never the parent session's
    auto-memory — a constraint that matters belongs in the agent file or the brief, not only in memory.
+
+10. **Name the repository and the app every time.** Task 19 works in two clones at once, so
+    "the clone", "the repo", "the root", "the app" and "this project" on their own are wrong.
+    Write **your CLASH clone** and **clash-conference**. The same for what is running: CLASH
+    serves `localhost:3000`, clash-conference serves `localhost:3001` — name the app wherever a
+    port, a URL, a `.env` file, a `.claude/settings.json` or a branch appears. Both repositories
+    have a branch called `19-start`; never write it without saying which one.
 
 ## Task template
 
@@ -117,14 +126,15 @@ Target codebase: `https://github.com/pawsaw/clash` (Next.js 16 / React 19 / Pris
 01-setup-first-conversation · 02-foundation · 03-auth-and-clashes · 04-venues-map-people ·
 05-finish-and-ship · 06-context-and-claude-md · 07-clash-feature-skill · 08-subagent-audit ·
 09-example-mapping · 10-path-scoped-rules · 11-tdd-inner-loop · 12-team-and-workflow-audit ·
-13-hooks · 14-browser-loop · 15-letting-go · 16-agent-sdk · 17-capstone
+13-hooks · 14-browser-loop · 15-letting-go · 16-agent-sdk · 17-capstone · 18-automate ·
+19-build-your-own-mcp
 
 ## Parts
 
 - Part I — Foundations (White belt): what a model is, the harness, first steps. Task 01.
 - Part II — Build CLASH (Blue belt): tasks 02–05. Participants build CLASH from `docs/SPEC.md`.
 - Part III — Control the context (Brown belt): tasks 06–10, on the reference CLASH (`06-start`).
-- Part IV — Orchestrate and let go (Black belt): tasks 11–17.
+- Part IV — Orchestrate and let go (Black belt): tasks 11–19.
 
 ## Build and check
 
