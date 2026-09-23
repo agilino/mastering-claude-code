@@ -92,8 +92,9 @@ commands in `.claude/commands/*.md` still work. Skills are the richer format for
 
 ## Stuck?
 
-`git checkout 07-start` — the reference CLASH with the task 06 `CLAUDE.md`. The vendored `.agents/skills/`
-folder is there; `.claude/skills/` is not.
+`git checkout 07-start` — the reference CLASH with the task 06 `CLAUDE.md`. Eight of the nine vendored
+skills in `.agents/skills/` are already copied into `.claude/skills/` (`agent-browser` stays
+personal-only). Your own `.claude/skills/clash-feature/` is not — that is what this task builds.
 
 ## Go further
 

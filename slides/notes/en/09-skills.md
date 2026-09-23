@@ -64,7 +64,7 @@ Say:
 
 <!-- @note: where-claude-code-looks-for-skills -->
 > Do:
-> - On 07-start, run /skills — none of the nine skills in .agents/skills/ show up
+> - Run /skills anywhere — agent-browser is listed, from the personal install in task 01
 > - Point at skills-lock.json — the installer's record of what came from where
 > - Docs link: open it, show the live agent-browser skill page, then back to the slides
 

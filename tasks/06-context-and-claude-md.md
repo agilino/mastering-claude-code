@@ -71,25 +71,16 @@ out, Claude has to guess or search for.
    ```
    Save this plan as docs/plans/realtime-notifications.md. Do not implement it.
    ```
-9. Link the vendored skills so Claude Code can see them. CLASH ships nine of them in
-   `.agents/skills/`, but Claude Code only reads `.claude/skills/` — never `.agents/skills/`
-   directly.
-   ```bash
-   mkdir -p .claude/skills
-   for d in .agents/skills/*/; do n=$(basename "$d"); ln -s "../../.agents/skills/$n" ".claude/skills/$n"; done
+9. See what loaded skills cost you. `.agents/skills/` ships nine vendored skills for this
+   reference build. Eight are copied into `.claude/skills/` — the project-level folder
+   Claude Code actually reads; `agent-browser` stays personal-only, already installed
+   there in task 01.
    ```
-   On Windows, in PowerShell:
-   ```powershell
-   New-Item -ItemType Directory -Force .claude\skills | Out-Null
-   Get-ChildItem .agents\skills -Directory | ForEach-Object { New-Item -ItemType Junction -Path ".claude\skills\$($_.Name)" -Target $_.FullName }
+   /skill-doctor
    ```
-10. See what loaded skills cost you.
-    ```
-    /skill-doctor
-    ```
-    Two of them, `react-best-practices` and `vercel-react-best-practices`, are
-    near-duplicates of about 100 KB each. Both are scanned every session.
-11. See what a personal rule adds, not overrides.
+   Two of them, `react-best-practices` and `vercel-react-best-practices`, are
+   near-duplicates of about 100 KB each. Both are scanned every session.
+10. See what a personal rule adds, not overrides.
     ```bash
     mkdir -p ~/.claude/rules
     ```

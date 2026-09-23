@@ -119,12 +119,12 @@ Sagen:
 
 <!-- @note: skill-doctor-what-it-costs -->
 > Tun:
-> - Schritt 9 verlinkt .agents/skills/* zuerst nach .claude/skills/ — ohne das zeigt /skill-doctor nichts
+> - Auf diesem Branch schon kopiert — .claude/skills/ enthält acht der neun .agents/skills/-Ordner; agent-browser bleibt persönlich (Task 01)
 > - Demo: `/skill-doctor` live ausführen
 > - Die beiden Ordner nebeneinander zeigen — die Überlappung ist auf den ersten Blick klar
 
 Sagen:
-- Claude Code liest nur .claude/skills/ — mitgelieferte Skills in .agents/skills/ bewirken nichts, bis sie verlinkt sind
+- Claude Code liest .claude/skills/ auf Projektebene — dieser Referenz-Build kopiert acht der neun .agents/skills/-Ordner hinein; agent-browser ist schon ein persönlicher Skill aus Task 01
 - Ungenutzte Skills kosten dich jede Session — aber nur ihre kurze Beschreibung lädt, nicht der ~100-KB-Body. Der Body lädt, wenn der Skill benutzt wird
 - Nicht in einer aufgeblähten CLAUDE.md (die gibt es nicht) — sondern in `.agents/skills/react-best-practices` und `.agents/skills/vercel-react-best-practices`
 - Zwei echte, fast identische Regelwerke, je etwa 100 KB
