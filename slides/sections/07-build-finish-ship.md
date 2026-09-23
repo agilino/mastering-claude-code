@@ -48,6 +48,7 @@ lines:
 layout: concept
 heading: "Remember it"
 routeAlias: theory-memory
+docs: https://code.claude.com/docs/en/memory
 lines:
   - "Remember: always use UserAvatar, never a raw img tag"
   - "Saved to memory. Loaded next time."
@@ -71,6 +72,8 @@ Look for:
         params not awaited
 List findings with file and line. Fix nothing yet.
 ```
+
+Next time, `/code-review` runs this same check as one command.
 
 ---
 layout: concept

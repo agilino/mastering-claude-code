@@ -9,7 +9,7 @@ heading: "Control the context"
 
 ---
 layout: concept
-heading: "Seven tools, one constraint"
+heading: "Eight tools, one constraint"
 lines:
   - "We build every row of this table, in this order, on one codebase."
 ---

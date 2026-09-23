@@ -61,21 +61,33 @@ src: ./sections/10-subagents.md
 ---
 
 ---
-src: ./sections/11-teams-workflows.md
+src: ./sections/11-discover.md
 ---
 
 ---
-src: ./sections/12-hooks.md
+src: ./sections/12-rules.md
 ---
 
 ---
-src: ./sections/13-browser.md
+src: ./sections/13-tdd.md
 ---
 
 ---
-src: ./sections/14-letting-go.md
+src: ./sections/14-teams-workflows.md
 ---
 
 ---
-src: ./sections/15-capstone-close.md
+src: ./sections/15-hooks.md
+---
+
+---
+src: ./sections/16-browser.md
+---
+
+---
+src: ./sections/17-letting-go.md
+---
+
+---
+src: ./sections/18-capstone-close.md
 ---

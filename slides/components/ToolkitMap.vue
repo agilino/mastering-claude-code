@@ -13,6 +13,7 @@ const props = withDefaults(
     current?:
       | 'context'
       | 'skill'
+      | 'rule'
       | 'subagent'
       | 'team'
       | 'workflow'
@@ -26,6 +27,7 @@ const props = withDefaults(
 const rows = [
   { key: 'context', primitive: 'Context', what: 'the window itself', when: 'always — the constraint everything else works around' },
   { key: 'skill', primitive: 'Skill', what: 'instructions loaded on demand', when: 'the work is repeatable and you keep re-explaining it' },
+  { key: 'rule', primitive: 'Project rule', what: 'scoped instructions in .claude/rules/', when: 'a convention only matters for part of the codebase' },
   { key: 'subagent', primitive: 'Subagent', what: 'a worker with its own context window', when: 'the work is noisy and would pollute your thread' },
   { key: 'team', primitive: 'Agent team', what: 'a lead supervising peer sessions', when: 'workers need to talk to each other over time' },
   { key: 'workflow', primitive: 'Workflow', what: 'a script that holds the plan', when: 'the fan-out is bigger than one conversation can steer' },

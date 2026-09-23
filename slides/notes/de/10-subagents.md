@@ -6,7 +6,7 @@
 Sagen:
 - Ein Problem, drei Strategien: ein Subagent, ein Agent-Team, ein Dynamic Workflow
 - Diese Task läuft mit der ersten — ein einzelner Subagent, der allein auditiert
-- Task 09 läuft mit den anderen beiden, Agent-Team und Dynamic Workflow, am exakt gleichen Problem
+- Task 12 läuft mit den anderen beiden, Agent-Team und Dynamic Workflow, am exakt gleichen Problem
 
 <!-- @note: task-08-subagent-audit -->
 > Tun:
@@ -40,7 +40,7 @@ Sagen:
 > Tun:
 > - Die Korrektur aus Sagen laut sagen, bevor irgendjemand zu auditieren anfängt — sonst denken alle, sie finden gleich einen echten Bug im öffentlichen CLASH
 > - Der Fehler existiert nur auf 08-start, absichtlich eingebaut: Ownership-Check entfernt aus deleteClash (app/actions/clashes.ts) und deleteVenue (app/actions/venues.ts). Workshop-Inhalt, kein CLASH-Bug.
-> - Musterlösung: workshop-artifacts/09-team-and-workflow-audit/AUTH-FIX.md.
+> - Musterlösung: workshop-artifacts/12-team-and-workflow-audit/AUTH-FIX.md.
 > - Jetzt nicht verraten: npm run lint auf 08-start meldet eine unbenutzte `user`-Variable in deleteVenue — der Guard, der sie benutzt hat, ist weg. Das ist das eigene "Go further" der Task — nur damit du weißt, dass es stimmt, nicht zum Sagen hier
 
 Sagen:
