@@ -126,7 +126,7 @@ heading: "/skill-doctor: what it costs"
 routeAlias: theory-skill-doctor
 lines:
   - "CLASH ships nine vendored skills in .agents/skills/."
-  - "Claude Code only reads .claude/skills/ — link them in first."
+  - "Eight copied into .claude/skills/ — agent-browser stays personal."
   - "Two ~100 KB near-duplicates — only their descriptions scan every session."
 ---
 

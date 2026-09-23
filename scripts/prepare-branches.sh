@@ -11,7 +11,7 @@
 #   03-start  scaffold + Prisma schema + migration + seed        (from main, manifest 03)
 #   04-start  + auth, app shell, clashes                          (manifest 04)
 #   05-start  + venues, map, participation, notifications        (manifest 05)
-#   06-start  reference CLASH (== main)
+#   06-start  reference CLASH + vendored skills copied into .claude/skills/
 #   07-start  + authored CLAUDE.md
 #   08-start  + clash-feature skill, SEEDED missing ownership checks
 #   09-start  == 08-start
@@ -129,9 +129,30 @@ commit_all 05-start "workshop: venues, map, participation, notifications (end of
 note 05-start "+ venues, map, participation, notifications"
 gate 05-start
 
-# --- 06-start: reference CLASH ----------------------------------------------
+# --- 06-start: reference CLASH, vendored skills copied ------------------------
 git checkout -B 06-start origin/main --quiet
-note 06-start "reference CLASH (identical to main)"
+mkdir -p .claude/skills
+for d in .agents/skills/*/; do
+  n=$(basename "$d")
+  # agent-browser is skipped: task 01 already installs it as a personal skill
+  # (~/.claude/skills/agent-browser), which always shadows a project-level copy
+  # of the same name — a .claude/skills/agent-browser here would never run, only
+  # cost context.
+  if [[ "$n" != "agent-browser" ]]; then
+    cp -r "$d" ".claude/skills/$n"
+  fi
+done
+commit_all 06-start "workshop: copy vendored skills into .claude/skills/
+
+.agents/skills/ ships nine vendored skills, but Claude Code only reads
+.claude/skills/ at the project level, never .agents/skills/ directly.
+Copied, not symlinked — a git-committed symlink checks out as a broken
+text file on a Windows clone with core.symlinks=false, and a real
+symlink would not survive this script regenerating the branch anyway.
+agent-browser itself is skipped: task 01 already installs it as a
+personal skill, which always shadows a project-level copy of the same
+name, so copying it here would only cost context, never run."
+note 06-start "reference CLASH + 8 of 9 vendored skills copied into .claude/skills/ (agent-browser stays personal-only)"
 gate 06-start
 
 # --- 07-start: + authored CLAUDE.md -----------------------------------------

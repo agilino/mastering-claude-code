@@ -64,7 +64,7 @@ Sagen:
 
 <!-- @note: where-claude-code-looks-for-skills -->
 > Tun:
-> - Auf 07-start /skills ausführen — keiner der neun Skills aus .agents/skills/ taucht auf
+> - /skills irgendwo ausführen — agent-browser ist gelistet, aus der persönlichen Installation in Task 01
 > - Auf skills-lock.json zeigen — das Protokoll des Installers, was woher kam
 > - Docs-Link: öffnen, die aktive agent-browser-Skill-Seite zeigen, dann zurück zu den Folien
 
