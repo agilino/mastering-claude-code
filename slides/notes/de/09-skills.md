@@ -40,10 +40,12 @@ Sagen:
 > - Auf dem Bildschirm Schritt für Schritt aufbauen, nicht komplett einfügen
 > - Beim Server-Action-Schritt anhalten und erklären
 > - Wichtigster Satz im ganzen Skill — er kommt in Task 08 wieder
+> - Task-Schritt 4 gibt den Teilnehmenden den Grund und einen wörtlichen Edit-Prompt — sie fügen die Notiz ein, sie müssen den Grund nicht selbst herleiten (Task 08 bringt ihn richtig bei)
 
 Sagen:
 - Er besteht auf einem eigenen Ownership-Check, obwohl requireUser() im Layout läuft
 - Warum: eine Server Action ist ein öffentlicher POST-Endpoint mit einer generierten id — der Layout-Guard sieht einen direkten Aufruf nie
+- Warum den Grund in den Skill schreiben: eine nackte Regel wird übersprungen, wenn ein Fall anders aussieht. Eine Regel mit ihrem Grund lässt Claude den neuen Fall richtig entscheiden
 
 <!-- @note: a-skill-is-advice -->
 > Tun:

@@ -12,12 +12,12 @@
 ## You will end up with
 
 `.claude/rules/server-actions.md`, scoped to `app/actions/**` with `paths:` frontmatter, stating
-the ownership-check rule from task 08's `security-auditor` finding — now a standing instruction
+the ownership-check rule from [task 08](08-subagent-audit.md)'s `security-auditor` finding — now a standing instruction
 instead of a one-off audit.
 
 ## Why
 
-Task 06 put a rule in `~/.claude/rules/tone.md` — personal, every project, loaded at launch,
+[Task 06](06-context-and-claude-md.md) put a rule in `~/.claude/rules/tone.md` — personal, every project, loaded at launch,
 unconditionally. `.claude/rules/` is the project-level sibling: shared through git, and a rule
 here can carry `paths:` frontmatter so it loads only when Claude reads a file matching the glob.
 `paths` is the only field Claude Code reads from a rule file; anything else in the frontmatter
@@ -63,8 +63,8 @@ applies.
    ```
    Watch it cite the ownership-check rule without being told to.
 4. Ask Claude to explain, in its own words, the difference between `~/.claude/rules/tone.md`
-   from task 06 and this file. Expect: user-level vs. project-level, unconditional vs.
-   path-scoped.
+   from [task 06](06-context-and-claude-md.md) and this file. Expect: user-level vs.
+   project-level, unconditional vs. path-scoped.
 
 ## Now you
 

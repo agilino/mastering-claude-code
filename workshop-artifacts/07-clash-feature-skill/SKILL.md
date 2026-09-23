@@ -98,9 +98,9 @@ export async function updateFavourite(
 }
 ```
 
-**Why step 3 is not optional:** a Server Action compiles to a public POST endpoint with a
-generated ID. The `requireUser()` in `app/(app)/layout.tsx` guards the *page*; it does
-nothing for a direct call to the action. Zod validates shape, not permission.
+**Why this step is not optional:** requireUser() in the layout only guards the page. A Server
+Action is a public endpoint anyone with a session cookie can call directly, so the action must
+check that the current user owns the row.
 
 Actions scoped by a `where` clause that already includes `userId` (see
 `markNotificationRead`) are safe by construction — that pattern is fine, and is *not* a

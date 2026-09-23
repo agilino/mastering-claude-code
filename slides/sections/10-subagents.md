@@ -89,6 +89,18 @@ tools: Read, Grep, Glob
 
 ---
 layout: concept
+heading: "Agent, subagent, fork: which is which"
+routeAlias: theory-agent-subagent-fork
+lines:
+  - "Agent: one running loop. Your session is main."
+  - "Subagent: a loop main starts, in its own context."
+  - "Fork: a subagent that starts as a copy of your chat."
+---
+
+<G24AgentPanel />
+
+---
+layout: concept
 heading: "Two ways to isolate"
 routeAlias: theory-subagents
 docs: https://code.claude.com/docs/en/sub-agents
@@ -116,6 +128,21 @@ lines:
   <div class="na-card p-4" v-click><div class="font-semibold mb-1">claude</div><div class="text-sm" style="color: var(--na-fg-muted)">catch-all, every tool</div></div>
   <div class="na-card p-4" v-click><div class="font-semibold mb-1">statusline-setup</div><div class="text-sm" style="color: var(--na-fg-muted)">for /statusline</div></div>
   <div class="na-card p-4" v-click><div class="font-semibold mb-1">claude-code-guide</div><div class="text-sm" style="color: var(--na-fg-muted)">questions about Claude Code itself</div></div>
+</div>
+
+---
+layout: concept
+heading: "Or install one that exists"
+docs: https://github.com/OWASP/secure-agent-playbook
+lines:
+  - "A plugin from OWASP: 5 subagents and 11 skills, one install."
+  - "Only sca-audit and dependency-auditor are about CVEs."
+  - "A plugin can ship hooks too. Read what you install."
+---
+
+<div class="flex flex-col gap-3 w-full max-w-3xl">
+  <div class="na-card px-5 py-3"><span class="font-mono text-sm" style="color: var(--na-accent-500)">/plugin marketplace add OWASP/secure-agent-playbook</span></div>
+  <div class="na-card px-5 py-3" v-click><span class="font-mono text-sm" style="color: var(--na-accent-500)">/plugin install code-security-skills@agent-security-playbook</span></div>
 </div>
 
 ---

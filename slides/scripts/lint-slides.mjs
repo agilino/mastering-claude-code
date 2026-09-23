@@ -29,6 +29,7 @@ const allowedSlidesOrigins = new Set([
 // re-checks code.claude.com pages); scripts/audit-links.sh's plain-200 sweep still covers them.
 const THIRD_PARTY_DOCS = new Set([
   'https://www.skills.sh/vercel-labs/agent-browser/agent-browser', // the agent-browser skill itself — npx skills add's source
+  'https://github.com/OWASP/secure-agent-playbook', // the code-security-skills plugin task 08 installs — its marketplace repo
 ])
 
 function stripFencedCode(text) {

@@ -29,16 +29,19 @@ Sagen:
 
 Sagen:
 - Der Skill-Body bleibt absichtlich kurz
-- references/ kommt erst in den Kontext, wenn der Skill die Datei tatsächlich öffnet — dieselbe Idee wie der isolierte Kontext eines Subagenten, nur eine Nummer kleiner
+- references/ und templates/ kommen erst in den Kontext, wenn der Skill die Datei tatsächlich öffnet — dieselbe Idee wie der isolierte Kontext eines Subagenten, nur eine Nummer kleiner
+- references/ enthält die Methode, die er beim Arbeiten liest. templates/ enthält das Format, in dem er die Spec schreibt
 
 <!-- @note: anatomy-of-discover -->
 > Tun:
-> - Live-Bau-Referenz — der genaue Body steht in tasks/09-example-mapping.md, Schritte 2-4
-> - Auf $ARGUMENTS zeigen, dann auf die Referenzdatei, die geöffnet werden soll
+> - Live-Bau-Referenz — die genauen Dateien stehen in tasks/09-example-mapping.md, Schritte 2-4: der Body, die Referenz, das Template
+> - Auf $ARGUMENTS zeigen, dann auf die Referenzdatei, die geöffnet werden soll, dann auf das Template, mit dem gespeichert wird
+> - Die nummerierten Schritte laut durchgehen: die Reihenfolge ist das Design — erst das Interview, die Spec wird gezeigt, bevor sie gespeichert wird
 
 Sagen:
 - argument-hint sagt, was nach /discover eingegeben wird
 - allowed-tools enthält AskUserQuestion — der Skill kann fragen, nicht nur antworten
+- Ein Skill, kein Subagent: er läuft in deinem eigenen Gespräch, das Interview ist also ein Hin und Her mit dir
 
 <!-- @note: the-discover-skill -->
 > Tun:

@@ -45,6 +45,7 @@ ART_HOOKS_BUILD_SUMMARY="$(find_one '*hook*/build-summary.sh')"
 ART_DISCOVER_SKILL="$(find_one '*example-mapping*/SKILL.md')"
 ART_DISCOVER_REFERENCE="$(find_one '*example-mapping*/example-mapping-reference.md')"
 ART_DISCOVER_SPEC="$(find_one '*example-mapping*/clash-capacity-spec.md')"
+ART_DISCOVER_TEMPLATE="$(find_one '*example-mapping*/spec-template.md')"
 ART_RULES_FILE="$(find_one '*path-scoped-rules*/server-actions.md')"
 ART_TDD_VITEST_CONFIG="$(find_one '*tdd-inner-loop*/vitest.config.ts')"
 ART_TDD_CAPACITY_STUB="$(find_one '*tdd-inner-loop*/capacity.stub.ts')"
@@ -238,9 +239,10 @@ SUMMARY+=("09-start|$(git rev-parse --short HEAD)|$(git ls-files | wc -l | tr -d
 # chain every action still does.
 git checkout -B 10-start 09-start --quiet
 git checkout origin/main --quiet -- app/actions/clashes.ts app/actions/venues.ts
-mkdir -p .claude/skills/discover/references docs/specs
+mkdir -p .claude/skills/discover/references .claude/skills/discover/templates docs/specs
 cp "$ART_DISCOVER_SKILL" .claude/skills/discover/SKILL.md
 cp "$ART_DISCOVER_REFERENCE" .claude/skills/discover/references/example-mapping.md
+cp "$ART_DISCOVER_TEMPLATE" .claude/skills/discover/templates/spec-template.md
 cp "$ART_DISCOVER_SPEC" docs/specs/clash-capacity.md
 commit_all 10-start "workshop: restore the creatorId ownership checks; add the discover skill and its resolved spec (end of task 09)"
 note 10-start "ownership checks restored; + discover skill and its resolved spec"

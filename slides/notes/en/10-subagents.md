@@ -54,8 +54,24 @@ Say:
 Say:
 - The tools: line matters — Read, Grep, Glob only.
 - This agent reads and reports; it does not fix.
-- Narrowing tools is itself a control.
+- Narrowing tools is itself a control — and it only holds for a fresh subagent. A fork ignores a tools: line.
 - Contrast with a vague "find security bugs": a falsifiable property is what makes the report checkable, not a wall of prose.
+
+<!-- @note: agent-subagent-fork-which-is-which -->
+> Do:
+> - Say the three words once, slowly — the rest of the part depends on them
+> - Demo in task step 6: run the security-auditor, then point at the panel under the prompt — a row appears, indented under main
+> - Demo again with /subtask in task step 9: a second row, this one a fork
+> - Say plainly that the coloured labels on the slide are ours (schematic) — the real panel shows the rows, not our labels
+
+Say:
+- An agent is one running loop. Your own session is one too: it is the top row, main.
+- A subagent is a loop that main starts with the Agent tool. It gets its own context window.
+- A fork is a subagent that starts as a copy of your conversation, so it already knows everything you said.
+- [click] A subagent built from a definition file: fresh context, and only the tools its tools: line allows. Our security-auditor, Explore, and any agent a plugin ships all work this way.
+- [click] A fork: same system prompt, same tools, same history. A tools: line does not apply to it.
+- [click] A skill normally gets no row. It is instructions loaded into whichever conversation runs it. The exception is a skill that sets context: fork: that one runs as a subagent, with its own row. The discover skill in task 09 does not set that field, so it stays in main and can talk to you.
+- The indented rows under the prompt are the subagents and forks main started, nothing else. /tasks lists the same rows.
 
 <!-- @note: two-ways-to-isolate -->
 > Do:
@@ -65,8 +81,9 @@ Say:
 - [click] Left: the subagent's own window fills with noisy tool calls — only a thin summary crosses back, which is why the main thread barely moves.
 - [click:3] Right: fork vs fresh.
 - Fork branches off the parent, inherits the whole conversation and the parent's prompt cache — cheap when shared context is really needed.
-- [click] Fresh subagent starts cold: no history, filtered tools, no cache — first call costs more.
-- Fork is on by default in interactive sessions, off under -p and the Agent SDK.
+- [click] Fresh subagent starts cold: no history, only the tools its definition allows, no shared cache — first call costs more.
+- Fork mode is on by default in interactive sessions, off under -p and the Agent SDK. On means Claude may choose a fork when it names no agent. A named agent from a definition file, like security-auditor, stays a fresh subagent.
+- You start a fork yourself with /subtask followed by the task.
 - Neither is better — know which one you invoked and why.
 - `/tasks` lists this session's background work: running subagents and forks. A finished one stays listed, marked done, only briefly — open it while it runs, or right after it returns.
 
@@ -82,6 +99,18 @@ Say:
 - [click] claude is the fallback of the fallback — every tool, no restriction
 - [click] statusline-setup only fires from /statusline
 - [click] claude-code-guide is what answers "can Claude Code do X" questions like this one
+
+<!-- @note: or-install-one-that-exists -->
+> Do:
+> - Docs link: open the OWASP repo README, the install section, then back to the slides
+> - Task steps 11 to 17: add the marketplace, install it, /clear, run the reviewer, compare with your own auditor
+
+Say:
+- What it is: a plugin, an installable bundle. This one ships 5 subagents and 11 skills. Task 07's marketplace slide again: add the catalog, then install one plugin by name.
+- [click] The second command installs it. code-security-skills is the plugin, agent-security-playbook is the marketplace: plugin@marketplace.
+- Only sca-audit and dependency-auditor are about CVEs. The reviewers read code.
+- Compare, don't crown a winner: ours is narrow and falsifiable, PASS or FAIL with a cited line. Theirs is broad. Different jobs.
+- A plugin can carry hooks and MCP servers, and it runs on your machine. Read what you install. This one is OWASP's, but the habit is the point.
 
 <!-- @note: one-subagent-or-read-it-yourself -->
 > Do:
@@ -112,6 +141,8 @@ Say:
 > - Note the /context reading before launching.
 > - Launch one subagent with the narrow brief; let it read every file in app/actions/.
 > - Read /context again
+> - Steps 9 and 10: the same audit as a fork with /subtask
+> - Steps 11 to 17: the OWASP plugin, /clear, then compare its report with your own auditor's
 > - Part ends on a cliffhanger: two findings, not fixed yet.
 
 Say:
