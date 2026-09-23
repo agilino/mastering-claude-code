@@ -70,7 +70,7 @@ Say:
 - A fork is a subagent that starts as a copy of your conversation, so it already knows everything you said.
 - [click] A subagent built from a definition file: fresh context, and only the tools its tools: line allows. Our security-auditor, Explore, and any agent a plugin ships all work this way.
 - [click] A fork: same system prompt, same tools, same history. A tools: line does not apply to it.
-- [click] A skill never gets a row. It is instructions loaded into whichever conversation runs it — the discover skill in task 09 can talk to you for exactly that reason.
+- [click] A skill normally gets no row. It is instructions loaded into whichever conversation runs it. The exception is a skill that sets context: fork: that one runs as a subagent, with its own row. The discover skill in task 09 does not set that field, so it stays in main and can talk to you.
 - The indented rows under the prompt are the subagents and forks main started, nothing else. /tasks lists the same rows.
 
 <!-- @note: two-ways-to-isolate -->

@@ -32,7 +32,8 @@ Three words, used this way for the rest of the course:
 A subagent built from a definition file (`.claude/agents/`, or one a plugin ships) starts
 fresh, with only the tools its `tools:` line allows. A fork gets every tool `main` has, so a
 `tools:` line does not apply to it. A skill is not an agent: it is text loaded into whichever
-conversation runs it.
+conversation runs it. The one exception is a skill that sets `context: fork`: that one runs as
+a subagent. The `discover` skill in task 09 does not set it, so it stays in `main`.
 
 While a subagent or a fork runs, a row appears in the panel below your prompt input, indented
 under `main`. The row goes away when it finishes, so look while it runs. `/tasks` lists the

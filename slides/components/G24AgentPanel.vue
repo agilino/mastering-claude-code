@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <svg viewBox="0 0 700 330" width="700" height="330" class="w-full h-auto max-h-full" font-family="Inter, sans-serif">
+  <svg viewBox="0 0 700 345" width="700" height="345" class="w-full h-auto max-h-full" font-family="Inter, sans-serif">
     <!-- the prompt input, always visible -->
     <rect x="20" y="16" width="660" height="44" rx="10" fill="var(--na-bg-raised)" stroke="var(--na-zinc-700)" stroke-width="2" />
     <text x="40" y="45" fill="var(--na-fg-muted)" style="font-size:17px">&gt; your prompt input</text>
@@ -33,8 +33,9 @@
 
     <!-- stage 3: a skill is not a row -->
     <g v-click>
-      <text x="44" y="288" font-weight="700" fill="var(--na-accent-500)" style="font-size:17px">A skill never gets a row.</text>
-      <text x="44" y="312" fill="var(--na-fg-muted)" style="font-size:15px">It is text loaded into whichever conversation runs it.</text>
+      <text x="44" y="288" font-weight="700" fill="var(--na-accent-500)" style="font-size:17px">A skill normally gets no row.</text>
+      <text x="44" y="310" fill="var(--na-fg-muted)" style="font-size:15px">It is text loaded into the conversation that runs it.</text>
+      <text x="44" y="332" fill="var(--na-fg-muted)" style="font-size:15px">Only context: fork runs it as a subagent, with its own row.</text>
     </g>
   </svg>
 </template>

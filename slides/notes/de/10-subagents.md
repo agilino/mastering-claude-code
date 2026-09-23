@@ -70,7 +70,7 @@ Sagen:
 - Ein Fork ist ein Subagent, der als Kopie deines Gesprächs startet und deshalb schon alles weiß, was du gesagt hast.
 - [click] Ein Subagent aus einer Definitionsdatei: frischer Context, und nur die Tools, die seine tools:-Zeile erlaubt. Unser security-auditor, Explore und jeder Agent, den ein Plugin mitbringt, funktionieren so.
 - [click] Ein Fork: derselbe System-Prompt, dieselben Tools, dieselbe Historie. Eine tools:-Zeile gilt für ihn nicht.
-- [click] Ein Skill bekommt nie eine Zeile. Er ist Anleitung, die in das Gespräch geladen wird, das ihn ausführt — der discover-Skill aus Task 09 kann genau deshalb mit dir reden.
+- [click] Ein Skill bekommt normalerweise keine Zeile. Er ist Anleitung, die in das Gespräch geladen wird, das ihn ausführt. Die Ausnahme ist ein Skill, der context: fork setzt: der läuft als Subagent, mit eigener Zeile. Der discover-Skill aus Task 09 setzt dieses Feld nicht, bleibt also in main und kann mit dir reden.
 - Die eingerückten Zeilen unter dem Prompt sind die Subagents und Forks, die main gestartet hat, sonst nichts. /tasks listet dieselben Zeilen.
 
 <!-- @note: two-ways-to-isolate -->
