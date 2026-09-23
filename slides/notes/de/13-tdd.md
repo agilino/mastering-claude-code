@@ -5,7 +5,7 @@
 
 Sagen:
 - Nicht mehr Kontext kontrollieren, jetzt Arbeit abgeben und dem Ergebnis vertrauen
-- Sechs Tasks von hier bis zum Capstone
+- Sieben Tasks von hier bis zum Capstone
 
 <!-- @note: tdd -->
 > Tun:

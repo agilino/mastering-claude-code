@@ -78,10 +78,17 @@ This branch already has vitest installed, one trivial passing test, and a delibe
    error) → GREEN (minimum code, the target file only, never the test, run it again and
    confirm it passes) → REFACTOR (clean up, rerun everything) → STOP (report the rule, the
    test name, pass or fail, then wait).
-8. Run `/tdd` for the second rule — at capacity, a join is waitlisted — end to end.
+8. Run `/tdd` for the second rule, end to end.
+   ```
+   /tdd must waitlist a join once capacity is reached
+   ```
 9. Run `/tdd` again for the boundary: one join *below* capacity still accepts, it doesn't
-   waitlist early. A separate invocation. Confirm it stops after one cycle instead of cascading
-   through every remaining rule.
+   waitlist early. A separate invocation.
+   ```
+   /tdd the counter-example under "must waitlist a join once capacity is
+   reached" — one join below capacity still accepts
+   ```
+   Confirm it stops after one cycle instead of cascading through every remaining rule.
 10. Run the gates.
     ```bash
     npx tsc --noEmit && npm run lint && npm run test && npm run build

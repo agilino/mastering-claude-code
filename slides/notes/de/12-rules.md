@@ -25,11 +25,16 @@ Sagen:
 <!-- @note: a-rule-that-only-loads-when-it-matters -->
 > Tun:
 > - Live-Bau-Referenz — der genaue Body steht in tasks/10-path-scoped-rules.md, Schritt 1
-> - Demo: /context vor und nach dem Lesen einer Datei unter app/actions/ durch Claude ausführen
+> - Demo, in dieser Reihenfolge: /context (abwesend), lib/data/venues.ts lesen, /context
+>   erneut (immer noch abwesend) — dann app/actions/venues.ts lesen, /context noch einmal
+>   (jetzt gelistet)
 
 Sagen:
-- Die Regel formuliert den Ownership-Check aus dem Audit von Task 08 — jetzt dauerhaft, kein Einzelfall mehr
-- Nach einer Datei außerhalb von app/actions/ fragen — die Regel bleibt abwesend
+- Zuerst außerhalb von app/actions/ — die Regel bleibt abwesend, sie ist noch nicht geladen.
+  Ist sie einmal geladen, macht ein späterer themenfremder Read sie nicht wieder rückgängig —
+  dieser Check beweist also nur etwas, wenn er zuerst kommt
+- Dann der passende Read — die Regel erscheint: der Ownership-Check aus dem Audit von Task 08,
+  jetzt dauerhaft, kein Einzelfall mehr
 
 <!-- @note: the-ownership-rule -->
 > Tun:

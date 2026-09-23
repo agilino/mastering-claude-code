@@ -41,13 +41,19 @@ applies.
      protects the page; a Server Action is a public endpoint anyone with a
      session cookie can call directly, with any arguments.
    ```
-2. Verify the trigger — not by opening the file yourself, by having Claude read one.
+2. Verify the trigger — not by opening the file yourself, by having Claude read one. Start in
+   a fresh session, before Claude has read anything under `app/actions/`.
+   ```
+   Read lib/data/venues.ts and summarize what it exports.
+   ```
+   Run `/context` and confirm `server-actions.md` is absent from Memory files — `lib/data/`
+   doesn't match the glob, so the rule hasn't loaded. Once it has loaded, reading an unrelated
+   file won't unload it, so the negative case only proves anything checked first.
    ```
    Read app/actions/venues.ts and summarize what each exported action does.
    ```
-   Then run `/context` and confirm `server-actions.md` is listed under Memory files. Ask about
-   a file outside `app/actions/` and confirm it's absent — the rule loads when Claude's Read
-   tool matches the glob, not on every tool use.
+   Run `/context` again and confirm `server-actions.md` is now listed — the rule loads when
+   Claude's Read tool matches the glob, not on every tool use.
 3. Ask Claude to sketch a small new Server Action — check first that nothing already covers it.
    ```
    Sketch a new Server Action, cancelClash, that lets a clash's creator mark

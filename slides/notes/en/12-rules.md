@@ -25,11 +25,14 @@ Say:
 <!-- @note: a-rule-that-only-loads-when-it-matters -->
 > Do:
 > - Live-build reference — the exact body is in tasks/10-path-scoped-rules.md step 1
-> - Demo: run /context before and after Claude reads a file under app/actions/
+> - Demo, in this order: /context (absent), read lib/data/venues.ts, /context again (still
+>   absent) — then read app/actions/venues.ts, /context once more (now listed)
 
 Say:
-- The rule states the ownership check from task 08's audit — now standing, not a one-off
-- Ask about a file outside app/actions/ — the rule stays absent
+- Outside app/actions/ first — the rule stays absent, it hasn't loaded yet. Once it has, a
+  later unrelated read won't unload it, so this check only proves anything done first
+- Then the matching read — the rule appears: the ownership check from task 08's audit, now
+  standing, not a one-off
 
 <!-- @note: the-ownership-rule -->
 > Do:

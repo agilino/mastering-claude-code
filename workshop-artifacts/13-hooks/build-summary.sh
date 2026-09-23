@@ -15,7 +15,7 @@ else
   status="npm run build: FAIL (exit $code)"
 fi
 errors="$(printf '%s\n%s' "$stdout" "$stderr" | grep -ciE 'error' || true)"
-tail5="$(printf '%s\n%s' "$stdout" "$stderr" | grep -v '^\s*$' | tail -n 5)"
+tail5="$(printf '%s\n%s' "$stdout" "$stderr" | grep -v '^\s*$' | tail -n 5 || true)"
 summary="$(printf '%s · %s error line(s)\n%s' "$status" "$errors" "$tail5")"
 
 jq -cn --arg s "$summary" '{hookSpecificOutput: {hookEventName: "PostToolUse", updatedToolOutput: $s}}'

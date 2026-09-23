@@ -5,7 +5,7 @@
 
 Say:
 - Not controlling context anymore, now handing work off and trusting the result
-- Six tasks from here to the capstone
+- Seven tasks from here to the capstone
 
 <!-- @note: tdd -->
 > Do:
