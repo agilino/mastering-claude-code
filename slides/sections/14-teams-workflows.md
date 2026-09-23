@@ -95,6 +95,19 @@ heading: "One script, many agents"
 <G09WorkflowFanout />
 
 ---
+layout: concept
+heading: "Phases: the plan you can watch"
+routeAlias: theory-workflow-phases
+docs: https://code.claude.com/docs/en/workflows#watch-the-run
+lines:
+  - "phase('Review') groups the agents that follow under one title."
+  - "The same titles in meta.phases. /workflows shows agents and tokens per phase."
+  - "parallel() waits for all. pipeline() runs one agent per item in a list."
+---
+
+<G27WorkflowPhases />
+
+---
 layout: code-live
 heading: "Read the generated script"
 filePath: "~/.claude/projects/<session>/ … then .claude/workflows/ after pressing s"
@@ -102,17 +115,19 @@ success: "The group can point at the meta export, name one phase, and explain wh
 ---
 
 ```js
-export const meta = { name: 'audit-actions', description: 'Fan-out audit with a refuter gate' }
+export const meta = { name: 'audit-actions', description: 'Fan-out audit with a refuter gate',
+  phases: [{ title: 'Discover' }, { title: 'Review' }, { title: 'Verify' }] }
 
 // ⟵ LIVE: read whatever Claude actually generated. Walk phase by phase:
 // discovery → parallel review → refuter → converge. Do not pre-write this.
-
-const findings = await pipeline(actionFiles,
-  file => agent(/* review prompt for `file` */, { phase: 'Review' }))
-
+phase('Discover')
+const found = await agent(/* list every file in app/actions/ */, { schema: filesSchema })
+phase('Review')
+const findings = await pipeline(found.files,
+  file => agent(/* review prompt for `file` */, { label: file }))
+phase('Verify')
 const verified = await parallel(findings.flat().map(f => () =>
-  agent(/* refute `f` using only the code */, { phase: 'Verify' })))
-
+  agent(/* refute `f` using only the code */)))
 return { verified: verified.filter(Boolean) }
 ```
 

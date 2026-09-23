@@ -67,15 +67,28 @@ Say:
 - [click:3] Verifier/refuter: one agent tries to refute another's finding using only the code — that's how "several possible issues" becomes "two real ones"; on this branch the survivors are deleteClash and deleteVenue
 - Workflows are the most expensive of the three, the price of bounded roles, clean context per agent, and a deterministic review gate
 
-<!-- @note: read-the-generated-script -->
+<!-- @note: phases-the-plan-you-can-watch -->
 > Do:
-> - Slide content is whatever Claude generated live
-> - Say out loud
-> - Want the "commit it" beat to be literally true? Press `s` before you say "commit"
+> - Docs link: scroll to "Watch the run", point at the per-phase agent counts and token totals
+> - Show this workshop's own build run in /workflows if one is live
+> - The numbers on the right are placeholders — the live run shows the real ones
 
 Say:
-- No single correct script — this skeleton shows the shape: meta first, a discovery phase, a fan-out, a verifier pass, a filtered return
-- The script does NOT land in .claude/workflows/ on its own — it's written under ~/.claude/projects/<session-dir>/ first
+- [click] Left, the script: `phase('Review')` groups the agents after it; `meta.phases` repeats the titles
+- [click] Right, `/workflows`: one row per phase with agent count and token total; Enter drills in
+- [click] One phase() call, one row — Review is a pipeline() over files, Verify a parallel()
+- Real example, this workshop's build workflow: seven phases — Facts, Build, Author, Translate, Proof, Fix, Critic
+- Facts and Build share a parallel(); Author → Translate is a pipeline(); Fix loops three rounds max
+
+<!-- @note: read-the-generated-script -->
+> Do:
+> - Walk the generated script out loud, phase by phase
+> - Press `s` in /workflows before you say "commit", so the commit beat is literally true
+
+Say:
+- No single correct script — the skeleton shows the shape: meta first, one phase() call per group
+- Every meta.phases title matches a phase() call exactly; the agents after it land under that title
+- The script does NOT land in .claude/workflows/ — it is written under ~/.claude/projects/<session-dir>/ first
 - Only pressing `s` inside /workflows saves a committable copy
 
 <!-- @note: reconcile-decide-merge -->

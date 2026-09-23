@@ -67,16 +67,29 @@ Sagen:
 - [click:3] Verifier/Refuter: ein Agent versucht, das Finding eines anderen allein anhand des Codes zu widerlegen — so wird aus "mehreren möglichen Problemen" "zwei echte"; auf diesem Branch überleben deleteClash und deleteVenue
 - Workflows sind die teuerste der drei Strategien, der Preis für klar begrenzte Rollen, sauberen Context pro Agent und ein deterministisches Review-Gate
 
-<!-- @note: read-the-generated-script -->
+<!-- @note: phases-the-plan-you-can-watch -->
 > Tun:
-> - Der Inhalt dieser Folie ist das, was Claude live generiert hat
-> - Laut sagen
-> - Soll der "commit it"-Moment wortwörtlich stimmen? `s` drücken, bevor du "commit" sagst
+> - Docs-Link: bis "Watch the run" scrollen, auf die Agent-Anzahl und Token-Summen pro Phase zeigen
+> - Den Build-Run dieses Workshops in /workflows zeigen, falls gerade einer läuft
+> - Die Zahlen rechts sind Platzhalter — der Live-Run zeigt die echten
 
 Sagen:
-- Es gibt nicht das eine richtige Skript — dieses Skelett zeigt die Form: zuerst meta, dann eine Discovery-Phase, ein Fan-out, ein Verifier-Pass, ein gefilterter Return
+- [click] Links das Skript: `phase('Review')` gruppiert die Agents danach; `meta.phases` wiederholt die Titel
+- [click] Rechts `/workflows`: eine Zeile pro Phase mit Agent-Anzahl und Token-Summe; Enter öffnet die Agents
+- [click] Ein phase()-Aufruf, eine Zeile — Review ist eine pipeline() über die Dateien, Verify eine parallel()
+- Echtes Beispiel, der Build-Workflow dieses Workshops: sieben Phasen — Facts, Build, Author, Translate, Proof, Fix, Critic
+- Facts und Build teilen eine parallel(); Author → Translate ist eine pipeline(); Fix läuft max. drei Runden
+
+<!-- @note: read-the-generated-script -->
+> Tun:
+> - Das generierte Skript laut durchgehen, Phase für Phase
+> - `s` in /workflows drücken, bevor du "commit" sagst — dann stimmt der Commit-Moment wortwörtlich
+
+Sagen:
+- Es gibt nicht das eine richtige Skript — das Skelett zeigt die Form: zuerst meta, ein phase()-Aufruf pro Gruppe
+- Jeder meta.phases-Titel entspricht exakt einem phase()-Aufruf; die Agents danach landen unter diesem Titel
 - Das Skript landet NICHT von selbst in .claude/workflows/ — es wird zuerst unter ~/.claude/projects/<session-dir>/ geschrieben
-- Nur das Drücken von `s` innerhalb von /workflows speichert eine Kopie, die sich committen lässt
+- Nur `s` innerhalb von /workflows speichert eine Kopie, die sich committen lässt
 
 <!-- @note: reconcile-decide-merge -->
 > Tun:

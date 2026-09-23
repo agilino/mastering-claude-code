@@ -6,7 +6,7 @@
 ## Theory
 
 - [Strategy two: agent teams](https://mastering-claude-code.vercel.app/theory-agent-teams)
-- [Strategy three: dynamic workflows](https://mastering-claude-code.vercel.app/theory-dynamic-workflows)
+- [Phases: the plan you can watch](https://mastering-claude-code.vercel.app/theory-workflow-phases)
 - [Reconcile, decide, merge](https://mastering-claude-code.vercel.app/theory-reconcile)
 
 > **Reminder:** Use teams when workers need to coordinate; use workflows for repeatable fan-out with explicit review gates.
@@ -65,8 +65,11 @@ for is to run all three on the same problem and compare.
 7. The run happens in the background. Your session stays free. Use the time to read the script.
    It lives under `~/.claude/projects/<session-dir>/` first. It is **not** in `.claude/workflows/` yet.
 8. Read the script top to bottom. Find: `export const meta = { name, description }` as the first
-   statement, a plain object. The discovery phase. The fan-out with `parallel()` or `pipeline()`.
-   The refuter step. The `agent()` calls and their tool limits.
+   statement, a plain object. The `phases` list in `meta`. For each entry, one `phase()` call with
+   exactly that title. `phase()` groups the agents after it under that title in the progress view.
+   The discovery phase. The fan-out with `parallel()` or `pipeline()`. The refuter step.
+   The `agent()` calls and their tool limits. Any `schema` on an `agent()` call: that agent
+   returns JSON in that shape, not prose.
 9. Save the script when the run is done.
    ```
    /workflows
@@ -95,6 +98,7 @@ for is to run all three on the same problem and compare.
 
 - [ ] You saw one message sent between teammates by name.
 - [ ] The workflow's `meta` export is a plain object literal and the first statement.
+- [ ] You can name every phase of the script and point at where it starts.
 - [ ] The workflow's final findings are exactly `deleteClash` and `deleteVenue`.
 - [ ] You found the script under `~/.claude/projects/` before saving it with `s`.
 - [ ] You can explain the refuter step and the quarantine rule in your words.
@@ -104,13 +108,15 @@ for is to run all three on the same problem and compare.
 
 `git checkout 12-start` — the ownership bug is re-seeded here, fresh, for this audit: tasks 09–11
 restored it, this branch removes it again the same way task 08 first did. If a workflow errors,
-check for `Date.now()`, `Math.random()`, a no-arg `new Date()` or `import()` in the script. All of
-them throw inside a workflow on purpose, so a run can be replayed.
+check for `Date.now()`, `Math.random()` or a no-arg `new Date()` in the script. They throw inside
+a workflow on purpose, so a run can be replayed. An `import()` fails the run before it starts: a
+script cannot load modules.
 
 ## Go further
 
-Edit the saved script by hand: add a fourth phase that writes the report to `docs/audits/`.
-Run it again from `/workflows`.
+Edit the saved script by hand: add a fourth phase whose agent writes the report to `docs/audits/`,
+with the same title in `meta.phases` and in its `phase()` call. `/reload-skills` picks up the edit;
+`/<name>` starts it.
 
 ## Links
 
