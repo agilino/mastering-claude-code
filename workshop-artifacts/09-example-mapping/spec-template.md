@@ -18,6 +18,8 @@
 | <near the edge> | <normal> | <result> |
 | <the boundary> | <the boundary> | <result> |
 
+- Counter-example: The one where <a valid case the rule does not cover, and the outcome>.
+
 ## Resolved decisions
 
 - **<Decision>:** <the answer the user chose during the interview>.

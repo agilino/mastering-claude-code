@@ -21,7 +21,8 @@ questions mean the story is not ready to build.
 
 ## Hunting for examples
 
-Walk this list for every rule. Keep a case only if it changes the outcome or the reason.
+Walk this list for every rule. Keep each case that probes a different point: a different
+outcome, a different reason, or a different side of a boundary.
 
 - The normal case, with real numbers.
 - Just below the limit.
@@ -32,7 +33,7 @@ Walk this list for every rule. Keep a case only if it changes the outcome or the
 - The same thing twice, or two things at once.
 - The same case for a different person or role.
 
-Drop an example that changes only a name or a number and gives the same outcome.
+Drop an example that changes only a name or a number and probes nothing new.
 
 ## Counter-examples
 
@@ -54,8 +55,8 @@ rule it affects, then delete the question. The saved spec has none left.
 ## Checklist
 
 - [ ] Every rule starts with Should or Must and states one constraint.
-- [ ] Every rule has several examples, the normal case first, none that differ only in a name
-      or a number.
+- [ ] Every rule has several examples, the normal case first, none that only repeat another
+      with a different name or number.
 - [ ] Every rule has at least one counter-example, or a note on why none exists.
 - [ ] Plain business language throughout.
 - [ ] No open question left.

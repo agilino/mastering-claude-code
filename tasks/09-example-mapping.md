@@ -97,8 +97,8 @@ when it needs them.
    `$ARGUMENTS` is what you type after `/discover`. `allowed-tools` includes `AskUserQuestion`:
    that is how a skill asks you a multiple-choice question and waits. The eight steps are the
    interview. Read them once, they are the point.
-3. Create `.claude/skills/discover/references/example-mapping.md`. Step 1 of the skill says to
-   read it, so it only enters context when the skill opens it.
+3. Create `.claude/skills/discover/references/example-mapping.md`. The skill says to read it
+   before step 1, so it only enters context when the skill opens it.
    ```markdown
    # Example Mapping
 
@@ -123,7 +123,8 @@ when it needs them.
 
    ## Hunting for examples
 
-   Walk this list for every rule. Keep a case only if it changes the outcome or the reason.
+   Walk this list for every rule. Keep each case that probes a different point: a different
+   outcome, a different reason, or a different side of a boundary.
 
    - The normal case, with real numbers.
    - Just below the limit.
@@ -134,7 +135,7 @@ when it needs them.
    - The same thing twice, or two things at once.
    - The same case for a different person or role.
 
-   Drop an example that changes only a name or a number and gives the same outcome.
+   Drop an example that changes only a name or a number and probes nothing new.
 
    ## Counter-examples
 
@@ -156,8 +157,8 @@ when it needs them.
    ## Checklist
 
    - [ ] Every rule starts with Should or Must and states one constraint.
-   - [ ] Every rule has several examples, the normal case first, none that differ only in a name
-         or a number.
+   - [ ] Every rule has several examples, the normal case first, none that only repeat another
+         with a different name or number.
    - [ ] Every rule has at least one counter-example, or a note on why none exists.
    - [ ] Plain business language throughout.
    - [ ] No open question left.
@@ -201,6 +202,8 @@ when it needs them.
    | <normal> | <normal> | <result> |
    | <near the edge> | <normal> | <result> |
    | <the boundary> | <the boundary> | <result> |
+
+   - Counter-example: The one where <a valid case the rule does not cover, and the outcome>.
 
    ## Resolved decisions
 

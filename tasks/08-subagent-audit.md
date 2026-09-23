@@ -124,7 +124,7 @@ check ownership itself. Zod checks the shape of the input, not who may send it.
     ```
     A row appears under `main` again. Same kind as step 6: a fresh subagent, this time from a
     definition the plugin ships.
-11. Compare the two reports. Is `deleteClash` and `deleteVenue` in both? What did the OWASP
+11. Compare the two reports. Are `deleteClash` and `deleteVenue` in both? What did the OWASP
     reviewer report that yours cannot? What did yours give that theirs did not: a PASS or FAIL
     per action, with the deciding line? Write two sentences. Neither is "the better one": one is
     narrow and checkable, the other is broad.
@@ -138,7 +138,7 @@ check ownership itself. Zod checks the shape of the input, not who may send it.
   ```
   A row appears under `main`. This one is a fork: it inherited your conversation and every tool
   `main` has, `Edit` and `Write` included, so the read-only `tools:` line of `security-auditor`
-  does not apply to it. Compare the `/context` numbers and the time taken against step 6's run.
+  does not apply to it. Compare the `/context` numbers against step 6's run.
 - Write a second subagent, `perf-auditor`, that only looks for Prisma queries without a `select`.
 
 ## Check
