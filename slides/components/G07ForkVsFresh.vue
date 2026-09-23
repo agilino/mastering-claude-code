@@ -15,7 +15,7 @@
       <path d="M 260 80 C 220 110, 200 120, 180 138" fill="none" stroke="var(--na-success-500)" stroke-width="3" marker-end="url(#arrowG7a)" />
       <rect x="20" y="150" width="300" height="250" rx="14" fill="var(--na-bg-raised)" stroke="var(--na-success-500)" stroke-width="2" />
       <text x="40" y="184" font-weight="700" fill="var(--na-fg)" style="font-size:18px">Fork</text>
-      <text x="40" y="206" fill="var(--na-fg-muted)" style="font-size:13px">on by default in interactive sessions</text>
+      <text x="40" y="206" fill="var(--na-fg-muted)" style="font-size:13px">/subtask, or Claude picks the fork type</text>
       <rect x="40" y="222" width="260" height="22" rx="11" fill="var(--na-success-500)" opacity="0.85" />
       <text x="170" y="237" text-anchor="middle" font-weight="700" fill="var(--na-zinc-950)" style="font-size:13px">inherits history, tools, model</text>
       <rect x="40" y="254" width="260" height="22" rx="11" fill="var(--na-success-500)" opacity="0.6" />
@@ -23,6 +23,8 @@
       <text x="40" y="360" font-weight="800" fill="var(--na-success-500)" style="font-size:28px">$</text>
       <text x="72" y="350" fill="var(--na-fg-muted)" style="font-size:13px">cache hit: cheap when shared</text>
       <text x="72" y="368" fill="var(--na-fg-muted)" style="font-size:13px">context is really needed</text>
+      <text x="40" y="308" fill="var(--na-fg)" style="font-size:13px">a tools: line does not apply: it gets</text>
+      <text x="40" y="326" fill="var(--na-fg)" style="font-size:13px">every tool main has, Edit included</text>
     </g>
 
     <!-- stage 2: fresh subagent starts clean, cold, more expensive -->
@@ -30,7 +32,7 @@
       <path d="M 440 80 C 480 110, 500 120, 520 138" fill="none" stroke="var(--na-secondary-600)" stroke-width="3" marker-end="url(#arrowG7b)" />
       <rect x="380" y="150" width="300" height="250" rx="14" fill="var(--na-bg-raised)" stroke="var(--na-secondary-600)" stroke-width="2" />
       <text x="400" y="184" font-weight="700" fill="var(--na-fg)" style="font-size:18px">Fresh subagent</text>
-      <text x="400" y="206" fill="var(--na-fg-muted)" style="font-size:13px">explicit, or fork mode disabled</text>
+      <text x="400" y="206" fill="var(--na-fg-muted)" style="font-size:13px">any subagent from a definition file</text>
       <rect x="400" y="222" width="260" height="22" rx="11" fill="var(--na-zinc-800)" stroke="var(--na-zinc-600)" stroke-width="1" />
       <text x="530" y="237" text-anchor="middle" fill="var(--na-fg-muted)" style="font-size:13px">clean context, own system prompt</text>
       <rect x="400" y="254" width="260" height="22" rx="11" fill="var(--na-zinc-800)" stroke="var(--na-zinc-600)" stroke-width="1" />
@@ -38,6 +40,8 @@
       <text x="400" y="360" font-weight="800" fill="var(--na-secondary-600)" style="font-size:28px">$$</text>
       <text x="446" y="350" fill="var(--na-fg-muted)" style="font-size:13px">full-price first call: worth it</text>
       <text x="446" y="368" fill="var(--na-fg-muted)" style="font-size:13px">when isolation matters more</text>
+      <text x="400" y="308" fill="var(--na-fg)" style="font-size:13px">the tools: line applies: a read-only</text>
+      <text x="400" y="326" fill="var(--na-fg)" style="font-size:13px">agent stays read-only</text>
     </g>
 
     <defs>

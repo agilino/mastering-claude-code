@@ -54,8 +54,24 @@ Sagen:
 Sagen:
 - Die tools:-Zeile zählt — nur Read, Grep, Glob.
 - Dieser Agent liest und berichtet; er fixt nicht.
-- Tools einzuschränken ist selbst eine Kontrolle.
+- Tools einzuschränken ist selbst eine Kontrolle — und sie gilt nur für einen frischen Subagent. Ein Fork ignoriert eine tools:-Zeile.
 - Kontrast zu einem vagen "find security bugs": eine falsifizierbare Eigenschaft macht den Bericht überprüfbar, nicht eine Wand aus Prosa.
+
+<!-- @note: agent-subagent-fork-which-is-which -->
+> Tun:
+> - Die drei Wörter einmal langsam sagen — der Rest des Teils hängt daran
+> - Demo in Task-Schritt 6: den security-auditor laufen lassen, dann auf das Panel unter dem Prompt zeigen — eine Zeile erscheint, eingerückt unter main
+> - Noch einmal mit /subtask in Task-Schritt 9: eine zweite Zeile, diesmal ein Fork
+> - Klar sagen, dass die farbigen Beschriftungen auf der Folie von uns sind (schematisch) — das echte Panel zeigt die Zeilen, nicht unsere Labels
+
+Sagen:
+- Ein Agent ist eine laufende Schleife. Deine eigene Session ist auch einer: die oberste Zeile, main.
+- Ein Subagent ist eine Schleife, die main mit dem Agent-Tool startet. Er bekommt ein eigenes Context-Fenster.
+- Ein Fork ist ein Subagent, der als Kopie deines Gesprächs startet und deshalb schon alles weiß, was du gesagt hast.
+- [click] Ein Subagent aus einer Definitionsdatei: frischer Context, und nur die Tools, die seine tools:-Zeile erlaubt. Unser security-auditor, Explore und jeder Agent, den ein Plugin mitbringt, funktionieren so.
+- [click] Ein Fork: derselbe System-Prompt, dieselben Tools, dieselbe Historie. Eine tools:-Zeile gilt für ihn nicht.
+- [click] Ein Skill bekommt normalerweise keine Zeile. Er ist Anleitung, die in das Gespräch geladen wird, das ihn ausführt. Die Ausnahme ist ein Skill, der context: fork setzt: der läuft als Subagent, mit eigener Zeile. Der discover-Skill aus Task 09 setzt dieses Feld nicht, bleibt also in main und kann mit dir reden.
+- Die eingerückten Zeilen unter dem Prompt sind die Subagents und Forks, die main gestartet hat, sonst nichts. /tasks listet dieselben Zeilen.
 
 <!-- @note: two-ways-to-isolate -->
 > Tun:
@@ -65,8 +81,9 @@ Sagen:
 - [click] Links: das eigene Fenster des Subagents füllt sich mit lauten Tool-Calls — nur eine dünne Zusammenfassung kommt zurück, deshalb bewegt sich der Hauptthread kaum.
 - [click:3] Rechts: Fork vs. Fresh.
 - Ein Fork zweigt vom Parent ab, erbt das ganze Gespräch und den Prompt-Cache des Parents — günstig, wenn der geteilte Context wirklich gebraucht wird.
-- [click] Ein frischer Subagent startet kalt: keine Historie, gefilterte Tools, kein Cache — der erste Call kostet mehr.
-- Fork ist in interaktiven Sessions standardmäßig an, unter -p und im Agent SDK aus.
+- [click] Ein frischer Subagent startet kalt: keine Historie, nur die Tools, die seine Definition erlaubt, kein geteilter Cache — der erste Call kostet mehr.
+- Der Fork-Modus ist in interaktiven Sessions standardmäßig an, unter -p und im Agent SDK aus. An heißt: Claude darf einen Fork wählen, wenn es keinen Agent nennt. Ein benannter Agent aus einer Definitionsdatei, wie security-auditor, bleibt ein frischer Subagent.
+- Einen Fork startest du selbst mit /subtask und der Aufgabe dahinter.
 - Keins von beiden ist besser — wissen, welches du aufgerufen hast und warum.
 - `/tasks` listet die Hintergrundarbeit dieser Session: laufende Subagents und Forks. Ein fertiger bleibt nur kurz in der Liste, als erledigt markiert — also reinschauen, solange er läuft oder direkt nachdem er zurückkommt.
 
@@ -82,6 +99,18 @@ Sagen:
 - [click] claude ist der Fallback des Fallbacks — jedes Tool, keine Einschränkung
 - [click] statusline-setup feuert nur bei /statusline
 - [click] claude-code-guide beantwortet Fragen wie "kann Claude Code X" — genau wie diese hier
+
+<!-- @note: or-install-one-that-exists -->
+> Tun:
+> - Docs-Link: das README des OWASP-Repos öffnen, den Install-Abschnitt, dann zurück zu den Folien
+> - Task-Schritte 11 bis 17: Marketplace hinzufügen, installieren, /clear, den Reviewer laufen lassen, mit dem eigenen Auditor vergleichen
+
+Sagen:
+- Was es ist: ein Plugin, ein installierbares Bündel. Dieses bringt 5 Subagents und 11 Skills mit. Noch einmal die Marketplace-Folie aus Task 07: den Katalog hinzufügen, dann ein Plugin per Namen installieren.
+- [click] Der zweite Befehl installiert es. code-security-skills ist das Plugin, agent-security-playbook der Marketplace: plugin@marketplace.
+- Nur sca-audit und dependency-auditor drehen sich um CVEs. Die Reviewer lesen Code.
+- Vergleichen, keinen Sieger küren: unserer ist eng und falsifizierbar, PASS oder FAIL mit Zeile. Ihrer ist breit. Verschiedene Aufgaben.
+- Ein Plugin kann Hooks und MCP-Server mitbringen und läuft auf deiner Maschine. Lies, was du installierst. Dieses ist von OWASP, aber die Gewohnheit ist der Punkt.
 
 <!-- @note: one-subagent-or-read-it-yourself -->
 > Tun:
@@ -112,6 +141,8 @@ Sagen:
 > - Den /context-Stand vor dem Start notieren.
 > - Einen Subagent mit dem engen Briefing starten; ihn jede Datei in app/actions/ lesen lassen.
 > - /context noch einmal lesen
+> - Schritte 9 und 10: dasselbe Audit als Fork mit /subtask
+> - Schritte 11 bis 17: das OWASP-Plugin, /clear, dann seinen Bericht mit dem des eigenen Auditors vergleichen
 > - Der Teil endet mit einem Cliffhanger: zwei Findings, noch nicht behoben.
 
 Sagen:
