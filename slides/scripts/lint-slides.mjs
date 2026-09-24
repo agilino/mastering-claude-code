@@ -78,7 +78,8 @@ const forbidden = [
   [/\bDay\s?[123]\b/, 'day number'],
   [/\b(React Day|GitNation|Zoom)\b/, 'event reference'],
   // the product name clash-conference (task 19's second app) is the one allowed use of the word
-  [/(?<!clash-)\bconference\b/i, 'event reference'],
+  // (a whole token: nothing word-like or a hyphen right before "clash-", so foo-clash-conference is still caught)
+  [/\bconference\b(?<!(?:^|[^\w-])clash-conference)/i, 'event reference'],
   [/\b20[2-3]\d-\d\d(-\d\d)?\b/, 'date'],
   [/\btime-?box\b/i, 'time-box'],
   [/\b(this morning|this afternoon|after the break|tomorrow morning)\b/i, 'time of day'],
