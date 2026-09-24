@@ -31,7 +31,7 @@ Sagen:
 
 <!-- @note: lead-peers-and-a-disagreement -->
 > Tun:
-> - Das Urteil unten stützt sich auf den Claude-Blogpost mit fünf Patterns; die nächste Folie öffnet ihn
+> - Das Urteil unten stützt sich auf den Claude-Blogpost mit fünf Patterns; die Generator-verifier-Folie öffnet ihn
 
 Sagen:
 - [click] Ein Lead, vier Peers — jede Verbindung ist ein SendMessage-Weg, adressiert per Name
@@ -39,6 +39,16 @@ Sagen:
 - [click] Lead antwortet beiden Peers per Name, je eine Message
 - Dieser Schritt ist das ganze Argument für ein Team gegenüber einem einzelnen Subagent
 - Urteil: teils Agent teams aus dem Blog — Worker dort teilen Findings nur schwer; unsere schreiben sich, Lead vermittelt
+
+<!-- @note: lead-peers-and-a-disagreement-2 -->
+> Tun:
+> - Live: Zeile 3, während das Team aus Task 12 läuft
+> - Achten auf: ohne `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` gibt es normale Subagents, kein Team
+
+Sagen:
+- Zeile 1: die Namen selbst wählen, damit spätere Prompts sie nutzen können
+- Zeile 2: absichtlich eine Debatte — das Urteil, das sie übersteht, stimmt eher
+- Zeile 3: der Lead fängt manchmal selbst an; so wartet er und entscheidet dann
 
 <!-- @note: generator-verifier-make-then-check -->
 > Tun:
@@ -54,6 +64,17 @@ Sagen:
 - Vage Kriterien heißen: der Verifier winkt alles durch — die Prüfungen aufschreiben
 - Claude Code hat das eingebaut: /goal — ein kleines Modell prüft jeden Turn, schickt einen Grund zurück
 
+<!-- @note: generator-verifier-make-then-check-2 -->
+> Tun:
+> - Live: Zeile 1 in deinem CLASH-Clone
+> - Achten auf: der Prüfer liest nur das Gespräch — etwas verlangen, das Claudes Ausgabe zeigt, etwa einen Exit-Code
+
+Sagen:
+- Zeile 1: das Turn-Limit in der Bedingung begrenzt die Schleife
+- Zeile 2: ein Workflow, in dem andere Agents jedes Finding zu widerlegen versuchen — auf Pro zuerst Dynamic workflows in /config einschalten
+- Zeile 3: ein Claude-Code-Hook in `.claude/settings.json`, nicht CLASHs `hooks/`-Ordner — ein Agent prüft, bevor Claude aufhören darf
+- Klare Kriterien machen den Verifier nützlich: ein Exit-Code schlägt "sieht gut aus"
+
 <!-- @note: orchestrator-subagent-lead-helpers -->
 > Tun:
 > - Docs-Link: der Blogpost, bis "Pattern 2: Orchestrator-subagent" scrollen, auf das Diagramm zeigen, dann zurück
@@ -64,6 +85,17 @@ Sagen:
 - [click] Er fasst ihre Berichte zu einer Antwort zusammen
 - Laut Blog arbeitet Claude Code genau so: die Main-Session schickt Subagents los
 - Haken: jedes Finding läuft über den Lead, und unterwegs gehen oft Details verloren
+
+<!-- @note: orchestrator-subagent-lead-helpers-2 -->
+> Tun:
+> - Live: Zeile 1 — der Prompt aus Task 08, wortwörtlich; braucht `.claude/agents/security-auditor.md` in deinem CLASH-Clone
+> - Achten auf: ist `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` aus Task 12 noch an, starten benannte Helfer als Teammates — zuerst auf `0` setzen
+
+Sagen:
+- Zeile 1: einen Subagent beim Namen nennen, dann gibt Claude ihm meist die Arbeit
+- Zeile 2: mehrere Helfer gleichzeitig; jeder berichtet an die Main-Session zurück
+- Zeile 3: ein Workflow-Skript ist der Orchestrator statt Claude — auf Pro zuerst Dynamic workflows in /config einschalten
+- In diesem Muster berichten Helfer an den Lead, nicht einander
 
 <!-- @note: the-blog-s-agent-teams-a-task-queue -->
 > Tun:
@@ -78,6 +110,17 @@ Sagen:
 - Haken: Worker teilen Findings kaum, und zwei bearbeiten womöglich dieselbe Datei
 - Agent-Teams in Claude Code haben diese Queue als geteilte Task-Liste, dazu direkte Messages
 
+<!-- @note: the-blog-s-agent-teams-a-task-queue-2 -->
+> Tun:
+> - Auf Zeile 3 zeigen: ein Claude-Code-Hook in `.claude/settings.json`, nicht CLASHs `hooks/`-Ordner
+> - Achten auf: mit dem Standardmodell gibt es keine Task-Liste — Claude mit `CLAUDE_CODE_ENABLE_TODO_TOOLS=1` und `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` starten
+
+Sagen:
+- Zeile 1: wer fertig ist, holt sich selbst den nächsten offenen Task
+- Zeile 2: ein Task, der von anderen abhängt, ist erst frei, wenn diese erledigt sind
+- Zeile 3: Exit-Code 2 verhindert, dass ein Task als erledigt gilt
+- Ein Task pro Datei: zwei Teammates in einer Datei überschreiben sich
+
 <!-- @note: message-bus-publish-and-subscribe -->
 > Tun:
 > - Docs-Link: der Blogpost, bis "Pattern 4: Message bus" scrollen
@@ -90,6 +133,17 @@ Sagen:
 - Haken: schwer nachzuverfolgen, und ein falsch geroutetes Event scheitert lautlos
 - SendMessage geht per Name an einen Agent — keine Topics, kein Router
 
+<!-- @note: message-bus-publish-and-subscribe-2 -->
+> Tun:
+> - Keine Live-Demo: das sind Umwege, kein Feature
+> - Achten auf: Zeilen 2–3 brauchen eigene Sessions, gestartet mit `claude --name web` und `claude --name migration` — keine Teammates
+
+Sagen:
+- Zeile 1: kein Broadcast — um zwei Teammates zu erreichen, zwei Messages schicken
+- Zeile 2: Cross-Session-Messaging: Claude schreibt einer anderen deiner Sessions per Name
+- Zeile 3: eine Nachricht, wenn diese Session idle wird — kein dauerhaftes Abo
+- Keine Topics, kein Router: darum sagt die Fußnote "closest ways"
+
 <!-- @note: shared-state-one-store-no-coordinator -->
 > Tun:
 > - Docs-Link: der Blogpost, bis "Pattern 5: Shared state" scrollen
@@ -101,6 +155,16 @@ Sagen:
 - [click] Ein Finding, das ein Agent schreibt, ist sofort für alle anderen da
 - Haken: Agents machen Arbeit doppelt oder antworten einander ohne Ende
 - Also eine Stopp-Regel setzen: ein paar Runden ohne neue Findings, oder ein Judge-Agent
+
+<!-- @note: shared-state-one-store-no-coordinator-2 -->
+> Tun:
+> - Optional live: zwei Sessions in deinem CLASH-Clone starten, in jeder Zeile 1 schicken
+> - Achten auf: zwei Schreiber in einer Datei können sich überschreiben — nur anhängen lassen
+
+Sagen:
+- Zeile 1: kein Lead — zwei Sessions, die du selbst startest, teilen eine Datei
+- Zeile 2: die Stopp-Regel — der /goal-Prüfer liest nur das Gespräch, also muss Claude die Datei zeigen
+- Ein Agent-Team behält immer seinen Lead, darum ist es kein reiner Shared State
 
 <!-- @note: strategy-three-dynamic-workflows -->
 > Tun:

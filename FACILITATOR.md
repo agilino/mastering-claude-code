@@ -278,6 +278,8 @@ Parts III and IV run on the finished reference CLASH, as guided tasks.
 - The five pattern slides follow it, "Generator-verifier" to "Shared state". Message bus and
   shared state have no built-in Claude Code feature. Say so. "Which pattern did we just run?"
   waits until after "Read the generated script": both runs are done, refuters are explained.
+- Each of these six flow slides has a ways slide after it, with the same heading: the small
+  graphic, then a table of ways and prompts that make the flow happen in Claude Code.
 - Reconcile three results, fill the toolkit map from evidence, then restore the two
   `creatorId` checks. `workshop-artifacts/12-team-and-workflow-audit/AUTH-FIX.md` has the diff.
 - Keep a finished run in a second terminal in case the live one is slow.

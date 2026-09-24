@@ -57,6 +57,20 @@ lines:
 <G08TeamTopology />
 
 ---
+layout: flow-ways
+heading: "Lead, peers, and a disagreement"
+ways:
+  - way: "Named peers"
+    prompt: "Create an agent team to audit app/actions/. Name teammates by domain: clashes, venues, participations, profile."
+  - way: "A debate on purpose"
+    prompt: "Spawn 3 teammates to audit deleteVenue. Have them challenge each other."
+  - way: "A lead that waits"
+    prompt: "Wait for your teammates to finish. Then settle any disagreement."
+---
+
+<G08TeamTopology still />
+
+---
 layout: concept
 heading: "Generator-verifier: make, then check"
 routeAlias: theory-coordination-patterns
@@ -68,6 +82,20 @@ lines:
 ---
 
 <G28CoordinationPatterns pattern="generator-verifier" />
+
+---
+layout: flow-ways
+heading: "Generator-verifier: make, then check"
+ways:
+  - way: "/goal checks each turn"
+    prompt: "/goal npx tsc --noEmit and npm run lint both exit 0, or stop after 10 turns"
+  - way: "A workflow refutes findings"
+    prompt: "Use a workflow to audit app/actions/ and try to refute each finding."
+  - way: "An agent Stop hook"
+    prompt: "Add a Stop hook of type agent to .claude/settings.json that checks npm run lint passes before Claude stops."
+---
+
+<G28CoordinationPatterns pattern="generator-verifier" still />
 
 ---
 layout: concept
@@ -82,6 +110,20 @@ lines:
 <G28CoordinationPatterns pattern="orchestrator-subagent" />
 
 ---
+layout: flow-ways
+heading: "Orchestrator-subagent: lead, helpers"
+ways:
+  - way: "One named subagent"
+    prompt: "Use the security-auditor subagent on app/actions/ and show me its report."
+  - way: "Helpers in parallel"
+    prompt: "Audit app/actions/ in parallel using separate subagents, one per file."
+  - way: "A workflow as the lead"
+    prompt: "Use a workflow to review each file in app/actions/ in its own agent, then merge the findings."
+---
+
+<G28CoordinationPatterns pattern="orchestrator-subagent" still />
+
+---
 layout: concept
 heading: "The blog's agent teams: a task queue"
 docs: https://claude.com/blog/multi-agent-coordination-patterns
@@ -92,6 +134,20 @@ lines:
 ---
 
 <G28CoordinationPatterns pattern="agent-teams" />
+
+---
+layout: flow-ways
+heading: "The blog's agent teams: a task queue"
+ways:
+  - way: "A shared task list"
+    prompt: "Create an agent team with 3 teammates to audit app/actions/. One task per file."
+  - way: "A task that waits"
+    prompt: "Add a report task that depends on all audit tasks."
+  - way: "A hook gates each task"
+    prompt: "Add a TaskCompleted hook to .claude/settings.json that exits 2 unless npm run lint passes."
+---
+
+<G28CoordinationPatterns pattern="agent-teams" still />
 
 ---
 layout: concept
@@ -106,6 +162,21 @@ lines:
 <G28CoordinationPatterns pattern="message-bus" />
 
 ---
+layout: flow-ways
+heading: "Message bus: publish and subscribe"
+ways:
+  - way: "One message per name"
+    prompt: "Spawn teammates schema, actions, ui. Have schema message the other two."
+  - way: "Messages to your sessions"
+    prompt: "Let @web know that prisma/schema.prisma changed."
+  - way: "A one-time notice"
+    prompt: "Tell me when the migration session finishes what it's working on."
+footnote: "Not built into Claude Code. These are the closest ways."
+---
+
+<G28CoordinationPatterns pattern="message-bus" still />
+
+---
 layout: concept
 heading: "Shared state: one store, no coordinator"
 docs: https://claude.com/blog/multi-agent-coordination-patterns
@@ -116,6 +187,19 @@ lines:
 ---
 
 <G28CoordinationPatterns pattern="shared-state" />
+
+---
+layout: flow-ways
+heading: "Shared state: one store, no coordinator"
+ways:
+  - way: "Your own sessions, no lead"
+    prompt: "Audit app/actions/. Read docs/audits/findings.md first, append your findings, and skip anything already listed."
+  - way: "/goal as the stop rule"
+    prompt: "/goal Claude has shown docs/audits/findings.md with a verdict per action, or stop after 15 turns"
+footnote: "Not built into Claude Code. These are the closest ways."
+---
+
+<G28CoordinationPatterns pattern="shared-state" still />
 
 ---
 layout: section
