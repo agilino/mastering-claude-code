@@ -60,6 +60,7 @@ lines:
 layout: concept
 heading: "Generator-verifier: make, then check"
 routeAlias: theory-coordination-patterns
+docs: https://claude.com/blog/multi-agent-coordination-patterns
 lines:
   - "One agent makes an output. A second checks it against clear criteria."
   - "Use it when a wrong output costs more than one more try."
@@ -71,6 +72,7 @@ lines:
 ---
 layout: concept
 heading: "Orchestrator-subagent: lead, helpers"
+docs: https://claude.com/blog/multi-agent-coordination-patterns
 lines:
   - "A lead plans, hands out subtasks, and merges what the helpers report back."
   - "Use it when the job splits cleanly and the parts barely depend on each other."
@@ -82,6 +84,7 @@ lines:
 ---
 layout: concept
 heading: "The blog's agent teams: a task queue"
+docs: https://claude.com/blog/multi-agent-coordination-patterns
 lines:
   - "A coordinator fills a task queue. Long-lived workers claim tasks on their own."
   - "Use it when the parts are independent and each needs many steps of work."
@@ -93,6 +96,7 @@ lines:
 ---
 layout: concept
 heading: "Message bus: publish and subscribe"
+docs: https://claude.com/blog/multi-agent-coordination-patterns
 lines:
   - "Agents publish events to a bus. Each one subscribes to the topics it needs."
   - "Use it when events drive the work and new agents keep joining."
@@ -104,6 +108,7 @@ lines:
 ---
 layout: concept
 heading: "Shared state: one store, no coordinator"
+docs: https://claude.com/blog/multi-agent-coordination-patterns
 lines:
   - "Agents read and write one shared store: a database, files, a document."
   - "Use it when agents should build on each other's findings right away."
@@ -122,6 +127,19 @@ docs: https://code.claude.com/docs/en/workflows
 <template #map>
   <ToolkitMap current="workflow" />
 </template>
+
+---
+layout: concept
+heading: "Four ways to start a workflow"
+routeAlias: theory-start-a-workflow
+docs: https://code.claude.com/docs/en/workflows#have-claude-write-a-workflow
+lines:
+  - "Own words (“use a workflow to …”) or the word ultracode. This task only."
+  - "/effort ultracode: very high effort, a workflow per big task, all session."
+  - "On Pro: workflow size small, try one folder first, stop a run in /workflows."
+---
+
+<G29WorkflowStart />
 
 ---
 layout: code-live

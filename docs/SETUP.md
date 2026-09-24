@@ -128,6 +128,9 @@ Inside Claude Code:
 
 Find the **Dynamic workflows** row and turn it **on**. Task 12 depends on it.
 
+Also in `/config`, on Pro: set **Dynamic workflow size** to **small**. From v2.1.271 that is
+the default. Keep `/effort` at your usual level, not `ultracode`.
+
 ### 5b. Turn agent teams on
 
 Agent teams are experimental. Add this to `~/.claude/settings.json`:

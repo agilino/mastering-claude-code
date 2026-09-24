@@ -267,6 +267,10 @@ Parts III and IV run on the finished reference CLASH, as guided tasks.
   background. Read the generated script on screen. It lands under
   `~/.claude/projects/<session>/`; `s` in `/workflows` saves it to `.claude/workflows/`.
   `Date.now()`, `Math.random()` and no-arg `new Date()` throw inside it.
+- Four ways to start one, as on the slide: ask in your own words ("use a workflow to …"), put
+  the keyword `ultracode` in one prompt, set `/effort ultracode` for the whole session, or run
+  a bundled or saved workflow (`/deep-research`, `/<name>`). Participants on Pro use the first. `/effort ultracode` plans a workflow for every substantive task, so every
+  request uses more tokens.
 - Verifier/refuter and quarantine. Say the token cost out loud.
 - "Lead, peers, and a disagreement": a partial fit with the blog's agent teams pattern. Lead and
   long-lived peers match; peers messaging by name and the lead settling a dispute go past it.
@@ -385,7 +389,7 @@ Parts III and IV run on the finished reference CLASH, as guided tasks.
 | Agent teams demo does nothing | Confirm the env flag on your machine before you start. It fails silently. |
 | Typecheck hook does not fire | It is the scripted mistake. Make sure they saw the silence before the fix. |
 | Slow workflow run | Second terminal with a finished run. The script read-through is the filler. |
-| Token limits on Pro during Part IV | Warn early. Watch the trainer screen for that segment. Rejoin at the next branch. |
+| Token limits on Pro during Part IV | Warn early. Watch the trainer screen for that segment. Rejoin at the next branch. No `/effort ultracode`; set Dynamic workflow size to small. If usage is tight, run the workflow on one folder first. A run that hits the usage limit can pause and continue after the reset (v2.1.271 or later); if it cannot, those agents fail. |
 | Someone hand-edits `prisma/migrations` | The deny hook from Task 13 catches it from `14-start` on. |
 | `/tdd` fires on its own mid-conversation | Shouldn't happen — `disable-model-invocation: true` blocks it. If it does, the skill file is wrong; fix it live as a teaching moment. |
 | Routines need a claude.ai subscription and GitHub access | Trainer demo only, mode `watch first`. Confirm your own `/schedule list` works before you start. Participants without a subscription watch; nothing later depends on their own routine. |

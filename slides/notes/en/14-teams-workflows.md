@@ -42,7 +42,7 @@ Say:
 
 <!-- @note: generator-verifier-make-then-check -->
 > Do:
-> - Open the blog post: https://claude.com/blog/multi-agent-coordination-patterns
+> - Docs link opens the blog post https://claude.com/blog/multi-agent-coordination-patterns — scroll to "Pattern 1: Generator-verifier"
 > - Point at its Generator-Verifier diagram, then back — ours redraws the same boxes and arrows
 > - Five patterns follow, in the blog's order
 > - Docs: https://code.claude.com/docs/en/goal — point at "How evaluation works"
@@ -55,6 +55,9 @@ Say:
 - Claude Code has one built in: /goal — a small model checks each turn, sends a reason back
 
 <!-- @note: orchestrator-subagent-lead-helpers -->
+> Do:
+> - Docs link: the blog post, scroll to "Pattern 2: Orchestrator-subagent", its diagram, then back
+
 Say:
 - [click] One orchestrator on the left, three subagents on the right
 - [click] It hands out subtasks; results come back along the same line
@@ -64,6 +67,7 @@ Say:
 
 <!-- @note: the-blog-s-agent-teams-a-task-queue -->
 > Do:
+> - Docs link: the blog post, scroll to "Pattern 3: Agent teams"
 > - Contrast: the agent-teams docs say teammates "message each other directly" — the blog's workers don't
 > - Always say "the blog's pattern" or "Claude Code agent teams" — same name, different things
 
@@ -76,6 +80,7 @@ Say:
 
 <!-- @note: message-bus-publish-and-subscribe -->
 > Do:
+> - Docs link: the blog post, scroll to "Pattern 4: Message bus"
 > - Stress: not a Claude Code feature, even though teammates send messages
 
 Say:
@@ -87,6 +92,7 @@ Say:
 
 <!-- @note: shared-state-one-store-no-coordinator -->
 > Do:
+> - Docs link: the blog post, scroll to "Pattern 5: Shared state"
 > - Stress: no built-in feature; a shared file works, but a team keeps its lead
 
 Say:
@@ -104,6 +110,18 @@ Say:
 - Same problem, same branch, third strategy
 - Describe the job — Claude writes the JavaScript orchestration script
 - Runtime runs it in the background while the session stays free
+
+<!-- @note: four-ways-to-start-a-workflow -->
+> Do:
+> - Docs link: it lands on "Have Claude write a workflow"; scroll to "Set a size guideline", then back to the slides
+> - Point at the red `/effort ultracode` row: Pro users skip it
+
+Say:
+- Own words start one: "use a workflow to …" — this task only, effort unchanged
+- Task 12's prompt already does that — no ultracode needed
+- `/effort ultracode`: very high effort, a workflow for every big task, all session
+- On Pro: Dynamic workflow size small, fewer than 5 agents — advice, not a cap
+- Save usage: one folder first, tokens per agent in `/workflows`, `x` stops the run
 
 <!-- @note: describe-the-fan-out -->
 > Do:

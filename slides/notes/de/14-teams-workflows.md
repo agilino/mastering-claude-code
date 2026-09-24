@@ -42,7 +42,7 @@ Sagen:
 
 <!-- @note: generator-verifier-make-then-check -->
 > Tun:
-> - Den Blogpost öffnen: https://claude.com/blog/multi-agent-coordination-patterns
+> - Der Docs-Link öffnet den Blogpost https://claude.com/blog/multi-agent-coordination-patterns — bis "Pattern 1: Generator-verifier" scrollen
 > - Auf sein Diagramm zu Generator-verifier zeigen, dann zurück — unseres zeichnet dieselben Kästen und Pfeile nach
 > - Fünf Patterns folgen, in der Reihenfolge des Blogs
 > - Docs: https://code.claude.com/docs/en/goal — auf "How evaluation works" zeigen
@@ -55,6 +55,9 @@ Sagen:
 - Claude Code hat das eingebaut: /goal — ein kleines Modell prüft jeden Turn, schickt einen Grund zurück
 
 <!-- @note: orchestrator-subagent-lead-helpers -->
+> Tun:
+> - Docs-Link: der Blogpost, bis "Pattern 2: Orchestrator-subagent" scrollen, auf das Diagramm zeigen, dann zurück
+
 Sagen:
 - [click] Ein Orchestrator links, drei Subagents rechts
 - [click] Er verteilt Teilaufgaben; die Ergebnisse kommen auf derselben Linie zurück
@@ -64,6 +67,7 @@ Sagen:
 
 <!-- @note: the-blog-s-agent-teams-a-task-queue -->
 > Tun:
+> - Docs-Link: der Blogpost, bis "Pattern 3: Agent teams" scrollen
 > - Kontrast: die Agent-Teams-Docs sagen, Teammates "message each other directly" — die Worker aus dem Blog tun das nicht
 > - Immer "Agent teams aus dem Blog" oder "Agent-Teams in Claude Code" sagen — gleicher Name, verschiedene Dinge
 
@@ -76,6 +80,7 @@ Sagen:
 
 <!-- @note: message-bus-publish-and-subscribe -->
 > Tun:
+> - Docs-Link: der Blogpost, bis "Pattern 4: Message bus" scrollen
 > - Betonen: kein Claude-Code-Feature, obwohl Teammates sich Messages schicken
 
 Sagen:
@@ -87,6 +92,7 @@ Sagen:
 
 <!-- @note: shared-state-one-store-no-coordinator -->
 > Tun:
+> - Docs-Link: der Blogpost, bis "Pattern 5: Shared state" scrollen
 > - Betonen: kein eingebautes Feature; eine geteilte Datei geht, aber ein Team behält seinen Lead
 
 Sagen:
@@ -104,6 +110,18 @@ Sagen:
 - Gleiches Problem, gleicher Branch, dritte Strategie
 - Den Job beschreiben — Claude schreibt das JavaScript-Orchestrierungs-Skript
 - Die Runtime führt es im Hintergrund aus, während die Session frei bleibt
+
+<!-- @note: four-ways-to-start-a-workflow -->
+> Tun:
+> - Docs-Link: landet bei "Have Claude write a workflow"; bis "Set a size guideline" scrollen, dann zurück zu den Folien
+> - Auf die rote Reihe `/effort ultracode` zeigen: Pro-Nutzer lassen sie aus
+
+Sagen:
+- Eigene Worte starten einen: "use a workflow to …" — nur diese Aufgabe, Effort bleibt gleich
+- Der Prompt aus Task 12 macht genau das — kein ultracode nötig
+- `/effort ultracode`: sehr hoher Effort, ein Workflow für jede größere Aufgabe, die ganze Session
+- Auf Pro: Dynamic workflow size auf small, weniger als 5 Agents — ein Rat, keine Grenze
+- Nutzung sparen: erst ein Ordner, Tokens pro Agent in `/workflows`, `x` stoppt den Run
 
 <!-- @note: describe-the-fan-out -->
 > Tun:

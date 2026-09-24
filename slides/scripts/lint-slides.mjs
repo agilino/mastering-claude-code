@@ -31,6 +31,7 @@ const THIRD_PARTY_DOCS = new Set([
   'https://www.skills.sh/vercel-labs/agent-browser/agent-browser', // the agent-browser skill itself — npx skills add's source
   'https://github.com/OWASP/secure-agent-playbook', // the code-security-skills plugin task 08 installs — its marketplace repo
   'https://modelcontextprotocol.io/docs/develop/build-server', // the MCP TypeScript server tutorial task 19 builds from
+  'https://claude.com/blog/multi-agent-coordination-patterns', // not a tool page: the Claude blog post whose five diagrams the five coordination-pattern slides in section 14 redraw
   'https://github.com/bmad-code-org/bmad-method', // the BMAD method itself — the repo the capstone's BMAD slide describes and the note's npx skills add installs from
 ])
 

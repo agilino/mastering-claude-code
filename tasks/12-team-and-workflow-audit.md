@@ -49,7 +49,8 @@ for is to run all three on the same problem and compare.
 
 **Dynamic workflow**
 
-6. Check that `/config` shows **Dynamic workflows** on. Describe the job. Do not write the script yourself.
+6. Check that `/config` shows **Dynamic workflows** on and, on Pro, **Dynamic workflow size** on
+   small. Describe the job. Do not write the script yourself.
    ```
    Write a dynamic workflow that audits every file in app/actions/ for missing
    ownership checks on mutations of existing rows. Phase 1: discover every file
@@ -62,7 +63,11 @@ for is to run all three on the same problem and compare.
    should not also hold write or delete tool access. Report the final,
    verified findings only.
    ```
-7. The run happens in the background. Your session stays free. Use the time to read the script.
+   Asking in your own words is enough: no `ultracode` keyword, no `/effort ultracode`.
+   Small is advice to Claude, not a cap. This prompt asks for one agent per file, so the run
+   can still use more than five agents.
+7. The run happens in the background. Your session stays free. `/workflows` shows the tokens
+   per agent; `x` on the run stops it. Use the time to read the script.
    It lives under `~/.claude/projects/<session-dir>/` first. It is **not** in `.claude/workflows/` yet.
 8. Read the script top to bottom. Find: `export const meta = { name, description }` as the first
    statement, a plain object. The `phases` list in `meta`. For each entry, one `phase()` call with
