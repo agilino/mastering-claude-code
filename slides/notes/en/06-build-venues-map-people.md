@@ -91,14 +91,13 @@ Say:
 - Reset branches: 04-start = auth, shell, clashes; 05-start adds venues, map, participation, notifications
 - Hand Claude the error, don't fix it by hand
 
-<!-- @note: quality-gates-said-once -->
+<!-- @note: verify-cheap-first-full-gate-last -->
 > Do:
-> - Now that they have felt the payoff: ask what broke, or what they had to re-check by hand
-> - Add the "Quality gates" section to CLAUDE.md live, run the three commands
-> - Watch for: a CLAUDE.md edit made mid-session is not reloaded until /clear, /compact or a restart
+> - Ask what failed during the task and which check would have caught it earliest.
+> - Show the three layers. Keep the exact full gates from the existing task: npx tsc --noEmit, npm run lint, npm run build.
 
 Say:
-- You just shipped four features with nothing checking your work until now — that gap is what this closes
-- From now on Claude runs them at the end of every task — here because you just said it, in every new session because CLAUDE.md loads at the start
-- This is a rule in a file — Claude follows it most of the time
-- Part IV shows how to make it a rule Claude cannot skip
+- Verification has a cost too. The fastest useful feedback belongs closest to the edit.
+- A one-file change should not wait for the most expensive whole-app gate before learning it is wrong.
+- Run the full delivery gates before you call the work done. Part IV turns some of these checks into enforcement.
+- If the same gate is always needed, wrap it in one repository script so humans, Claude and CI run the same thing.
