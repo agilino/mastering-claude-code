@@ -44,6 +44,7 @@ Say:
 
 <!-- @note: bmad-five-agents-one-party-mode -->
 > Do:
+> - Docs link: the BMAD repo README on GitHub — point at the five agents and the install line, then back to the slides
 > - FULL WORKING SOLUTION (trainer only, install if demoing):
 >   npx skills add bmad-code-org/BMAD-METHOD
 
@@ -54,6 +55,7 @@ Say:
 - [click] Developer — implementation
 - [click] UX — the interface and the experience
 - [click] Party Mode: every installed agent in one conversation, in character
+- [click] bmad-build: the skill that turns one story into code — it clarifies the intent, plans, writes a spec, implements, then reviews; the link opens "Build a Change" at "Run bmad-build"
 
 <!-- @note: spec-kit-vs-bmad -->
 > Do:
@@ -68,19 +70,5 @@ Say:
 - Repo: bmad-code-org/BMAD-METHOD
 - Rule of thumb: Spec Kit when you want spec discipline without process overhead; BMAD when the organisation already has those roles
 - BMAD will not conjure a process you do not have
-- [click] Honest note: both are greenfield methods, CLASH is brownfield — that's why they come last, and why everything before was about control rather than ceremony
+- [click] Honest note: both shine on greenfield, but work on existing code too. CLASH is both — greenfield in Part II, brownfield ever since — and clash-conference was a greenfield BMAD build
 
-<!-- @note: what-we-did-not-cover -->
-> Do:
-> - Keep it short
-> - Naming these respects the group and pre-empts "why didn't you show X"
-
-<!-- @note: context-is-king-you-push-it-you-own-it -->
-> Do:
-> - The close — two lines, no diagram
-
-Say:
-- One throughline: context treated carelessly → window fills with noise, agent drifts
-- Context treated as a resource you engineer → biggest lever you have
-- Skills, subagents, hooks, MCP, workflows: every row of the map was a different way of managing that one constraint
-- You push the agent's context. You own what happens because of it.

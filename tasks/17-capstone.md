@@ -71,3 +71,5 @@ Pick a second brief. This time write your own skill for the part you repeated.
 - Common workflows — https://code.claude.com/docs/en/common-workflows
 - Best practices — https://code.claude.com/docs/en/best-practices
 - Security — https://code.claude.com/docs/en/security
+- BMAD Method — https://github.com/bmad-code-org/bmad-method
+- BMAD: Build a Change — https://docs.bmad-method.org/build/build-a-change/#run-bmad-build

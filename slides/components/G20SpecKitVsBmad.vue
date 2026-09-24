@@ -47,7 +47,7 @@
     <g v-click>
       <rect x="130" y="10" width="740" height="44" rx="10" fill="var(--na-accent-500)" />
       <text x="500" y="38" text-anchor="middle" fill="var(--na-zinc-950)" font-weight="700" style="font-size:15px">
-        Both are greenfield methods. CLASH is brownfield.
+        Both shine on greenfield, but not only there. CLASH is both.
       </text>
     </g>
   </svg>

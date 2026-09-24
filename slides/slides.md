@@ -91,3 +91,15 @@ src: ./sections/17-letting-go.md
 ---
 src: ./sections/18-capstone-close.md
 ---
+
+---
+src: ./sections/19-automate.md
+---
+
+---
+src: ./sections/20-build-mcp.md
+---
+
+---
+src: ./sections/21-close.md
+---

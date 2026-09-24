@@ -21,10 +21,13 @@ One file per task. Each task says what you will end up with, what to do, and how
 | 15 | [Letting go](15-letting-go.md) | IV — Orchestrate and let go | `15-start` |
 | 16 | [Agent SDK](16-agent-sdk.md) | IV — Orchestrate and let go | `16-start` |
 | 17 | [Capstone](17-capstone.md) | IV — Orchestrate and let go | `17-start` |
+| 18 | [Automate](18-automate.md) | IV — Orchestrate and let go | `18-start` |
+| 19 | [Build your own MCP](19-build-your-own-mcp.md) | IV — Orchestrate and let go | CLASH's `19-start` |
 
 ## Stuck?
 
-Every task names its reset branch. It is the state at the start of that task.
+Every task names its reset branch in your CLASH clone. It is the state at the start of that task.
+Task 19 also uses clash-conference's `19-start`.
 
 ```bash
 git stash              # optional: keep your own work

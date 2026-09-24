@@ -44,6 +44,7 @@ Sagen:
 
 <!-- @note: bmad-five-agents-one-party-mode -->
 > Tun:
+> - Docs-Link: das BMAD-Repo-README auf GitHub — auf die fünf Agenten und die Install-Zeile zeigen, dann zurück zu den Slides
 > - VOLLSTÄNDIGE LÖSUNG (nur für Trainer, bei Demo installieren):
 >   npx skills add bmad-code-org/BMAD-METHOD
 
@@ -54,6 +55,7 @@ Sagen:
 - [click] Developer — die Umsetzung
 - [click] UX — die Oberfläche und das Erlebnis
 - [click] Party Mode: jeder installierte Agent in einem Gespräch, in character
+- [click] bmad-build: der Skill, der aus einer Story Code macht — er klärt die Absicht, plant, schreibt eine Spec, implementiert, dann reviewt er; der Link öffnet "Build a Change" bei "Run bmad-build"
 
 <!-- @note: spec-kit-vs-bmad -->
 > Tun:
@@ -68,19 +70,5 @@ Sagen:
 - Repo: bmad-code-org/BMAD-METHOD
 - Faustregel: Spec Kit, wenn du Spec-Disziplin willst, ohne Prozess-Overhead; BMAD, wenn die Organisation diese Rollen schon hat
 - BMAD zaubert dir keinen Prozess herbei, den du nicht hast
-- [click] Ehrliche Einordnung: beide sind Greenfield-Methoden, CLASH ist Brownfield — deshalb kommen sie zuletzt, und deshalb ging es vorher immer um Kontrolle statt um Zeremonie
+- [click] Ehrliche Einordnung: beide glänzen auf der grünen Wiese, taugen aber auch für bestehenden Code. CLASH ist beides — Greenfield in Teil II, seitdem Brownfield — und clash-conference war ein Greenfield-Bau mit BMAD
 
-<!-- @note: what-we-did-not-cover -->
-> Tun:
-> - Kurz halten
-> - Diese Dinge zu nennen, respektiert die Gruppe und nimmt das "Warum hast du X nicht gezeigt" vorweg
-
-<!-- @note: context-is-king-you-push-it-you-own-it -->
-> Tun:
-> - Der Schluss — zwei Zeilen, kein Diagramm
-
-Sagen:
-- Ein roter Faden: Context sorglos behandelt → das Fenster füllt sich mit Rauschen, der Agent driftet ab
-- Context als Ressource behandelt, die du gezielt gestaltest → der größte Hebel, den du hast
-- Skills, Subagents, Hooks, MCP, Workflows: jede Zeile der Karte war ein anderer Weg, diese eine Randbedingung zu managen
-- Du schiebst dem Agenten den Context zu. Du trägst die Verantwortung für das, was daraus wird.

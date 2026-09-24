@@ -5,8 +5,8 @@
 
 ## Theory
 
-- [Strategy two: agent teams](https://mastering-claude-code.vercel.app/theory-agent-teams)
-- [Strategy three: dynamic workflows](https://mastering-claude-code.vercel.app/theory-dynamic-workflows)
+- [Generator-verifier: make, then check](https://mastering-claude-code.vercel.app/theory-coordination-patterns)
+- [Phases: the plan you can watch](https://mastering-claude-code.vercel.app/theory-workflow-phases)
 - [Reconcile, decide, merge](https://mastering-claude-code.vercel.app/theory-reconcile)
 
 > **Reminder:** Use teams when workers need to coordinate; use workflows for repeatable fan-out with explicit review gates.
@@ -49,7 +49,8 @@ for is to run all three on the same problem and compare.
 
 **Dynamic workflow**
 
-6. Check that `/config` shows **Dynamic workflows** on. Describe the job. Do not write the script yourself.
+6. Check that `/config` shows **Dynamic workflows** on and, on Pro, **Dynamic workflow size** on
+   small. Describe the job. Do not write the script yourself.
    ```
    Write a dynamic workflow that audits every file in app/actions/ for missing
    ownership checks on mutations of existing rows. Phase 1: discover every file
@@ -62,29 +63,49 @@ for is to run all three on the same problem and compare.
    should not also hold write or delete tool access. Report the final,
    verified findings only.
    ```
-7. The run happens in the background. Your session stays free. Use the time to read the script.
+   Asking in your own words is enough: no `ultracode` keyword, no `/effort ultracode`.
+   Small is advice to Claude, not a cap. This prompt asks for one agent per file, so the run
+   can still use more than five agents.
+7. The run happens in the background. Your session stays free. `/workflows` shows the tokens
+   per agent; `x` on the run stops it. Use the time to read the script.
    It lives under `~/.claude/projects/<session-dir>/` first. It is **not** in `.claude/workflows/` yet.
 8. Read the script top to bottom. Find: `export const meta = { name, description }` as the first
-   statement, a plain object. The discovery phase. The fan-out with `parallel()` or `pipeline()`.
-   The refuter step. The `agent()` calls and their tool limits.
-9. Save the script when the run is done.
+   statement, a plain object. The `phases` list in `meta`. For each entry, one `phase()` call with
+   exactly that title. `phase()` groups the agents after it under that title in the progress view.
+   The discovery phase. The fan-out with `parallel()` or `pipeline()`. The refuter step.
+   The `agent()` calls and their tool limits. Any `schema` on an `agent()` call: that agent
+   returns JSON in that shape, not prose.
+9. When both runs are done, name the coordination pattern each one used. A coordination
+   pattern is a common way to split work between agents.
    ```
-   /workflows
+   Name the coordination pattern of each run in this session: the agent team
+   audit and the dynamic workflow audit. Use the five patterns from
+   https://claude.com/blog/multi-agent-coordination-patterns
+   (generator-verifier, orchestrator-subagent, agent teams, message bus, shared
+   state). A run may mix two. For each run, give the pattern and say why in one
+   line.
    ```
-   Press `s` on the run. Now a copy is in `.claude/workflows/`. Commit it.
-10. Compare the three runs: findings, time, tokens, your own `/context`. `/cost` (an alias for
+   Expect something close to the slides: the blog's agent teams for the team, plus peer
+   messages it lacks; orchestrator-subagent with a verifier for the workflow. If Claude names
+   another pattern, check its reason against the slides.
+10. Save the script when the run is done.
+    ```
+    /workflows
+    ```
+    Press `s` on the run. Now a copy is in `.claude/workflows/`. Commit it.
+11. Compare the three runs: findings, time, tokens, your own `/context`. `/cost` (an alias for
     `/usage`) says the cost out loud for you. The workflow is the most expensive. That is the
     price of bounded roles and a review gate.
 
 **Merge the fix**
 
-11. Restore the two checks.
+12. Restore the two checks.
     ```
     Restore the creatorId ownership check in deleteClash (app/actions/clashes.ts)
     and deleteVenue (app/actions/venues.ts), matching the pattern updateClash and
     updateVenue already use. Then run npx tsc --noEmit, npm run lint and npm run build.
     ```
-12. Compare with `workshop-artifacts/12-team-and-workflow-audit/AUTH-FIX.md`. Commit.
+13. Compare with `workshop-artifacts/12-team-and-workflow-audit/AUTH-FIX.md`. Commit.
 
 ## Now you
 
@@ -95,24 +116,30 @@ for is to run all three on the same problem and compare.
 
 - [ ] You saw one message sent between teammates by name.
 - [ ] The workflow's `meta` export is a plain object literal and the first statement.
+- [ ] You can name every phase of the script and point at where it starts.
 - [ ] The workflow's final findings are exactly `deleteClash` and `deleteVenue`.
 - [ ] You found the script under `~/.claude/projects/` before saving it with `s`.
 - [ ] You can explain the refuter step and the quarantine rule in your words.
+- [ ] Claude named a pattern for each run, and you can say where it matches the slides' verdict.
 - [ ] The fix is merged and the three gates pass.
 
 ## Stuck?
 
 `git checkout 12-start` — the ownership bug is re-seeded here, fresh, for this audit: tasks 09–11
 restored it, this branch removes it again the same way task 08 first did. If a workflow errors,
-check for `Date.now()`, `Math.random()`, a no-arg `new Date()` or `import()` in the script. All of
-them throw inside a workflow on purpose, so a run can be replayed.
+check for `Date.now()`, `Math.random()` or a no-arg `new Date()` in the script. They throw inside
+a workflow on purpose, so a run can be replayed. An `import()` fails the run before it starts: a
+script cannot load modules.
 
 ## Go further
 
-Edit the saved script by hand: add a fourth phase that writes the report to `docs/audits/`.
-Run it again from `/workflows`.
+Edit the saved script by hand: add a fourth phase whose agent writes the report to `docs/audits/`,
+with the same title in `meta.phases` and in its `phase()` call. `/reload-skills` picks up the edit;
+`/<name>` starts it.
 
 ## Links
 
 - Agent teams — https://code.claude.com/docs/en/agent-teams
 - Dynamic workflows — https://code.claude.com/docs/en/workflows
+- /goal — https://code.claude.com/docs/en/goal
+- Multi-agent coordination patterns — https://claude.com/blog/multi-agent-coordination-patterns

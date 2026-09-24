@@ -6,8 +6,12 @@
 //  - a docs link that breaks the convention: the `docs:` frontmatter field, an official
 //    English Claude Code docs URL or an allowlisted third-party tool's own official page
 //    (THIRD_PARTY_DOCS below), never on a task slide, never an inline <DocLink> tag in a body
+//  - a layout that is not in slides/layouts/ (KNOWN_LAYOUTS below)
+//  - a flow-ways slide that breaks its shape (FLOW_WAYS below): 2 to 4 ways, short one-line
+//    cells, the one-line heading of the flow slide right before it, exactly one still <G…>
+//    graphic, a table that fits
 import { readFile, readdir } from 'node:fs/promises'
-import { existsSync, readdirSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join, dirname, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -30,7 +34,101 @@ const allowedSlidesOrigins = new Set([
 const THIRD_PARTY_DOCS = new Set([
   'https://www.skills.sh/vercel-labs/agent-browser/agent-browser', // the agent-browser skill itself — npx skills add's source
   'https://github.com/OWASP/secure-agent-playbook', // the code-security-skills plugin task 08 installs — its marketplace repo
+  'https://modelcontextprotocol.io/docs/develop/build-server', // the MCP TypeScript server tutorial task 19 builds from
+  'https://claude.com/blog/multi-agent-coordination-patterns', // not a tool page: the Claude blog post whose five diagrams the five coordination-pattern slides in section 14 redraw
+  'https://github.com/bmad-code-org/bmad-method', // the BMAD method itself — the repo the capstone's BMAD slide describes and the note's npx skills add installs from
 ])
+
+// the layouts in slides/layouts/ — a typo would silently fall back to Slidev's default
+const KNOWN_LAYOUTS = new Set(['concept', 'code-live', 'section', 'task-intro', 'task', 'flow-ways'])
+
+// flow-ways: the companion slide after a coordination-flow slide (slides/layouts/flow-ways.vue).
+// The fit budget estimates the table's height in slide pixels (the 980x552 canvas) from the
+// layout's CSS: 1.125rem text at line-height 1.4, 0.6rem cell padding plus the 0.25rem prompt
+// chip padding per row, the header row, the optional footnote. Lines are counted by greedy word
+// wrap (wrapLines below). The per-line widths were checked against the dev server: at 29 the
+// prompt count matches every rendered prompt; at 13 the way count matches or overcounts.
+const FLOW_WAYS = {
+  minWays: 2,
+  maxWays: 4,
+  wayMax: 40, // characters per way
+  promptMax: 170, // characters per prompt
+  footnoteMax: 80,
+  headingMaxWords: 8,
+  headingMaxChars: 40, // the budget assumes a one-line heading; 39 characters render on one line
+  wayCharsPerLine: 13, // way column, 1.125rem Inter semibold
+  promptCharsPerLine: 29, // prompt column, 1.125rem JetBrains Mono, word wrap
+  lineHeight: 25.2,
+  rowPadding: 27,
+  header: 28,
+  footnote: 40,
+  height: 384, // canvas height below a one-line heading, inside the layout's padding
+}
+
+// one YAML scalar as the frontmatter writes it: "double" (JSON escapes), 'single', or plain
+function yamlScalar(raw) {
+  const v = raw.trim()
+  if (v.startsWith('"')) {
+    try { return JSON.parse(v) } catch { return v.slice(1, -1) }
+  }
+  if (v.startsWith("'")) return v.slice(1, -1).replace(/''/g, "'")
+  return v.replace(/\s+#.*$/, '')
+}
+
+// null when `raw` is one complete single-line YAML scalar, else why it is not. yamlScalar and
+// parseWays read one line only, so a block scalar (> or |) or a quote closed on a later line
+// would slip past the length and fit checks while Slidev still renders the full text.
+function singleLineProblem(raw) {
+  const v = raw.trim()
+  if (v === '') return 'is empty on its line (a value on the next lines is not read)'
+  if (/^[>|]/.test(v)) return `is a block scalar (${v.slice(0, 2)}) — write it on one line`
+  if (v.startsWith('"') && !/^"(?:[^"\\]|\\.)*"\s*(#.*)?$/.test(v)) return 'opens a double quote that does not close on the same line'
+  if (v.startsWith("'") && !/^'(?:[^']|'')*'\s*(#.*)?$/.test(v)) return 'opens a single quote that does not close on the same line'
+  return null
+}
+
+// `ways:` as a list of { way, prompt } maps, in either key order, plus the lines it could not
+// read; null when there is no `ways:`
+function parseWays(fm) {
+  const block = /^ways:[ \t]*\n((?:[ \t]+.*(?:\n|$))*)/m.exec(fm)?.[1]
+  if (block === undefined) return null
+  const ways = []
+  const problems = []
+  for (const line of block.split('\n')) {
+    if (!line.trim()) continue
+    const m = /^[ \t]*(-[ \t]+)?(way|prompt):[ \t]*(.*)$/.exec(line)
+    if (!m) { problems.push(`unrecognised line in ways: ${line.trim().slice(0, 60)}`); continue }
+    const problem = singleLineProblem(m[3])
+    if (problem) problems.push(`${m[2]} ${problem}`)
+    if (m[1] || ways.length === 0) ways.push({})
+    ways[ways.length - 1][m[2]] = yamlScalar(m[3])
+  }
+  ways.problems = problems
+  return ways
+}
+
+// lines a text takes when a browser word-wraps it at `perLine` characters: each word goes on
+// the current line if it fits, else starts a new one; a word longer than a line breaks
+// (overflow-wrap: anywhere in the layout)
+function wrapLines(text, perLine) {
+  let lines = 0
+  let cur = -1 // characters on the current line; -1 = no line open yet
+  for (const word of (text ?? '').split(/\s+/).filter(Boolean)) {
+    if (cur >= 0 && cur + 1 + word.length <= perLine) { cur += 1 + word.length; continue }
+    lines += Math.ceil(word.length / perLine)
+    cur = word.length % perLine || perLine
+  }
+  return Math.max(lines, 1)
+}
+
+function flowWaysHeight(ways, hasFootnote) {
+  const lines = ways.reduce((sum, w) => sum + Math.max(
+    wrapLines(w.way, FLOW_WAYS.wayCharsPerLine),
+    wrapLines(w.prompt, FLOW_WAYS.promptCharsPerLine),
+  ), 0)
+  return Math.round(FLOW_WAYS.header + ways.length * FLOW_WAYS.rowPadding + lines * FLOW_WAYS.lineHeight
+    + (hasFootnote ? FLOW_WAYS.footnote : 0))
+}
 
 function stripFencedCode(text) {
   const lines = []
@@ -75,7 +173,9 @@ const forbidden = [
   [/(?<![-\w\/.])\b\d+\s?(min|mins|minutes?|hours?|h)\b(?![-\w])/i, 'duration'],
   [/\bDay\s?[123]\b/, 'day number'],
   [/\b(React Day|GitNation|Zoom)\b/, 'event reference'],
-  [/\bconference\b/i, 'event reference'],
+  // the product name clash-conference (task 19's second app) is the one allowed use of the word
+  // (a whole token: nothing word-like or a hyphen right before "clash-", so foo-clash-conference is still caught)
+  [/\bconference\b(?<!(?:^|[^\w-])clash-conference)/i, 'event reference'],
   [/\b20[2-3]\d-\d\d(-\d\d)?\b/, 'date'],
   [/\btime-?box\b/i, 'time-box'],
   [/\b(this morning|this afternoon|after the break|tomorrow morning)\b/i, 'time of day'],
@@ -151,6 +251,7 @@ for (const file of files) {
     slides[slides.length - 1] += line + '\n'
   }
   // slides[] alternates: '', frontmatter, body, frontmatter, body ...
+  let prevHeading = '' // a flow-ways slide repeats the heading of the slide before it
   for (let i = 1; i < slides.length; i += 2) {
     const fm = slides[i]
     const raw = slides[i + 1] ?? ''
@@ -236,6 +337,44 @@ for (const file of files) {
         .filter(Boolean).length
       if (words > 40) warn(rel, `slide ${n}: concept body has ${words} words (> 40)`)
     }
+    if (layout !== undefined && !KNOWN_LAYOUTS.has(layout)) err(rel, `slide ${n}: unknown layout "${layout}" — use one of ${[...KNOWN_LAYOUTS].join(', ')}`)
+    if (layout === 'flow-ways') {
+      // the docs link is already refused above: flow-ways is not a layout that draws it
+      if (!heading) err(rel, `slide ${n}: flow-ways slide without a heading`)
+      else {
+        if (heading.trim().split(/\s+/).length > FLOW_WAYS.headingMaxWords) err(rel, `slide ${n}: flow-ways heading "${heading}" has more than ${FLOW_WAYS.headingMaxWords} words`)
+        if (heading.length > FLOW_WAYS.headingMaxChars) err(rel, `slide ${n}: flow-ways heading "${heading}" has ${heading.length} chars (> ${FLOW_WAYS.headingMaxChars}) — it may wrap, and the fit budget assumes one line`)
+        if (heading !== prevHeading) err(rel, `slide ${n}: flow-ways heading "${heading}" must repeat the heading of the slide before it ("${prevHeading}")`)
+      }
+      const ways = parseWays(fm) ?? []
+      for (const problem of ways.problems ?? []) err(rel, `slide ${n}: flow-ways ${problem}`)
+      if (ways.length < FLOW_WAYS.minWays || ways.length > FLOW_WAYS.maxWays) err(rel, `slide ${n}: flow-ways needs ${FLOW_WAYS.minWays} to ${FLOW_WAYS.maxWays} ways, found ${ways.length}`)
+      ways.forEach((w, j) => {
+        if (!w.way) err(rel, `slide ${n}: flow-ways row ${j + 1} has no way`)
+        else if (w.way.length > FLOW_WAYS.wayMax) err(rel, `slide ${n}: flow-ways row ${j + 1} way has ${w.way.length} chars (> ${FLOW_WAYS.wayMax}): ${w.way}`)
+        if (!w.prompt) err(rel, `slide ${n}: flow-ways row ${j + 1} has no prompt`)
+        else if (w.prompt.length > FLOW_WAYS.promptMax) err(rel, `slide ${n}: flow-ways row ${j + 1} prompt has ${w.prompt.length} chars (> ${FLOW_WAYS.promptMax}): ${w.prompt.slice(0, 60)}…`)
+      })
+      const footnoteRaw = /^footnote:[ \t]*(.*)$/m.exec(fm)?.[1]
+      const footnoteProblem = footnoteRaw === undefined ? null : singleLineProblem(footnoteRaw)
+      if (footnoteProblem) err(rel, `slide ${n}: flow-ways footnote ${footnoteProblem}`)
+      const footnote = footnoteRaw === undefined ? undefined : yamlScalar(footnoteRaw)
+      if (footnote !== undefined && footnote.length > FLOW_WAYS.footnoteMax) err(rel, `slide ${n}: flow-ways footnote has ${footnote.length} chars (> ${FLOW_WAYS.footnoteMax})`)
+      const height = flowWaysHeight(ways, !!footnote)
+      if (height > FLOW_WAYS.height) err(rel, `slide ${n}: flow-ways table needs about ${height}px, the slide has ${FLOW_WAYS.height}px — shorten the prompts, drop a row or the footnote`)
+      // exactly one graphic, in its small, click-free form: <G… still />, from a component that
+      // declares a `still` prop (else Vue drops the attribute and the full graphic renders)
+      const graphics = body.match(/<G\d\d\w*\b[^>]*>/g) ?? []
+      if (graphics.length !== 1) err(rel, `slide ${n}: flow-ways needs exactly one <G…> graphic, found ${graphics.length}`)
+      for (const tag of graphics) {
+        if (!/\sstill\b/.test(tag)) err(rel, `slide ${n}: flow-ways graphic without the still prop: ${tag}`)
+        const name = /^<(G\d\d\w*)/.exec(tag)[1]
+        const componentFile = join(root, 'slides', 'components', `${name}.vue`)
+        if (!existsSync(componentFile)) err(rel, `slide ${n}: flow-ways graphic ${name} has no slides/components/${name}.vue`)
+        else if (!/\bstill\??\s*:\s*(\{\s*type:\s*)?[Bb]oolean\b/.test(readFileSync(componentFile, 'utf8'))) err(rel, `slide ${n}: slides/components/${name}.vue declares no still prop`)
+      }
+    }
+    prevHeading = heading
   }
 }
 
