@@ -99,7 +99,9 @@ Target codebase: `https://github.com/pawsaw/clash` (Next.js 16 / React 19 / Pris
   `section` (divider with `JourneyMap`, plus `ToolkitMap` in the control/orchestrate parts),
   `flow-ways` (companion right after a flow slide: the same heading, that flow's graphic with
   its `still` prop on the left, a 2–4 row Way/Prompt table on the right, no docs link).
-- Concept slides: ≤ 40 words of body text. Headings ≤ 8 words.
+- Concept slides: ≤ 40 words of body text. Headings ≤ 8 words. Every concept slide must do at
+  least one useful job: add a mental model, a decision, a contrast, evidence, prepare a live demo,
+  or compress several facts into one reusable rule. If it does none of those, merge, replace or remove it.
 - Diagrams are small Vue/SVG components in `slides/components/` (`D*.vue` for the LLM and harness ideas, `G*.vue` for the rest). Text inside SVG is never under 13 px.
 - Presenter notes are authored in `slides/notes/en/` and `slides/notes/de/` (one file per section, one
   `<!-- @note: key -->` block per slide, key = `slugify(heading)`) and hold the trainer script: what to say,

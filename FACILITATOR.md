@@ -7,8 +7,15 @@ the "Check" list of the task.
 **Codebase:** CLASH, `github.com/pawsaw/clash`. Part I starts on CLASH's `01-start` (spec only),
 Part II on `02-start`. Parts III and IV run on the reference CLASH from `06-start`.
 
-**Spine:** the journey map (four belts) on the four part dividers, and the seven-primitive
-toolkit map on the primitive dividers in Parts III and IV.
+**Spine:** the journey map (four belts) on the four part dividers, and the toolkit map on the
+primitive dividers in Parts III and IV. Under both maps, repeat four engineering questions:
+
+- **Context** — does the agent have the right facts?
+- **Reasoning** — is this task worth more model capability or more effort?
+- **Evidence** — what proves the result instead of merely sounding correct?
+- **Autonomy** — have verification, isolation and limits earned the right to step away?
+
+The core close states those questions explicitly. Material after the **Further paths** divider is reserve: teach it only when useful.
 
 **Before the first session:** push CLASH's branches (`docs/BRANCHES.md`), confirm your own
 machine passes `docs/SETUP.md` including `/skills` listing `agent-browser`, confirm
@@ -79,6 +86,10 @@ Go slowly here. This is where beginners decide whether the rest of the workshop 
   The fix for all five is the same: give it a tool.
 - **Tool call.** The model writes a small structured request and stops. Something else
   runs it. That "something else" is the next section.
+- **Reasoning lab.** Keep model, file and prompt identical; change only effort. Score correct
+  findings, false positives, usage and correction turns. A tie is a valid result: the small task
+  did not earn the extra reasoning spend. Land the distinction: context supplies facts, model
+  supplies capability, effort supplies reasoning budget, verification supplies trust.
 
 ### The harness
 
@@ -127,7 +138,14 @@ reference build at each stage.
 - Start in manual mode. Read the first two or three permission prompts aloud, then switch to
   auto — scaffolding a Next.js app is standard, low-risk work. Let the group watch the tool
   calls scroll by and name them: Bash, Write, Read. Read the diff, not the summary.
-- Plan mode for the data model. Show a plan being changed before it is accepted.
+- Plan mode for the data model. Show a plan being changed before it is accepted. Then name the
+  boundary: plan when the approach is unclear, crosses contracts or is expensive to undo; skip it
+  for an obvious local diff that is cheap to verify. A good plan names goal, scope, evidence,
+  interfaces, steps, risks, verification and done.
+- Plan vs. roadmap: one acceptance boundary is a plan; independently reviewable or revertible
+  outcomes are work packages under a roadmap. For a difficult decision, `opusplan` spends Opus on
+  planning and Sonnet on execution. A fresh reviewer should challenge assumptions once; resolve
+  deltas instead of bouncing the complete plan between models indefinitely.
 - First commit through Claude. Say: it writes the message, you approve.
 - CLAUDE.md gets its first real invariants: Prisma client path, string statuses, async params.
 
@@ -151,8 +169,10 @@ reference build at each stage.
 - Stop slide: the one-big-ask prompt is task file step 2 — send it live, stop on the red bar,
   then hand over at step 1 (they check out and start their own session; skip step 2, they just
   watched it) and continue from step 3, the small-steps version of the same four things.
-- Quality gates into CLAUDE.md, as the debrief after the recap. From here on, "done" means
-  tsc, lint and build are green.
+- Verification debrief after the recap: cheap signal first, full gate last. Inner-loop work uses
+  the smallest check that can fail for the edit; a work-package boundary uses typecheck and lint;
+  delivery uses build plus browser/E2E where the feature needs it. If the same gate set repeats,
+  prefer one repository validation script so humans, Claude and CI run the same contract.
 
 ### Task 05 — Finish and ship
 
@@ -173,15 +193,18 @@ Parts III and IV run on the finished reference CLASH, as guided tasks.
 - `/context` is an instrument. Read it aloud.
 - CLASH's real `CLAUDE.md` is `@AGENTS.md` and `AGENTS.md` is generic boilerplate. Nothing
   to trim. The exercise is authoring from real invariants.
-- Plan mode for real-time notifications. `/skill-doctor` on `.agents/skills/` (two
-  near-duplicate ~100KB skills).
+- Plan mode for real-time notifications. Read the plan line by line; a reviewed plan is still
+  only a proposal. Keep the personal `~/.claude/rules/` example here, but save path-scoped project
+  rules for task 10.
 - Stop slide ("@-references beat grep-and-guess") sits last, right before the recap, with no
   matching task-file step — click through both sides in one pass, no live send.
 - Answer key: `workshop-artifacts/06-context-and-claude-md/CLAUDE.md`. Do not show it before they write theirs.
 
 ### Task 07 — The clash-feature skill
 
-- Progressive disclosure: name and description always loaded, body on match.
+- Progressive disclosure: name and description always loaded, body on match. Before adding the
+  course skill, run `/skill-doctor` on the existing vendored set and name the two large
+  near-duplicates. This lesson belongs with skills, not in the general context task.
 - Commands did not break: `.claude/commands/*.md` still works. Skills are the richer format.
 - Build the skill step by step on screen. Stop at the Server Action step and say why it
   insists on its own ownership check. Then ship venue favourites with it and compare `/context`.
@@ -282,6 +305,9 @@ Parts III and IV run on the finished reference CLASH, as guided tasks.
   graphic, then a table of ways and prompts that make the flow happen in Claude Code.
 - Reconcile three results, fill the toolkit map from evidence, then restore the two
   `creatorId` checks. `workshop-artifacts/12-team-and-workflow-audit/AUTH-FIX.md` has the diff.
+- Close the block with the parallelism decision: subagent for noisy isolated investigation, team
+  when peers must communicate, workflow for repeatable fan-out/fan-in, worktrees for isolated edits,
+  `/batch` for many separable units that should end as independent pull requests.
 - Keep a finished run in a second terminal in case the live one is slow.
 - No stop slide: this whole block is the live demo already, mode `watch first`. The real
   contrast here is three-way (subagent vs. team vs. workflow), not careless-vs-engineered — that
@@ -300,6 +326,11 @@ Parts III and IV run on the finished reference CLASH, as guided tasks.
 - Then the deny set, output replacement (`hookSpecificOutput.updatedToolOutput`, all tools),
   and the Stop gate. `hard_deny` is an auto-mode setting, not a hook decision.
 - Skills are advice. Hooks are law.
+- Security debrief immediately after the task, before browser/MCP: `.gitignore` is not a Claude
+  visibility boundary; Glob includes ignored files and dotfiles by default. Tool results are written
+  to plaintext local session transcripts, so a secret read can persist there. Use deny rules for
+  credential paths. Then land the three rules: untrusted text can instruct a model, quarantine readers
+  from writes, least privilege.
 
 ### Task 14 — The browser closes the loop
 
@@ -313,6 +344,9 @@ Parts III and IV run on the finished reference CLASH, as guided tasks.
 ### Task 15 — Letting go
 
 - Worktrees: `claude --worktree <name>`. The one thing they take home.
+- `/batch` is the reserve bridge from manual worktrees to many independent pull requests: it
+  researches, proposes 5–30 units, waits for approval, then gives each unit a background agent and
+  worktree. Do not use it to split one coupled architecture decision.
 - CI: `anthropics/claude-code-action@v1` with `prompt` and `claude_args`. Not `@beta`,
   not a bare `claude -p` in the YAML. Token via a repository secret.
 
@@ -327,12 +361,14 @@ Parts III and IV run on the finished reference CLASH, as guided tasks.
 
 - Three briefs. Each participant picks one and ships it in a worktree with the skill, a
   subagent review, the hook set, a browser check and a PR.
-- Close with security (prompt injection, quarantine, least privilege), Spec Kit vs BMAD
-  (facts as corrected: Spec Kit is a Python/uv tool; BMAD v6 has 5 named agents), the
-  "what we did not cover" slide, and the two lines: *context is king* and *you push it, you own it.*
+- This is the integration task, not the course close anymore. Security moved earlier, before MCP;
+  third-party process frameworks moved to reserve material after the final close.
 
 ### Task 18 — Automate
 
+- `/goal` is the bounded-autonomy bridge: one measurable end state, the proof, constraints and a
+  turn ceiling. It does not change permission mode. Background work defers the evaluator until the
+  background work finishes; long waits can create check-in turns, so this is also a cost lesson.
 - Output style first: `/output-style concise`, one question, then the same question on the
   default style. The difference is the lesson. Then the custom `host-notes` style: restart Claude
   Code after creating the file, or it is not listed. Say that styles do not reach subagents.
@@ -407,6 +443,21 @@ Parts III and IV run on the finished reference CLASH, as guided tasks.
   clash-conference's `19-start`, clash-conference's `.env` with `CLASH_DIR=../clash`,
   clash-conference on port 3001, `app/api/publish/route.ts`, the statuses `published` and
   `failed`, `clashId`.
+
+---
+
+## Final close and reserve
+
+After task 19, close the required workshop before any reserve material:
+
+1. Context decides what the agent knows.
+2. Reasoning decides how hard it thinks.
+3. Evidence decides when you should trust the result.
+4. Autonomy is earned by verification: more freedom needs stronger evidence, isolation and limits.
+5. Finish on: *Context is king. You push it, you own it.*
+
+The **Further paths** divider is optional reserve. Spec Kit, BMAD, Channels and Computer Use are
+there for questions or spare capacity; do not let them dilute the core close.
 
 ---
 
