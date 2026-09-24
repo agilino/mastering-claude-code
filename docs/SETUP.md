@@ -190,11 +190,12 @@ branches afterwards:
 
 ```bash
 git checkout 06-start
-npm install --no-save @modelcontextprotocol/server @modelcontextprotocol/client
+npm install --no-save @modelcontextprotocol/server@2.1.0 @modelcontextprotocol/client@2.1.0
 ```
 
 `@modelcontextprotocol/server` is the server SDK. `@modelcontextprotocol/client` is used only by
-the smoke test in the answer key. The answer key was built with version 2.1.0 of both. The older
+the smoke test in the answer key. Both are pinned to 2.1.0, the version the answer key was built
+and tested with, and task 19 installs the same version. The older
 `@modelcontextprotocol/sdk` is a different package. Do not install it.
 
 **The second app comes later.** `clash-conference` is published once it is finished, and the

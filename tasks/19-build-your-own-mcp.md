@@ -43,7 +43,7 @@ before it starts one. Until you say yes, `claude mcp list` shows it as
    the server. `zod` is already a CLASH dependency.
    ```bash
    git checkout 19-start                        # CLASH's 19-start
-   npm install @modelcontextprotocol/server
+   npm install --save-exact @modelcontextprotocol/server@2.1.0
    claude mcp add --scope project --transport stdio clash -- npx tsx mcp/server.ts
    ```
    You see `npm` add one package, and a new `.mcp.json` at the root of your CLASH clone. It
@@ -277,7 +277,7 @@ each file goes. The smoke test, `npx tsx mcp/smoke.ts` in your CLASH clone, call
 and every refusal and cleans up after itself. It checks the exact answer texts the prompts
 in steps 2 and 7 ask for, and it expects exactly three tools. `19-solution` in your CLASH
 clone already has `mcp/smoke.ts`. On your own work in your CLASH clone, the smoke test also
-needs `npm install --save-dev @modelcontextprotocol/client`.
+needs `npm install --save-dev --save-exact @modelcontextprotocol/client@2.1.0`.
 
 ## Go further
 

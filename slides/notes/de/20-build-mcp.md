@@ -7,7 +7,7 @@ Sagen:
 <!-- @note: task-19-build-your-own-mcp -->
 > Tun:
 > - Branch: 19-start in deinem CLASH-Clone, identisch mit 14-start — CLAUDE.md, der Skill, der Fix, das Hook-Set
-> - `npm install @modelcontextprotocol/server` lief beim Setup in deinem CLASH-Clone; zod ist schon eine CLASH-Dependency
+> - `npm install --save-exact @modelcontextprotocol/server@2.1.0` in deinem CLASH-Clone, beim Setup vorgeladen; zod ist schon eine CLASH-Dependency
 > - Falle: das Paket ist @modelcontextprotocol/server, nie das ältere @modelcontextprotocol/sdk
 > - clash-conference ist ein zweiter Clone neben deinem CLASH-Clone, mit eigenem 19-start — jetzt sagen, dass er am Ende kommt
 
@@ -35,7 +35,7 @@ Sagen:
 >   const adapter = new PrismaBetterSqlite3({ url: `file:${dbFile}` });
 >   async function main() { await server.connect(new StdioServerTransport()); }
 > - Den Prompt aus tasks/19-build-your-own-mcp.md Schritt 2 senden, dann Claudes Diff gegen die Musterlösung lesen
-> - Smoke-Test in deinem CLASH-Clone: `npm install --save-dev @modelcontextprotocol/client`, dann workshop-artifacts/19-build-mcp/smoke.ts → mcp/smoke.ts, `npx tsx mcp/smoke.ts` endet mit `All checks passed.`
+> - Smoke-Test in deinem CLASH-Clone: `npm install --save-dev --save-exact @modelcontextprotocol/client@2.1.0`, dann workshop-artifacts/19-build-mcp/smoke.ts → mcp/smoke.ts, `npx tsx mcp/smoke.ts` endet mit `All checks passed.`
 > - Falle: CLASH hat kein "type": "module", also läuft tsx als CommonJS — kein top-level await, daher main()
 
 Sagen:

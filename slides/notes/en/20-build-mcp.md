@@ -7,7 +7,7 @@ Say:
 <!-- @note: task-19-build-your-own-mcp -->
 > Do:
 > - Branch: 19-start in your CLASH clone, identical to 14-start — CLAUDE.md, the skill, the fix, the hook set
-> - `npm install @modelcontextprotocol/server` ran at setup in your CLASH clone; zod is already a CLASH dependency
+> - `npm install --save-exact @modelcontextprotocol/server@2.1.0` in your CLASH clone, fetched at setup; zod is already a CLASH dependency
 > - Trap: the package is @modelcontextprotocol/server, never the older @modelcontextprotocol/sdk
 > - clash-conference is a second clone next to your CLASH clone, with a 19-start of its own — say now that it comes at the end
 
@@ -35,7 +35,7 @@ Say:
 >   const adapter = new PrismaBetterSqlite3({ url: `file:${dbFile}` });
 >   async function main() { await server.connect(new StdioServerTransport()); }
 > - Send the prompt from tasks/19-build-your-own-mcp.md step 2, then read Claude's diff against the key
-> - Smoke test in your CLASH clone: `npm install --save-dev @modelcontextprotocol/client`, then workshop-artifacts/19-build-mcp/smoke.ts → mcp/smoke.ts, `npx tsx mcp/smoke.ts` ends with `All checks passed.`
+> - Smoke test in your CLASH clone: `npm install --save-dev --save-exact @modelcontextprotocol/client@2.1.0`, then workshop-artifacts/19-build-mcp/smoke.ts → mcp/smoke.ts, `npx tsx mcp/smoke.ts` ends with `All checks passed.`
 > - Trap: CLASH has no "type": "module", so tsx runs CommonJS — no top-level await, hence main()
 
 Say:

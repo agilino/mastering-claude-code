@@ -25,8 +25,8 @@ Inside Claude Code the tools are named `mcp__clash__list_upcoming_clashes`, `mcp
 ```bash
 cd clash                                     # your CLASH clone
 git checkout 19-start                        # CLASH's 19-start
-npm install @modelcontextprotocol/server     # the server SDK; zod is already there
-npm install --save-dev @modelcontextprotocol/client   # only the smoke test needs this
+npm install --save-exact @modelcontextprotocol/server@2.1.0                # the server SDK; zod is already there
+npm install --save-dev --save-exact @modelcontextprotocol/client@2.1.0    # only the smoke test needs this
 mkdir mcp
 cp <workshop repository>/workshop-artifacts/19-build-mcp/server.ts mcp/server.ts
 cp <workshop repository>/workshop-artifacts/19-build-mcp/smoke.ts mcp/smoke.ts
