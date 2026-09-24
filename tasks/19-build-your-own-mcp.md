@@ -259,8 +259,11 @@ back later.
 - [ ] "MCP Hacknight" is on CLASH at `localhost:3000/clashes` once, not twice.
 - [ ] The second create was refused with `Duplicate: …`.
 - [ ] `.claude/settings.json` in your CLASH clone has `hooks` and `permissions`, allows the two read tools, and a write still asks.
+
+Only once clash-conference is published and you did steps 14 to 19:
+
 - [ ] A talk published from clash-conference shows up in CLASH as a clash.
-- [ ] A talk with an unknown venue ends as `failed` and CLASH is unchanged.
+- [ ] A talk with an unknown venue ends as `failed` in clash-conference, and CLASH is unchanged.
 
 ## Stuck?
 
