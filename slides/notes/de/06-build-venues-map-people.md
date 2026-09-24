@@ -91,14 +91,13 @@ Sagen:
 - Reset-Branches: 04-start = Auth, Shell, Clashes; 05-start fügt Venues, Karte, Teilnahme und Benachrichtigungen hinzu
 - Claude den Fehler geben, nicht von Hand fixen
 
-<!-- @note: quality-gates-said-once -->
-> Tun:
-> - Jetzt, wo sie den Nutzen gespürt haben: fragen, was kaputtgegangen ist oder was sie von Hand nachprüfen mussten
-> - Live den Abschnitt "Quality gates" zu CLAUDE.md hinzufügen und die drei Befehle ausführen
-> - Achten auf: eine Änderung an CLAUDE.md mitten in der Session wird erst nach /clear, /compact oder einem Neustart neu geladen
+<!-- @note: verify-cheap-first-full-gate-last -->
+> Do:
+> - Frage, was in der Aufgabe kaputtging und welcher Check es am frühesten gefunden hätte.
+> - Zeige die drei Ebenen. Die bestehenden Full Gates bleiben: npx tsc --noEmit, npm run lint, npm run build.
 
-Sagen:
-- Ihr habt gerade vier Features ausgeliefert, ohne dass bis jetzt irgendetwas eure Arbeit geprüft hat — genau diese Lücke schließt das
-- Ab jetzt führt Claude sie am Ende jeder Task aus — hier, weil du es gerade gesagt hast, in jeder neuen Session, weil CLAUDE.md zu Beginn geladen wird
-- Das ist eine Regel in einer Datei — Claude folgt ihr meistens
-- Teil IV zeigt, wie man daraus eine Regel macht, die Claude nicht überspringen kann
+Say:
+- Auch Verifikation kostet. Das schnellste brauchbare Feedback gehört so nah wie möglich an die Änderung.
+- Eine Ein-Datei-Änderung sollte nicht erst den teuersten Gesamt-Build abwarten, um zu erfahren, dass sie falsch ist.
+- Vor Done laufen die vollständigen Delivery Gates. Part IV macht einige davon später erzwingbar.
+- Wenn immer dieselbe Gate-Kette nötig ist, packe sie in ein Repository-Script, damit Mensch, Claude und CI dasselbe ausführen.

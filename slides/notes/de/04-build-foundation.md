@@ -52,6 +52,47 @@ Sagen:
 Sagen:
 - [click] Punkt: das Datenmodell ist später schwer zu ändern — das ist der Moment, hinzuschauen, bevor Claude schreibt
 
+
+
+<!-- @note: when-a-plan-earns-its-cost -->
+> Do:
+> - Frage nach einem Beispiel, das einen Plan verdient, und einem, das keinen braucht.
+> - Halte die Grenze praktisch: Unsicherheit, Auswirkungsradius, Umkehrbarkeit.
+
+Say:
+- Planung ist nicht gratis. Sie liest Code, erzeugt Text und schafft ein weiteres Artefakt für den Review.
+- Bezahle diesen Aufwand, wenn eine falsche Richtung teuer ist oder der Ansatz wirklich unklar ist.
+- Wenn du den Diff in einem Satz beschreiben und günstig verifizieren kannst, ist direkte Umsetzung oft der bessere erste Schritt.
+
+<!-- @note: a-good-plan-has-an-exit -->
+> Do:
+> - Gehe die acht Felder von links nach rechts durch.
+> - Stoppe bei Verifikation und Done. Sie machen aus einem Plan ein ausführbares Arbeitspaket.
+
+Say:
+- Ein guter Plan ist keine Repository-Führung. Er nennt die Entscheidungsgrenze und wie riskante Schritte geprüft werden.
+- Evidence bedeutet echte Dateien, Contracts und beobachtetes Verhalten. Risks nennen, was den Ansatz ungültig machen würde.
+- Done ist beobachtbar. Ein Plan ohne Exit-Kriterium wächst oft noch während der Umsetzung.
+
+<!-- @note: plan-or-roadmap -->
+> Do:
+> - Frage: Könnten zwei mittlere Teile unabhängig reviewed, gemerged oder zurückgerollt werden? Dann sind es Work Packages.
+
+Say:
+- Ein Plan beschreibt eine zusammenhängende Änderung mit einer Acceptance-Grenze.
+- Sobald mehrere Ergebnisse unabhängig wertvoll, mergebar oder revertierbar sind, hilft eine Roadmap mit kleineren Plänen darunter.
+- Kleinere Grenzen machen Review, Delegation, Rollback und Verifikation günstiger.
+
+<!-- @note: upgrade-the-planner-not-the-run -->
+> Do:
+> - Zeige opusplan in der Model-Doku: Opus beim Planen, Sonnet bei der Ausführung.
+> - Erkläre das Reviewer-Muster, ohne einen zweiten Anbieter oder ein zweites Tool vorzuschreiben.
+
+Say:
+- Nutze das teure Modell für die Entscheidung, wenn die Entscheidung der schwierige Teil ist; Routine-Ausführung braucht es nicht automatisch.
+- Ein frischer Reviewer greift Annahmen, fehlende Constraints und Verifikationslücken an.
+- Schicke nicht den kompletten Plan endlos zwischen Reviewern hin und her. Kläre die Differenzen, friere das Work Package ein, setze um und verifiziere.
+
 <!-- @note: plan-the-data-model -->
 > Tun:
 > - Schritt 6 machen die Teilnehmenden selbst

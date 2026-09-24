@@ -94,11 +94,15 @@ branch: "04-start"
 
 ---
 layout: concept
-heading: "Quality gates, said once"
+heading: "Verify cheap first, full gate last"
 lines:
-  - "npx tsc --noEmit · npm run lint · npm run build"
-  - "\"Before you say done, run all three and fix what fails\""
-  - "Claude runs them without being asked — most of the time, not a guarantee"
+  - "Inner loop: run the smallest check that can fail for this change."
+  - "Work package: typecheck + lint. Delivery: build + browser/E2E as needed."
+  - "Do not rerun the most expensive gate after every edit."
 ---
 
-
+<div class="grid grid-cols-3 gap-5 w-full max-w-4xl">
+  <div class="na-card p-5"><div class="font-semibold mb-2">inner loop</div><div class="text-sm" style="color: var(--na-fg-muted)">one test · error · screenshot · focused check</div></div>
+  <div class="na-card p-5" v-click><div class="font-semibold mb-2">work package</div><div class="text-sm font-mono" style="color: var(--na-fg-muted)">npx tsc --noEmit<br/>npm run lint</div></div>
+  <div class="na-card p-5" v-click><div class="font-semibold mb-2">delivery</div><div class="text-sm font-mono" style="color: var(--na-fg-muted)">npm run build<br/>browser / E2E</div></div>
+</div>

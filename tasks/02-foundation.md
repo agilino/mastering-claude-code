@@ -7,6 +7,7 @@
 
 - [A brief has three parts](https://mastering-claude-code.vercel.app/theory-briefs)
 - [Plan mode: read, think, propose](https://mastering-claude-code.vercel.app/theory-plan-mode)
+- [A good plan has an exit](https://mastering-claude-code.vercel.app/theory-plan-quality)
 
 > **Reminder:** State the goal, rules and done criteria; use plan mode before changes that are expensive to undo.
 

@@ -52,6 +52,47 @@ Say:
 Say:
 - [click] Point: the data model is hard to change later — this is the moment to look before Claude writes
 
+
+
+<!-- @note: when-a-plan-earns-its-cost -->
+> Do:
+> - Ask for one example that deserves a plan and one that does not.
+> - Keep the boundary practical: uncertainty, blast radius, reversibility.
+
+Say:
+- Planning is not free. It reads code, writes prose, and creates another artifact to review.
+- Pay that cost when a wrong direction is expensive or the approach is genuinely unclear.
+- If you could describe the diff in one sentence and verify it cheaply, implementation is often the better first move.
+
+<!-- @note: a-good-plan-has-an-exit -->
+> Do:
+> - Point left to right through the eight fields.
+> - Stop on verification and done. Those are what turn a plan into an executable work package.
+
+Say:
+- A good plan is not a tour of the repository. It states the decision boundary and how each risky step will be checked.
+- Evidence means real files, contracts and observed behavior. Risks name what would invalidate the approach.
+- Done is observable. A plan with no exit condition tends to grow while it is being implemented.
+
+<!-- @note: plan-or-roadmap -->
+> Do:
+> - Ask: could two middle pieces be reviewed, merged or reverted independently? If yes, call them work packages.
+
+Say:
+- A plan should describe one coherent change with one acceptance boundary.
+- Once several outcomes are independently valuable, mergeable or revertible, the useful artifact is a roadmap with smaller plans underneath it.
+- Smaller boundaries make review, delegation, rollback and verification cheaper.
+
+<!-- @note: upgrade-the-planner-not-the-run -->
+> Do:
+> - Point out opusplan in the model docs: Opus while planning, Sonnet for execution.
+> - Explain the reviewer pattern without turning it into a required second vendor or tool.
+
+Say:
+- Spend the expensive model on the decision when the decision is the hard part; routine execution does not automatically need it.
+- A fresh reviewer should attack assumptions, missing constraints and verification gaps.
+- Do not bounce the whole plan through reviewers indefinitely. Resolve the disagreements, freeze the work package, execute, then verify.
+
 <!-- @note: plan-the-data-model -->
 > Do:
 > - Participants do this in step 6
