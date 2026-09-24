@@ -5,7 +5,7 @@
 
 ## Theory
 
-- [Strategy two: agent teams](https://mastering-claude-code.vercel.app/theory-agent-teams)
+- [Generator-verifier: make, then check](https://mastering-claude-code.vercel.app/theory-coordination-patterns)
 - [Phases: the plan you can watch](https://mastering-claude-code.vercel.app/theory-workflow-phases)
 - [Reconcile, decide, merge](https://mastering-claude-code.vercel.app/theory-reconcile)
 
@@ -70,24 +70,37 @@ for is to run all three on the same problem and compare.
    The discovery phase. The fan-out with `parallel()` or `pipeline()`. The refuter step.
    The `agent()` calls and their tool limits. Any `schema` on an `agent()` call: that agent
    returns JSON in that shape, not prose.
-9. Save the script when the run is done.
+9. When both runs are done, name the coordination pattern each one used. A coordination
+   pattern is a common way to split work between agents.
    ```
-   /workflows
+   Name the coordination pattern of each run in this session: the agent team
+   audit and the dynamic workflow audit. Use the five patterns from
+   https://claude.com/blog/multi-agent-coordination-patterns
+   (generator-verifier, orchestrator-subagent, agent teams, message bus, shared
+   state). A run may mix two. For each run, give the pattern and say why in one
+   line.
    ```
-   Press `s` on the run. Now a copy is in `.claude/workflows/`. Commit it.
-10. Compare the three runs: findings, time, tokens, your own `/context`. `/cost` (an alias for
+   Expect something close to the slides: the blog's agent teams for the team, plus peer
+   messages it lacks; orchestrator-subagent with a verifier for the workflow. If Claude names
+   another pattern, check its reason against the slides.
+10. Save the script when the run is done.
+    ```
+    /workflows
+    ```
+    Press `s` on the run. Now a copy is in `.claude/workflows/`. Commit it.
+11. Compare the three runs: findings, time, tokens, your own `/context`. `/cost` (an alias for
     `/usage`) says the cost out loud for you. The workflow is the most expensive. That is the
     price of bounded roles and a review gate.
 
 **Merge the fix**
 
-11. Restore the two checks.
+12. Restore the two checks.
     ```
     Restore the creatorId ownership check in deleteClash (app/actions/clashes.ts)
     and deleteVenue (app/actions/venues.ts), matching the pattern updateClash and
     updateVenue already use. Then run npx tsc --noEmit, npm run lint and npm run build.
     ```
-12. Compare with `workshop-artifacts/12-team-and-workflow-audit/AUTH-FIX.md`. Commit.
+13. Compare with `workshop-artifacts/12-team-and-workflow-audit/AUTH-FIX.md`. Commit.
 
 ## Now you
 
@@ -102,6 +115,7 @@ for is to run all three on the same problem and compare.
 - [ ] The workflow's final findings are exactly `deleteClash` and `deleteVenue`.
 - [ ] You found the script under `~/.claude/projects/` before saving it with `s`.
 - [ ] You can explain the refuter step and the quarantine rule in your words.
+- [ ] Claude named a pattern for each run, and you can say where it matches the slides' verdict.
 - [ ] The fix is merged and the three gates pass.
 
 ## Stuck?
@@ -122,3 +136,5 @@ with the same title in `meta.phases` and in its `phase()` call. `/reload-skills`
 
 - Agent teams — https://code.claude.com/docs/en/agent-teams
 - Dynamic workflows — https://code.claude.com/docs/en/workflows
+- /goal — https://code.claude.com/docs/en/goal
+- Multi-agent coordination patterns — https://claude.com/blog/multi-agent-coordination-patterns

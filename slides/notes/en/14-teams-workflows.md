@@ -30,11 +30,71 @@ Say:
 - That's the CLI command. The similarly-named `/agents` (a slash command, inside a session) is a different thing — it only prints a reminder: ask Claude to create or manage subagents, or edit `.claude/agents/` yourself. Not a dashboard either
 
 <!-- @note: lead-peers-and-a-disagreement -->
+> Do:
+> - The verdict below uses the Claude blog post on five coordination patterns; the next slide opens it
+
 Say:
-- [click] One lead, four peers — SendMessage links labelled "message by name"
-- [click] Payoff: two peers raise conflicting findings about the same file, most likely app/actions/venues.ts — deleteVenue is broken, neighbour updateVenue is fine
-- [click] Lead sends one reconciling message
+- [click] One lead, four peers — every link is a SendMessage path, addressed by name
+- [click] Payoff: two peers disagree about app/actions/venues.ts — deleteVenue broken, updateVenue fine
+- [click] Lead replies to both peers by name, one message each
 - That step is the whole argument for a team over a lone subagent
+- Verdict: partly the blog's agent teams — its workers can't easily share findings; ours message, the lead mediates
+
+<!-- @note: generator-verifier-make-then-check -->
+> Do:
+> - Open the blog post: https://claude.com/blog/multi-agent-coordination-patterns
+> - Point at its Generator-Verifier diagram, then back — ours redraws the same boxes and arrows
+> - Five patterns follow, in the blog's order
+> - Docs: https://code.claude.com/docs/en/goal — point at "How evaluation works"
+
+Say:
+- [click] Two agents: a generator makes the output, a verifier checks it
+- [click] Pass goes on to Accepted; fail sends feedback back to the generator
+- [click] The loop ends when the verifier accepts or the round limit is reached
+- Vague criteria mean the verifier waves everything through — write the checks down
+- Claude Code has one built in: /goal — a small model checks each turn, sends a reason back
+
+<!-- @note: orchestrator-subagent-lead-helpers -->
+Say:
+- [click] One orchestrator on the left, three subagents on the right
+- [click] It hands out subtasks; results come back along the same line
+- [click] It merges what they report into one answer
+- The blog says Claude Code works this way: the main session dispatches subagents
+- Catch: every finding passes through the lead, and details often get lost on the way
+
+<!-- @note: the-blog-s-agent-teams-a-task-queue -->
+> Do:
+> - Contrast: the agent-teams docs say teammates "message each other directly" — the blog's workers don't
+> - Always say "the blog's pattern" or "Claude Code agent teams" — same name, different things
+
+Say:
+- [click] A coordinator, a task queue, three long-lived workers
+- [click] Workers claim tasks from the queue; no arrow runs between workers
+- [click] Workers keep their context from one task to the next
+- Catch: workers can't easily share findings, and two may edit the same file
+- Claude Code agent teams have this queue as a shared task list, and add direct messages
+
+<!-- @note: message-bus-publish-and-subscribe -->
+> Do:
+> - Stress: not a Claude Code feature, even though teammates send messages
+
+Say:
+- [click] One alert source, five agents, and a bus in the middle
+- [click] Every arrow goes through the bus: agents publish events and subscribe to topics
+- [click] No agent talks to another directly — they stay decoupled
+- Catch: hard to trace, and a wrongly routed event fails silently
+- SendMessage goes to one agent by name — no topics, no router
+
+<!-- @note: shared-state-one-store-no-coordinator -->
+> Do:
+> - Stress: no built-in feature; a shared file works, but a team keeps its lead
+
+Say:
+- [click] A shared store in the middle, four agents around it, no coordinator
+- [click] Every agent reads from and writes to the store
+- [click] A finding one agent writes is there for all the others at once
+- Catch: agents can repeat work, or keep answering each other without end
+- So give it a stop rule: no new findings for a few rounds, or a judge agent
 
 <!-- @note: strategy-three-dynamic-workflows -->
 > Do:
@@ -90,6 +150,17 @@ Say:
 - Every meta.phases title matches a phase() call exactly; the agents after it land under that title
 - The script does NOT land in .claude/workflows/ — it is written under ~/.claude/projects/<session-dir>/ first
 - Only pressing `s` inside /workflows saves a committable copy
+
+<!-- @note: which-pattern-did-we-just-run -->
+> Do:
+> - Ask the group first; let them guess before each click
+
+Say:
+- [click] Task 08 auditor: orchestrator-subagent with one helper — main delegates, gets a report back
+- [click] Task 12 team: the blog's agent teams, only partly — peers message, and the lead mediates
+- [click] Task 12 workflow: the script orchestrates; refuters drop bad findings, with no feedback loop
+- The blog would move peer talk to shared state; Claude Code keeps it in the team's mailbox
+- The blog says it too: real systems often combine patterns
 
 <!-- @note: reconcile-decide-merge -->
 > Do:

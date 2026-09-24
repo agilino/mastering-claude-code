@@ -30,11 +30,71 @@ Sagen:
 - Das ist der CLI-Befehl. Das ähnlich benannte `/agents` (ein Slash-Command, innerhalb einer Session) ist etwas anderes — es gibt nur einen Hinweis aus: Claude bitten, Subagents zu erstellen oder zu verwalten, oder `.claude/agents/` selbst bearbeiten. Auch kein Dashboard
 
 <!-- @note: lead-peers-and-a-disagreement -->
+> Tun:
+> - Das Urteil unten stützt sich auf den Claude-Blogpost mit fünf Patterns; die nächste Folie öffnet ihn
+
 Sagen:
-- [click] Ein Lead, vier Peers — SendMessage-Links beschriftet mit "message by name"
-- [click] Payoff: zwei Peers melden widersprüchliche Findings zur selben Datei, höchstwahrscheinlich app/actions/venues.ts — deleteVenue ist kaputt, Nachbarfunktion updateVenue ist in Ordnung
-- [click] Lead schickt eine vermittelnde Message
+- [click] Ein Lead, vier Peers — jede Verbindung ist ein SendMessage-Weg, adressiert per Name
+- [click] Payoff: zwei Peers sind uneins über app/actions/venues.ts — deleteVenue kaputt, updateVenue in Ordnung
+- [click] Lead antwortet beiden Peers per Name, je eine Message
 - Dieser Schritt ist das ganze Argument für ein Team gegenüber einem einzelnen Subagent
+- Urteil: teils Agent teams aus dem Blog — Worker dort teilen Findings nur schwer; unsere schreiben sich, Lead vermittelt
+
+<!-- @note: generator-verifier-make-then-check -->
+> Tun:
+> - Den Blogpost öffnen: https://claude.com/blog/multi-agent-coordination-patterns
+> - Auf sein Diagramm zu Generator-verifier zeigen, dann zurück — unseres zeichnet dieselben Kästen und Pfeile nach
+> - Fünf Patterns folgen, in der Reihenfolge des Blogs
+> - Docs: https://code.claude.com/docs/en/goal — auf "How evaluation works" zeigen
+
+Sagen:
+- [click] Zwei Agents: ein Generator erzeugt das Ergebnis, ein Verifier prüft es
+- [click] Wenn bestanden, weiter zu Accepted; wenn nicht, geht Feedback zurück an den Generator
+- [click] Die Schleife endet, wenn der Verifier akzeptiert oder das Rundenlimit erreicht ist
+- Vage Kriterien heißen: der Verifier winkt alles durch — die Prüfungen aufschreiben
+- Claude Code hat das eingebaut: /goal — ein kleines Modell prüft jeden Turn, schickt einen Grund zurück
+
+<!-- @note: orchestrator-subagent-lead-helpers -->
+Sagen:
+- [click] Ein Orchestrator links, drei Subagents rechts
+- [click] Er verteilt Teilaufgaben; die Ergebnisse kommen auf derselben Linie zurück
+- [click] Er fasst ihre Berichte zu einer Antwort zusammen
+- Laut Blog arbeitet Claude Code genau so: die Main-Session schickt Subagents los
+- Haken: jedes Finding läuft über den Lead, und unterwegs gehen oft Details verloren
+
+<!-- @note: the-blog-s-agent-teams-a-task-queue -->
+> Tun:
+> - Kontrast: die Agent-Teams-Docs sagen, Teammates "message each other directly" — die Worker aus dem Blog tun das nicht
+> - Immer "Agent teams aus dem Blog" oder "Agent-Teams in Claude Code" sagen — gleicher Name, verschiedene Dinge
+
+Sagen:
+- [click] Ein Coordinator, eine Task-Queue, drei langlebige Worker
+- [click] Worker holen sich Tasks aus der Queue; kein Pfeil läuft zwischen den Workern
+- [click] Worker behalten ihren Context von einem Task zum nächsten
+- Haken: Worker teilen Findings kaum, und zwei bearbeiten womöglich dieselbe Datei
+- Agent-Teams in Claude Code haben diese Queue als geteilte Task-Liste, dazu direkte Messages
+
+<!-- @note: message-bus-publish-and-subscribe -->
+> Tun:
+> - Betonen: kein Claude-Code-Feature, obwohl Teammates sich Messages schicken
+
+Sagen:
+- [click] Eine Alert-Quelle, fünf Agents und in der Mitte ein Bus
+- [click] Jeder Pfeil läuft über den Bus: Agents publizieren Events und abonnieren Topics
+- [click] Kein Agent spricht direkt mit einem anderen — sie bleiben entkoppelt
+- Haken: schwer nachzuverfolgen, und ein falsch geroutetes Event scheitert lautlos
+- SendMessage geht per Name an einen Agent — keine Topics, kein Router
+
+<!-- @note: shared-state-one-store-no-coordinator -->
+> Tun:
+> - Betonen: kein eingebautes Feature; eine geteilte Datei geht, aber ein Team behält seinen Lead
+
+Sagen:
+- [click] In der Mitte ein geteilter Store, vier Agents drumherum, kein Coordinator
+- [click] Jeder Agent liest aus dem Store und schreibt hinein
+- [click] Ein Finding, das ein Agent schreibt, ist sofort für alle anderen da
+- Haken: Agents machen Arbeit doppelt oder antworten einander ohne Ende
+- Also eine Stopp-Regel setzen: ein paar Runden ohne neue Findings, oder ein Judge-Agent
 
 <!-- @note: strategy-three-dynamic-workflows -->
 > Tun:
@@ -90,6 +150,17 @@ Sagen:
 - Jeder meta.phases-Titel entspricht exakt einem phase()-Aufruf; die Agents danach landen unter diesem Titel
 - Das Skript landet NICHT von selbst in .claude/workflows/ — es wird zuerst unter ~/.claude/projects/<session-dir>/ geschrieben
 - Nur `s` innerhalb von /workflows speichert eine Kopie, die sich committen lässt
+
+<!-- @note: which-pattern-did-we-just-run -->
+> Tun:
+> - Zuerst die Gruppe fragen; vor jedem Klick raten lassen
+
+Sagen:
+- [click] Auditor aus Task 08: Orchestrator-subagent mit einem Helfer — die Main-Session delegiert, bekommt einen Bericht zurück
+- [click] Team aus Task 12: die Agent teams aus dem Blog, nur teilweise — Peers schreiben sich, der Lead vermittelt
+- [click] Workflow aus Task 12: das Skript orchestriert; Refuter verwerfen falsche Findings, ohne Feedback-Schleife
+- Der Blog würde Peer-Gespräche in Shared state verlegen; Claude Code behält sie in der Team-Mailbox
+- Der Blog sagt es selbst: echte Systeme kombinieren oft mehrere Patterns
 
 <!-- @note: reconcile-decide-merge -->
 > Tun:

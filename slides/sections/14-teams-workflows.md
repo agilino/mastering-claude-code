@@ -49,9 +49,68 @@ finalizes the report.
 ---
 layout: concept
 heading: "Lead, peers, and a disagreement"
+lines:
+  - "Close to the blog's agent teams pattern: one lead, long-lived peers."
+  - "The difference: peers send messages by name, and the lead settles the dispute."
 ---
 
 <G08TeamTopology />
+
+---
+layout: concept
+heading: "Generator-verifier: make, then check"
+routeAlias: theory-coordination-patterns
+lines:
+  - "One agent makes an output. A second checks it against clear criteria."
+  - "Use it when a wrong output costs more than one more try."
+  - "Vague criteria let everything pass. A loop can stall, so cap the rounds."
+---
+
+<G28CoordinationPatterns pattern="generator-verifier" />
+
+---
+layout: concept
+heading: "Orchestrator-subagent: lead, helpers"
+lines:
+  - "A lead plans, hands out subtasks, and merges what the helpers report back."
+  - "Use it when the job splits cleanly and the parts barely depend on each other."
+  - "Every finding goes through the lead. Details often get lost on the way."
+---
+
+<G28CoordinationPatterns pattern="orchestrator-subagent" />
+
+---
+layout: concept
+heading: "The blog's agent teams: a task queue"
+lines:
+  - "A coordinator fills a task queue. Long-lived workers claim tasks on their own."
+  - "Use it when the parts are independent and each needs many steps of work."
+  - "Workers can't easily share findings. Two may edit the same file."
+---
+
+<G28CoordinationPatterns pattern="agent-teams" />
+
+---
+layout: concept
+heading: "Message bus: publish and subscribe"
+lines:
+  - "Agents publish events to a bus. Each one subscribes to the topics it needs."
+  - "Use it when events drive the work and new agents keep joining."
+  - "Hard to trace. A wrongly routed event fails silently."
+---
+
+<G28CoordinationPatterns pattern="message-bus" />
+
+---
+layout: concept
+heading: "Shared state: one store, no coordinator"
+lines:
+  - "Agents read and write one shared store: a database, files, a document."
+  - "Use it when agents should build on each other's findings right away."
+  - "Agents may repeat work or keep replying to each other. Set a stop rule."
+---
+
+<G28CoordinationPatterns pattern="shared-state" />
 
 ---
 layout: section
@@ -130,6 +189,21 @@ const verified = await parallel(findings.flat().map(f => () =>
   agent(/* refute `f` using only the code */)))
 return { verified: verified.filter(Boolean) }
 ```
+
+---
+layout: concept
+heading: "Which pattern did we just run?"
+lines:
+  - "Team: lead and long-lived peers fit. Peer messages and mediation are extra."
+  - "Auditor: main hands one subagent the job and gets a summary back."
+  - "Workflow: a script orchestrates. Refuters drop a failed finding, no retry."
+---
+
+<div class="grid grid-cols-3 gap-4 w-full max-w-4xl">
+  <div class="na-card p-4 text-center" v-click><div class="text-sm" style="color: var(--na-fg-muted)">Task 08 auditor</div><div class="font-semibold mt-1">Orchestrator-subagent</div><div class="text-sm mt-1" style="color: var(--na-accent-500)">exact fit</div></div>
+  <div class="na-card p-4 text-center" v-click style="border-color: var(--na-accent-500)"><div class="text-sm" style="color: var(--na-fg-muted)">Task 12 agent team</div><div class="font-semibold mt-1">The blog's agent teams</div><div class="text-sm mt-1" style="color: var(--na-accent-500)">partial fit</div></div>
+  <div class="na-card p-4 text-center" v-click><div class="text-sm" style="color: var(--na-fg-muted)">Task 12 workflow</div><div class="font-semibold mt-1">Orchestrator-subagent + verifier</div><div class="text-sm mt-1" style="color: var(--na-accent-500)">partial fit</div></div>
+</div>
 
 ---
 layout: concept

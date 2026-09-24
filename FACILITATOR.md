@@ -268,6 +268,12 @@ Parts III and IV run on the finished reference CLASH, as guided tasks.
   `~/.claude/projects/<session>/`; `s` in `/workflows` saves it to `.claude/workflows/`.
   `Date.now()`, `Math.random()` and no-arg `new Date()` throw inside it.
 - Verifier/refuter and quarantine. Say the token cost out loud.
+- "Lead, peers, and a disagreement": a partial fit with the blog's agent teams pattern. Lead and
+  long-lived peers match; peers messaging by name and the lead settling a dispute go past it.
+  Say "the blog's pattern" or "Claude Code agent teams", never just "agent teams".
+- The five pattern slides follow it, "Generator-verifier" to "Shared state". Message bus and
+  shared state have no built-in Claude Code feature. Say so. "Which pattern did we just run?"
+  waits until after "Read the generated script": both runs are done, refuters are explained.
 - Reconcile three results, fill the toolkit map from evidence, then restore the two
   `creatorId` checks. `workshop-artifacts/12-team-and-workflow-audit/AUTH-FIX.md` has the diff.
 - Keep a finished run in a second terminal in case the live one is slow.
