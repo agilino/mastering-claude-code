@@ -14,7 +14,7 @@ Trainer: Adam Furmanczuk · nextacademy.io. Not tied to any event or date.
 - `scripts/prepare-branches.sh` + `scripts/checkpoints/` — build the catch-up branches on a local CLASH clone. Never pushes.
 - `workshop-artifacts/` — answer keys.
 - `slides/scripts/lint-slides.mjs` — the content linter. "conference"/"Konferenz" are forbidden event words; the one exception is the product name `clash-conference` (a `(?<!clash-)` lookbehind), so prose says "talk" or "programme".
-- `../clash-conference` (`https://github.com/agilino/clash-conference.git`) — a second repository for task 19, cloned next to the CLASH clone. Published once the app is finished; until then it holds no app and no `19-start` branch. Once out, its `main` is the finished app, its `19-start` is the app without `app/api/publish/route.ts`. Not built by `scripts/prepare-branches.sh`.
+- `../clash-conference` (`https://github.com/agilino/clash-conference.git`) — a second repository for task 19, cloned next to the CLASH clone. Published once the app is finished; until then it holds no app and no `19-start` branch. Once out, its `main` is the finished app, its `19-start` is the app without `app/api/publish/route.ts` and `lib/clash-agent.ts`. Not built by `scripts/prepare-branches.sh`.
 
 Target codebase: `https://github.com/pawsaw/clash` (Next.js 16 / React 19 / Prisma 7 + SQLite / shadcn / Leaflet).
 

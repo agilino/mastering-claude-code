@@ -69,6 +69,7 @@ Say:
 - The publish route in clash-conference, sketched before anyone writes it
 - allowedTools pre-approves, it does not restrict. With bypassPermissions Bash, Write and Edit are approved too
 - The locked-down pattern: allowedTools plus permissionMode dontAsk — listed tools run, everything else is denied
+- dontAsk still runs what loaded settings allow and what needs no approval, like file reads. So isolate too: tools: [], settingSources: [], strictMcpConfig: true
 - system/init carries mcp_servers with a status. failed or needs-auth is the check; pending is fine
 - Least privilege, like the hook and the subagent brief: the rule holds either way
 
@@ -85,8 +86,12 @@ Say:
 
 <!-- @note: route-ts -->
 > Do:
-> - FULL WORKING SOLUTION (trainer only): app/api/publish/route.ts ships with clash-conference on its main; the 19-start of clash-conference is that app without it
-> - Until clash-conference sits next to your CLASH clone, show the shape only: maxTurns, a system/init check, the stored outcome
+> - FULL WORKING SOLUTION (trainer only): the query() options are mcpServers clash, tools: [], settingSources: [], strictMcpConfig: true, the two allowedTools, permissionMode: "dontAsk", maxTurns: 8
+> - On its main, clash-conference keeps the query() call in lib/clash-agent.ts and app/api/publish/route.ts calls it; the 19-start of clash-conference has neither file
+> - Until clash-conference sits next to your CLASH clone, show the shape only: the three isolation options, maxTurns, a system/init check, the stored outcome
+
+Say:
+- Without settingSources: [] the agent loads your ~/.claude: your skills, your allow rules, even your language
 
 <!-- @note: build-your-own-mcp-2 -->
 > Do:

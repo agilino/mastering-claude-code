@@ -213,8 +213,10 @@ back later.
     talk into CLASH through the Agent SDK. Load the talk, the CLASH venue name and the host
     email from clash-conference's own data. Then call query() from @anthropic-ai/claude-agent-sdk
     with mcpServers: one stdio server named clash, command npx, args tsx and
-    `${process.env.CLASH_DIR}/mcp/server.ts`; allowedTools: exactly mcp__clash__find_venue
-    and mcp__clash__create_clash; permissionMode: dontAsk, so every other tool is denied;
+    `${process.env.CLASH_DIR}/mcp/server.ts`; tools: [], so no built-in tool exists;
+    settingSources: [], so no settings, skills or CLAUDE.md load; strictMcpConfig: true, so
+    clash is the only MCP server; allowedTools: exactly mcp__clash__find_venue and
+    mcp__clash__create_clash; permissionMode: dontAsk, so every other call is denied;
     maxTurns: 8. The prompt asks the agent to find that venue
     by name and create the clash there, and to answer with the new clash id or with the
     reason it could not. Read the run's first message, the system/init: when the clash
@@ -223,9 +225,10 @@ back later.
     the talk — published with the clash id, or failed with the message — and return that.
     ```
     You see one new file in clash-conference, `app/api/publish/route.ts`. Read it and find
-    five things: the one `query()` call, the two `mcp__clash__…` names in `allowedTools`,
-    `permissionMode: "dontAsk"`, the `maxTurns` ceiling, and the `system/init` check that
-    ends the publish before any tool runs.
+    six things: the one `query()` call; `tools: []`, `settingSources: []` and
+    `strictMcpConfig: true`, which leave the agent nothing but the clash server; the two
+    `mcp__clash__…` names in `allowedTools`; `permissionMode: "dontAsk"`; the `maxTurns`
+    ceiling; and the `system/init` check that ends the publish before any tool runs.
 18. In clash-conference on `localhost:3001`, pick a talk and click "Publish to CLASH". You
     see the talk turn `published` and carry a `clashId`. Open CLASH on
     `localhost:3000/clashes`: the talk is there as a clash, at the venue from
@@ -266,7 +269,8 @@ In your CLASH clone, `git checkout 19-start` gives CLASH's `19-start`, identical
 `git checkout 19-solution` in your CLASH clone gives CLASH's `19-start` plus the finished
 server, for anyone who wants the second half of this task anyway — run `git stash -u` first
 if you already wrote your own `mcp/server.ts`. In clash-conference, `git checkout 19-start`
-gives clash-conference's `19-start`: clash-conference without `app/api/publish/route.ts`.
+gives clash-conference's `19-start`: clash-conference without `app/api/publish/route.ts`
+and without `lib/clash-agent.ts`, the file that holds the `query()` call on its `main`.
 The finished server, `.mcp.json`, `settings.allow.json` and a smoke test are in
 `workshop-artifacts/19-build-mcp/` in the workshop repository. Its `README.md` says where
 each file goes. The smoke test, `npx tsx mcp/smoke.ts` in your CLASH clone, calls every tool
@@ -284,4 +288,5 @@ so another machine can register it with `claude mcp add --transport http`.
 
 - MCP — https://code.claude.com/docs/en/mcp
 - Agent SDK: MCP — https://code.claude.com/docs/en/agent-sdk/mcp
+- Agent SDK: Configure permissions — https://code.claude.com/docs/en/agent-sdk/permissions
 - Build an MCP server — https://modelcontextprotocol.io/docs/develop/build-server

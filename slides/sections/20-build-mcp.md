@@ -121,7 +121,7 @@ export async function POST(req: Request) {
       mcpServers: { clash: { command: "npx", args: ["tsx", server] } },
       allowedTools: ["mcp__clash__find_venue", "mcp__clash__create_clash"],
       permissionMode: "dontAsk", // every other tool is denied
-      // ⟵ LIVE: maxTurns; read system/init, stop on a failed server, store the outcome
+      // ⟵ LIVE: tools, settingSources, strictMcpConfig; maxTurns; check system/init
     },
   });
 }

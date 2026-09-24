@@ -42,7 +42,8 @@ publishes its talks as clashes into CLASH through the MCP server task 19 builds.
 once clash-conference is finished; until then clash-conference holds no app and no `19-start` of
 its own. Once out, clash-conference has two branches of its own: `main` is the finished
 clash-conference, and clash-conference's `19-start` is the same without
-`app/api/publish/route.ts`, the route task 19 writes. Clone clash-conference next to your CLASH
+`app/api/publish/route.ts`, the route task 19 writes, and without `lib/clash-agent.ts`, which
+holds the `query()` call on clash-conference's `main`. Clone clash-conference next to your CLASH
 clone (`docs/SETUP.md`). `scripts/prepare-branches.sh` does not touch clash-conference.
 
 The two repositories mirror each other: `main` in clash-conference is the finished route,
