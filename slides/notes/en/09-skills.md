@@ -23,6 +23,20 @@ Say:
 - [click] A loaded body normally stays for the session — after a compaction, older skill bodies can be dropped
 - [click] That is what it measures — how many descriptions you pay for versus how many bodies ever get pulled in
 
+
+
+<!-- @note: skill-doctor-what-it-costs -->
+> Do:
+> - Already copied on this branch — .claude/skills/ holds eight of the nine .agents/skills/ folders; agent-browser stays personal (task 01)
+> - Demo: run `/skill-doctor` live
+> - Show the two folders side by side — the overlap is obvious on sight
+
+Say:
+- Claude Code reads .claude/skills/ at the project level — this reference build copies eight of the nine .agents/skills/ folders in for you; agent-browser is already a personal skill from task 01
+- Unused skills cost you every session — but only their short description loads, not the ~100 KB body. The body loads when the skill is used
+- Not in a bloated CLAUDE.md (there is none) — it's in `.agents/skills/react-best-practices` and `.agents/skills/vercel-react-best-practices`
+- Two real, near-duplicate rule sets, each about 100 KB
+
 <!-- @note: commands-became-skills-nothing-broke -->
 > Do:
 > - Point back at the /new-page command from Task 04 — same mechanism, this is the folder version

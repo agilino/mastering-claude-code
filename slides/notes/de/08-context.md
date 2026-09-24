@@ -118,18 +118,6 @@ Sagen:
 - Offensichtlich Unsinn — aber genau so stand es im Plan
 - Zum Glück hat er den Plan ganz gelesen und es vor dem Ausrollen abgefangen
 
-<!-- @note: skill-doctor-what-it-costs -->
-> Tun:
-> - Auf diesem Branch schon kopiert — .claude/skills/ enthält acht der neun .agents/skills/-Ordner; agent-browser bleibt persönlich (Task 01)
-> - Demo: `/skill-doctor` live ausführen
-> - Die beiden Ordner nebeneinander zeigen — die Überlappung ist auf den ersten Blick klar
-
-Sagen:
-- Claude Code liest .claude/skills/ auf Projektebene — dieser Referenz-Build kopiert acht der neun .agents/skills/-Ordner hinein; agent-browser ist schon ein persönlicher Skill aus Task 01
-- Ungenutzte Skills kosten dich jede Session — aber nur ihre kurze Beschreibung lädt, nicht der ~100-KB-Body. Der Body lädt, wenn der Skill benutzt wird
-- Nicht in einer aufgeblähten CLAUDE.md (die gibt es nicht) — sondern in `.agents/skills/react-best-practices` und `.agents/skills/vercel-react-best-practices`
-- Zwei echte, fast identische Regelwerke, je etwa 100 KB
-
 <!-- @note: claude-md-files-add-up-they-don-t-compete -->
 > Tun:
 > - Docs-Link: öffnen, bis "How CLAUDE.md files load" scrollen, dann zurück zu den Folien
@@ -143,11 +131,15 @@ Sagen:
 - [click] Alles landet in einem Context — nichts wird verworfen, nichts wird ausgewählt
 - [click] Zwei Dateien widersprechen sich? Claude wählt eine. Das ist ein Bug, den du gebaut hast, kein Feature
 
-<!-- @note: rules-can-load-only-for-matching-files -->
-Sagen:
-- Eine Regel ohne paths:-Feld lädt in jeder Session, wie ein zusätzliches CLAUDE.md
-- [click] ~/.claude/rules/ — deine eigenen, jedes Projekt, für Dinge, die nicht Sache dieses Repos sind
-- Einen gemeinsamen Rules-Ordner in mehrere Repos symlinken, um eine Kopie synchron zu halten
+<!-- @note: personal-rules-follow-you -->
+> Do:
+> - Stelle die persönliche Tone-Rule aus Task 06 der Project Rule gegenüber, die Task 10 später baut.
+> - Erkläre paths-Frontmatter hier noch nicht; dieser Mechanismus gehört vollständig in Task 10.
+
+Say:
+- Persönliche Defaults gehören unter ~/.claude/rules, wenn sie dich betreffen und nicht das Repository.
+- Repository-weite Invarianten gehören in CLAUDE.md.
+- Eine Project Rule, die nur für passende Dateien auftaucht, ist ein anderer Mechanismus. Task 10 bekommt dafür einen klaren eigenen Block.
 
 <!-- @note: references-beat-grep-and-guess -->
 > Tun:

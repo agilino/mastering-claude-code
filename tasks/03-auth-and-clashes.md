@@ -6,7 +6,7 @@
 ## Theory
 
 - [Undo a step: /rewind](https://mastering-claude-code.vercel.app/theory-rewind)
-- [Watch the window fill](https://mastering-claude-code.vercel.app/theory-context-window)
+- [Compact is a lossy reset](https://mastering-claude-code.vercel.app/theory-context-window)
 - [The safety moment](https://mastering-claude-code.vercel.app/theory-server-action-safety)
 
 > **Reminder:** Work in small steps, watch context, and treat every Server Action as its own public endpoint.

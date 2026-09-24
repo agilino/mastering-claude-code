@@ -35,11 +35,11 @@ learn:
   - "Read /context, write CLAUDE.md from grounded rules"
   - "Point Claude with @-references, not grep-and-guess"
   - "Review a plan before any code moves"
-  - "See a skill's cost with /skill-doctor"
+  - "Separate project context from personal defaults"
 outcome:
   - "CLAUDE.md: six grounded rules, from nothing"
   - "A reviewed plan: docs/plans/realtime-notifications.md"
-  - "One vendored skill flagged for removal"
+  - "A measured /context baseline before and after"
   - "A personal rule in ~/.claude/rules/"
 ---
 
@@ -122,17 +122,6 @@ lines:
 
 ---
 layout: concept
-heading: "/skill-doctor: what it costs"
-routeAlias: theory-skill-doctor
-lines:
-  - "CLASH ships nine vendored skills in .agents/skills/."
-  - "Eight copied into .claude/skills/ — agent-browser stays personal."
-  - "Two ~100 KB near-duplicates — only their descriptions scan every session."
----
-
-
----
-layout: concept
 heading: "CLAUDE.md files add up, they don't compete"
 docs: https://code.claude.com/docs/en/memory
 lines:
@@ -144,22 +133,15 @@ lines:
 
 ---
 layout: concept
-heading: "Rules can load only for matching files"
+heading: "Personal rules follow you"
 lines:
-  - ".claude/rules/*.md — one topic per file, loaded only when it is relevant."
-  - "A paths: field scopes a rule to the files it is about."
+  - "~/.claude/rules/ is for defaults that follow you across projects."
+  - "Project invariants stay in CLAUDE.md. Path rules come in task 10."
 ---
 
-<div class="flex gap-6 w-full max-w-4xl">
-  <div class="na-card p-5 flex-1">
-    <div class="font-mono text-xs mb-2" style="color: var(--na-fg-muted)">.claude/rules/testing.md</div>
-    <div class="font-mono text-xs" style="color: var(--na-fg-muted)">paths: ["**/*.test.ts"]</div>
-    <div class="text-sm mt-2">Mock the database, never hit it.</div>
-  </div>
-  <div class="na-card p-5 flex-1" v-click>
-    <div class="font-semibold mb-2" style="color: var(--na-accent-500)">~/.claude/rules/</div>
-    <div class="text-sm" style="color: var(--na-fg-muted)">Personal rules, every project on your machine — for preferences that are not this project's business.</div>
-  </div>
+<div class="grid grid-cols-2 gap-6 w-full max-w-3xl">
+  <div class="na-card p-5"><div class="font-mono font-semibold mb-2">~/.claude/rules/</div><div class="text-sm" style="color: var(--na-fg-muted)">your defaults · every project</div></div>
+  <div class="na-card p-5" v-click><div class="font-mono font-semibold mb-2">CLAUDE.md</div><div class="text-sm" style="color: var(--na-fg-muted)">this project's invariants</div></div>
 </div>
 
 ---
@@ -178,5 +160,3 @@ mode: "you do"
 success: "CLAUDE.md states the six rules in your words, and the notifications plan was reviewed in plan mode."
 branch: "06-start"
 ---
-
-

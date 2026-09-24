@@ -118,18 +118,6 @@ Say:
 - Nonsense, obviously — but it was sitting right there in the plan
 - Luckily he read the whole thing and caught it before it shipped
 
-<!-- @note: skill-doctor-what-it-costs -->
-> Do:
-> - Already copied on this branch — .claude/skills/ holds eight of the nine .agents/skills/ folders; agent-browser stays personal (task 01)
-> - Demo: run `/skill-doctor` live
-> - Show the two folders side by side — the overlap is obvious on sight
-
-Say:
-- Claude Code reads .claude/skills/ at the project level — this reference build copies eight of the nine .agents/skills/ folders in for you; agent-browser is already a personal skill from task 01
-- Unused skills cost you every session — but only their short description loads, not the ~100 KB body. The body loads when the skill is used
-- Not in a bloated CLAUDE.md (there is none) — it's in `.agents/skills/react-best-practices` and `.agents/skills/vercel-react-best-practices`
-- Two real, near-duplicate rule sets, each about 100 KB
-
 <!-- @note: claude-md-files-add-up-they-don-t-compete -->
 > Do:
 > - Docs link: open it, scroll to "How CLAUDE.md files load", then back to the slides
@@ -143,11 +131,15 @@ Say:
 - [click] All of it lands in one context — nothing is dropped, nothing is chosen
 - [click] Two files disagree? Claude picks one. That is a bug you created, not a feature
 
-<!-- @note: rules-can-load-only-for-matching-files -->
+<!-- @note: personal-rules-follow-you -->
+> Do:
+> - Contrast the personal tone rule from task 06 with the project rule that task 10 will build later.
+> - Do not teach paths frontmatter here; save that mechanism for task 10.
+
 Say:
-- A rule with no paths: field loads for every session, like an extra CLAUDE.md
-- [click] ~/.claude/rules/ — yours, every project, for things that are not this repo's business
-- Symlink a shared rules folder into multiple repos to keep one copy in sync
+- Personal defaults belong under ~/.claude/rules when they are about you, not the repository.
+- Repository-wide invariants belong in CLAUDE.md.
+- A project rule that only appears for matching files is a different mechanism. Task 10 gets a clean block for that instead of previewing it here.
 
 <!-- @note: references-beat-grep-and-guess -->
 > Do:

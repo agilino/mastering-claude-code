@@ -27,18 +27,16 @@ Sagen:
 - Das ist Undo fürs Gespräch — es ersetzt Git nicht
 - Früh benutzen, bevor du versuchst, eine falsche Richtung zu flicken
 
-<!-- @note: watch-the-window-fill -->
-> Tun:
-> - Schritte 8-9 machen die Teilnehmenden selbst
-> - Nach den Auth- und Shell-Schritten live /context ausführen
-> - [click] Die Bänder lesen: System-Prompt, CLAUDE.md, Tool-Ergebnisse, Gespräch
-> - Dann /compact ausführen, dann noch mal /context
-> - Optional: auf den Abschnitt "Manage context proactively" in den Docs zeigen — /clear vs. /compact
+<!-- @note: compact-is-a-lossy-reset -->
+> Do:
+> - Führe /context nach Auth und Shell live aus und lies die echten Bereiche.
+> - Führe /compact und danach erneut /context aus. Vergleiche vorher und nachher, statt nur wieder einen Tank zu füllen.
+> - Optional: Zeige in der Doku /clear versus /compact.
 
-Sagen:
-- [click:4] Das Tool-Ergebnisse-Band sind die Dateien, die Claude gelesen hat — es wächst immer weiter. Ist das Fenster fast voll, räumt Claude Code zuerst ältere Tool-Ausgaben weg, dann komprimiert es
-- Das erste Mal, dass die Gruppe das Context Window als etwas sieht, das sie managen kann
-- Teil III macht daraus eine Disziplin
+Say:
+- Compaction schafft Platz, indem Details durch eine Zusammenfassung ersetzt werden. Diese Zusammenfassung ist verlustbehaftet.
+- Nutze /compact, wenn der aktuelle Thread noch wertvoll ist; /clear, wenn die alte Richtung nicht mehr nützt.
+- Part III macht daraus statt eines Rettungsbefehls eine Context-Disziplin.
 
 <!-- @note: the-safety-moment -->
 > Tun:

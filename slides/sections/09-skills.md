@@ -16,12 +16,12 @@ branch: "07-start"
 learn:
   - "Package a repeatable recipe as a skill"
   - "Skills load on demand, by description or /skill-name"
-  - "Commands and skills both produce /name"
+  - "Inspect loaded skill cost with /skill-doctor"
   - "A skill is advice — easy to skip"
 outcome:
   - "clash-feature skill: Prisma to page, one recipe"
   - "Venue favourites, shipped end to end through it"
-  - "tsc, lint and build all green"
+  - "One duplicate vendored skill pair identified"
   - "The skill packaged as a plugin"
 ---
 
@@ -37,6 +37,18 @@ lines:
 ---
 
 <G05SkillLoading />
+
+
+
+---
+layout: concept
+heading: "/skill-doctor: what it costs"
+routeAlias: theory-skill-doctor
+lines:
+  - "CLASH ships nine vendored skills in .agents/skills/."
+  - "Eight copied into .claude/skills/ — agent-browser stays personal."
+  - "Two ~100 KB near-duplicates — only their descriptions scan every session."
+---
 
 ---
 layout: concept
@@ -148,5 +160,3 @@ mode: "you do"
 success: "One feature ships end to end through the skill, and tsc, lint and build pass."
 branch: "07-start"
 ---
-
-

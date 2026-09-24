@@ -6,15 +6,15 @@
 ## Theory
 
 - [Loaded only when needed](https://mastering-claude-code.vercel.app/theory-skills)
-- [Commands became skills. Nothing broke.](https://mastering-claude-code.vercel.app/theory-commands-and-skills)
+- [/skill-doctor: what it costs](https://mastering-claude-code.vercel.app/theory-skill-doctor)
 - [A skill is advice](https://mastering-claude-code.vercel.app/theory-skill-advice)
 
-> **Reminder:** Skills package repeatable guidance, load on demand, and do not enforce behavior like hooks do.
+> **Reminder:** Audit the skill surface before adding more; skills load on demand and remain advice, not enforcement.
 
 ## You will end up with
 
-A skill at `.claude/skills/clash-feature/SKILL.md` that holds the recipe for adding a
-feature to CLASH, and one small feature shipped with it: venue favourites.
+A `/skill-doctor` reading of the vendored skills, then a skill at `.claude/skills/clash-feature/SKILL.md`
+that holds the recipe for adding a feature to CLASH, and one small feature shipped with it: venue favourites.
 
 ## Why
 
@@ -29,7 +29,14 @@ commands in `.claude/commands/*.md` still work. Skills are the richer format for
 
 1. Look at what already ships: `.agents/skills/` and `skills-lock.json`. These are
    third-party skills for Prisma, shadcn and React. You are not starting cold.
-2. Create the skill file and write the header first.
+2. Measure that surface before you add another skill.
+   ```
+   /skill-doctor
+   ```
+   Confirm that `react-best-practices` and `vercel-react-best-practices` are large near-duplicates.
+   The lesson is not to delete them during the workshop; it is to see that every skill description joins the
+   session index, while the large body loads only when the skill is used.
+3. Create the skill file and write the header first.
    ```yaml
    ---
    name: clash-feature
@@ -39,11 +46,11 @@ commands in `.claude/commands/*.md` still work. Skills are the richer format for
    allowed-tools: Read, Edit, Write, Grep, Glob, Bash(npm run *) Bash(npx prisma *) Bash(npx tsc *)
    ---
    ```
-3. Write the body as eleven steps, the last one verifies. Keep each step short.
+4. Write the body as eleven steps, the last one verifies. Keep each step short.
    Prisma model → migration → constants → Zod schema in `lib/validation.ts` → read helper
    in `lib/data/` → Server Action in `app/actions/` **with its own ownership check** →
    page → shadcn component → `revalidatePath` → notification via `lib/notify.ts`.
-4. Give the Server Action step its reason, not only its rule. The reason: `requireUser()` in
+5. Give the Server Action step its reason, not only its rule. The reason: `requireUser()` in
    the layout guards the *page*. A Server Action is a public endpoint anyone with a session
    cookie can call directly, so the action has to check ownership itself.
 
@@ -58,17 +65,17 @@ commands in `.claude/commands/*.md` still work. Skills are the richer format for
    owns the row."
    ```
    Open the file and check the note sits under the Server Action step.
-5. Use the skill to ship a feature.
+6. Use the skill to ship a feature.
    ```
    /clash-feature Add venue favourites: a user can favourite a venue from its
    detail page and see a list of their favourites on their profile.
    ```
-6. Run the gates.
+7. Run the gates.
    ```bash
    npx tsc --noEmit && npm run lint && npm run build
    ```
-7. Run `/context`. Compare with the number from task 06. Note how many files Claude read this time.
-8. Package the skill as a plugin, so it can be shared outside this repo.
+8. Run `/context`. Compare with the number from task 06. Note how many files Claude read this time.
+9. Package the skill as a plugin, so it can be shared outside this repo.
    ```bash
    mkdir -p clash-feature-plugin/.claude-plugin clash-feature-plugin/skills
    cp -r .claude/skills/clash-feature clash-feature-plugin/skills/clash-feature
@@ -92,6 +99,7 @@ commands in `.claude/commands/*.md` still work. Skills are the richer format for
 
 ## Check
 
+- [ ] `/skill-doctor` ran and you can name the two near-duplicate vendored skills.
 - [ ] `.claude/skills/clash-feature/SKILL.md` exists with `name`, `description` and `allowed-tools`.
 - [ ] The Server Action step names an ownership check, not only `requireUser()`, and says why.
 - [ ] Venue favourites work end to end.
