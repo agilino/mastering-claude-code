@@ -80,7 +80,7 @@ const HARD_TOKEN_PATTERNS = [
 const SOFT_TOKEN_PATTERNS = [
   /\b[a-z]+(?:[A-Z][a-z0-9]*)+\b(?:\(\))?/g, // camelCase
   /\b(?:[A-Z][a-z0-9]+){2,}\b/g, // PascalCase
-  /(?<![\w.-])\d+(?:\.\d+)?(?![\w-])/g, // numbers
+  /(?<![\w.-])\d+(?:\.\d+)*(?![\w-])/g, // numbers, including versions like 2.1.0
 ]
 const plain = (note) => note.replace(MARKER, ' ').replace(/(\d),(\d)/g, '$1.$2')
 const trimToken = (t) => t.replace(/^[([]+/, '').replace(/[.,;:!?)\]]+$/, '')
@@ -95,7 +95,7 @@ function tokenSet(note, patterns) {
 function present(token, otherNote, glued) {
   const t = token.toLowerCase()
   const hay = plain(otherNote).toLowerCase()
-  if (/^\d+(\.\d+)?$/.test(t)) return new RegExp(`(?<![\\d.])${t.replace('.', '\\.')}(?!\\.?\\d)`).test(hay)
+  if (/^\d+(\.\d+)*$/.test(t)) return new RegExp(`(?<![\\d.])${t.replace(/\./g, '\\.')}(?!\\.?\\d)`).test(hay)
   const variants = glued ? [t, t.replace(/-[a-zäöüß]+$/, ''), t.replace(/^[a-zäöüß]+-/, '')] : [t]
   return variants.some((v) => v.length > 1 && hay.includes(v))
 }
