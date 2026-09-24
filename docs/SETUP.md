@@ -59,9 +59,9 @@ Start Claude Code and check:
 
 `agent-browser` should be listed.
 
-## 2. Get the codebase
+## 2. Get CLASH
 
-Parts I and II start with an **empty** repository that holds only the product spec.
+Parts I and II start with an **empty** CLASH repository that holds only the product spec.
 
 ```bash
 git clone https://github.com/pawsaw/clash
@@ -76,15 +76,16 @@ git checkout 06-start
 npm install
 npm run db:migrate
 npm run db:seed
-npm run dev          # confirm http://localhost:3000 loads
+npm run dev          # confirm CLASH loads on http://localhost:3000
 ```
 
 > `npm install` runs `prisma generate`, which writes the Prisma client to `lib/generated/prisma`.
 > That folder is gitignored. Nothing type-checks until this has run.
 
-## 3. Create `.env`
+## 3. Create CLASH's `.env`
 
-`.env` is gitignored, so it never arrives with the clone. The app throws on start without it.
+CLASH's `.env` is gitignored, so it never arrives with your CLASH clone. CLASH throws on start
+without it.
 
 ```bash
 cat > .env <<'EOT'
@@ -93,7 +94,8 @@ SESSION_SECRET="workshop-secret"
 EOT
 ```
 
-You need this on `01-start` as soon as you add Prisma (task 02), and on every later branch.
+You need this on CLASH's `01-start` as soon as you add Prisma (task 02), and on every later
+CLASH branch.
 
 ## 4. Seeded logins
 
@@ -126,6 +128,9 @@ Inside Claude Code:
 
 Find the **Dynamic workflows** row and turn it **on**. Task 12 depends on it.
 
+Also in `/config`, on Pro: set **Dynamic workflow size** to **small**. From v2.1.271 that is
+the default. Keep `/effort` at your usual level, not `ultracode`.
+
 ### 5b. Turn agent teams on
 
 Agent teams are experimental. Add this to `~/.claude/settings.json`:
@@ -155,9 +160,12 @@ claude mcp list
 
 `claude mcp list` should show `playwright` and `chrome-devtools`.
 
-## 7. Know the catch-up branches
+Task 19 builds its own MCP server inside your CLASH clone. Its package is in step 9.
 
-Every task has a branch with the state at its **start**. If you fall behind, do not debug. Reset and rejoin.
+## 7. Know CLASH's catch-up branches
+
+Every task has a branch in your CLASH clone with the state at its **start**. If you fall behind,
+do not debug. Reset and rejoin.
 
 ```bash
 git checkout 04-start      # example: rejoin at task 04
@@ -170,8 +178,44 @@ The full list is in [`BRANCHES.md`](BRANCHES.md).
 ## 8. One naming trap
 
 CLASH has a folder `hooks/`. Those are **React hooks** (one file, `hooks/use-mobile.ts`).
-**Claude Code hooks** are shell commands bound to events, configured in `.claude/settings.json`.
+**Claude Code hooks** are shell commands bound to events, configured in a project's
+`.claude/settings.json`. Here that file is always CLASH's.
 Both appear in this workshop. We always say which one we mean.
+
+## 9. The MCP server package and clash-conference
+
+Task 19 designs an MCP server inside your CLASH clone and connects a second app,
+`clash-conference`, to it. CLASH's `19-start` already lists both MCP packages in its
+`package.json`.
+
+Fetch them once, in your CLASH clone, so the `npm install` in task 19 needs no network.
+`--no-save` leaves `package.json` and the lock file untouched, so you can still switch
+branches afterwards:
+
+```bash
+git checkout 06-start
+npm install --no-save @modelcontextprotocol/server@2.1.0 @modelcontextprotocol/client@2.1.0
+```
+
+`@modelcontextprotocol/server` is the server SDK. `@modelcontextprotocol/client` is used only by
+the smoke test, `mcp/smoke.ts`. Both are pinned to 2.1.0, the version the answer key was built
+and tested with, and CLASH's `19-start` pins the same version. The older
+`@modelcontextprotocol/sdk` is a different package. Do not install it.
+
+**The second app comes later.** `clash-conference` is published once it is finished, and the
+trainer tells you when. Until then the clash-conference repository holds no app: no
+`package.json` and no `19-start` branch of its own, so the commands below stop at
+clash-conference's `git checkout 19-start`. Skip them for now.
+
+When clash-conference is out, clone it **next to** your CLASH clone, in the same parent folder:
+
+```bash
+cd ..                                                 # the folder that holds your CLASH clone
+git clone https://github.com/agilino/clash-conference.git
+cd clash-conference
+git checkout 19-start                                 # clash-conference's 19-start
+npm install
+```
 
 ---
 
@@ -182,10 +226,12 @@ Both appear in this workshop. We always say which one we mean.
 - [ ] `agent-browser --version` prints a version
 - [ ] `/skills` lists `agent-browser`
 - [ ] `git checkout 01-start` works in your clone of `pawsaw/clash`
-- [ ] `.env` exists with `DATABASE_URL` and `SESSION_SECRET`
+- [ ] CLASH's `.env` exists with `DATABASE_URL` and `SESSION_SECRET`
 - [ ] `/config` shows Dynamic workflows **on**
 - [ ] `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` is set, or you plan to watch that part
 - [ ] `claude mcp list` shows `playwright` and `chrome-devtools`
+- [ ] `node_modules/@modelcontextprotocol/server` exists in your CLASH clone
+- [ ] Once clash-conference is published (step 9): it is cloned next to your CLASH clone, on clash-conference's `19-start`, and `npm install` ran there
 
 ## Trouble?
 
@@ -193,11 +239,11 @@ Both appear in this workshop. We always say which one we mean.
 |---|---|
 | Anything not covered below | Run `/doctor` inside Claude Code (or `claude doctor` in your terminal if Claude Code does not start at all) — it checks your installation and settings, reports what it finds, and asks before it fixes anything |
 | `Shift+Tab` does nothing (Windows) | Known Node/Bun quirk. Use `Alt+M` to cycle permission modes instead |
-| `SESSION_SECRET environment variable is not set.` | Step 3: create `.env` |
+| `SESSION_SECRET environment variable is not set.` | Step 3: create CLASH's `.env` |
 | `Cannot find module '@/lib/generated/prisma'` | Run `npm install` again (it runs `prisma generate`) |
 | `npx tsc --noEmit` fails right after a checkout | Same: the Prisma client has not been generated yet |
 | Login fails for every user | Run `npm run db:seed` |
-| Map tiles are blank | Expected without network. The rest of the app works offline |
+| Map tiles are blank | Expected without network. The rest of CLASH works offline |
 | No workflow option in `/config` | Upgrade Claude Code to 2.1.252 or newer |
 | Agent team behaves like plain subagents | Step 5b: set the flag and restart Claude Code |
 | `/skills` does not list `agent-browser` | The link into `~/.claude/skills/` is missing. macOS, Linux or WSL: `ln -s ~/.agents/skills/agent-browser ~/.claude/skills/agent-browser`. Windows, in PowerShell: `New-Item -ItemType Junction -Path $HOME\.claude\skills\agent-browser -Target $HOME\.agents\skills\agent-browser` (a junction, not a symlink — no Developer Mode or admin shell needed) |

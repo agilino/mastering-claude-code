@@ -12,7 +12,7 @@
 ## Repository
 
 - This workshop: [github.com/nextacademy-io/mastering-claude-code](https://github.com/nextacademy-io/mastering-claude-code)
-- The app you build and extend: [github.com/pawsaw/clash](https://github.com/pawsaw/clash)
+- CLASH, the app you build and extend: [github.com/pawsaw/clash](https://github.com/pawsaw/clash)
 - Live deck: [mastering-claude-code.vercel.app](https://mastering-claude-code.vercel.app)
 - Trainer: Adam Furmanczuk, nextacademy.io
 
@@ -20,7 +20,8 @@
 
 A guided workshop on Claude Code. You start with no experience. You end with the skills of an
 expert: context engineering, skills, subagents, agent teams, dynamic workflows, hooks, MCP,
-worktrees, headless runs in CI, and the Agent SDK.
+worktrees, headless runs in CI, the Agent SDK, output styles, loops, background sessions,
+routines, your own MCP server.
 
 The trainer explains and shows. Then you do it on your own machine. Every task has a reset
 branch, so nobody gets stuck.
@@ -60,7 +61,7 @@ claude --version
 | I — Foundations | White | 01 |
 | II — Build CLASH | Blue | 02 · 03 · 04 · 05 |
 | III — Control the context | Brown | 06 · 07 · 08 · 09 · 10 |
-| IV — Orchestrate and let go | Black | 11 · 12 · 13 · 14 · 15 · 16 · 17 |
+| IV — Orchestrate and let go | Black | 11 · 12 · 13 · 14 · 15 · 16 · 17 · 18 · 19 |
 
 ## Tasks
 
@@ -83,21 +84,24 @@ claude --version
 | 15 | [Letting go](tasks/15-letting-go.md) | IV | `15-start` |
 | 16 | [Agent SDK](tasks/16-agent-sdk.md) | IV | `16-start` |
 | 17 | [Capstone](tasks/17-capstone.md) | IV | `17-start` |
+| 18 | [Automate](tasks/18-automate.md) | IV | `18-start` |
+| 19 | [Build your own MCP](tasks/19-build-your-own-mcp.md) | IV | CLASH's `19-start` |
 
 Standalone index: [`tasks/README.md`](tasks/README.md). What each branch contains:
 [`docs/BRANCHES.md`](docs/BRANCHES.md).
 
 ## Reset branches
 
-`NN-start` is the state at the **start** of task NN. If you fall behind, do not debug. Reset
-and continue:
+`NN-start` in your CLASH clone is the state at the **start** of task NN. If you fall behind, do
+not debug. Reset and continue:
 
 ```bash
 git stash -u          # keep your own work, including new files, if you want it
 git checkout 04-start
 ```
 
-`01-start` is an empty repo with the spec. `06-start` is the finished reference CLASH.
+CLASH's `01-start` is an empty CLASH repository with the spec. CLASH's `06-start` is the finished
+reference CLASH. clash-conference has one reset branch of its own, `19-start`.
 
 ## What you will have built
 
@@ -107,12 +111,14 @@ git checkout 04-start
 - A browser test suite and a measured performance fix.
 - The audit running headless in CI, a worktree flow, and a small Agent SDK program.
 - One feature of your choice, shipped with everything above.
+- Claude Code working with nobody at the keyboard: an output style, a loop, a background session, a routine in the cloud.
+- Your own MCP server on CLASH, and a second app, `clash-conference`, that publishes its talks as clashes through it.
 
 ## Slides
 
 Live deck: **[mastering-claude-code.vercel.app](https://mastering-claude-code.vercel.app)**. It is
-redeployed automatically whenever the slides change (a Claude Code `Stop` hook in
-`.claude/settings.json` runs `.claude/hooks/deploy-slides.sh`).
+redeployed automatically whenever the slides change (a Claude Code `Stop` hook in the workshop
+repository's `.claude/settings.json` runs `.claude/hooks/deploy-slides.sh`).
 
 ```bash
 cd slides
@@ -138,8 +144,8 @@ The slide base URL defaults to the deployed workshop. Override it when testing n
 or if the deployment moves:
 
 ```bash
-SLIDES_BASE_URL=http://localhost:3000 npm run task:check
-SLIDES_BASE_URL=http://localhost:3000 npm run task:new -- 15 My new task
+SLIDES_BASE_URL=http://localhost:3030 npm run task:check
+SLIDES_BASE_URL=http://localhost:3030 npm run task:new -- 15 My new task
 ```
 
 With a localhost override, the linter accepts both existing deployed links and local links. CI
