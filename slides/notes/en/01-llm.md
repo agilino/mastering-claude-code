@@ -50,6 +50,49 @@ Say:
 - [click] Reach for Opus when the reasoning is the hard part, not the typing
 - [click] Fable is built for sessions you would normally break into pieces — hand it the outcome, not the steps
 
+
+
+<!-- @note: model-and-effort-are-separate -->
+> Do:
+> - Point at the four knobs. Ask which one fixes a missing file: context, not effort.
+> - Ask which one proves a refactor works: verification, not effort.
+
+Say:
+- Model and effort are different purchases. Model is capability; effort is reasoning spend on this task.
+- Plan mode is a permission and workflow boundary. It can make the work easier to review, but it does not magically raise model capability.
+- Never buy more reasoning to compensate for missing context or missing evidence.
+
+<!-- @note: same-task-different-effort -->
+> Do:
+> - Run both commands from a fresh workshop-repository shell. Keep the model identical.
+> - The file has four deliberate contract violations. Do not reveal them before both runs finish.
+> - Read the JSON usage fields and the actual findings. Tone and length do not score.
+
+Say:
+- Same task, same context, same model. One variable changes: effort.
+- The four expected findings are: cancelled returns true; null capacity is treated as zero; the full check uses > instead of >=; sort mutates the participantIds array.
+- A run can sound more careful and still score worse. Count what it found and what it invented.
+
+<!-- @note: measure-the-extra-reasoning -->
+> Do:
+> - Fill the table from the two live results.
+> - If both runs find all four, say that clearly: this task did not earn higher effort today. That is a useful result.
+
+Say:
+- Reasoning has value only through better decisions or less rework.
+- The useful comparison is total engineering effort: reasoning plus implementation plus rework plus verification.
+- Repeat this experiment on one real task before changing a team's default effort.
+
+<!-- @note: spend-effort-where-it-matters -->
+> Do:
+> - Keep the scale approximate. Effort is model-calibrated, not a fixed token multiplier.
+> - Point out max's diminishing returns warning in the docs.
+
+Say:
+- Low is for scoped, mechanical work. High is a sensible default when the task has real reasoning in it.
+- xhigh and max belong where a wrong decision is expensive: root cause, architecture, security boundaries, difficult plan review.
+- ultrathink is a one-turn instruction for deeper reasoning; it does not change the session's API effort level.
+
 <!-- @note: where-the-knowledge-comes-from -->
 Say:
 - Two very different phases: training and use

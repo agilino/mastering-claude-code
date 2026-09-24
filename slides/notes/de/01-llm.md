@@ -50,6 +50,49 @@ Sagen:
 - [click] Opus greifen, wenn das Denken der schwere Teil ist, nicht das Tippen
 - [click] Fable ist für Sessions gebaut, die du sonst in Stücke teilen würdest — das Ergebnis übergeben, nicht die Schritte
 
+
+
+<!-- @note: model-and-effort-are-separate -->
+> Do:
+> - Zeige auf die vier Regler. Frage: Welcher Regler hilft bei einer fehlenden Datei? Kontext, nicht Effort.
+> - Frage: Welcher Regler beweist, dass ein Refactoring funktioniert? Verifikation, nicht Effort.
+
+Say:
+- Modell und Effort sind zwei verschiedene Entscheidungen. Das Modell bestimmt die Fähigkeit, Effort den Reasoning-Aufwand für diese Aufgabe.
+- Plan Mode ist eine Berechtigungs- und Workflow-Grenze. Er macht die Arbeit prüfbarer, aber das Modell nicht automatisch fähiger.
+- Kaufe kein zusätzliches Reasoning, um fehlenden Kontext oder fehlende Belege zu kompensieren.
+
+<!-- @note: same-task-different-effort -->
+> Do:
+> - Führe beide Befehle aus einer frischen Shell des Workshop-Repositories aus. Das Modell bleibt identisch.
+> - Die Datei enthält vier absichtliche Vertragsverletzungen. Verrate sie erst nach beiden Läufen.
+> - Lies die Usage-Felder aus dem JSON und die Findings. Ton und Länge zählen nicht.
+
+Say:
+- Gleiche Aufgabe, gleicher Kontext, gleiches Modell. Nur Effort ändert sich.
+- Die vier erwarteten Findings: cancelled liefert true; null-Kapazität wird als null Plätze behandelt; die Vollprüfung verwendet > statt >=; sort verändert participantIds.
+- Ein Lauf kann sorgfältiger klingen und trotzdem schlechter abschneiden. Zähle Treffer und Erfindungen.
+
+<!-- @note: measure-the-extra-reasoning -->
+> Do:
+> - Fülle die Tabelle mit den Resultaten der zwei Live-Läufe.
+> - Finden beide alle vier Fehler, sag das ausdrücklich: Diese Aufgabe hat den höheren Effort heute nicht verdient.
+
+Say:
+- Reasoning hat nur Wert, wenn es Entscheidungen verbessert oder Nacharbeit verhindert.
+- Die nützliche Betrachtung ist der gesamte Engineering-Aufwand: Reasoning plus Umsetzung plus Nacharbeit plus Verifikation.
+- Wiederhole den Vergleich an einer echten Aufgabe, bevor du einen höheren Team-Default setzt.
+
+<!-- @note: spend-effort-where-it-matters -->
+> Do:
+> - Behandle die Stufen als Heuristik. Effort ist pro Modell kalibriert, kein fixer Token-Multiplikator.
+> - Zeige in der Doku den Hinweis zu abnehmendem Nutzen bei max.
+
+Say:
+- Low passt zu klarer, mechanischer Arbeit. High ist sinnvoll, wenn wirklich Schlussfolgerungen nötig sind.
+- xhigh und max lohnen sich dort, wo eine falsche Entscheidung teuer ist: Root Cause, Architektur, Security-Grenzen, schwieriger Plan-Review.
+- ultrathink ist eine Instruktion für einen tieferen einzelnen Turn; der Session-Effort wird dadurch nicht umgestellt.
+
 <!-- @note: where-the-knowledge-comes-from -->
 Sagen:
 - Zwei sehr unterschiedliche Phasen: Training und Nutzung
