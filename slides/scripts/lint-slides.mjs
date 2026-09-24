@@ -93,7 +93,7 @@ const forbidden = [
   [/\b(Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Sonntag)\b/, 'weekday (de)'],
   [/\b20[2-3]\d-\d\d(-\d\d)?\b/, 'date (de)'],
   [/\b\d{1,2}\.\d{1,2}\.\d{4}\b/, 'date (de, DD.MM.YYYY)'],
-  [/(?<!clash-)\bKonferenz\b/i, 'event reference (de)'],
+  [/\bKonferenz\b/i, 'event reference (de)'],
   [/\b(heute (früh|Morgen)|heute Nachmittag|nach der Pause|morgen früh)\b/i, 'time of day (de)'],
   [/\bim Raum\b/i, 'room wording (de)'],
 ]
