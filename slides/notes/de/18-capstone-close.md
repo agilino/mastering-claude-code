@@ -70,5 +70,5 @@ Sagen:
 - Repo: bmad-code-org/BMAD-METHOD
 - Faustregel: Spec Kit, wenn du Spec-Disziplin willst, ohne Prozess-Overhead; BMAD, wenn die Organisation diese Rollen schon hat
 - BMAD zaubert dir keinen Prozess herbei, den du nicht hast
-- [click] Ehrliche Einordnung: beide sind Greenfield-Methoden, CLASH ist Brownfield — deshalb kommen sie zuletzt, und deshalb ging es vorher immer um Kontrolle statt um Zeremonie
+- [click] Ehrliche Einordnung: beide glänzen auf der grünen Wiese, taugen aber auch für bestehenden Code. CLASH ist beides — Greenfield in Teil II, seitdem Brownfield — und clash-conference war ein Greenfield-Bau mit BMAD
 

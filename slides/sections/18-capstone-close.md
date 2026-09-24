@@ -88,7 +88,7 @@ heading: "Spec Kit vs BMAD"
 lines:
   - "Spec Kit: low ceremony, agent-agnostic, a Python/uv tool."
   - "BMAD v6: five named agents, heavyweight, maps onto roles you already have."
-  - "Both are greenfield methods. CLASH is brownfield."
+  - "Both shine on greenfield, but not only there. CLASH is both."
 ---
 
 <G20SpecKitVsBmad />
