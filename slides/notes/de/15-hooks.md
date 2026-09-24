@@ -120,3 +120,36 @@ Sagen:
 > - Bestätigen, dass die Leute die kaputte Matcher-Version nachgebaut haben, bevor es weitergeht
 > - Der "warum hat's nicht gefeuert"-Moment funktioniert nur, wenn sie die Stille selbst erlebt haben
 > - Mit `/hooks` live abschließen — ein Read-only-Browser, gruppiert nach Event: ein Event auswählen, um die gerade geschriebenen Hooks darunter zu sehen
+
+
+<!-- @note: ignored-by-git-is-not-hidden -->
+> Do:
+> - Verweise auf Task 02: Dass .env nicht in git status erschien, war nützlich, aber keine Security-Grenze.
+> - Öffne bei Bedarf die Env-Var-Doku: Glob berücksichtigt .gitignore standardmässig nicht als Sichtbarkeitsgrenze.
+
+Say:
+- Git ignore beantwortet eine Frage: Soll Git diesen Pfad tracken? Sichtbarkeit für Claude-Tools ist eine andere Frage.
+- Dotfiles und gitignored Dateien können von Glob standardmässig weiterhin gefunden werden.
+- Secrets brauchen Permissions oder Hooks, die den Read verweigern, nicht Vertrauen in .gitignore.
+
+<!-- @note: tool-output-becomes-local-history -->
+> Do:
+> - Demonstriere kein echtes Credential. Zeige nur den Weg.
+> - Verweise auf die eben gebaute .env-Deny-Regel.
+
+Say:
+- Tool-Eingaben und Resultate werden in lokalen Session-Transcripts im Klartext gespeichert.
+- Gibt ein Command ein Token aus oder Read öffnet ein Secret, kann der Wert im Transcript stehen, obwohl die Datei gitignored ist.
+- Halte Credential-Reads aus der Tool-Oberfläche heraus und wähle die Transcript-Retention bewusst.
+
+
+<!-- @note: security-three-rules -->
+> Tun:
+> - Optional: auf "Protect against prompt injection" zeigen — dieselben drei Regeln, als eigene Liste der Docs
+
+Sagen:
+- Prompt Injection in einem Satz: ein Modell kann Daten und Anweisungen nicht durch Hinsehen unterscheiden
+- CLASH steckt voller nutzergenerierter Titel und Bios — klassische Angriffsfläche für Injection
+- Der Workflow aus Task 12 hat die Regel schon angewendet: Leser nicht vertrauenswürdiger Inhalte bekommen keine Schreib-Tools
+- Hooks machen diese Regel zum Gesetz
+- Subagent-Tool-Listen machen die Angriffsfläche klein

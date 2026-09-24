@@ -120,3 +120,36 @@ Say:
 > - Confirm people reproduced the broken matcher version before moving on
 > - The "why didn't it fire" beat only lands if they saw the silence themselves
 > - Close with `/hooks` live — a read-only browser, grouped by event: pick an event to see the hooks they just wrote under it
+
+
+<!-- @note: ignored-by-git-is-not-hidden -->
+> Do:
+> - Point back to task 02, where .env being absent from git status was useful but not a security boundary.
+> - Open the env-var docs if anyone doubts the default: Glob includes gitignored paths unless configured otherwise.
+
+Say:
+- Git ignore answers one question: should Git track this path? Claude tool visibility is a different question.
+- Dotfiles and gitignored files can still be discovered by Glob by default.
+- Secrets need permissions or hooks that deny the read, not confidence in .gitignore.
+
+<!-- @note: tool-output-becomes-local-history -->
+> Do:
+> - Do not demo a real credential. Draw the path only.
+> - Point at the .env deny rule they just built.
+
+Say:
+- Tool inputs and results are written to local session transcripts in plaintext.
+- If a command prints a token or Read opens a secret, that value can be in the transcript even when the file itself is gitignored.
+- Keep credential reads out of the tool surface and choose transcript retention deliberately.
+
+
+<!-- @note: security-three-rules -->
+> Do:
+> - Optional: point at "Protect against prompt injection" — the same three rules, as the docs' own core protections list
+
+Say:
+- Prompt injection in one sentence: a model cannot tell data from instructions by looking
+- CLASH is full of user-supplied titles and bios — prime injection surface
+- Task 12's workflow already applied the rule: readers of untrusted content do not hold write tools
+- Hooks make that rule law
+- Subagent tool lists make the attack surface small

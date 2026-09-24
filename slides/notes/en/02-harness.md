@@ -106,6 +106,28 @@ Say:
   - Which rules are enforced by a hook rather than hoped for in a prompt?
 - One of those questions, right now: what happens when the window fills up
 
+
+
+<!-- @note: cost-multiplies-quietly -->
+> Do:
+> - Call the multiplication graphic a review lens, not a billing formula.
+> - Tie each factor to something already seen: context, turns, teams, effort.
+
+Say:
+- Thinking tokens are billed as output. Parallel workers each have their own context. Long sessions make later turns heavier.
+- The trap is rarely one expensive command; it is multiplication across dimensions.
+- Optimize the shape of the work first: smaller context, fewer unnecessary turns, fewer workers, appropriate effort.
+
+<!-- @note: keep-deterministic-work-deterministic -->
+> Do:
+> - Ask the group which side should count errors in a log. Answer: a script.
+> - Ask which side should decide whether two architectural constraints conflict. Answer: the model.
+
+Say:
+- Do not spend reasoning tokens on transformations a deterministic command can do perfectly.
+- Filter a giant log before it enters context. Run the narrowest useful test while iterating.
+- If every task repeats the same gates, expose one repository command and let humans, agents and CI call the same contract.
+
 <!-- @note: when-the-window-fills-compact-or-clear -->
 > Do:
 > - Nobody has a live session open yet — name the commands, don't run them
