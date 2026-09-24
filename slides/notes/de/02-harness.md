@@ -106,6 +106,28 @@ Sagen:
   - Welche Regeln werden von einem Hook erzwungen statt in einem Prompt erhofft?
 - Eine dieser Fragen, gleich jetzt: was passiert, wenn das Fenster voll wird
 
+
+
+<!-- @note: cost-multiplies-quietly -->
+> Do:
+> - Nenne die Multiplikation eine Review-Heuristik, keine Abrechnungsformel.
+> - Verbinde jeden Faktor mit Bekanntem: Kontext, Turns, Teams, Effort.
+
+Say:
+- Thinking Tokens werden als Output verrechnet. Parallele Worker haben je eigenen Kontext. Lange Sessions machen spätere Turns schwerer.
+- Die Falle ist selten ein einzelner teurer Befehl; teuer wird die Multiplikation mehrerer Dimensionen.
+- Optimiere zuerst die Form der Arbeit: kleinerer Kontext, weniger unnötige Turns, weniger Worker, passender Effort.
+
+<!-- @note: keep-deterministic-work-deterministic -->
+> Do:
+> - Frage, wer Fehler in einem Log zählen soll. Antwort: ein Script.
+> - Frage, wer einen Konflikt zwischen Architektur-Constraints entscheiden soll. Antwort: das Modell.
+
+Say:
+- Verbrauche keine Reasoning-Tokens für Transformationen, die ein deterministischer Befehl perfekt erledigt.
+- Filtere riesige Logs, bevor sie in den Kontext gelangen. Nutze im Inner Loop den kleinsten nützlichen Test.
+- Wiederholt jede Aufgabe dieselben Gates, exponiere einen Repository-Befehl und lasse Menschen, Agents und CI denselben Vertrag ausführen.
+
 <!-- @note: when-the-window-fills-compact-or-clear -->
 > Tun:
 > - Noch läuft keine Live-Session — die Commands nennen, nicht ausführen

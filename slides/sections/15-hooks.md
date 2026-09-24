@@ -189,3 +189,45 @@ branch: "13-start"
 ---
 
 
+
+
+---
+layout: concept
+heading: "Ignored by Git is not hidden"
+docs: https://code.claude.com/docs/en/env-vars
+lines:
+  - ".gitignore stops Git. Claude's Glob still includes ignored files by default."
+  - "Dotfiles are included too. A deny rule is the security boundary."
+---
+
+<div class="grid grid-cols-3 gap-5 w-full max-w-4xl text-center">
+  <div class="na-card p-5"><div class="font-mono font-semibold">.gitignore</div><div class="text-sm mt-2" style="color: var(--na-fg-muted)">not committed</div></div>
+  <div class="na-card p-5" v-click><div class="font-mono font-semibold">Glob</div><div class="text-sm mt-2" style="color: var(--na-error-500)">still discoverable by default</div></div>
+  <div class="na-card p-5" v-click><div class="font-semibold">permission deny</div><div class="text-sm mt-2" style="color: var(--na-success-500)">actual boundary</div></div>
+</div>
+
+---
+layout: concept
+heading: "Tool output becomes local history"
+docs: https://code.claude.com/docs/en/claude-directory
+lines:
+  - "File contents, command output and pasted text enter plaintext transcripts."
+  - "If a tool reads a secret, assume the transcript now contains it."
+  - "Deny credential reads; choose retention deliberately."
+---
+
+<div class="flex items-center gap-4 w-full max-w-4xl justify-center text-sm">
+  <div class="na-card px-4 py-3">Read .env</div><span>→</span><div class="na-card px-4 py-3">tool result</div><span>→</span><div class="na-card px-4 py-3" style="border-color: var(--na-error-500)">session.jsonl</div>
+</div>
+
+
+---
+layout: concept
+heading: "Security: three rules"
+routeAlias: theory-security-rules
+docs: https://code.claude.com/docs/en/security
+lines:
+  - "Anything a model reads can be an instruction."
+  - "Quarantine: readers of untrusted text cannot write."
+  - "Least privilege: the smallest tool list that works."
+---
