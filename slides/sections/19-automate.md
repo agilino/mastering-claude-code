@@ -76,6 +76,42 @@ Work as usual. Then end every answer with exactly one extra line.
 ⟵ LIVE  what that line starts with, who it is for, what it must not contain
 ```
 
+
+
+---
+layout: concept
+heading: "/goal: evidence decides when to stop"
+routeAlias: theory-goal
+docs: https://code.claude.com/docs/en/goal
+lines:
+  - "Name one measurable end state, the check, the constraints — and a turn ceiling."
+  - "Permissions do not change. Background work delays the verdict until it finishes."
+---
+
+<div class="flex items-center gap-4 w-full max-w-4xl justify-center">
+  <div class="na-card p-4 text-center"><div class="font-semibold">work</div><div class="text-sm" style="color: var(--na-fg-muted)">one turn</div></div>
+  <span>→</span>
+  <div class="na-card p-4 text-center" v-click><div class="font-semibold">small evaluator</div><div class="text-sm" style="color: var(--na-fg-muted)">met · not yet · impossible</div></div>
+  <span v-click>→</span>
+  <div class="na-card p-4 text-center" v-click><div class="font-semibold">continue or stop</div><div class="text-sm" style="color: var(--na-fg-muted)">bounded by your condition</div></div>
+</div>
+
+---
+layout: code-live
+heading: "Bound the work"
+docs: https://code.claude.com/docs/en/goal
+filePath: "Claude Code prompt — in your CLASH clone"
+success: "The goal has a measurable proof and a turn ceiling; /goal reports its state, turns, token spend and evaluator reason."
+---
+
+```text
+/goal npx tsc --noEmit exits 0 and npm run lint exits 0;
+or stop after 6 turns
+
+⟵ LIVE: after it evaluates, run /goal and point at status, turns,
+        token spend and the evaluator reason.
+```
+
 ---
 layout: concept
 heading: "/loop: the prompt comes back"

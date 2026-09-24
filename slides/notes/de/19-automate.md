@@ -49,6 +49,30 @@ Sagen:
 - Kein name-Feld, also ist der Dateiname der Style-Name: /output-style host-notes
 - Ein falsch geschriebenes Frontmatter-Feld wird ohne Fehler ignoriert: nach dem Neustart die Liste prüfen
 
+
+
+<!-- @note: goal-evidence-decides-when-to-stop -->
+> Do:
+> - Erkläre die Bedingung vor dem Lauf: Endzustand, Beleg, Turn-Limit.
+> - Sage ausdrücklich, dass /goal den Permission Mode nicht ändert. Auto Mode ist die separate Entscheidung für unbeaufsichtigte Arbeit.
+
+Say:
+- /goal ist nicht einfach ein weiterer Loop-Befehl. Er setzt für diese Session eine Completion Condition.
+- Nach einem Turn bewertet ein kleines Modell den Transcript: erfüllt, noch nicht erfüllt oder unmöglich.
+- Ein begrenztes Goal ist sicherer als "versuch weiter": definiere einen Beleg und ein Limit wie "or stop after 20 turns".
+- Läuft noch ein Subagent oder Background-Shell, wartet die Auswertung. Lange Wartezeiten können Check-in-Turns erzeugen und kosten damit weiter.
+
+<!-- @note: bound-the-work -->
+> Do:
+> - Führe die Demo auf einem sauberen CLASH-Branch aus. Sie darf nach einem Turn fertig sein.
+> - Starte danach /goal und zeige Status, Turn-Zahl, Token-Verbrauch und Evaluator-Begründung.
+> - Optional: Zeige /goal clear nach einer absichtlich längeren Bedingung, ohne das Repo kaputtzumachen.
+
+Say:
+- Entscheidend ist der Vertrag, nicht eine künstlich lange Demo.
+- Bei echter Feature-Arbeit kommen Constraints wie "keine Testdatei geändert" oder ein Browser-Ergebnis sowie ein Turn-Limit dazu.
+- Ein Goal kann bei Usage-Limits oder Hook-Fehlern pausieren und später weiterlaufen; begrenzt bleibt es durch deine Bedingung.
+
 <!-- @note: loop-the-prompt-comes-back -->
 > Tun:
 > - Docs-Link: "Let Claude choose the interval", dann "Stop a loop". Live in deinem CLASH-Clone, zuerst:

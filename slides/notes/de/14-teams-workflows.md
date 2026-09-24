@@ -255,6 +255,17 @@ Sagen:
 - `/cost` sagt die Token-Zahl laut an — Alias für `/usage`
 - Task endet mit geshipptem Code — das trägt 13-start
 
+
+
+<!-- @note: pick-the-parallelism-primitive -->
+> Do:
+> - Frage nach einem Beispiel pro Zeile. Die Antwort soll von Kommunikation und Isolation handeln, nicht von Mode.
+
+Say:
+- Parallelisierung ist nicht ein einzelnes Feature. Nimm den kleinsten Koordinationsmechanismus, der zu den Abhängigkeiten zwischen Workern passt.
+- Ein Subagent schützt den Hauptkontext. Ein Team existiert, weil Peers miteinander reden müssen. Ein Workflow macht Fan-out wiederholbar. Worktrees isolieren Edits. /batch ist für viele trennbare Pull Requests.
+- Mehr Agents sind nicht automatisch schneller: jeder Worker hat eigenen Kontext und eigenen Token-Verbrauch.
+
 <!-- @note: team-and-workflow-audit -->
 > Tun:
 > - Erst den Team-Teil anschauen, dann selbst machen

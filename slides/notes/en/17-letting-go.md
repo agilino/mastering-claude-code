@@ -24,6 +24,18 @@ Say:
 - `isolation: worktree` in a subagent's frontmatter, and the EnterWorktree/ExitWorktree tools
 - At home: `claude --worktree "#<pr-number>"` starts from a PR
 
+
+
+<!-- @note: batch-many-independent-pull-requests -->
+> Do:
+> - Point back to the manual worktree slide. /batch automates that shape after it researches and proposes the split.
+> - Do not run it on CLASH live; naming the decision boundary is the lesson.
+
+Say:
+- /batch is for a large set of separable changes. It proposes 5 to 30 independent units and waits for approval before spawning them.
+- Each unit gets its own background agent and worktree, runs tests, and opens its own pull request.
+- If the units share one architectural decision or constantly touch the same files, do not force the job through /batch. Make the decision first, then split the mechanical work.
+
 <!-- @note: headless-in-ci -->
 > Do:
 > - Optional: point at "Start faster with bare mode" — --bare skips hook, skill and CLAUDE.md auto-discovery for a reproducible CI run
