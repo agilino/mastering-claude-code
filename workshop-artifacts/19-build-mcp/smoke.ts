@@ -2,6 +2,7 @@
 // calls every tool once and checks the answers. Run: npx tsx mcp/smoke.ts
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { randomUUID } from "node:crypto";
 import { Client } from "@modelcontextprotocol/client";
 import { StdioClientTransport } from "@modelcontextprotocol/client/stdio";
 import { PrismaClient } from "../lib/generated/prisma/client";
@@ -25,7 +26,8 @@ const client = new Client({ name: "clash-smoke", version: "1.0.0" });
 
 let failures = 0;
 let createdId: string | undefined; // the clash this test created, removed in the finally below
-const TEST_DESCRIPTION = "Build MCP servers together. Created by the smoke test.";
+// One marker per run: cleanup removes only clashes this run created, never someone else's data.
+const TEST_DESCRIPTION = `Build MCP servers together. Created by the smoke test, run ${randomUUID()}.`;
 
 // Call one tool and return its text answer and whether the server flagged it as an error.
 // A tool that does not exist yet (the starter on CLASH's 19-start) counts as a failed check, not a crash,
@@ -142,8 +144,8 @@ async function run() {
   try {
     await main();
   } finally {
-    // Clean up on success and on failure: remove every clash this test created, so the database
-    // looks like before. Matched by the test's own description, not only by createdId: a
+    // Clean up on success and on failure: remove every clash this run created, so the database
+    // looks like before. Matched by this run's own description, not only by createdId: a
     // create_clash that writes but answers with the wrong text leaves createdId undefined.
     // deleteMany, not delete: after a passing run cancel_clash has removed it already.
     await prisma.clash.deleteMany({
