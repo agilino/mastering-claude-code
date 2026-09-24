@@ -26,13 +26,14 @@ const client = new Client({ name: "clash-smoke", version: "1.0.0" });
 let failures = 0;
 let createdId: string | undefined; // the clash this test created, removed in the finally below
 
-// Call one tool and return its text answer.
-async function call(name: string, args: Record<string, unknown>): Promise<string> {
+// Call one tool and return its text answer and whether the server flagged it as an error.
+async function call(name: string, args: Record<string, unknown>): Promise<{ text: string; isError: boolean }> {
   const result = await client.callTool({ name, arguments: args });
   const first = (result.content as Array<{ type: string; text?: string }>)[0];
   const text = first?.text ?? JSON.stringify(result);
-  console.log(`\n> ${name}(${JSON.stringify(args)})\n${text}`);
-  return text;
+  const isError = (result as { isError?: boolean }).isError === true;
+  console.log(`\n> ${name}(${JSON.stringify(args)})${isError ? " [isError]" : ""}\n${text}`);
+  return { text, isError };
 }
 
 function expect(label: string, ok: boolean) {
@@ -51,17 +52,17 @@ expect(
 );
 
 const venues = await call("find_venue", { query: "holzmarkt" });
-const venue = (JSON.parse(venues) as Array<{ id: string; title: string }>)[0];
-expect("find_venue finds Holzmarkt 25 (case does not matter)", venue?.title === "Holzmarkt 25");
+const venue = (JSON.parse(venues.text) as Array<{ id: string; title: string }>)[0];
+expect("find_venue finds Holzmarkt 25 (case does not matter)", venue?.title === "Holzmarkt 25" && !venues.isError);
 
 const none = await call("find_venue", { query: "nowhere" });
-expect("find_venue with no match answers with text, not an error", none.startsWith("No venue matches"));
+expect("find_venue with no match answers with text, not an error", none.text.startsWith("No venue matches") && !none.isError);
 
 const upcoming = await call("list_upcoming_clashes", { area: "Holzmarkt" });
-expect("list_upcoming_clashes never shows a past clash", !upcoming.includes("Open Source Hacknight"));
+expect("list_upcoming_clashes never shows a past clash", !upcoming.text.includes("Open Source Hacknight") && !upcoming.isError);
 
 const all = await call("list_upcoming_clashes", {});
-expect("list_upcoming_clashes without area lists the seeded upcoming clashes", all.includes("React Berlin Clash"));
+expect("list_upcoming_clashes without area lists the seeded upcoming clashes", all.text.includes("React Berlin Clash") && !all.isError);
 
 // Far ahead, computed now, so the test never goes stale.
 const farAhead = new Date();
@@ -76,28 +77,29 @@ const draft = {
 };
 
 const created = await call("create_clash", draft);
-createdId = created.match(/^Created clash (\S+):/)?.[1];
-expect("create_clash creates the clash", created.startsWith("Created clash"));
+createdId = created.text.match(/^Created clash (\S+):/)?.[1];
+expect("create_clash creates the clash", created.text.startsWith("Created clash") && !created.isError);
 
+// Every refusal must carry isError: true, not only the right text.
 const again = await call("create_clash", draft);
-expect("create_clash refuses the same title at the same time", again.startsWith("Duplicate:"));
+expect("create_clash refuses the same title at the same time", again.text.startsWith("Duplicate:") && again.isError);
 
 const unknownHost = await call("create_clash", { ...draft, hostEmail: "nobody@example.com" });
-expect("create_clash refuses an unknown host", unknownHost.startsWith("No CLASH user with email"));
+expect("create_clash refuses an unknown host", unknownHost.text.startsWith("No CLASH user with email") && unknownHost.isError);
 
 const unknownVenue = await call("create_clash", { ...draft, title: "Elsewhere", venueId: "not-a-venue" });
-expect("create_clash refuses an unknown venue", unknownVenue.startsWith("Unknown venue"));
+expect("create_clash refuses an unknown venue", unknownVenue.text.startsWith("Unknown venue") && unknownVenue.isError);
 
 const longAgo = new Date();
 longAgo.setFullYear(longAgo.getFullYear() - 1);
 const past = await call("create_clash", { ...draft, title: "Long ago", dateTime: longAgo.toISOString() });
-expect("create_clash refuses a past date", past.startsWith("dateTime must be"));
+expect("create_clash refuses a past date", past.text.startsWith("dateTime must be") && past.isError);
 
 const garbage = await call("create_clash", { ...draft, title: "No date", dateTime: "someday" });
-expect("create_clash refuses an invalid date", garbage.startsWith("dateTime must be"));
+expect("create_clash refuses an invalid date", garbage.text.startsWith("dateTime must be") && garbage.isError);
 
 const listed = await call("list_upcoming_clashes", { area: "Holzmarkt" });
-expect("the new clash shows up in list_upcoming_clashes", listed.includes("MCP Hacknight"));
+expect("the new clash shows up in list_upcoming_clashes", listed.text.includes("MCP Hacknight") && !listed.isError);
 }
 
 async function run() {
