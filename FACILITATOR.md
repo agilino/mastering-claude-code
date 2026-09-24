@@ -389,6 +389,11 @@ Parts III and IV run on the finished reference CLASH, as guided tasks.
   agent nothing else: no built-in tools, none of your `~/.claude` settings or skills. The talk
   button is a toggle: `app/api/unpublish/route.ts`, already on clash-conference's `19-start`,
   frees only `cancel_clash`. In step 9 the talk appears on CLASH's map and disappears again.
+- `cancel_clash` checks ownership against the `hostEmail` the caller sends, not against a logged-in
+  user: any client that knows the creator's email can cancel. That is fine for a local stdio
+  server its one client trusts, and it is exactly what CLASH's Server Actions must never do —
+  they take the user from the session (`requireUser()`). Say it, so nobody carries the pattern
+  over into app code.
 - Someone will ask about prompt injection: the talk's title and description go into the prompt
   of an agent that can write. In clash-conference that is acceptable, and say why: one organiser
   writes the talks and clicks Publish (no login, no other authors), the host email comes from the

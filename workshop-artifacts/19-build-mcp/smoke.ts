@@ -25,10 +25,20 @@ const client = new Client({ name: "clash-smoke", version: "1.0.0" });
 
 let failures = 0;
 let createdId: string | undefined; // the clash this test created, removed in the finally below
+const TEST_DESCRIPTION = "Build MCP servers together. Created by the smoke test.";
 
 // Call one tool and return its text answer and whether the server flagged it as an error.
+// A tool that does not exist yet (the starter on CLASH's 19-start) counts as a failed check, not a crash,
+// so every check still prints PASS or FAIL and shows which steps are left.
 async function call(name: string, args: Record<string, unknown>): Promise<{ text: string; isError: boolean }> {
-  const result = await client.callTool({ name, arguments: args });
+  let result;
+  try {
+    result = await client.callTool({ name, arguments: args });
+  } catch (error) {
+    const text = `not available: ${error instanceof Error ? error.message : String(error)}`;
+    console.log(`\n> ${name}(${JSON.stringify(args)}) [not available]\n${text}`);
+    return { text, isError: true };
+  }
   const first = (result.content as Array<{ type: string; text?: string }>)[0];
   const text = first?.text ?? JSON.stringify(result);
   const isError = (result as { isError?: boolean }).isError === true;
@@ -52,7 +62,12 @@ expect(
 );
 
 const venues = await call("find_venue", { query: "holzmarkt" });
-const venue = (JSON.parse(venues.text) as Array<{ id: string; title: string }>)[0];
+let venue: { id: string; title: string } | undefined;
+try {
+  venue = (JSON.parse(venues.text) as Array<{ id: string; title: string }>)[0];
+} catch {
+  venue = undefined; // no JSON array: find_venue is missing or answers the wrong shape
+}
 expect("find_venue finds Holzmarkt 25 (case does not matter)", venue?.title === "Holzmarkt 25" && !venues.isError);
 
 const none = await call("find_venue", { query: "nowhere" });
@@ -70,9 +85,9 @@ farAhead.setFullYear(farAhead.getFullYear() + 1);
 farAhead.setHours(19, 0, 0, 0);
 const draft = {
   title: "MCP Hacknight",
-  description: "Build MCP servers together. Created by the smoke test.",
+  description: TEST_DESCRIPTION,
   dateTime: farAhead.toISOString(),
-  venueId: venue.id,
+  venueId: venue?.id ?? "no-venue-found",
   hostEmail: "anna.schmidt@example.com",
 };
 
@@ -127,9 +142,15 @@ async function run() {
   try {
     await main();
   } finally {
-    // Clean up on success and on failure: remove the test clash so the database looks like before.
+    // Clean up on success and on failure: remove every clash this test created, so the database
+    // looks like before. Matched by the test's own description, not only by createdId: a
+    // create_clash that writes but answers with the wrong text leaves createdId undefined.
     // deleteMany, not delete: after a passing run cancel_clash has removed it already.
-    if (createdId) await prisma.clash.deleteMany({ where: { id: createdId } });
+    await prisma.clash.deleteMany({
+      where: createdId
+        ? { OR: [{ id: createdId }, { description: TEST_DESCRIPTION }] }
+        : { description: TEST_DESCRIPTION },
+    });
     await prisma.$disconnect();
     await client.close();
   }
