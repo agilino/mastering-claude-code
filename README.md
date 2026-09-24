@@ -19,9 +19,10 @@
 ## What this is
 
 A guided workshop on Claude Code. You start with no experience. You end with the skills of an
-expert: context engineering, skills, subagents, agent teams, dynamic workflows, hooks, MCP,
-worktrees, headless runs in CI, the Agent SDK, output styles, loops, background sessions,
-routines, your own MCP server.
+expert: context engineering, reasoning and effort, planning boundaries, measurable verification,
+skills, subagents, agent teams, dynamic workflows, hooks, MCP, bounded `/goal` runs, worktrees,
+`/batch`, headless runs in CI, the Agent SDK, output styles, loops, background sessions, routines,
+and your own MCP server.
 
 The trainer explains and shows. Then you do it on your own machine. Every task has a reset
 branch, so nobody gets stuck.
