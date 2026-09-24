@@ -1,5 +1,6 @@
 // CLASH MCP server, the starter on CLASH's 19-start. One tool works already:
-// list_upcoming_clashes. Task 19 adds find_venue (step 2) and create_clash (step 3).
+// list_upcoming_clashes. Task 19 adds find_venue (step 2), create_clash (step 3)
+// and cancel_clash (step 4).
 // The finished server is mcp/server.ts on CLASH's 19-solution.
 // Start it with: npx tsx mcp/server.ts   (Claude Code does this via .mcp.json)
 import path from "node:path";
@@ -80,6 +81,8 @@ server.registerTool(
 // Step 2 of task 19: register find_venue here.
 
 // Step 3 of task 19: register create_clash here.
+
+// Step 4 of task 19: register cancel_clash here.
 
 async function main() {
   await server.connect(new StdioServerTransport());

@@ -1,4 +1,4 @@
-// CLASH MCP server: three tools over the CLASH database, spoken over stdio.
+// CLASH MCP server: four tools over the CLASH database, spoken over stdio.
 // Start it with: npx tsx mcp/server.ts   (Claude Code does this via .mcp.json)
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -136,6 +136,33 @@ server.registerTool(
     });
     log(`created clash ${clash.id}`);
     return reply(`Created clash ${clash.id}: "${clash.title}" at ${clash.dateTime.toISOString()}.`);
+  },
+);
+
+server.registerTool(
+  "cancel_clash",
+  {
+    description:
+      "Cancel a clash: delete it from CLASH. Only the CLASH user who created the clash can cancel it.",
+    inputSchema: z.object({
+      clashId: z.string().describe("id from create_clash or list_upcoming_clashes"),
+      hostEmail: z.string().describe("email of the CLASH user who created the clash"),
+    }),
+  },
+  async ({ clashId, hostEmail }) => {
+    const host = await prisma.user.findUnique({ where: { email: hostEmail } });
+    if (!host) return refuse(`No CLASH user with email ${hostEmail}. Nothing was deleted.`);
+
+    const clash = await prisma.clash.findUnique({ where: { id: clashId } });
+    if (!clash) return refuse(`Unknown clash ${clashId}. Use list_upcoming_clashes to find it.`);
+
+    if (clash.creatorId !== host.id) {
+      return refuse(`${hostEmail} did not create clash ${clashId}. Nothing was deleted.`);
+    }
+
+    await prisma.clash.delete({ where: { id: clash.id } });
+    log(`cancelled clash ${clash.id}`);
+    return reply(`Cancelled clash ${clash.id}: "${clash.title}".`);
   },
 );
 

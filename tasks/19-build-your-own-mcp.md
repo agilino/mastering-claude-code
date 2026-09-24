@@ -5,7 +5,7 @@
 
 ## Theory
 
-- [A server is three registered tools](https://mastering-claude-code.vercel.app/theory-mcp-server-anatomy)
+- [A server is four registered tools](https://mastering-claude-code.vercel.app/theory-mcp-server-anatomy)
 - [Register it, then trust it selectively](https://mastering-claude-code.vercel.app/theory-mcp-json)
 - [Another app, same server](https://mastering-claude-code.vercel.app/theory-mcp-from-sdk)
 
@@ -13,14 +13,14 @@
 
 ## You will end up with
 
-Your own MCP server, `mcp/server.ts` in your CLASH clone, with three tools over the CLASH
-database: `list_upcoming_clashes`, `find_venue` and `create_clash`. CLASH's `19-start` gives
-you the server with the first tool already working. You design the other two. At the end,
-`npx tsx mcp/smoke.ts` in your CLASH clone says `All checks passed.` The two read tools run
-without asking. The write tool asks every time.
+Your own MCP server, `mcp/server.ts` in your CLASH clone, with four tools over the CLASH
+database: `list_upcoming_clashes`, `find_venue`, `create_clash` and `cancel_clash`. CLASH's
+`19-start` gives you the server with the first tool already working. You design the other
+three. At the end, `npx tsx mcp/smoke.ts` in your CLASH clone says `All checks passed.` The
+two read tools run without asking. The two write tools ask every time.
 
 Then a second app, clash-conference, uses the same server through the Agent SDK. One click
-turns a talk into a clash in CLASH.
+turns a talk into a clash on CLASH's map, the next click takes it off again.
 
 ## Why
 
@@ -40,10 +40,11 @@ The plumbing is done for you on CLASH's `19-start`. The server talks over stdio,
 3. **Refusals are product text.** A refusal is plain text, marked with `isError`. A person
    reads it later, for example as the reason a talk in clash-conference failed. "No venue
    matches" is a normal answer, not an error: nothing went wrong, there is just no match.
-4. **Check before you write.** Host, venue, date, duplicate: all four checks run before the
-   one write.
-5. **No more power than needed.** No tool deletes anything or creates venues or users.
-   Reads are allowed, the write asks.
+4. **Check before you write.** `create_clash` checks host, venue, date and duplicate before
+   it writes. `cancel_clash` checks host, clash and owner before it deletes.
+5. **No more power than needed.** The one tool that deletes, `cancel_clash`, deletes only a
+   clash its own host created. No tool creates venues or users. Reads are allowed, both
+   writes ask.
 
 A server in `.mcp.json` is a program that runs on your machine. So Claude Code asks once
 before it starts one. Until you say yes, `claude mcp list` shows it as
@@ -57,7 +58,7 @@ before it starts one. Until you say yes, `claude mcp list` shows it as
    ```bash
    git checkout 19-start                        # CLASH's 19-start: mcp/server.ts with one tool
    npm install
-   npm run db:seed                              # the smoke test in step 3 counts on the seed data
+   npm run db:seed                              # the smoke test in step 4 counts on the seed data
    claude mcp add --scope project --transport stdio clash -- npx tsx mcp/server.ts
    ```
    You see the seed end with `Seed complete`, and a new `.mcp.json` at the root of your
@@ -71,8 +72,8 @@ before it starts one. Until you say yes, `claude mcp list` shows it as
    are still ahead, each with date, title, venue and id. Approve the call if Claude Code asks.
    Open `mcp/server.ts` and find what is already there: the path to `dev.db` built from the
    file, `log()` writing to stderr, `reply()` and `refuse()`, the `registerTool` call for
-   `list_upcoming_clashes` with its description and schema, and the two comments
-   `Step 2 of task 19` and `Step 3 of task 19`. Your tools go there.
+   `list_upcoming_clashes` with its description and schema, and the three comments
+   `Step 2 of task 19`, `Step 3 of task 19` and `Step 4 of task 19`. Your tools go there.
 2. Design the lookup tool, `find_venue`. Send this prompt.
    ```
    In mcp/server.ts, register a second tool, find_venue. Input: query, a string with at
@@ -112,35 +113,53 @@ before it starts one. Until you say yes, `claude mcp list` shows it as
    ```
    You see a third `registerTool` call in `mcp/server.ts`, where the comment
    `Step 3 of task 19` was: four checks, each ending in `refuse()`, and only after them the
-   one `prisma.clash.create`. Now run the smoke test in a terminal, in your CLASH clone.
+   one `prisma.clash.create`.
+4. Design the delete tool, `cancel_clash`. Send this prompt.
+   ```
+   In mcp/server.ts, register a fourth tool, cancel_clash. Description: "Cancel a clash:
+   delete it from CLASH. Only the CLASH user who created the clash can cancel it."
+   Inputs, each with this .describe(): clashId, "id from create_clash or
+   list_upcoming_clashes"; hostEmail, "email of the CLASH user who created the clash".
+   Check in this order and stop at the first failure, each time through refuse() with
+   exactly this text:
+   1. No user has hostEmail: No CLASH user with email <hostEmail>. Nothing was deleted.
+   2. No clash has clashId: Unknown clash <clashId>. Use list_upcoming_clashes to find it.
+   3. That user did not create the clash: <hostEmail> did not create clash <clashId>. Nothing was deleted.
+   Only then delete the clash. Log it with log() and answer through reply() exactly:
+   Cancelled clash <id>: "<title>".
+   Change nothing else in the file.
+   ```
+   You see a fourth `registerTool` call in `mcp/server.ts`, where the comment
+   `Step 4 of task 19` was: three checks, each ending in `refuse()`, and only after them the
+   one `prisma.clash.delete`. Now run the smoke test in a terminal, in your CLASH clone.
    ```bash
    npx tsx mcp/smoke.ts                         # in your CLASH clone
    ```
-   You see 14 lines that start with `PASS`, then `All checks passed.` The smoke test starts
-   your server on its own, calls every tool and every refusal, and removes its test clash
-   again. A line that starts with `FAIL` names the check that broke: paste that line into
-   Claude Code and ask it to fix exactly that.
-4. Write through Claude Code. First start CLASH in a second terminal, in your CLASH clone,
+   You see 19 lines that start with `PASS`, then `All checks passed.` The smoke test starts
+   your server on its own, calls every tool and every refusal, cancels its test clash and
+   makes sure it is gone. A line that starts with `FAIL` names the check that broke: paste
+   that line into Claude Code and ask it to fix exactly that.
+5. Write through Claude Code. First start CLASH in a second terminal, in your CLASH clone,
    and leave it running.
    ```bash
    npm run dev                                  # in your CLASH clone, in a second terminal
    ```
    You see CLASH start on `localhost:3000`. Exit Claude Code and start `claude` again in your
-   CLASH clone, so the server starts with all three tools. Then send this prompt.
+   CLASH clone, so the server starts with all four tools. Then send this prompt.
    ```
    Create a clash "MCP Hacknight" at Holzmarkt 25, hosted by anna.schmidt@example.com. Pick any date and time in the future.
    ```
    You see Claude call `clash - find_venue (MCP)` first, because the description of `venueId`
    sent it there, then `clash - create_clash (MCP)`. Approve that one call, not for good. The
-   server answers `Created clash <id>: "MCP Hacknight" at <ISO date-time>.` Open CLASH on
-   `localhost:3000/clashes`: the new clash is on the list. Now ask for it once more.
+   server answers `Created clash <id>: "MCP Hacknight" at <ISO date-time>.` Open CLASH's map
+   on `localhost:3000/map`: the new clash sits at Holzmarkt 25. Now ask for it once more.
    ```
    Create the clash "MCP Hacknight" at Holzmarkt 25 once more, at exactly the same date and time as before, hosted by anna.schmidt@example.com
    ```
    You see the server refuse with `Duplicate: "MCP Hacknight" already exists at <ISO
    date-time> (id <id>).` and Claude pass that text on to you. Nothing was written: CLASH on
    `localhost:3000/clashes` still shows the clash once.
-5. Trust the server selectively. On CLASH's `19-start`, `.claude/settings.json` in your CLASH
+6. Trust the server selectively. On CLASH's `19-start`, `.claude/settings.json` in your CLASH
    clone holds only `hooks`. Send this prompt.
    ```
    Add a permissions.allow list to .claude/settings.json with mcp__clash__find_venue and mcp__clash__list_upcoming_clashes. Keep the hooks key exactly as it is.
@@ -152,14 +171,21 @@ before it starts one. Until you say yes, `claude mcp list` shows it as
    Use the clash server: what is coming up at Holzmarkt 25?
    ```
    You see `clash - find_venue (MCP)` and `clash - list_upcoming_clashes (MCP)` run with no
-   permission prompt, and "MCP Hacknight" in the answer. `create_clash` is not on the list,
-   so a write still asks. Reads are free. Writes ask.
+   permission prompt, and "MCP Hacknight" in the answer. Now take the clash off again.
+   ```
+   Cancel the clash "MCP Hacknight" at Holzmarkt 25, hosted by anna.schmidt@example.com.
+   ```
+   You see Claude look the clash up with `clash - list_upcoming_clashes (MCP)`, without a
+   prompt, then call `clash - cancel_clash (MCP)` and wait for your permission: `cancel_clash`
+   is not on the allow list. Approve that one call. The server answers
+   `Cancelled clash <id>: "MCP Hacknight".` Reload CLASH's map on `localhost:3000/map`: the
+   clash is gone. Reads are free. Writes ask.
 
 ### The second app: clash-conference
 
 Clone [clash-conference](https://github.com/agilino/clash-conference) to a new folder.
 
-6. Set up clash-conference next to your CLASH clone, so that the two folders are siblings.
+7. Set up clash-conference next to your CLASH clone, so that the two folders are siblings.
    If you already cloned clash-conference during setup, skip `git clone`.
    ```bash
    cd ..                                                 # the folder that holds your CLASH clone
@@ -182,7 +208,11 @@ Clone [clash-conference](https://github.com/agilino/clash-conference) to a new f
    draft talks, each with a "Publish to CLASH" button. clash-conference's settings hold the
    CLASH venue name, Holzmarkt 25, and the host email, anna.schmidt@example.com. Publishing
    cannot work yet: `app/api/publish/route.ts` is missing on clash-conference's `19-start`.
-7. Write the route. Start `claude` in clash-conference and send this prompt.
+   Click "Publish to CLASH" on a talk anyway: you see the message
+   `Publishing failed: /api/publish answered 404.` Unpublishing is already built in:
+   `app/api/unpublish/route.ts` in clash-conference calls your `cancel_clash`. Read it: it is
+   the finished twin of the route you write next.
+8. Write the route. Start `claude` in clash-conference and send this prompt.
    ```
    Create app/api/publish/route.ts: a POST route that takes a talk id and publishes that
    talk into CLASH through the Agent SDK. Load the talk, the CLASH venue name and the host
@@ -204,21 +234,23 @@ Clone [clash-conference](https://github.com/agilino/clash-conference) to a new f
    `strictMcpConfig: true`, which leave the agent nothing but the clash server; the two
    `mcp__clash__…` names in `allowedTools`; `permissionMode: "dontAsk"`; the `maxTurns`
    ceiling; and the `system/init` check that ends the publish before any tool runs.
-8. In clash-conference on `localhost:3001`, pick a talk and click "Publish to CLASH". You
-   see the talk turn `published` and carry a `clashId`. Open CLASH on
-   `localhost:3000/clashes`: the talk is there as a clash, at the venue from
-   clash-conference's settings, hosted by the host email. Your `find_venue` and your
-   `create_clash` did that, called by an agent inside another app.
-9. Now make it fail. In clash-conference on `localhost:3001`, change the CLASH venue name in
-   clash-conference's settings to one CLASH does not know, then publish a second talk. You
-   see it end as `failed` with the agent's message: your `find_venue` answered
-   `No venue matches …`, so `create_clash` was never called. Nothing was written to CLASH.
+9. In clash-conference on `localhost:3001`, pick a talk and click "Publish to CLASH". You
+   see the talk turn `published` and carry a `clashId`, and the button turn into
+   "Unpublish from CLASH". Open CLASH's map on `localhost:3000/map`: the talk is there as a
+   clash at Holzmarkt 25, hosted by the host email. Your `find_venue` and your
+   `create_clash` did that, called by an agent inside another app. Now click "Unpublish from
+   CLASH". You see the talk go back to draft, without a `clashId`. Reload CLASH's map: the
+   clash is gone. Your `cancel_clash` did that.
+10. Now make it fail. In clash-conference on `localhost:3001`, change the CLASH venue name in
+    clash-conference's settings to one CLASH does not know, then publish a second talk. You
+    see it end as `failed` with the agent's message: your `find_venue` answered
+    `No venue matches …`, so `create_clash` was never called. Nothing was written to CLASH.
 
 ## Now you
 
-- Design a fourth tool, `list_venues`, with no input. Give it a description that tells Claude
+- Design a fifth tool, `list_venues`, with no input. Give it a description that tells Claude
   when to use it instead of `find_venue`. Restart Claude Code in your CLASH clone and check
-  that `/mcp` shows four tools.
+  that `/mcp` shows five tools.
 - Point `ask-clash.mts` from task 16, in your CLASH clone, at the server: `mcpServers` and
   `allowedTools` in its options. The question is now answered from `dev.db` in your CLASH
   clone, not from CLASH's `prisma/seed.ts`.
@@ -231,22 +263,23 @@ Clone [clash-conference](https://github.com/agilino/clash-conference) to a new f
 ## Check
 
 - [ ] `claude mcp list` in your CLASH clone prints `clash: npx tsx mcp/server.ts - ✔ Connected`.
-- [ ] `mcp/server.ts` in your CLASH clone has exactly three `registerTool` calls and no `console.log`.
+- [ ] `mcp/server.ts` in your CLASH clone has exactly four `registerTool` calls and no `console.log`.
 - [ ] `venueId` in `create_clash` is described as "id from find_venue", and Claude called `find_venue` before `create_clash`.
 - [ ] `find_venue` answers `No venue matches …` through `reply()`, not `refuse()`.
+- [ ] `cancel_clash` refuses a host who did not create the clash.
 - [ ] `npx tsx mcp/smoke.ts` in your CLASH clone ends with `All checks passed.`
-- [ ] "MCP Hacknight" is on CLASH at `localhost:3000/clashes` once, and the second create was refused with `Duplicate: …`.
-- [ ] `.claude/settings.json` in your CLASH clone has `hooks` and `permissions`, allows the two read tools, and a write still asks.
+- [ ] "MCP Hacknight" appeared on CLASH's map once, and the second create was refused with `Duplicate: …`.
+- [ ] `.claude/settings.json` in your CLASH clone has `hooks` and `permissions`, allows the two read tools, and `cancel_clash` still asked before it took "MCP Hacknight" off the map.
 
-Only once clash-conference is published and you did steps 6 to 9:
+Only once clash-conference is published and you did steps 7 to 10:
 
-- [ ] A talk published from clash-conference shows up in CLASH as a clash.
+- [ ] A talk published from clash-conference shows up on CLASH's map, and unpublishing it takes it off again.
 - [ ] A talk with an unknown venue ends as `failed` in clash-conference, and CLASH is unchanged.
 
 ## Stuck?
 
 In your CLASH clone, `git checkout 19-start` gives CLASH's `19-start`: `14-start` plus the
-starter server, `mcp/server.ts` with one working tool and two marked places, the smoke test
+starter server, `mcp/server.ts` with one working tool and three marked places, the smoke test
 `mcp/smoke.ts`, and the two MCP packages. `19-solution` in your CLASH clone is the finished
 server, `.mcp.json` and the two allowed read tools. If your server does not pass the smoke
 test, take the finished one before the clash-conference steps. The stash parks your own
@@ -262,6 +295,7 @@ npm install
 In clash-conference, `git checkout 19-start`
 gives clash-conference's `19-start`: clash-conference without `app/api/publish/route.ts`
 and without `lib/clash-agent.ts`, the file that holds the `query()` call on its `main`.
+Unpublishing is already there on clash-conference's `19-start`.
 `git checkout 19-solution` in clash-conference gives clash-conference with the finished
 route. The starter, the finished server, `.mcp.json`, `settings.allow.json` and the smoke
 test are in `workshop-artifacts/19-build-mcp/` in the workshop repository. Its `README.md`
@@ -269,7 +303,7 @@ says where each file goes.
 
 ## Go further
 
-Serve the same three tools over HTTP from a route inside CLASH instead of a stdio process,
+Serve the same four tools over HTTP from a route inside CLASH instead of a stdio process,
 so another machine can register it with `claude mcp add --transport http`.
 
 ## Links

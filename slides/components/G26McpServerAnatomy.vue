@@ -1,10 +1,10 @@
 <script setup lang="ts">
 // G26 — Anatomy of the CLASH MCP server.
-// client <-> stdio <-> mcp/server.ts (three tools) <-> Prisma <-> dev.db
+// client <-> stdio <-> mcp/server.ts (four tools) <-> Prisma <-> dev.db
 //
 // Prop `mode`:
 //   'claude-code' (default) — builds up in three clicks: the client and its stdio
-//                             link, the server with its three tools, Prisma + dev.db.
+//                             link, the server with its four tools, Prisma + dev.db.
 //   'both'                  — the whole chain on the first click, then clash-conference
 //                             appears as a second client of the same server on the next.
 // A note's [click] markers must match: three for 'claude-code', two for 'both'.
@@ -33,7 +33,10 @@ const clientMidY = clientY + 32
 const secondY = 208
 const secondMidY = secondY + 32
 
-const tools = ['list_upcoming_clashes', 'find_venue', 'create_clash']
+const tools = ['list_upcoming_clashes', 'find_venue', 'create_clash', 'cancel_clash']
+// The server box: 68..332, centred on y=200 like every arrow that lands on it. Four pills,
+// 32 high with 8 between, from y=118; the registerTool caption sits below the last one.
+const pillY = (i: number) => 118 + i * 40
 const mono = "'JetBrains Mono', monospace"
 </script>
 
@@ -56,15 +59,15 @@ const mono = "'JetBrains Mono', monospace"
         </template>
       </g>
 
-      <!-- The server: one file, three registered tools -->
+      <!-- The server: one file, four registered tools -->
       <g v-click="clicks.server">
-        <rect :x="serverX" y="95" width="320" height="210" rx="12" style="fill: var(--na-bg-raised); stroke: var(--na-border)" stroke-width="2" />
-        <text :x="serverMidX" y="128" font-weight="700" fill="var(--na-fg)" text-anchor="middle" :font-family="mono" style="font-size:18px">mcp/server.ts</text>
+        <rect :x="serverX" y="68" width="320" height="264" rx="12" style="fill: var(--na-bg-raised); stroke: var(--na-border)" stroke-width="2" />
+        <text :x="serverMidX" y="100" font-weight="700" fill="var(--na-fg)" text-anchor="middle" :font-family="mono" style="font-size:18px">mcp/server.ts</text>
         <g v-for="(tool, i) in tools" :key="tool">
-          <rect :x="serverX + 25" :y="150 + i * 40" width="270" height="30" rx="8" fill="var(--na-primary-900)" stroke="var(--na-accent-500)" stroke-width="1.5" />
-          <text :x="serverMidX" :y="170 + i * 40" fill="var(--na-fg)" text-anchor="middle" :font-family="mono" style="font-size:15px">{{ tool }}</text>
+          <rect :x="serverX + 25" :y="pillY(i)" width="270" height="32" rx="8" fill="var(--na-primary-900)" stroke="var(--na-accent-500)" stroke-width="1.5" />
+          <text :x="serverMidX" :y="pillY(i) + 21" fill="var(--na-fg)" text-anchor="middle" :font-family="mono" style="font-size:15px">{{ tool }}</text>
         </g>
-        <text :x="serverMidX" y="290" fill="var(--na-fg-muted)" text-anchor="middle" style="font-size:13px">registerTool(name, schema, handler)</text>
+        <text :x="serverMidX" y="308" fill="var(--na-fg-muted)" text-anchor="middle" style="font-size:13px">registerTool(name, schema, handler)</text>
       </g>
 
       <!-- Prisma and the database file -->

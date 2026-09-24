@@ -15,19 +15,19 @@ heading: "Task 19 — Build your own MCP"
 branch: "19-start (in your CLASH clone)"
 learn:
   - "Start from a running server: stdio, dev.db, reply() and refuse() are done"
-  - "Design two tools: small, well described, checks before the one write"
-  - "Register it in .mcp.json; reads run freely, the write still asks"
+  - "Design three tools: small, well described, checks before every write"
+  - "Register it in .mcp.json; reads run freely, both writes still ask"
   - "Call the same server from clash-conference through the Agent SDK"
 outcome:
-  - "mcp/server.ts in CLASH: find_venue and create_clash added to the starter"
+  - "mcp/server.ts in CLASH: find_venue, create_clash, cancel_clash added"
   - "npx tsx mcp/smoke.ts in your CLASH clone: All checks passed."
-  - "A clash created from a prompt; the duplicate refused by the server"
-  - "clash-conference publishes a talk into CLASH through your server"
+  - "A clash on CLASH's map from a prompt; the duplicate refused, then cancelled"
+  - "clash-conference publishes and unpublishes: on and off CLASH's map"
 ---
 
 ---
 layout: concept
-heading: "A server is three registered tools"
+heading: "A server is four registered tools"
 routeAlias: theory-mcp-server-anatomy
 docs: https://modelcontextprotocol.io/docs/develop/build-server
 lines:
@@ -53,7 +53,7 @@ lines:
 layout: code-live
 heading: "mcp/server.ts"
 filePath: "mcp/server.ts (in your CLASH clone)"
-success: "find_venue and create_clash added; mcp/smoke.ts says All checks passed."
+success: "find_venue, create_clash, cancel_clash added; mcp/smoke.ts: All checks passed."
 ---
 
 ```ts
@@ -65,12 +65,12 @@ const server = new McpServer({ name: "clash", version: "1.0.0" });
 server.registerTool("list_upcoming_clashes", {
   description: "List upcoming clashes, earliest first, at most 20. Optional area: …",
   inputSchema: z.object({ area: z.string().optional() }),
-}, async ({ area }) => { // prisma.clash.findMany(…) → clashes
-  if (clashes.length === 0) return reply("No upcoming clashes found.");
-  return reply(lines.join("\n"));
+}, async ({ area }) => { // prisma.clash.findMany(…) → clashes → lines
+  return reply(clashes.length === 0 ? "No upcoming clashes found." : lines.join("\n"));
 });
 // Step 2 of task 19: register find_venue here.   ⟵ LIVE: no match is a reply()
 // Step 3 of task 19: register create_clash here. ⟵ LIVE: four refuse() checks, then one create
+// Step 4 of task 19: register cancel_clash here. ⟵ LIVE: three refuse() checks, then one delete
 ```
 
 ---
@@ -81,7 +81,7 @@ docs: https://code.claude.com/docs/en/mcp
 lines:
   - ".mcp.json at the root of your CLASH clone: checked in, approved once."
   - "claude mcp list → clash: npx tsx mcp/server.ts - ✔ Connected"
-  - "Allow both read tools in CLASH's .claude/settings.json; create_clash asks."
+  - "Allow both read tools in CLASH's .claude/settings.json; both writes ask."
 ---
 
 <div class="flex flex-col gap-3 w-full max-w-2xl">
@@ -142,9 +142,9 @@ export async function POST(req: Request) {
 layout: task
 number: "19"
 heading: "Build your own MCP"
-goal: "Design two tools into the starter server in your CLASH clone, then call them from Claude Code and clash-conference."
+goal: "Design three tools into the starter server in your CLASH clone, then call them from Claude Code and clash-conference."
 mode: "you do"
-success: "mcp/smoke.ts in your CLASH clone ends with All checks passed, and a talk published from clash-conference shows up in CLASH."
+success: "mcp/smoke.ts in your CLASH clone ends with All checks passed. Publish puts a talk on CLASH's map; unpublish takes it off."
 branch: "19-start (in your CLASH clone)"
 ---
 

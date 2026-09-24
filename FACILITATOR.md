@@ -354,36 +354,50 @@ Parts III and IV run on the finished reference CLASH, as guided tasks.
 ### Task 19 — Build your own MCP
 
 - Task 19 is about design. CLASH's `19-start` hands participants a running server: the plumbing
-  and one finished tool, `list_upcoming_clashes`. They design the other two at the two marked
-  places in `mcp/server.ts`, in five steps. The five decisions to name while they work: small
-  tools (the id comes from a lookup), descriptions are the interface (`.describe("id from
-  find_venue")`), refusals are product text (`No venue matches` is a normal answer), check
-  before you write, no more power than needed.
+  and one finished tool, `list_upcoming_clashes`. They design the other three at the three
+  marked places in `mcp/server.ts`: `find_venue`, `create_clash` and `cancel_clash`, in six
+  steps. The five decisions to name while they work: small tools (the id comes from a lookup),
+  descriptions are the interface (`.describe("id from find_venue")`), refusals are product
+  text (`No venue matches` is a normal answer), check before you write (create: host, venue,
+  date, duplicate; cancel: host, clash, owner), no more power than needed (`cancel_clash`
+  deletes only the host's own clash).
 - Read the finished `list_upcoming_clashes` aloud: name, description, schema, function. The
   description is what Claude reads. The package is `@modelcontextprotocol/server` 2.1.0, already
   in CLASH's `19-start`; the older `@modelcontextprotocol/sdk` is a different package.
-- Step 1 runs `npm run db:seed`: the smoke test in step 3 counts on seed dates that are still
+- Step 1 runs `npm run db:seed`: the smoke test in step 4 counts on seed dates that are still
   ahead. It also clears the clashes participants created in earlier tasks. Say so.
 - `.mcp.json` comes from `claude mcp add` in step 1. Claude Code asks once before it starts the
   server. `claude mcp list` must say `✔ Connected`; before approval it says `⏸ Pending approval`.
-- `npx tsx mcp/smoke.ts` is the finish line of step 3. A `FAIL` line names the broken check:
-  participants paste that line back into Claude Code. The most common one is a refusal text that
-  is not exactly the text in the prompt.
-- In step 4 Claude calls `find_venue` before `create_clash` without being told: point at
-  `venueId`'s description. The second, identical prompt is refused as a duplicate.
+- `npx tsx mcp/smoke.ts` is the finish line of step 4: 19 checks. A `FAIL` line names the broken
+  check: participants paste that line back into Claude Code. The most common one is a refusal
+  text that is not exactly the text in the prompt.
+- In step 5 Claude calls `find_venue` before `create_clash` without being told: point at
+  `venueId`'s description. Keep CLASH's map on `localhost:3000/map` on screen: the clash appears
+  there. The second, identical prompt is refused as a duplicate.
+- In step 6 the reads run free, and "Cancel the clash …" stops for permission: `cancel_clash` is
+  not on the allow list. After the approval, reload the map: the clash is gone.
 - Say it once, slowly: one `console.log` in the server breaks the stdio channel. Logs go to
   `stderr` only. The starter already does it right; do not let a prompt undo it.
-- Least privilege: allow the two read tools in CLASH's `.claude/settings.json`; `create_clash` keeps
-  prompting. The stop slide's careless side is `mcp__clash__*` plus `bypassPermissions`.
+- Least privilege: allow the two read tools in CLASH's `.claude/settings.json`; `create_clash` and
+  `cancel_clash` keep prompting. The stop slide's careless side is `mcp__clash__*` plus
+  `bypassPermissions`.
 - `clash-conference` is a second repository (`agilino/clash-conference`), cloned next to your
   CLASH clone during setup, with a `19-start` branch of its own: clash-conference without
   `app/api/publish/route.ts` and `lib/clash-agent.ts`, and a `19-solution`: clash-conference
-  with the finished route. Its route frees only `find_venue` and
+  with the finished route. Its publish route frees only `find_venue` and
   `create_clash`, and `tools: []`, `settingSources: []` and `strictMcpConfig: true` leave the
-  agent nothing else: no built-in tools, none of your `~/.claude` settings or skills.
+  agent nothing else: no built-in tools, none of your `~/.claude` settings or skills. The talk
+  button is a toggle: `app/api/unpublish/route.ts`, already on clash-conference's `19-start`,
+  frees only `cancel_clash`. In step 9 the talk appears on CLASH's map and disappears again.
+- Someone will ask about prompt injection: the talk's title and description go into the prompt
+  of an agent that can write. In clash-conference that is acceptable, and say why: one organiser
+  writes the talks and clicks Publish (no login, no other authors), the host email comes from the
+  settings, not from the talk, and the server's own checks bound what a write can do. Tie it back
+  to task 12's quarantine rule: as soon as other people write text that a write-capable agent
+  reads, the route has to build and check the tool arguments itself instead of trusting the agent.
 - clash-conference is published after it is finished. Until then the clash-conference repository
   holds no `package.json` and no `19-start` of its own, `docs/SETUP.md` marks the clash-conference
-  clone as not yet available, and steps 6 to 9 of `tasks/19-build-your-own-mcp.md` are unverified
+  clone as not yet available, and steps 7 to 10 of `tasks/19-build-your-own-mcp.md` are unverified
   prose. Before you teach them, check every name against the finished clash-conference:
   clash-conference's `19-start`, clash-conference's `.env` with `CLASH_DIR=../clash`,
   clash-conference on port 3001, `app/api/publish/route.ts`, the statuses `published` and
@@ -406,5 +420,5 @@ Parts III and IV run on the finished reference CLASH, as guided tasks.
 | Someone hand-edits `prisma/migrations` | The deny hook from Task 13 catches it from `14-start` on. |
 | `/tdd` fires on its own mid-conversation | Shouldn't happen — `disable-model-invocation: true` blocks it. If it does, the skill file is wrong; fix it live as a teaching moment. |
 | Routines need a claude.ai subscription and GitHub access | Trainer demo only, mode `watch first`. Confirm your own `/schedule list` works before you start. Participants without a subscription watch; nothing later depends on their own routine. |
-| `clash-conference` is a second repository with a `19-start` branch of its own, published only after clash-conference is finished | Cloning it is part of `docs/SETUP.md`, marked as available once published. Its `main` is the finished clash-conference; clash-conference's `19-start` lacks `app/api/publish/route.ts` and `lib/clash-agent.ts`. Until it is pushed, `git checkout 19-start` fails in clash-conference; re-verify every name in `tasks/19-build-your-own-mcp.md` steps 6 to 9 against the finished clash-conference. `scripts/prepare-branches.sh` does not build it. |
+| `clash-conference` is a second repository with a `19-start` branch of its own, published only after clash-conference is finished | Cloning it is part of `docs/SETUP.md`, marked as available once published. Its `main` is the finished clash-conference; clash-conference's `19-start` lacks `app/api/publish/route.ts` and `lib/clash-agent.ts`. Until it is pushed, `git checkout 19-start` fails in clash-conference; re-verify every name in `tasks/19-build-your-own-mcp.md` steps 7 to 10 against the finished clash-conference. `scripts/prepare-branches.sh` does not build it. |
 | The MCP package name may change | Every install is pinned to `@modelcontextprotocol/server@2.1.0` and `@modelcontextprotocol/client@2.1.0`, the versions the answer key was tested with. To move up, check `npm view @modelcontextprotocol/server version` and the tutorial at modelcontextprotocol.io/docs/develop/build-server, run the smoke test on the new version, then bump the pin everywhere together: `docs/SETUP.md`, `workshop-artifacts/19-build-mcp/README.md`, `scripts/prepare-branches.sh` and the notes of `slides/notes/en/20-build-mcp.md` and `slides/notes/de/20-build-mcp.md`. |

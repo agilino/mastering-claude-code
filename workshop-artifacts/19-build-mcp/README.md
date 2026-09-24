@@ -1,6 +1,6 @@
 # Task 19 answer key — the CLASH MCP server
 
-`server.ts` is an MCP server. It offers three tools over the CLASH database and talks to Claude Code over stdio.
+`server.ts` is an MCP server. It offers four tools over the CLASH database and talks to Claude Code over stdio.
 Claude Code starts it, asks it for its tool list, and calls a tool when it needs one.
 
 | Tool | Input | What it does |
@@ -8,10 +8,11 @@ Claude Code starts it, asks it for its tool list, and calls a tool when it needs
 | `list_upcoming_clashes` | `area?` | Upcoming clashes, earliest first, at most 20. `area` filters by title, description or venue name. |
 | `find_venue` | `query` | Venues whose title contains the query, case does not matter, at most 5. |
 | `create_clash` | `title`, `description`, `dateTime`, `venueId`, `hostEmail` | Creates a clash. Refuses an unknown host, an unknown venue, a past or invalid date, and a duplicate (same title, same time). |
+| `cancel_clash` | `clashId`, `hostEmail` | Deletes a clash. Refuses an unknown host, an unknown clash, and a host who did not create the clash. clash-conference's "Unpublish from CLASH" calls it. |
 
-Inside Claude Code the tools are named `mcp__clash__list_upcoming_clashes`, `mcp__clash__find_venue` and `mcp__clash__create_clash`.
+Inside Claude Code the tools are named `mcp__clash__list_upcoming_clashes`, `mcp__clash__find_venue`, `mcp__clash__create_clash` and `mcp__clash__cancel_clash`.
 
-`server.start.ts` is the starter participants begin with. It is `server.ts` without `find_venue` and `create_clash`: the same plumbing, `list_upcoming_clashes` as the finished model tool, and two marked places, `Step 2 of task 19` and `Step 3 of task 19`. Task 19 steps 2 and 3 fill them. The rest of the file is identical, so the diff between the two files is exactly what a participant designs.
+`server.start.ts` is the starter participants begin with. It is `server.ts` without `find_venue`, `create_clash` and `cancel_clash`: the same plumbing, `list_upcoming_clashes` as the finished model tool, and three marked places, `Step 2 of task 19`, `Step 3 of task 19` and `Step 4 of task 19`. Task 19 steps 2 to 4 fill them. The rest of the file is identical, so the diff between the two files is exactly what a participant designs.
 
 ## Where each file goes
 
@@ -50,12 +51,12 @@ npx tsx mcp/smoke.ts
 ```
 
 It starts the server, lists the tools, calls each one, and prints `PASS` or `FAIL` per check. The last line must be `All checks passed.`
-It creates one clash, "MCP Hacknight", and removes it again at the end. The seed data in `dev.db` of your CLASH clone stays as it was.
+It creates one clash, "MCP Hacknight", cancels it through `cancel_clash`, and removes anything left over at the end. The seed data in `dev.db` of your CLASH clone stays as it was.
 
 ## Connect it to Claude Code
 
 1. Start `claude` in your CLASH clone. Claude Code finds `.mcp.json` and asks whether to use the `clash` server. Say yes.
-2. In the session, `/mcp` lists the server and its three tools.
+2. In the session, `/mcp` lists the server and its four tools.
 3. From a terminal in your CLASH clone, check the health:
 
 ```bash
@@ -90,8 +91,8 @@ The five design decisions task 19 teaches, and where each one shows:
 1. **Small tools.** `find_venue` looks up, `create_clash` writes, and the write takes a `venueId` that only the lookup provides.
 2. **Descriptions are the interface.** The tool descriptions and `.describe("id from find_venue")` steer Claude before any code runs.
 3. **Refusals are product text.** `refuse()` returns text with `isError: true`; clash-conference shows that text to the organiser as the reason a publish failed. `No venue matches "…"` goes through `reply()`: no match is an answer, not an error.
-4. **Check before you write.** Host, venue, ISO date in the future, duplicate — in that order, all before the one `prisma.clash.create`.
-5. **No more power than needed.** No delete, no create-venue, no create-user tool. `settings.allow.json` allows the two reads; the write keeps asking.
+4. **Check before you write.** `create_clash`: host, venue, ISO date in the future, duplicate — in that order, all before the one `prisma.clash.create`. `cancel_clash`: host, clash, owner — all before the one `prisma.clash.delete`.
+5. **No more power than needed.** The one tool that deletes, `cancel_clash`, deletes only a clash its own host created, like CLASH's own `deleteClash`. No create-venue or create-user tool. `settings.allow.json` allows the two reads; both writes keep asking.
 
 A known gap, on purpose: CLASH's own `createClash` in `app/actions/clashes.ts` notifies the venue's creator when someone schedules a clash at their venue (`docs/SPEC.md`). `create_clash` writes straight to the database and skips that side effect. Task 19 keeps the prompts short and turns this into a "Now you" exercise: add the notification, and make the smoke test remove it again.
 

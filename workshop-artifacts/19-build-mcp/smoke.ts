@@ -45,10 +45,10 @@ async function main() {
 await client.connect(transport);
 
 const { tools } = await client.listTools();
-expect("three tools registered", tools.length === 3);
+expect("four tools registered", tools.length === 4);
 expect(
   "tool names",
-  ["create_clash", "find_venue", "list_upcoming_clashes"].every((n) => tools.some((t) => t.name === n)),
+  ["cancel_clash", "create_clash", "find_venue", "list_upcoming_clashes"].every((n) => tools.some((t) => t.name === n)),
 );
 
 const venues = await call("find_venue", { query: "holzmarkt" });
@@ -104,6 +104,23 @@ expect("create_clash refuses a day that does not exist", noSuchDay.text.startsWi
 
 const listed = await call("list_upcoming_clashes", { area: "Holzmarkt" });
 expect("the new clash shows up in list_upcoming_clashes", listed.text.includes("MCP Hacknight") && !listed.isError);
+
+// cancel_clash: three refusals, then the one delete, only by the host who created the clash.
+const cancelUnknownHost = await call("cancel_clash", { clashId: createdId, hostEmail: "nobody@example.com" });
+expect("cancel_clash refuses an unknown host", cancelUnknownHost.text.startsWith("No CLASH user with email") && cancelUnknownHost.isError);
+
+const cancelUnknownClash = await call("cancel_clash", { clashId: "not-a-clash", hostEmail: draft.hostEmail });
+expect("cancel_clash refuses an unknown clash", cancelUnknownClash.text.startsWith("Unknown clash") && cancelUnknownClash.isError);
+
+const otherHost = "lukas.mueller@example.com"; // a seeded user who did not create the test clash
+const cancelOtherHost = await call("cancel_clash", { clashId: createdId, hostEmail: otherHost });
+expect("cancel_clash refuses a host who did not create the clash", cancelOtherHost.text.startsWith(`${otherHost} did not create clash`) && cancelOtherHost.isError);
+
+const cancelled = await call("cancel_clash", { clashId: createdId, hostEmail: draft.hostEmail });
+expect("cancel_clash cancels the host's own clash", cancelled.text.startsWith("Cancelled clash") && !cancelled.isError);
+
+const afterCancel = await call("list_upcoming_clashes", { area: "Holzmarkt" });
+expect("the cancelled clash is gone from list_upcoming_clashes", !afterCancel.text.includes("MCP Hacknight") && !afterCancel.isError);
 }
 
 async function run() {
@@ -111,7 +128,8 @@ async function run() {
     await main();
   } finally {
     // Clean up on success and on failure: remove the test clash so the database looks like before.
-    if (createdId) await prisma.clash.delete({ where: { id: createdId } });
+    // deleteMany, not delete: after a passing run cancel_clash has removed it already.
+    if (createdId) await prisma.clash.deleteMany({ where: { id: createdId } });
     await prisma.$disconnect();
     await client.close();
   }
