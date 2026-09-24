@@ -114,13 +114,13 @@ success: "Only find_venue and create_clash are allowed, the init status is check
 import { query } from "@anthropic-ai/claude-agent-sdk";
 const server = `${process.env.CLASH_DIR}/mcp/server.ts`; // ../clash, in clash-conference/.env
 export async function POST(req: Request) {
-  const { talkId } = await req.json();
-  // ⟵ LIVE: load the talk, its venue name and its host email from clash-conference
+  const { talkId } = await req.json(); // ⟵ LIVE: load that talk, venue name, host email
   const run = query({
     prompt: `Publish this talk as a clash in CLASH: ___`,
     options: {
       mcpServers: { clash: { command: "npx", args: ["tsx", server] } },
       allowedTools: ["mcp__clash__find_venue", "mcp__clash__create_clash"],
+      permissionMode: "dontAsk", // every other tool is denied
       // ⟵ LIVE: maxTurns; read system/init, stop on a failed server, store the outcome
     },
   });

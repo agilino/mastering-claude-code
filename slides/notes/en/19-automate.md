@@ -68,7 +68,7 @@ Say:
 <!-- @note: background-the-session-keeps-working -->
 > Do:
 > - Docs link: "How file edits are isolated". Dry-run once first: the Stop hook fires in the worktree
-> - Live, from a terminal at the root of your CLASH clone, not inside a session: the `claude --bg --name audit …` command from tasks/18-automate.md step 15
+> - Live, from a terminal at the root of your CLASH clone, not inside a session: the `claude --bg --name audit …` command from tasks/18-automate.md step 12
 > - It returns at once: short id, then claude agents, claude attach <id>, claude logs <id>, claude stop <id>
 > - Then claude agents: select the audit row, Space peeks, Enter attaches, ← on an empty prompt detaches
 

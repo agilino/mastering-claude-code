@@ -68,7 +68,7 @@ Sagen:
 <!-- @note: background-the-session-keeps-working -->
 > Tun:
 > - Docs-Link: "How file edits are isolated". Einmal vorher trocken durchspielen: der Stop-Hook feuert im Worktree
-> - Live, aus einem Terminal im Root deines CLASH-Clones, nicht in einer Session: der Befehl `claude --bg --name audit …` aus tasks/18-automate.md Schritt 15
+> - Live, aus einem Terminal im Root deines CLASH-Clones, nicht in einer Session: der Befehl `claude --bg --name audit …` aus tasks/18-automate.md Schritt 12
 > - Kehrt sofort zurück: kurze id, dann claude agents, claude attach <id>, claude logs <id>, claude stop <id>
 > - Dann claude agents: Zeile audit wählen, Space zeigt die Vorschau, Enter hängt an, ← auf leerem Prompt trennt die Session
 

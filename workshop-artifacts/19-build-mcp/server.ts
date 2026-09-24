@@ -28,6 +28,10 @@ function refuse(message: string) {
   return { ...reply(message), isError: true };
 }
 
+// ISO 8601 date-time: 2099-12-31T19:00, optional seconds, fraction and offset.
+// new Date() alone also accepts "12/31/2099" or a bare "2099-01-01".
+const isoDateTime = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|[+-]\d{2}:\d{2})?$/;
+
 const server = new McpServer({ name: "clash", version: "1.0.0" });
 
 server.registerTool(
@@ -102,7 +106,7 @@ server.registerTool(
     if (!venue) return refuse(`Unknown venue ${venueId}. Use find_venue to get a valid id.`);
 
     const when = new Date(dateTime);
-    if (Number.isNaN(when.getTime()) || when <= new Date()) {
+    if (!isoDateTime.test(dateTime) || Number.isNaN(when.getTime()) || when <= new Date()) {
       return refuse("dateTime must be an ISO date-time in the future.");
     }
 

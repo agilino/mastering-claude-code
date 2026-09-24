@@ -24,6 +24,7 @@ const transport = new StdioClientTransport({
 const client = new Client({ name: "clash-smoke", version: "1.0.0" });
 
 let failures = 0;
+let createdId: string | undefined; // the clash this test created, removed in the finally below
 
 // Call one tool and return its text answer.
 async function call(name: string, args: Record<string, unknown>): Promise<string> {
@@ -75,6 +76,7 @@ const draft = {
 };
 
 const created = await call("create_clash", draft);
+createdId = created.match(/^Created clash (\S+):/)?.[1];
 expect("create_clash creates the clash", created.startsWith("Created clash"));
 
 const again = await call("create_clash", draft);
@@ -96,18 +98,22 @@ expect("create_clash refuses an invalid date", garbage.startsWith("dateTime must
 
 const listed = await call("list_upcoming_clashes", { area: "Holzmarkt" });
 expect("the new clash shows up in list_upcoming_clashes", listed.includes("MCP Hacknight"));
-
-// Clean up: remove the test clash so the database looks like before.
-const createdId = created.match(/^Created clash (\S+):/)?.[1];
-if (createdId) await prisma.clash.delete({ where: { id: createdId } });
-await prisma.$disconnect();
-
-await client.close();
-console.log(failures === 0 ? "\nAll checks passed." : `\n${failures} check(s) failed.`);
-process.exit(failures === 0 ? 0 : 1);
 }
 
-main().catch((error) => {
+async function run() {
+  try {
+    await main();
+  } finally {
+    // Clean up on success and on failure: remove the test clash so the database looks like before.
+    if (createdId) await prisma.clash.delete({ where: { id: createdId } });
+    await prisma.$disconnect();
+    await client.close();
+  }
+  console.log(failures === 0 ? "\nAll checks passed." : `\n${failures} check(s) failed.`);
+  process.exit(failures === 0 ? 0 : 1);
+}
+
+run().catch((error) => {
   console.error(error);
   process.exit(1);
 });

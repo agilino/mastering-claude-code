@@ -214,7 +214,8 @@ back later.
     email from clash-conference's own data. Then call query() from @anthropic-ai/claude-agent-sdk
     with mcpServers: one stdio server named clash, command npx, args tsx and
     `${process.env.CLASH_DIR}/mcp/server.ts`; allowedTools: exactly mcp__clash__find_venue
-    and mcp__clash__create_clash; maxTurns: 8. The prompt asks the agent to find that venue
+    and mcp__clash__create_clash; permissionMode: dontAsk, so every other tool is denied;
+    maxTurns: 8. The prompt asks the agent to find that venue
     by name and create the clash there, and to answer with the new clash id or with the
     reason it could not. Read the run's first message, the system/init: when the clash
     server's status is failed or needs-auth, mark the talk failed with that status and stop
@@ -222,9 +223,9 @@ back later.
     the talk — published with the clash id, or failed with the message — and return that.
     ```
     You see one new file in clash-conference, `app/api/publish/route.ts`. Read it and find
-    four things: the one `query()` call, the two `mcp__clash__…` names in `allowedTools`,
-    the `maxTurns` ceiling, and the `system/init` check that ends the publish before any
-    tool runs.
+    five things: the one `query()` call, the two `mcp__clash__…` names in `allowedTools`,
+    `permissionMode: "dontAsk"`, the `maxTurns` ceiling, and the `system/init` check that
+    ends the publish before any tool runs.
 18. In clash-conference on `localhost:3001`, pick a talk and click "Publish to CLASH". You
     see the talk turn `published` and carry a `clashId`. Open CLASH on
     `localhost:3000/clashes`: the talk is there as a clash, at the venue from

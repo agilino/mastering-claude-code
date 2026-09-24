@@ -91,7 +91,7 @@ Say:
 <!-- @note: build-your-own-mcp-2 -->
 > Do:
 > - Starting point: 19-start in your CLASH clone, `npm run dev` on localhost:3000, the eight seeded logins
-> - Hand off to tasks/19-build-your-own-mcp.md: steps 1 to 6 the server, 7 to 9 clash-conference on localhost:3001
+> - Hand off to tasks/19-build-your-own-mcp.md: steps 1 to 13 the server, 14 to 19 clash-conference on localhost:3001
 > - Watch for: a console.log in the server, a process.cwd() path, a skipped restart after `.mcp.json`
 > - Duplicate demo: the same create prompt twice; the second answer is the server's Duplicate refusal
 

@@ -364,7 +364,7 @@ Parts III and IV run on the finished reference CLASH, as guided tasks.
   `app/api/publish/route.ts`. Its route frees only `find_venue` and `create_clash`.
 - clash-conference is published after it is finished. Until then the clash-conference repository
   holds no `package.json` and no `19-start` of its own, `docs/SETUP.md` marks the clash-conference
-  clone as not yet available, and steps 7 to 9 of `tasks/19-build-your-own-mcp.md` are unverified
+  clone as not yet available, and steps 14 to 19 of `tasks/19-build-your-own-mcp.md` are unverified
   prose. Before you teach them, check every name against the finished clash-conference:
   clash-conference's `19-start`, clash-conference's `.env` with `CLASH_DIR=../clash`,
   clash-conference on port 3001, `app/api/publish/route.ts`, the statuses `published` and
@@ -387,5 +387,5 @@ Parts III and IV run on the finished reference CLASH, as guided tasks.
 | Someone hand-edits `prisma/migrations` | The deny hook from Task 13 catches it from `14-start` on. |
 | `/tdd` fires on its own mid-conversation | Shouldn't happen — `disable-model-invocation: true` blocks it. If it does, the skill file is wrong; fix it live as a teaching moment. |
 | Routines need a claude.ai subscription and GitHub access | Trainer demo only, mode `watch first`. Confirm your own `/schedule list` works before you start. Participants without a subscription watch; nothing later depends on their own routine. |
-| `clash-conference` is a second repository with a `19-start` branch of its own, published only after clash-conference is finished | Cloning it is part of `docs/SETUP.md`, marked as available once published. Its `main` is the finished clash-conference; clash-conference's `19-start` lacks `app/api/publish/route.ts`. Until it is pushed, `git checkout 19-start` fails in clash-conference; re-verify every name in `tasks/19-build-your-own-mcp.md` steps 7 to 9 against the finished clash-conference. `scripts/prepare-branches.sh` does not build it. |
+| `clash-conference` is a second repository with a `19-start` branch of its own, published only after clash-conference is finished | Cloning it is part of `docs/SETUP.md`, marked as available once published. Its `main` is the finished clash-conference; clash-conference's `19-start` lacks `app/api/publish/route.ts`. Until it is pushed, `git checkout 19-start` fails in clash-conference; re-verify every name in `tasks/19-build-your-own-mcp.md` steps 14 to 19 against the finished clash-conference. `scripts/prepare-branches.sh` does not build it. |
 | The MCP package name may change | The answer key was built with `@modelcontextprotocol/server` 2.1.0. Check `npm view @modelcontextprotocol/server version` and the tutorial at modelcontextprotocol.io/docs/develop/build-server before you teach; update `docs/SETUP.md` and `tasks/19-build-your-own-mcp.md` together. |

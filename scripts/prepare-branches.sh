@@ -378,8 +378,9 @@ const out = JSON.stringify(settings, null, 2) + '\n'
 fs.writeFileSync(path, crlf ? out.replace(/\n/g, '\r\n') : out)
 JS
 echo "   19-solution: npm install the MCP packages"
-npm install --save @modelcontextprotocol/server --no-audit --no-fund --loglevel=error
-npm install --save-dev @modelcontextprotocol/client --no-audit --no-fund --loglevel=error
+# Pinned to the versions the answer key was built and tested with (see workshop-artifacts/19-build-mcp/README.md).
+npm install --save --save-exact @modelcontextprotocol/server@2.1.0 --no-audit --no-fund --loglevel=error
+npm install --save-dev --save-exact @modelcontextprotocol/client@2.1.0 --no-audit --no-fund --loglevel=error
 commit_all 19-solution "workshop: the CLASH MCP server — three tools over the database (answer key of task 19)
 
 mcp/server.ts offers list_upcoming_clashes, find_venue and create_clash over

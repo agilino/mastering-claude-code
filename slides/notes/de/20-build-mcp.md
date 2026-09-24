@@ -91,7 +91,7 @@ Sagen:
 <!-- @note: build-your-own-mcp-2 -->
 > Tun:
 > - Startpunkt: 19-start in deinem CLASH-Clone, `npm run dev` auf localhost:3000, die acht geseedeten Logins
-> - Übergabe an tasks/19-build-your-own-mcp.md: Schritte 1 bis 6 der Server, 7 bis 9 clash-conference auf localhost:3001
+> - Übergabe an tasks/19-build-your-own-mcp.md: Schritte 1 bis 13 der Server, 14 bis 19 clash-conference auf localhost:3001
 > - Achten auf: ein console.log im Server, ein process.cwd()-Pfad, ein fehlender Neustart nach `.mcp.json`
 > - Duplikat-Demo: derselbe Create-Prompt zweimal; die zweite Antwort ist die Duplicate-Ablehnung des Servers
 
