@@ -19,13 +19,19 @@ outcomeHeading: "You build"
 
 ---
 layout: concept
-heading: "Do it like X"
+heading: "Reuse information by reference"
 lines:
-  - "The pattern exists now. Point at it."
-  - "Venues like clashes: follow @app/actions/clashes.ts"
-  - "Short brief, same result"
+  - "First time: explain the pattern. Next time: point at the implementation."
+  - "When you repeat it again, package the recipe as a command or skill."
 ---
 
+<div class="flex items-center gap-4 w-full max-w-4xl justify-center text-sm">
+  <div class="na-card px-5 py-4"><div class="font-semibold">describe</div><div style="color: var(--na-fg-muted)">full brief once</div></div>
+  <span>→</span>
+  <div class="na-card px-5 py-4" v-click><div class="font-semibold">@reference</div><div style="color: var(--na-fg-muted)">reuse existing pattern</div></div>
+  <span v-click>→</span>
+  <div class="na-card px-5 py-4" v-click><div class="font-semibold">skill / rule</div><div style="color: var(--na-fg-muted)">reuse the recipe</div></div>
+</div>
 
 ---
 layout: code-live
@@ -100,5 +106,3 @@ lines:
   - "\"Before you say done, run all three and fix what fails\""
   - "Claude runs them without being asked — most of the time, not a guarantee"
 ---
-
-

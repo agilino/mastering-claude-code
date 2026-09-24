@@ -5,14 +5,15 @@
 Say:
 - Four things to learn, four things to build — venues follow the exact pattern you already know
 
-<!-- @note: do-it-like-x -->
+<!-- @note: reuse-information-by-reference -->
 > Do:
-> - Point at the same pattern three times, then write it down once
-> - Participants do this in step 3
+> - Point at the three stages. Participants are at the middle stage now; task 07 reaches the third.
+> - Participants use the @reference pattern in task 04 step 3.
 
 Say:
-- Venues prompt in Task 04 is a third of the clashes prompt — the pattern already lives in the repo, so you can just point at it
-- Cheapest way to get consistency
+- The first implementation needs a full brief because the pattern does not exist yet.
+- Once the repository contains the pattern, point at it instead of retelling it from memory. That is cheaper and more consistent.
+- When the same instruction survives a third use, stop paying prompt tax and package it as a command, skill or rule.
 
 <!-- @note: your-first-slash-command -->
 > Do:

@@ -5,14 +5,15 @@
 Sagen:
 - Vier Dinge zu lernen, vier Dinge zu bauen — Venues folgen genau dem Muster, das du schon kennst
 
-<!-- @note: do-it-like-x -->
-> Tun:
-> - Dreimal auf dasselbe Muster zeigen, dann einmal aufschreiben
-> - Schritt 3 machen die Teilnehmenden selbst
+<!-- @note: reuse-information-by-reference -->
+> Do:
+> - Zeige die drei Stufen. Die Teilnehmer sind jetzt in der Mitte; Task 07 erreicht die dritte Stufe.
+> - In Task 04 Schritt 3 benutzen sie das @reference-Muster.
 
-Sagen:
-- Venues-Prompt in Task 04 ist ein Drittel des Clashes-Prompts — das Muster liegt schon im Repo, also kannst du einfach darauf zeigen
-- Der günstigste Weg zu Konsistenz
+Say:
+- Die erste Umsetzung braucht einen vollständigen Brief, weil das Muster noch nicht existiert.
+- Sobald das Repository das Muster enthält, verweise darauf, statt es aus dem Gedächtnis neu zu erklären. Das ist günstiger und konsistenter.
+- Überlebt dieselbe Instruktion eine dritte Verwendung, bezahle nicht weiter Prompt-Steuer: packe sie in Command, Skill oder Rule.
 
 <!-- @note: your-first-slash-command -->
 > Tun:

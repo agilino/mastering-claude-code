@@ -27,18 +27,16 @@ Say:
 - This is undo for the conversation — it does not replace git
 - Use it early, before you try to patch a wrong direction
 
-<!-- @note: watch-the-window-fill -->
+<!-- @note: compact-is-a-lossy-reset -->
 > Do:
-> - Participants do this in steps 8-9
-> - Run /context live after the auth and shell steps
-> - [click] Read the bands: system prompt, CLAUDE.md, tool results, conversation
-> - Then run /compact, then /context again
-> - Optional: point at the docs page's "Manage context proactively" section — /clear vs /compact
+> - Run /context live after the auth and shell steps. Read the actual bands.
+> - Run /compact, then /context again. Compare before and after instead of only watching a tank fill.
+> - Optional: point at the docs section on /clear versus /compact.
 
 Say:
-- [click:4] The tool results band is the files Claude read — it keeps growing. When the window is almost full, Claude Code clears older tool outputs first, then compacts
-- First time the group sees the context window as something they can manage
-- Part III makes it a discipline
+- Compaction buys room by replacing detail with a summary. That summary is lossy.
+- Use /compact when the current thread is still valuable; use /clear when the old direction is no longer useful.
+- Part III turns this from a rescue command into a context discipline.
 
 <!-- @note: the-safety-moment -->
 > Do:

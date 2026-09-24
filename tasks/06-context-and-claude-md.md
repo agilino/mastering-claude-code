@@ -7,7 +7,6 @@
 
 - [/context is an instrument](https://mastering-claude-code.vercel.app/theory-context-instrument)
 - [Plan mode: review first](https://mastering-claude-code.vercel.app/theory-plan-review)
-- [/skill-doctor: what it costs](https://mastering-claude-code.vercel.app/theory-skill-doctor)
 
 > **Reminder:** Context is a budget; keep standing instructions small and review plans before implementation.
 
@@ -71,16 +70,7 @@ out, Claude has to guess or search for.
    ```
    Save this plan as docs/plans/realtime-notifications.md. Do not implement it.
    ```
-9. See what loaded skills cost you. `.agents/skills/` ships nine vendored skills for this
-   reference build. Eight are copied into `.claude/skills/` — the project-level folder
-   Claude Code actually reads; `agent-browser` stays personal-only, already installed
-   there in task 01.
-   ```
-   /skill-doctor
-   ```
-   Two of them, `react-best-practices` and `vercel-react-best-practices`, are
-   near-duplicates of about 100 KB each. Both are scanned every session.
-10. See what a personal rule adds, not overrides.
+9. See what a personal rule adds, not overrides.
     ```bash
     mkdir -p ~/.claude/rules
     ```
@@ -100,7 +90,6 @@ out, Claude has to guess or search for.
 - [ ] `CLAUDE.md` is no longer just `@AGENTS.md`. It states the six rules in your words.
 - [ ] The authorization rule says every Server Action checks ownership itself.
 - [ ] `docs/plans/realtime-notifications.md` exists and was reviewed in plan mode before any code.
-- [ ] `/skill-doctor` ran and you can name one skill worth removing.
 - [ ] `/context` after the task is not much higher than before it.
 - [ ] `/context` lists both `CLAUDE.md` and `~/.claude/rules/tone.md` together under Memory files.
 
@@ -118,4 +107,3 @@ Yours does not need to match. It needs the same six rules.
 - The context window — https://code.claude.com/docs/en/context-window
 - Memory and CLAUDE.md — https://code.claude.com/docs/en/memory
 - Plan mode and permission modes — https://code.claude.com/docs/en/permission-modes
-- Skills — https://code.claude.com/docs/en/skills
