@@ -184,11 +184,12 @@ Both appear in this workshop. We always say which one we mean.
 
 ## 9. The MCP server package and clash-conference
 
-Task 19 builds an MCP server inside your CLASH clone and connects a second app,
-`clash-conference`, to it.
+Task 19 designs an MCP server inside your CLASH clone and connects a second app,
+`clash-conference`, to it. CLASH's `19-start` already lists both MCP packages in its
+`package.json`.
 
-Fetch the server package once, in your CLASH clone, so the install in task 19 needs no
-network. `--no-save` leaves `package.json` and the lock file untouched, so you can still switch
+Fetch them once, in your CLASH clone, so the `npm install` in task 19 needs no network.
+`--no-save` leaves `package.json` and the lock file untouched, so you can still switch
 branches afterwards:
 
 ```bash
@@ -197,8 +198,8 @@ npm install --no-save @modelcontextprotocol/server@2.1.0 @modelcontextprotocol/c
 ```
 
 `@modelcontextprotocol/server` is the server SDK. `@modelcontextprotocol/client` is used only by
-the smoke test in the answer key. Both are pinned to 2.1.0, the version the answer key was built
-and tested with, and task 19 installs the same version. The older
+the smoke test, `mcp/smoke.ts`. Both are pinned to 2.1.0, the version the answer key was built
+and tested with, and CLASH's `19-start` pins the same version. The older
 `@modelcontextprotocol/sdk` is a different package. Do not install it.
 
 **The second app comes later.** `clash-conference` is published once it is finished, and the

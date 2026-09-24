@@ -21,11 +21,12 @@
 #             checks RE-SEEDED for the audit (same seeding as 08-start)
 #   13-start  ownership checks restored again
 #   14-start  + hook set
-#   15..19    == 14-start   (each of these tasks only adds new files, or works in your own
-#             worktree, so the start state is unchanged — nothing this script has to seed.
-#             The MCP server of task 19 does get seeded, on 19-solution below)
-#   19-solution  + mcp/server.ts, mcp/smoke.ts, .mcp.json and the two read tools allowed
-#             (answer key of task 19, CLASH side — the one branch that is not an NN-start)
+#   15..18    == 14-start   (each of these tasks only adds new files, or works in your own
+#             worktree, so the start state is unchanged — nothing this script has to seed)
+#   19-start  14-start + the MCP starter: mcp/server.ts with one working tool
+#             (list_upcoming_clashes), mcp/smoke.ts, the two MCP packages pinned
+#   19-solution  19-start + the finished mcp/server.ts, .mcp.json and the two read tools
+#             allowed (answer key of task 19, CLASH side — the one branch that is not an NN-start)
 #
 # Every branch with code is gated: npm install, tsc, lint, test (if present), build.
 # 19-solution is gated once more, by running its server: the script migrates and seeds
@@ -62,6 +63,7 @@ ART_TDD_SKILL="$(find_one '*tdd-inner-loop*/SKILL.md')"
 ART_TDD_CAPACITY_TS="$(find_one '*tdd-inner-loop*/capacity.ts')"
 ART_TDD_CAPACITY_TEST="$(find_one '*tdd-inner-loop*/capacity.test.ts')"
 ART_MCP_SERVER="$(find_one '*build-mcp*/server.ts')"
+ART_MCP_STARTER="$(find_one '*build-mcp*/server.start.ts')"
 ART_MCP_SMOKE="$(find_one '*build-mcp*/smoke.ts')"
 ART_MCP_JSON="$(find_one '*build-mcp*/.mcp.json')"
 ART_MCP_ALLOW="$(find_one '*build-mcp*/settings.allow.json')"
@@ -349,21 +351,40 @@ commit_all 14-start "workshop: install the hook set — typecheck, deny rules, S
 note 14-start "+ hook set"
 gate 14-start
 
-for b in 15-start 16-start 17-start 18-start 19-start; do
+for b in 15-start 16-start 17-start 18-start; do
   git checkout -B "$b" 14-start --quiet
   note "$b" "identical to 14-start"
   SUMMARY+=("$b|$(git rev-parse --short HEAD)|$(git ls-files | wc -l | tr -d ' ')|== 14-start")
 done
 
-# --- 19-solution: + the CLASH MCP server (answer key of task 19) --------------
-# The only branch that is not an NN-start. clash-conference's own `main` carries
+# --- 19-start: + the MCP starter ---------------------------------------------
+# Task 19 is about designing an MCP server, so participants start from a server that
+# already runs: stdio transport, dev.db resolved from the file, logs on stderr, reply()
+# and refuse(), and one finished model tool. They add find_venue and create_clash
+# (two marked places in mcp/server.ts) and finish when mcp/smoke.ts passes.
+# clash-conference's own 19-start is not built here.
+git checkout -B 19-start 14-start --quiet
+mkdir -p mcp
+cp "$ART_MCP_STARTER" mcp/server.ts
+cp "$ART_MCP_SMOKE" mcp/smoke.ts
+echo "   19-start: npm install the MCP packages"
+# Pinned to the versions the answer key was built and tested with (see workshop-artifacts/19-build-mcp/README.md).
+npm install --save --save-exact @modelcontextprotocol/server@2.1.0 --no-audit --no-fund --loglevel=error
+npm install --save-dev --save-exact @modelcontextprotocol/client@2.1.0 --no-audit --no-fund --loglevel=error
+commit_all 19-start "workshop: the MCP starter — one working tool, two to design (start of task 19)
+
+mcp/server.ts runs over stdio with list_upcoming_clashes as the model tool;
+task 19 adds find_venue and create_clash at the two marked places.
+mcp/smoke.ts is the finish line: it passes once all three tools answer as specified."
+note 19-start "+ mcp/server.ts starter with one tool, mcp/smoke.ts, the MCP packages pinned"
+gate 19-start
+
+# --- 19-solution: + the finished CLASH MCP server (answer key of task 19) ------
+# The only branch that is not an NN-start. clash-conference's own `19-solution` carries
 # the finished publish route; this is its counterpart on the CLASH side, so a
 # participant who did not finish the server can still do the publish steps.
-# Branched from CLASH's 19-start; clash-conference's own 19-start is not built here.
 git checkout -B 19-solution 19-start --quiet
-mkdir -p mcp
 cp "$ART_MCP_SERVER" mcp/server.ts
-cp "$ART_MCP_SMOKE" mcp/smoke.ts
 cp "$ART_MCP_JSON" .mcp.json
 ALLOW_FILE="$ART_MCP_ALLOW" node - <<'JS'
 const fs = require('fs')
@@ -377,17 +398,13 @@ settings.permissions = { allow }
 const out = JSON.stringify(settings, null, 2) + '\n'
 fs.writeFileSync(path, crlf ? out.replace(/\n/g, '\r\n') : out)
 JS
-echo "   19-solution: npm install the MCP packages"
-# Pinned to the versions the answer key was built and tested with (see workshop-artifacts/19-build-mcp/README.md).
-npm install --save --save-exact @modelcontextprotocol/server@2.1.0 --no-audit --no-fund --loglevel=error
-npm install --save-dev --save-exact @modelcontextprotocol/client@2.1.0 --no-audit --no-fund --loglevel=error
 commit_all 19-solution "workshop: the CLASH MCP server — three tools over the database (answer key of task 19)
 
 mcp/server.ts offers list_upcoming_clashes, find_venue and create_clash over
 stdio. .mcp.json registers it at project scope; .claude/settings.json allows
 the two read tools, so a write still asks. mcp/smoke.ts calls every tool and
 every refusal. clash-conference's publish route starts this server to write into CLASH."
-note 19-solution "+ mcp/server.ts, mcp/smoke.ts, .mcp.json, the two read tools allowed"
+note 19-solution "+ the finished mcp/server.ts, .mcp.json, the two read tools allowed"
 gate 19-solution
 
 # The gate only type-checks and lints mcp/. Running the server is the one check that proves

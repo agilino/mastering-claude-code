@@ -4,7 +4,8 @@ Every task has a branch named `NN-start`. It holds the state at the **start** of
 so `git checkout NN-start` lets you rejoin at that task without debugging your own build.
 
 One branch breaks that naming on purpose: `19-solution` holds the finished MCP server, so the
-second half of task 19 works even for someone whose own server does not.
+second half of task 19 works even for someone whose own server does not. CLASH's `19-start` is
+the one start branch that carries a starter for its task: an MCP server with one working tool.
 
 The branches are created by [`scripts/prepare-branches.sh`](../scripts/prepare-branches.sh)
 on a local CLASH clone. The script never pushes. Every branch with code passes
@@ -32,24 +33,26 @@ CLASH clone you demo from. `SKIP_GATE=1` skips the gates and this smoke run with
 | `12-start` | The finished `.claude/skills/tdd/SKILL.md` and a passing `lib/capacity.ts` and `lib/capacity.test.ts` (answer key of task 11). **Ownership checks re-seeded** for the audit — the same exact-string removal `08-start` used, run again against the restored code. | `workshop-artifacts/11-tdd-inner-loop/`; the ownership guards are removed by the same Node script `08-start` uses. |
 | `13-start` | The ownership checks are back again (the fix merged in task 12). | `app/actions/clashes.ts` and `app/actions/venues.ts` restored from `main`. |
 | `14-start` | The hook set: `.claude/settings.json`, `.claude/hooks/typecheck-actions.sh`, `.claude/hooks/build-gate.sh` (answer key of task 13). | `workshop-artifacts/13-hooks/`. |
-| `15-start`, `16-start`, `17-start`, `18-start`, CLASH's `19-start` | Nothing. Each of these tasks only adds new files, or works in your own worktree, so the start state is unchanged. Task 19's server does get seeded, on `19-solution` in the row below. clash-conference's own `19-start` is in the section below. | Identical to `14-start`. |
-| `19-solution` | The finished CLASH MCP server: `mcp/server.ts`, `mcp/smoke.ts`, `.mcp.json`, and `permissions.allow` in `.claude/settings.json` for the two read tools. The two npm packages are in `package.json`. | `workshop-artifacts/19-build-mcp/`, branched from CLASH's `19-start`. |
+| `15-start`, `16-start`, `17-start`, `18-start` | Nothing. Each of these tasks only adds new files, or works in your own worktree, so the start state is unchanged. | Identical to `14-start`. |
+| CLASH's `19-start` | The MCP starter for task 19: `mcp/server.ts` with the plumbing (stdio, `dev.db` resolved from the file, logs on stderr, `reply()` and `refuse()`) and one finished tool, `list_upcoming_clashes`, plus two marked places for the tools participants design. Also `mcp/smoke.ts`, the finish line, and `@modelcontextprotocol/server` and `@modelcontextprotocol/client` pinned to 2.1.0 in `package.json`. clash-conference's own `19-start` is in the section below. | `14-start` plus `workshop-artifacts/19-build-mcp/server.start.ts` as `mcp/server.ts` and `smoke.ts`; the packages added by script. |
+| CLASH's `19-solution` | The finished CLASH MCP server: `mcp/server.ts` with all three tools, `.mcp.json`, and `permissions.allow` in `.claude/settings.json` for the two read tools. | `workshop-artifacts/19-build-mcp/`, branched from CLASH's `19-start`. |
 
 ## A second repository for task 19
 
 `clash-conference` (`https://github.com/agilino/clash-conference.git`) is a second, small app. It
 publishes its talks as clashes into CLASH through the MCP server task 19 builds. It is published
 once clash-conference is finished; until then clash-conference holds no app and no `19-start` of
-its own. Once out, clash-conference has two branches of its own: `main` is the finished
-clash-conference, and clash-conference's `19-start` is the same without
+its own. Once out, clash-conference has branches of its own: `main` is the finished
+clash-conference, clash-conference's `19-start` is the same without
 `app/api/publish/route.ts`, the route task 19 writes, and without `lib/clash-agent.ts`, which
-holds the `query()` call on clash-conference's `main`. Clone clash-conference next to your CLASH
-clone (`docs/SETUP.md`). `scripts/prepare-branches.sh` does not touch clash-conference.
+holds the `query()` call on clash-conference's `main`, and clash-conference's `19-solution` is
+`main` with the finished route. Clone clash-conference next to your CLASH clone
+(`docs/SETUP.md`). `scripts/prepare-branches.sh` does not touch clash-conference.
 
-The two repositories mirror each other: `main` in clash-conference is the finished route,
-`19-solution` in CLASH is the finished server. Both halves have to exist before a talk can
-reach CLASH, so each half can come from your own work or from its solution branch:
-`19-solution` in your CLASH clone, `main` in clash-conference.
+The two repositories mirror each other: each has a `19-start` and a `19-solution`.
+CLASH's `19-solution` is the finished server, clash-conference's `19-solution` the finished
+route. Both halves have to exist before a talk can reach CLASH, so each half can come from
+your own work or from its solution branch.
 
 ## Notes on the build stages (03 to 05)
 

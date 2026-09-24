@@ -11,29 +11,33 @@ Claude Code starts it, asks it for its tool list, and calls a tool when it needs
 
 Inside Claude Code the tools are named `mcp__clash__list_upcoming_clashes`, `mcp__clash__find_venue` and `mcp__clash__create_clash`.
 
+`server.start.ts` is the starter participants begin with. It is `server.ts` without `find_venue` and `create_clash`: the same plumbing, `list_upcoming_clashes` as the finished model tool, and two marked places, `Step 2 of task 19` and `Step 3 of task 19`. Task 19 steps 2 and 3 fill them. The rest of the file is identical, so the diff between the two files is exactly what a participant designs.
+
 ## Where each file goes
 
-| `workshop-artifacts/19-build-mcp/` in the workshop repository | Your CLASH clone |
-|---|---|
-| `server.ts` | `mcp/server.ts` |
-| `smoke.ts` | `mcp/smoke.ts` |
-| `.mcp.json` | `.mcp.json` (at the root of your CLASH clone) |
-| `settings.allow.json` | merge the `permissions.allow` list into `.claude/settings.json` |
+| `workshop-artifacts/19-build-mcp/` in the workshop repository | Your CLASH clone | Branch |
+|---|---|---|
+| `server.start.ts` | `mcp/server.ts` | CLASH's `19-start` |
+| `server.ts` | `mcp/server.ts` | CLASH's `19-solution` |
+| `smoke.ts` | `mcp/smoke.ts` | both |
+| `.mcp.json` | `.mcp.json` (at the root of your CLASH clone) | CLASH's `19-solution`; on CLASH's `19-start` task 19 step 1 creates it with `claude mcp add` |
+| `settings.allow.json` | merge the `permissions.allow` list into `.claude/settings.json` | CLASH's `19-solution`; on CLASH's `19-start` task 19 step 5 adds it |
+
+`scripts/prepare-branches.sh` in the workshop repository builds both branches from these files.
 
 ## Install
+
+CLASH's `19-start` already has `@modelcontextprotocol/server` 2.1.0 and `@modelcontextprotocol/client` 2.1.0 in its `package.json`. To put the finished server on it by hand:
 
 ```bash
 cd clash                                     # your CLASH clone
 git checkout 19-start                        # CLASH's 19-start
-npm install --save-exact @modelcontextprotocol/server@2.1.0                # the server SDK; zod is already there
-npm install --save-dev --save-exact @modelcontextprotocol/client@2.1.0    # only the smoke test needs this
-mkdir mcp
+npm install
 cp <workshop repository>/workshop-artifacts/19-build-mcp/server.ts mcp/server.ts
-cp <workshop repository>/workshop-artifacts/19-build-mcp/smoke.ts mcp/smoke.ts
 cp <workshop repository>/workshop-artifacts/19-build-mcp/.mcp.json .mcp.json
 ```
 
-The answer key was built with `@modelcontextprotocol/server` 2.1.0 and `@modelcontextprotocol/client` 2.1.0.
+Or check out CLASH's `19-solution`, which is exactly that plus the two allowed read tools. The answer key was built with `@modelcontextprotocol/server` 2.1.0 and `@modelcontextprotocol/client` 2.1.0.
 
 ## Run the smoke test
 
@@ -81,9 +85,20 @@ Merge the list into `.claude/settings.json` in your CLASH clone. On CLASH's `19-
 
 ## What to look at in `server.ts`
 
+The five design decisions task 19 teaches, and where each one shows:
+
+1. **Small tools.** `find_venue` looks up, `create_clash` writes, and the write takes a `venueId` that only the lookup provides.
+2. **Descriptions are the interface.** The tool descriptions and `.describe("id from find_venue")` steer Claude before any code runs.
+3. **Refusals are product text.** `refuse()` returns text with `isError: true`; clash-conference shows that text to the organiser as the reason a publish failed. `No venue matches "…"` goes through `reply()`: no match is an answer, not an error.
+4. **Check before you write.** Host, venue, ISO date in the future, duplicate — in that order, all before the one `prisma.clash.create`.
+5. **No more power than needed.** No delete, no create-venue, no create-user tool. `settings.allow.json` allows the two reads; the write keeps asking.
+
+A known gap, on purpose: CLASH's own `createClash` in `app/actions/clashes.ts` notifies the venue's creator when someone schedules a clash at their venue (`docs/SPEC.md`). `create_clash` writes straight to the database and skips that side effect. Task 19 keeps the prompts short and turns this into a "Now you" exercise: add the notification, and make the smoke test remove it again.
+
+And the plumbing the starter already has:
+
 - `registerTool(name, { description, inputSchema }, handler)` — the whole tool contract in one call. The description is what Claude reads.
 - `dbFile` is built from `import.meta.url`, not from `process.cwd()`. clash-conference can start this server from its own folder and still hit the same `dev.db` in your CLASH clone.
 - `PrismaClient` comes from `../lib/generated/prisma/client`, a relative path, never the `@/` alias. Started from clash-conference, `@/` would mean clash-conference's own folder and its own generated client, which has no clashes or venues.
 - `log()` writes to `stderr`. `stdout` carries the protocol. One `console.log` breaks the connection.
-- `refuse()` returns text with `isError: true`. The model sees why, and nothing was written.
-- The duplicate check: same title and same `dateTime` means the clash already exists. The server says so instead of creating it twice.
+- `isIsoDateTime()` accepts only a real ISO date-time: `new Date()` alone would also take `12/31/2099` and roll `2099-02-29` over to March 1.

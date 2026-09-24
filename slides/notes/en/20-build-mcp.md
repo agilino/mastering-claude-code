@@ -1,24 +1,24 @@
 <!-- @note: build-your-own-mcp -->
 Say:
 - Task 14: we only used other people's servers — Playwright, Chrome DevTools, a remote one
-- Now CLASH is the system another agent reaches. We write the server ourselves
+- Now CLASH is the system another agent reaches. We design the server ourselves
 - Three tools, one file, and at the end clash-conference calls the same server
 
 <!-- @note: task-19-build-your-own-mcp -->
 > Do:
-> - Branch: 19-start in your CLASH clone, identical to 14-start — CLAUDE.md, the skill, the fix, the hook set
-> - `npm install --save-exact @modelcontextprotocol/server@2.1.0` in your CLASH clone, fetched at setup; zod is already a CLASH dependency
+> - Branch: CLASH's 19-start in your CLASH clone — 14-start plus the starter mcp/server.ts (one working tool, two marked places), mcp/smoke.ts and the two MCP packages
+> - No install step for the packages: CLASH's 19-start already pins @modelcontextprotocol/server and @modelcontextprotocol/client at 2.1.0. Setup still pre-fetches both (docs/SETUP.md), so `npm install` in step 1 needs no network; zod is already a CLASH dependency
 > - Trap: the package is @modelcontextprotocol/server, never the older @modelcontextprotocol/sdk
 > - clash-conference is a second clone next to your CLASH clone, with a 19-start of its own — say now that it comes at the end
 
 Say:
-- Four things: write a server, register it, trust it selectively, call it from clash-conference
+- Four things: start from a running server, design two tools, trust it selectively, call it from clash-conference
 - The write tool is the interesting one: the server refuses bad input, the model cannot improvise
 
 <!-- @note: a-server-is-three-registered-tools -->
 > Do:
 > - Docs link: the TypeScript tab, the imports, one registerTool call
-> - Stay on the diagram; the code comes on the next slide
+> - Stay on the diagram; the five design decisions come next, then the code
 
 Say:
 - [click] Claude Code is the client: it starts the server, JSON-RPC over stdin and stdout
@@ -27,15 +27,24 @@ Say:
 - [click] Behind the tools: Prisma and CLASH's dev.db, resolved from import.meta.url, never process.cwd()
 - Inside Claude Code a tool is mcp__clash__find_venue: server name, double underscore, tool name
 
+<!-- @note: five-decisions-behind-a-good-tool-server -->
+> Do:
+> - Static slide, no clicks: read the five titles, then point at the example on each card
+> - Each card is a line in the prompts of steps 2 and 3 in tasks/19-build-your-own-mcp.md
+
+Say:
+- CLASH's 19-start brings the plumbing: stdio, dev.db, log(), reply(), refuse(). What you add is design
+- venueId described as "id from find_venue": Claude calls find_venue first and never guesses an id
+- A refusal is text with isError, read later by a person in clash-conference. "No venue matches" is a reply: nothing went wrong
+- Four checks, then the one write. No delete tool. Reads run freely; in Claude Code, create_clash asks every time
+
 <!-- @note: mcp-server-ts -->
 > Do:
-> - FULL WORKING SOLUTION (trainer only): workshop-artifacts/19-build-mcp/server.ts → mcp/server.ts in your CLASH clone. The ⟵ LIVE parts:
->   const clashRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
->   const dbFile = path.join(clashRoot, "dev.db");
->   const adapter = new PrismaBetterSqlite3({ url: `file:${dbFile}` });
->   async function main() { await server.connect(new StdioServerTransport()); }
-> - Send the prompt from tasks/19-build-your-own-mcp.md step 2, then read Claude's diff against the key
-> - Smoke test in your CLASH clone: `npm install --save-dev --save-exact @modelcontextprotocol/client@2.1.0`, then workshop-artifacts/19-build-mcp/smoke.ts → mcp/smoke.ts, `npx tsx mcp/smoke.ts` ends with `All checks passed.`
+> - FULL WORKING SOLUTION (trainer only): workshop-artifacts/19-build-mcp/server.ts, the finished mcp/server.ts on CLASH's 19-solution. What goes in at the two ⟵ LIVE places:
+>   At "Step 2 of task 19", find_venue: inputSchema: z.object({ query: z.string().min(1) }); prisma.venue.findMany({ where: { title: { contains: query } }, orderBy: { title: "asc" }, take: 5 }); no match → reply(`No venue matches "${query}".`), else reply(JSON.stringify(venues, null, 2))
+>   At "Step 3 of task 19", create_clash: venueId: z.string().describe("id from find_venue"), dateTime: z.string().describe("ISO date-time in the future"); four refuse() checks in this order: no user with hostEmail, no venue with venueId, !isIsoDateTime(dateTime) or not in the future, same title and dateTime; then the one prisma.clash.create({ data: { …, venueId: venue.id, creatorId: host.id } }), log(), reply(`Created clash ${clash.id}: "${clash.title}" at ${clash.dateTime.toISOString()}.`)
+> - Send the prompts from steps 2 and 3 of tasks/19-build-your-own-mcp.md, then read Claude's diff against the key
+> - Smoke test: mcp/smoke.ts is already on CLASH's 19-start. `npx tsx mcp/smoke.ts` in your CLASH clone prints 14 PASS lines, then `All checks passed.`
 > - Trap: CLASH has no "type": "module", so tsx runs CommonJS — no top-level await, hence main()
 
 Say:
@@ -47,7 +56,7 @@ Say:
 <!-- @note: register-it-then-trust-it-selectively -->
 > Do:
 > - Docs link: the scope table (local, project, user) and the `.mcp.json` example
-> - Live: `.mcp.json` from workshop-artifacts/19-build-mcp/.mcp.json into your CLASH clone, exit, start `claude` again, say yes
+> - Live, as in step 1: `claude mcp add --scope project --transport stdio clash -- npx tsx mcp/server.ts` in your CLASH clone writes `.mcp.json`; start `claude` again, say yes
 > - Then `/mcp` in the session and `claude mcp list` from the shell
 > - Said no by mistake? `claude mcp reset-project-choices`
 
@@ -95,11 +104,12 @@ Say:
 
 <!-- @note: build-your-own-mcp-2 -->
 > Do:
-> - Starting point: 19-start in your CLASH clone, `npm run dev` on localhost:3000, the eight seeded logins
-> - Hand off to tasks/19-build-your-own-mcp.md: steps 1 to 13 the server, 14 to 19 clash-conference on localhost:3001
-> - Watch for: a console.log in the server, a process.cwd() path, a skipped restart after `.mcp.json`
+> - Starting point: CLASH's 19-start in your CLASH clone, then `npm run db:seed` — the smoke test and the Holzmarkt 25 prompts count on the seed data
+> - Hand off to tasks/19-build-your-own-mcp.md: steps 1 to 5 the server in your CLASH clone, 6 to 9 clash-conference on localhost:3001
+> - Watch for: a console.log in the server, a refuse() when find_venue finds nothing, a write before the four checks, a skipped restart after a new tool
 > - Duplicate demo: the same create prompt twice; the second answer is the server's Duplicate refusal
 
 Say:
-- "Now you": a fourth tool list_venues, then ask-clash.mts from Task 16 pointed at this server
+- "Now you": a fourth tool list_venues, ask-clash.mts from Task 16 pointed at this server, a refusal Claude can recover from on its own
+- Also in "Now you": create_clash writes straight to the database and skips the venue_clash notification that CLASH's own createClash in app/actions/clashes.ts sends to the venue's creator
 - Go further: the same three tools over HTTP as a Next.js route inside CLASH

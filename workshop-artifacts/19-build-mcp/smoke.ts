@@ -98,6 +98,10 @@ expect("create_clash refuses a past date", past.text.startsWith("dateTime must b
 const garbage = await call("create_clash", { ...draft, title: "No date", dateTime: "someday" });
 expect("create_clash refuses an invalid date", garbage.text.startsWith("dateTime must be") && garbage.isError);
 
+// ISO in shape, but no such day: 2099 is not a leap year. new Date() alone would roll it to March 1.
+const noSuchDay = await call("create_clash", { ...draft, title: "No such day", dateTime: "2099-02-29T19:00:00.000Z" });
+expect("create_clash refuses a day that does not exist", noSuchDay.text.startsWith("dateTime must be") && noSuchDay.isError);
+
 const listed = await call("list_upcoming_clashes", { area: "Holzmarkt" });
 expect("the new clash shows up in list_upcoming_clashes", listed.text.includes("MCP Hacknight") && !listed.isError);
 }
