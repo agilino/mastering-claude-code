@@ -24,6 +24,18 @@ Sagen:
 - `isolation: worktree` im Frontmatter eines Subagents, und die Tools EnterWorktree/ExitWorktree
 - Zuhause: `claude --worktree "#<pr-number>"` startet von einem PR aus
 
+
+
+<!-- @note: batch-many-independent-pull-requests -->
+> Do:
+> - Verweise auf die manuelle Worktree-Folie. /batch automatisiert dieses Muster, nachdem es den Scope untersucht und eine Aufteilung vorschlägt.
+> - Führe es nicht live auf CLASH aus; die Entscheidungsgrenze ist die Lektion.
+
+Say:
+- /batch ist für viele trennbare Änderungen. Es schlägt 5 bis 30 unabhängige Units vor und wartet vor dem Start auf Freigabe.
+- Jede Unit erhält einen eigenen Background-Agent und Worktree, führt Tests aus und öffnet einen eigenen Pull Request.
+- Teilen die Units eine zentrale Architekturentscheidung oder ändern ständig dieselben Dateien, zwinge die Arbeit nicht in /batch. Entscheide zuerst, splitte danach die mechanische Arbeit.
+
 <!-- @note: headless-in-ci -->
 > Tun:
 > - Optional: auf "Start faster with bare mode" zeigen — --bare überspringt das automatische Laden von Hooks, Skills und CLAUDE.md für einen reproduzierbaren CI-Lauf

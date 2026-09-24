@@ -49,6 +49,30 @@ Say:
 - No name field, so the file name is the style name: /output-style host-notes
 - A misspelled frontmatter field is ignored without an error: check the list after the restart
 
+
+
+<!-- @note: goal-evidence-decides-when-to-stop -->
+> Do:
+> - Explain the condition before running it: end state, proof, turn ceiling.
+> - Say explicitly that /goal does not switch permission mode. Auto mode is the separate choice for unattended work.
+
+Say:
+- /goal is not another loop command. It installs a completion condition for this session.
+- After a turn ends, a small evaluator judges the transcript: met, not yet met, or impossible.
+- A bounded goal is safer than "keep trying": write a proof and a ceiling such as "or stop after 20 turns".
+- If a subagent or background shell is still running, evaluation waits. Long waits can create check-in turns, so unattended work still has a cost.
+
+<!-- @note: bound-the-work -->
+> Do:
+> - Run the demo on a clean CLASH branch. It may finish after one turn; that is fine.
+> - Run /goal afterwards and point at status, turn count, token spend and evaluator reason.
+> - Optional: show /goal clear after setting a deliberately longer condition, without breaking the repo.
+
+Say:
+- The point is the contract, not making the demo artificially long.
+- For real feature work, add constraints such as "no test files changed" or a browser outcome, plus a turn ceiling.
+- A goal can pause on usage limits or hook failures and resume later; it is still bounded by the condition you wrote.
+
 <!-- @note: loop-the-prompt-comes-back -->
 > Do:
 > - Docs link: "Let Claude choose the interval", then "Stop a loop". Live in your CLASH clone, first:

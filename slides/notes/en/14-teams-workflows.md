@@ -255,6 +255,17 @@ Say:
 - `/cost` says the token number out loud for you — alias for `/usage`
 - Task ends with shipped code — that's what 13-start carries
 
+
+
+<!-- @note: pick-the-parallelism-primitive -->
+> Do:
+> - Ask for one example per row. Keep the answer about communication and isolation, not fashion.
+
+Say:
+- Parallelism is not one feature. Pick the smallest coordination mechanism that matches the dependency between workers.
+- A subagent protects your main context. A team exists because peers need to talk. A workflow makes the fan-out repeatable. Worktrees isolate edits. /batch is for many separable pull requests.
+- More agents are not automatically faster: every worker has its own context and token spend.
+
 <!-- @note: team-and-workflow-audit -->
 > Do:
 > - Watch the team part first, then do it

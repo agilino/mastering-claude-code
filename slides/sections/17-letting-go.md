@@ -38,6 +38,22 @@ lines:
 
 <G18WorktreeParallelism />
 
+
+
+---
+layout: concept
+heading: "/batch: many independent pull requests"
+docs: https://code.claude.com/docs/en/commands
+lines:
+  - "Claude researches, proposes 5–30 independent units, then waits for approval."
+  - "Each unit gets a background subagent, worktree, tests and its own pull request."
+  - "Use it for separable migrations, not one coupled architecture decision."
+---
+
+<div class="flex items-center gap-3 w-full max-w-4xl justify-center text-sm">
+  <div class="na-card px-4 py-3">research</div><span>→</span><div class="na-card px-4 py-3">5–30 units</div><span>→</span><div class="na-card px-4 py-3">approve</div><span>→</span><div class="na-card px-4 py-3">worktrees</div><span>→</span><div class="na-card px-4 py-3">PRs</div>
+</div>
+
 ---
 layout: concept
 heading: "Headless in CI"
@@ -174,5 +190,3 @@ mode: "you do"
 success: "ask-clash.mts prints an answer with a clash, a place and a time, and never edits a file or runs a command."
 branch: "16-start"
 ---
-
-

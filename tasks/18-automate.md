@@ -5,11 +5,11 @@
 
 ## Theory
 
-- [An output style sets the voice](https://mastering-claude-code.vercel.app/theory-output-styles)
+- [/goal: evidence decides when to stop](https://mastering-claude-code.vercel.app/theory-goal)
 - [/loop: the prompt comes back](https://mastering-claude-code.vercel.app/theory-loop)
 - [Background: the session keeps working](https://mastering-claude-code.vercel.app/theory-background-sessions)
 
-> **Reminder:** A style, a loop, a background session and a routine are saved instructions that run with nobody at the keyboard.
+> **Reminder:** A goal defines when Claude may stop; loops, background sessions and routines decide how work continues without you at the keyboard.
 
 ## You will end up with
 
@@ -29,7 +29,9 @@ the harness:
 - A **background session** keeps working after you leave the terminal.
 - A **routine** runs in the cloud. Your machine can be off.
 
-Each one is a saved instruction. The harness replays it. You read the result.
+A **goal** adds a measurable stop condition to a session. Give it a proof and a turn ceiling; it does not change permissions.
+
+Each mechanism changes a different part of unattended work. You still define the boundary and read the result.
 
 ## Do this
 
@@ -165,6 +167,7 @@ for one build. That is the gate, not the loop.
 
 ## Now you
 
+- Set a bounded `/goal` for one real check in your CLASH clone. Include the evidence that proves it and a turn ceiling; then inspect `/goal` and clear it.
 - Write `.claude/loop.md` in your CLASH clone: your own default prompt for a bare `/loop`. Goal: check the background build and `npx tsc --noEmit`, report in one line, answer `quiet` when nothing changed. Compare with `workshop-artifacts/18-automate/loop.md`.
 - Write a second style in your CLASH clone that answers in German. Goal: same code, same care, German prose.
 - With a subscription: create your own routine on your fork of CLASH with the trainer's prompt, then give it a GitHub trigger, so a pull request starts it. A routine belongs to one claude.ai account, so you cannot edit the trainer's. The Claude GitHub App must be installed on that fork.
@@ -173,6 +176,7 @@ for one build. That is the gate, not the loop.
 
 - [ ] `/output-style` lists `host-notes` next to the built-ins, and an answer in that style ends with a line that starts with `Host note:`.
 - [ ] `.claude/settings.local.json` in your CLASH clone holds `outputStyle`.
+- [ ] You can explain the three parts of a safe `/goal`: end state, proof and turn ceiling.
 - [ ] The loop reported at least once and is no longer listed.
 - [ ] `claude agents` showed a row named `audit`. You peeked, attached and detached.
 - [ ] `docs/audit.md` is in a worktree under `.claude/worktrees/`, not in the main checkout of your CLASH clone, and every line says PASS.
@@ -194,6 +198,7 @@ features, one CLASH clone, one of them with nobody watching. Merge both.
 ## Links
 
 - Output styles — https://code.claude.com/docs/en/output-styles
+- Goal mode — https://code.claude.com/docs/en/goal
 - Scheduled tasks and `/loop` — https://code.claude.com/docs/en/scheduled-tasks
 - Agent view and background sessions — https://code.claude.com/docs/en/agent-view
 - Routines — https://code.claude.com/docs/en/routines
