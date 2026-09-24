@@ -64,6 +64,75 @@ lines:
   <div class="na-card p-4" v-click style="border-color: var(--na-accent-500)"><div class="font-semibold mb-1">Fable</div><div class="text-sm" style="color: var(--na-fg-muted)">long, autonomous sessions</div></div>
 </div>
 
+
+
+---
+layout: concept
+heading: "Model and effort are separate"
+docs: https://code.claude.com/docs/en/model-config
+lines:
+  - "Model sets capability. Effort sets how much reasoning the model spends."
+  - "Context supplies facts. Verification tells you whether the result is good."
+---
+
+<div class="grid grid-cols-4 gap-3 w-full max-w-4xl">
+  <div class="na-card p-4"><div class="font-semibold mb-1">Context</div><div class="text-sm" style="color: var(--na-fg-muted)">What does it know?</div></div>
+  <div class="na-card p-4" v-click><div class="font-semibold mb-1">Model</div><div class="text-sm" style="color: var(--na-fg-muted)">What can it solve?</div></div>
+  <div class="na-card p-4" v-click><div class="font-semibold mb-1">Effort</div><div class="text-sm" style="color: var(--na-fg-muted)">How hard should it think?</div></div>
+  <div class="na-card p-4" v-click><div class="font-semibold mb-1">Verification</div><div class="text-sm" style="color: var(--na-fg-muted)">How will we know?</div></div>
+</div>
+<div v-click class="mt-5 text-sm text-center" style="color: var(--na-fg-muted)">Plan mode changes when Claude may write. It is not a smarter model.</div>
+
+---
+layout: code-live
+heading: "Same task, different effort"
+routeAlias: theory-effort-lab
+docs: https://code.claude.com/docs/en/model-config
+filePath: "workshop-artifacts/reasoning-lab/review.ts"
+success: "Both runs reviewed the same file and prompt; the group can compare findings, false positives and usage instead of judging tone."
+---
+
+```bash
+claude -p --effort low --output-format json \
+  "Read @workshop-artifacts/reasoning-lab/review.ts. Find correctness bugs. Do not edit. For each finding: line, impact, proof."
+
+claude -p --effort high --output-format json \
+  "Read @workshop-artifacts/reasoning-lab/review.ts. Find correctness bugs. Do not edit. For each finding: line, impact, proof."
+
+# ⟵ LIVE: same model, same file, same prompt. Compare the result and usage.
+```
+
+---
+layout: concept
+heading: "Measure the extra reasoning"
+lines:
+  - "Score correct findings and false positives. Record tokens and fix turns."
+  - "Higher effort pays only when it prevents enough rework to cover its cost."
+---
+
+<div class="grid grid-cols-5 gap-2 w-full max-w-4xl text-sm">
+  <div></div><div class="font-semibold text-center">correct</div><div class="font-semibold text-center">false +</div><div class="font-semibold text-center">tokens</div><div class="font-semibold text-center">fix turns</div>
+  <div class="na-card p-3 font-mono">low</div><div class="na-card p-3 text-center">__/4</div><div class="na-card p-3 text-center">__</div><div class="na-card p-3 text-center">__</div><div class="na-card p-3 text-center">__</div>
+  <div class="na-card p-3 font-mono">high</div><div class="na-card p-3 text-center">__/4</div><div class="na-card p-3 text-center">__</div><div class="na-card p-3 text-center">__</div><div class="na-card p-3 text-center">__</div>
+</div>
+
+---
+layout: concept
+heading: "Spend effort where it matters"
+docs: https://code.claude.com/docs/en/model-config
+lines:
+  - "low: scoped and mechanical · medium/high: normal coding and harder debugging"
+  - "xhigh: architecture and root cause · max: hardest decisions; measure first"
+  - "ultrathink asks for one deeper turn without changing the session effort setting"
+---
+
+<div class="flex gap-3 w-full max-w-4xl text-sm">
+  <div class="na-card p-4 flex-1"><div class="font-semibold">low</div><div style="color: var(--na-fg-muted)">rename · lookup · obvious edit</div></div>
+  <div class="na-card p-4 flex-1"><div class="font-semibold">medium / high</div><div style="color: var(--na-fg-muted)">feature · review · debug</div></div>
+  <div class="na-card p-4 flex-1"><div class="font-semibold">xhigh</div><div style="color: var(--na-fg-muted)">root cause · architecture</div></div>
+  <div class="na-card p-4 flex-1"><div class="font-semibold">max</div><div style="color: var(--na-fg-muted)">hardest decision · measure first</div></div>
+</div>
+
 ---
 layout: concept
 heading: "Where the knowledge comes from"
