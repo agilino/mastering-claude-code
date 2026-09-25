@@ -22,7 +22,10 @@ const manifestPath = join(root, 'slides.md')
 
 const { values, positionals } = parseArgs({
   args: process.argv.slice(2),
-  options: { lang: { type: 'string', default: 'en' } },
+  options: {
+    lang: { type: 'string', default: 'en' },
+    'skip-export': { type: 'boolean', default: false },
+  },
   allowPositionals: true,
 })
 const cmd = positionals[0] ?? 'dev'
@@ -133,8 +136,17 @@ if (cmd === 'dev') {
   // dist/mastering-claude-code.pdf; only non-default locales get a suffix.
   const pdfName = lang === 'en' ? 'mastering-claude-code.pdf' : `mastering-claude-code.${lang}.pdf`
   if (cmd === 'build') await spawnSlidev(['build', entryRel])
-  await mkdir(join(root, 'dist'), { recursive: true })
-  await spawnSlidev(['export', entryRel, '--output', `dist/${pdfName}`])
+  // Vercel's build sandbox can't run any Playwright Chromium variant (no system
+  // libnspr4/libnss3 and no root to install them), so the production deploy skips
+  // the PDF — it's a local convenience artifact, not something the live site serves.
+  if (values['skip-export']) {
+    console.log('[deck] --skip-export: leaving PDF export to a local `npm run export`')
+  } else {
+    await mkdir(join(root, 'dist'), { recursive: true })
+    // No --executable-path: Slidev's own headless shell renders the whole deck in one
+    // tall viewport; the full chrome.exe returns blank pages for it.
+    await spawnSlidev(['export', entryRel, '--output', `dist/${pdfName}`])
+  }
 } else {
   throw new Error(`unknown command "${cmd}" — use dev, build, or export`)
 }
